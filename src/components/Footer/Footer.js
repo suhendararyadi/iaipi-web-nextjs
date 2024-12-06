@@ -109,7 +109,7 @@ const Footer = () => {
             <div className="col-md-8">
               <div className="copyright text-md-left text-center pt-15">
                 <p>
-                  <Link href="https://www.templateshub.net" target="_blank">Templates Hub</Link>
+                  Departemen IT
                 </p>
               </div>
             </div>
