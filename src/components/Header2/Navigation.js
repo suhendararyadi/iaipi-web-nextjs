@@ -1,18 +1,23 @@
-import Link from 'next/link'
+'use client'
 import { useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <div className="navigation">
+    <div className="navigation navigation-2">
       <div className="container">
-        <div className="row">
-          <div className="col-lg-10 col-md-10 col-sm-9 col-8">
+        <div className="row no-gutters">
+          <div className="col-lg-11 col-md-10 col-sm-9 col-9">
             <nav className="navbar navbar-expand-lg">
+              <Link className="navbar-brand" href="/index-3">
+                <img src="/images/logo.png" alt="Logo" />
+              </Link>
               <button 
                 className="navbar-toggler" 
-                type="button" 
+                type="button"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 <span className="icon-bar"></span>
@@ -21,15 +26,13 @@ const Navigation = () => {
               </button>
 
               <div className={`collapse navbar-collapse sub-menu-bar ${isMenuOpen ? 'show' : ''}`} id="navbarSupportedContent">
-                <ul className="navbar-nav mr-auto">
+                <ul className="navbar-nav ml-auto">
                   <li className="nav-item">
-                    <Link href="/" className="active">
-                      Home
-                    </Link>
+                    <Link className="active" href="/index-2">Home</Link>
                     <ul className="sub-menu">
-                      <li><Link href="/">Home 01</Link></li>
-                      <li><Link href="/home-2">Home 02</Link></li>
-                      <li><Link href="/home-3">Home 03</Link></li>
+                      <li><Link href="/index-2">Home 01</Link></li>
+                      <li><Link className="active" href="/index-3">Home 02</Link></li>
+                      <li><Link href="/index-4">Home 03</Link></li>
                     </ul>
                   </li>
                   <li className="nav-item">
@@ -39,35 +42,35 @@ const Navigation = () => {
                     <Link href="/courses">Courses</Link>
                     <ul className="sub-menu">
                       <li><Link href="/courses">Courses</Link></li>
-                      <li><Link href="/courses-single">Course Single</Link></li>
+                      <li><Link href="/courses-singel">Course Singel</Link></li>
                     </ul>
                   </li>
                   <li className="nav-item">
                     <Link href="/events">Events</Link>
                     <ul className="sub-menu">
                       <li><Link href="/events">Events</Link></li>
-                      <li><Link href="/events-single">Event Single</Link></li>
+                      <li><Link href="/events-singel">Event Singel</Link></li>
                     </ul>
                   </li>
                   <li className="nav-item">
                     <Link href="/teachers">Our teachers</Link>
                     <ul className="sub-menu">
                       <li><Link href="/teachers">teachers</Link></li>
-                      <li><Link href="/teachers-single">teacher Single</Link></li>
+                      <li><Link href="/teachers-singel">teacher Singel</Link></li>
                     </ul>
                   </li>
                   <li className="nav-item">
                     <Link href="/blog">Blog</Link>
                     <ul className="sub-menu">
                       <li><Link href="/blog">Blog</Link></li>
-                      <li><Link href="/blog-single">Blog Single</Link></li>
+                      <li><Link href="/blog-singel">Blog Singel</Link></li>
                     </ul>
                   </li>
                   <li className="nav-item">
                     <Link href="/shop">Shop</Link>
                     <ul className="sub-menu">
                       <li><Link href="/shop">Shop</Link></li>
-                      <li><Link href="/shop-single">Shop Single</Link></li>
+                      <li><Link href="/shop-singel">Shop Singel</Link></li>
                     </ul>
                   </li>
                   <li className="nav-item">
@@ -81,14 +84,14 @@ const Navigation = () => {
               </div>
             </nav>
           </div>
-          {/* <div className="col-lg-2 col-md-2 col-sm-3 col-4">
+          <div className="col-lg-1 col-md-2 col-sm-3 col-3">
             <div className="right-icon text-right">
               <ul>
-                <li><a href="#" id="search"><i className="fa fa-search"></i></a></li>
-                <li><a href="#"><i className="fa fa-shopping-bag"></i><span>0</span></a></li>
+                <li><Link href="#" id="search"><i className="fa fa-search"></i></Link></li>
+                <li><Link href="#"><i className="fa fa-shopping-bag"></i><span>0</span></Link></li>
               </ul>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

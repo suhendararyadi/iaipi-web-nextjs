@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header id="header-part">
       {/* Top Header */}
-      <TopHeader />
+      {/* <TopHeader /> */}
       
       {/* Logo & Support */}
       <div className="header-logo-support pt-30 pb-30">
