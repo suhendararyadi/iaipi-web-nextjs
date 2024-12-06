@@ -1,0 +1,84 @@
+'use client'
+import { useEffect, useState } from 'react'
+
+const PatnarLogo = () => {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+    const initPatnarSlider = () => {
+      if (window.jQuery) {
+        const $ = window.jQuery
+        $('.patnar-slied').slick({
+          dots: false,
+          infinite: true,
+          autoplay: true,
+          speed: 800,
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          arrows: false,
+          responsive: [
+            {
+              breakpoint: 1200,
+              settings: {
+                slidesToShow: 4,
+              }
+            },
+            {
+              breakpoint: 992,
+              settings: {
+                slidesToShow: 3,
+              }
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 2,
+              }
+            },
+            {
+              breakpoint: 576,
+              settings: {
+                slidesToShow: 2,
+              }
+            }
+          ]
+        })
+      }
+    }
+    setTimeout(initPatnarSlider, 100)
+  }, [])
+
+  if (!isMounted) return null
+
+  return (
+    <div id="patnar-logo" className="pt-40 pb-80 gray-bg">
+      <div className="container">
+        <div className="row patnar-slied">
+          <div className="col-lg-12">
+            <div className="singel-patnar text-center mt-40">
+              <img src="/images/patnar-logo/p-1.png" alt="Logo" />
+            </div>
+          </div>
+          <div className="col-lg-12">
+            <div className="singel-patnar text-center mt-40">
+              <img src="/images/patnar-logo/p-2.png" alt="Logo" />
+            </div>
+          </div>
+          <div className="col-lg-12">
+            <div className="singel-patnar text-center mt-40">
+              <img src="/images/patnar-logo/p-3.png" alt="Logo" />
+            </div>
+          </div>
+          <div className="col-lg-12">
+            <div className="singel-patnar text-center mt-40">
+              <img src="/images/patnar-logo/p-4.png" alt="Logo" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default PatnarLogo

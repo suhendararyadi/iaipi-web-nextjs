@@ -5,6 +5,12 @@ import About from '@/components/About/About'
 import Apply from '@/components/Apply/Apply'
 import Course from "@/components/Course/Course";
 import VideoFeature from "@/components/VideoFeature/VideoFeature";
+import Teachers from "@/components/Teachers/Teachers";
+import Publication from '@/components/Publication/Publication'
+import Testimonial from '@/components/Testimonial/Testimonial'
+import News from '@/components/News/News'
+import PatnarLogo from '@/components/PatnarLogo/PatnarLogo'
+import Footer from '@/components/Footer/Footer'
 
 export default function Home() {
   return (
@@ -16,6 +22,12 @@ export default function Home() {
       <Apply/>
       <Course/>
       <VideoFeature/>
+      <Teachers/>
+      <Publication/>
+      <Testimonial />
+      <News />
+      <PatnarLogo />
+      <Footer/>
       {/* Konten lainnya */}
     </>
   )
