@@ -21,14 +21,15 @@ export default function Home() {
       <Header2 />
       <Slider />
       {/* <Category/> */}
-      <About/>
-      <Apply/>
+      {/* <About/> */}
+      <Teachers2/>
       <Course/>
       <VideoFeature/>
-      <Teachers2/>
+      
       <Publication/>
       <Testimonial />
       <News />
+      <Apply/>
       <PatnarLogo />
       <Footer/>
       {/* Konten lainnya */}

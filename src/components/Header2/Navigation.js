@@ -45,45 +45,31 @@ const Navigation = () => {
                     </ul>
                   </li>
                   <li className="nav-item">
-                    <Link href="/about">About us</Link>
+                    <Link href="/about">Tentang</Link>
                   </li>
                   <li className="nav-item">
-                    <Link href="/courses">Courses</Link>
-                    <ul className="sub-menu">
+                    <Link href="/courses">Pendidikan</Link>
+                    {/* <ul className="sub-menu">
                       <li><Link href="/courses">Courses</Link></li>
                       <li><Link href="/courses-singel">Course Single</Link></li>
-                    </ul>
+                    </ul> */}
                   </li>
                   <li className="nav-item">
-                    <Link href="/events">Events</Link>
-                    <ul className="sub-menu">
+                    <Link href="/events">Mahasiswa</Link>
+                    {/* <ul className="sub-menu">
                       <li><Link href="/events">Events</Link></li>
                       <li><Link href="/events-singel">Event Single</Link></li>
-                    </ul>
+                    </ul> */}
                   </li>
                   <li className="nav-item">
-                    <Link href="/teachers">Our teachers</Link>
-                    <ul className="sub-menu">
-                      <li><Link href="/teachers">Teachers</Link></li>
-                      <li><Link href="/teachers-singel">Teacher Single</Link></li>
-                    </ul>
-                  </li>
-                  <li className="nav-item">
-                    <Link href="/blog">Blog</Link>
+                    <Link href="/blog">Berita & Agenda</Link>
                     <ul className="sub-menu">
                       <li><Link href="/blog">Blog</Link></li>
                       <li><Link href="/blog-singel">Blog Single</Link></li>
                     </ul>
                   </li>
                   <li className="nav-item">
-                    <Link href="/shop">Shop</Link>
-                    <ul className="sub-menu">
-                      <li><Link href="/shop">Shop</Link></li>
-                      <li><Link href="/shop-singel">Shop Single</Link></li>
-                    </ul>
-                  </li>
-                  <li className="nav-item">
-                    <Link href="/contact">Contact</Link>
+                    <Link href="/contact">Penerimaan</Link>
                     <ul className="sub-menu">
                       <li><Link href="/contact">Contact Us</Link></li>
                       <li><Link href="/contact-2">Contact Us 2</Link></li>

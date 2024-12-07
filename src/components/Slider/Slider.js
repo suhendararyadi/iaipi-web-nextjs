@@ -37,7 +37,7 @@ const Slider = () => {
     <section id="slider-part" className="slider-active">
       <div 
         className="single-slider bg_cover pt-150" 
-        style={{ backgroundImage: "url('/images/slider/slider-iaipi-1.jpg')" }} 
+        style={{ backgroundImage: "url('/images/slider/slider-iaipi-2.jpg')" }} 
         >
         <div className="container">
         </div>
@@ -45,7 +45,15 @@ const Slider = () => {
 
       <div 
         className="single-slider bg_cover pt-150" 
-        style={{ backgroundImage: "url('/images/slider/slider-iaipi-4.jpg')" }} 
+        style={{ backgroundImage: "url('/images/slider/slider-iaipi-3.jpg')" }} 
+        >
+        <div className="container">
+        </div>
+      </div>
+
+      <div 
+        className="single-slider bg_cover pt-150" 
+        style={{ backgroundImage: "url('/images/slider/slider-iaipi-1.jpg')" }} 
         >
       </div>
     </section>
