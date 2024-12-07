@@ -57,8 +57,8 @@ const Course = () => {
         <div className="row">
           <div className="col-lg-6">
             <div className="section-title pb-45">
-              <h5>Our course</h5>
-              <h2>Featured courses</h2>
+              <h5>Pendidikan</h5>
+              <h2>Fakultas</h2>
             </div>
           </div>
         </div>
@@ -68,36 +68,11 @@ const Course = () => {
             <div className="singel-course">
               <div className="thum">
                 <div className="image">
-                  <img src="/images/course/cu-1.jpg" alt="Course" />
-                </div>
-                <div className="price">
-                  <span>Free</span>
+                  <img src="/images/course/fak-1.jpg" alt="Course" />
                 </div>
               </div>
               <div className="cont">
-                <ul>
-                  <li><i className="fa fa-star"></i></li>
-                  <li><i className="fa fa-star"></i></li>
-                  <li><i className="fa fa-star"></i></li>
-                  <li><i className="fa fa-star"></i></li>
-                  <li><i className="fa fa-star"></i></li>
-                </ul>
-                <span>(20 Reviews)</span>
-                <Link href="/courses-singel"><h4>Learn basis javascirpt from start for beginner</h4></Link>
-                <div className="course-teacher">
-                  <div className="thum">
-                    <Link href="#"><img src="/images/course/teacher/t-1.jpg" alt="teacher" /></Link>
-                  </div>
-                  <div className="name">
-                    <Link href="#"><h6>Mark anthem</h6></Link>
-                  </div>
-                  <div className="admin">
-                    <ul>
-                      <li><Link href="#"><i className="fa fa-user"></i><span>31</span></Link></li>
-                      <li><Link href="#"><i className="fa fa-heart"></i><span>10</span></Link></li>
-                    </ul>
-                  </div>
-                </div>
+                <Link href="/courses-singel"><h4>FAKULTAS USULUDIN</h4></Link>
               </div>
             </div>
           </div>
@@ -107,36 +82,15 @@ const Course = () => {
             <div className="singel-course">
               <div className="thum">
                 <div className="image">
-                  <img src="/images/course/cu-2.jpg" alt="Course" />
+                  <img src="/images/course/fak-2.jpg" alt="Course" />
                 </div>
-                <div className="price">
-                  <span>Free</span>
-                </div>
+                
               </div>
               <div className="cont">
-                <ul>
-                  <li><i className="fa fa-star"></i></li>
-                  <li><i className="fa fa-star"></i></li>
-                  <li><i className="fa fa-star"></i></li>
-                  <li><i className="fa fa-star"></i></li>
-                  <li><i className="fa fa-star"></i></li>
-                </ul>
-                <span>(20 Reviews)</span>
-                <Link href="/courses-singel"><h4>Learn basis javascirpt from start for beginner</h4></Link>
-                <div className="course-teacher">
-                  <div className="thum">
-                    <Link href="#"><img src="/images/course/teacher/t-2.jpg" alt="teacher" /></Link>
-                  </div>
-                  <div className="name">
-                    <Link href="#"><h6>Mark anthem</h6></Link>
-                  </div>
-                  <div className="admin">
-                    <ul>
-                      <li><Link href="#"><i className="fa fa-user"></i><span>31</span></Link></li>
-                      <li><Link href="#"><i className="fa fa-heart"></i><span>10</span></Link></li>
-                    </ul>
-                  </div>
-                </div>
+                
+                
+                <Link href="/courses-singel"><h4>FAKULTAS TARBIYAH</h4></Link>
+                
               </div>
             </div>
           </div>
@@ -146,36 +100,14 @@ const Course = () => {
             <div className="singel-course">
               <div className="thum">
                 <div className="image">
-                  <img src="/images/course/cu-3.jpg" alt="Course" />
+                  <img src="/images/course/fak-3.jpg" alt="Course" />
                 </div>
-                <div className="price">
-                  <span>Free</span>
-                </div>
+                
               </div>
               <div className="cont">
-                <ul>
-                  <li><i className="fa fa-star"></i></li>
-                  <li><i className="fa fa-star"></i></li>
-                  <li><i className="fa fa-star"></i></li>
-                  <li><i className="fa fa-star"></i></li>
-                  <li><i className="fa fa-star"></i></li>
-                </ul>
-                <span>(20 Reviews)</span>
-                <Link href="/courses-singel"><h4>Learn basis javascirpt from start for beginner</h4></Link>
-                <div className="course-teacher">
-                  <div className="thum">
-                    <Link href="#"><img src="/images/course/teacher/t-3.jpg" alt="teacher" /></Link>
-                  </div>
-                  <div className="name">
-                    <Link href="#"><h6>Mark anthem</h6></Link>
-                  </div>
-                  <div className="admin">
-                    <ul>
-                      <li><Link href="#"><i className="fa fa-user"></i><span>31</span></Link></li>
-                      <li><Link href="#"><i className="fa fa-heart"></i><span>10</span></Link></li>
-                    </ul>
-                  </div>
-                </div>
+                
+                <Link href="/courses-singel"><h4>EKONOMI & BISNIS ISLAM</h4></Link>
+                
               </div>
             </div>
           </div>

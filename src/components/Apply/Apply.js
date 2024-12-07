@@ -10,18 +10,18 @@ const Apply = () => {
             {/* Apply for fall 2019 */}
             <div className="col-lg-6">
               <div className="apply-cont apply-color-1">
-                <h3>Apply for fall 2019</h3>
-                <p>Gravida nibh vel velit auctor aliquetn sollicitudirem sem quibibendum auci elit cons equat ipsutis sem nibh id elituis sed odio sit amet nibh vulputate cursus equat ipsutis.</p>
-                <Link href="#" className="main-btn">Apply Now</Link>
+                <h3>Pendaftaran 2025</h3>
+                <p>Pendaftaran tahun akademik 2025 akan segera dimulai. Segera persiapkan diri kamu.</p>
+                <Link href="#" className="main-btn">Daftar</Link>
               </div>
             </div>
             
             {/* Apply for scholarship */}
             <div className="col-lg-6">
               <div className="apply-cont apply-color-2">
-                <h3>Apply for scholarship</h3>
-                <p>Gravida nibh vel velit auctor aliquetn sollicitudirem sem quibibendum auci elit cons equat ipsutis sem nibh id elituis sed odio sit amet nibh vulputate cursus equat ipsutis.</p>
-                <Link href="#" className="main-btn">Apply Now</Link>
+                <h3>Daftar Beasiswa</h3>
+                <p>Kami akan membantu untuk pengajuan beasiswa. Ayo segera bergabung dengan kami</p>
+                <Link href="#" className="main-btn">Daftar</Link>
               </div>
             </div>
           </div>

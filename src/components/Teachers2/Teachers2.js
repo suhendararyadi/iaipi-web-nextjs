@@ -108,7 +108,7 @@ const Teachers2 = () => {
                 {/* Student 1 */}
                 <div className="singel-student">
                   <img src="/images/teachers/teacher-2/quote.png" alt="Quote" />
-                  <p>A“Selamat datang di website resmi kampus kami, Institut Agama Islam Persis Garut”</p>
+                  <p>“Selamat datang di website resmi kampus kami, Institut Agama Islam Persis Garut”</p>
                   <h6>Dr. Tiar Anwar Bachtiar, M.Hum.</h6>
                   <span>Rektor</span>
                 </div>

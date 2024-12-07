@@ -23,7 +23,7 @@ const VideoFeature = () => {
   if (!isMounted) return null
 
   return (
-    <section id="video-feature" className="bg_cover pt-60 pb-110" style={{backgroundImage: "url('/images/bg-1.jpg')"}}>
+    <section id="video-feature" className="bg_cover pt-60 pb-110" style={{backgroundImage: "url('/images/slider/slider-iaipi-3.jpg')"}}>
       <div className="container">
         <div className="row align-items-center">
           <div className="col-lg-6 order-last order-lg-first">

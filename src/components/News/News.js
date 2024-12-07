@@ -8,8 +8,8 @@ const News = () => {
         <div className="row">
           <div className="col-lg-6">
             <div className="section-title pb-50">
-              <h5>Latest News</h5>
-              <h2>From the news</h2>
+              <h5>Berita dan Agenda</h5>
+              <h2>Berita Tebaru</h2>
             </div>
           </div>
         </div>

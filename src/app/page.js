@@ -23,13 +23,12 @@ export default function Home() {
       {/* <Category/> */}
       {/* <About/> */}
       <Teachers2/>
-      <Course/>
-      <VideoFeature/>
-      
-      <Publication/>
-      <Testimonial />
       <News />
+      <Course/>
       <Apply/>
+      <VideoFeature/>
+      <Publication/>
+      {/* <Testimonial /> */}
       <PatnarLogo />
       <Footer/>
       {/* Konten lainnya */}
