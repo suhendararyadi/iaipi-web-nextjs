@@ -14,7 +14,7 @@ const Navigation = () => {
             <nav className="navbar navbar-expand-lg">
               <Link className="navbar-brand" href="/" style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
                 <Image 
-                  src="/images/logo.png" 
+                  src="/images/logo.jpeg" 
                   alt="Logo"
                   width={110}
                   height={110}
