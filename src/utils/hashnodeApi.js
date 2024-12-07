@@ -1,41 +1,32 @@
+// src/utils/hashnodeApi.js
+import { parseString } from 'xml2js';
+import { promisify } from 'util';
+
+const parseXMLPromise = promisify(parseString);
+
 export async function getHashnodePosts() {
-    const query = `
-      query GetUserArticles {
-        user(username: "iaipi-garut") {  // Pastikan ini sudah diganti dengan username Anda
-          publication {
-            posts(page: 0) {
-              title
-              brief
-              slug
-              dateAdded
-              coverImage
-            }
-          }
-        }
-      }
-    `;
-  
-    try {
-      console.log('Sending request to Hashnode API...') // Debug log
-      const response = await fetch('https://api.hashnode.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ query }),
-      });
-  
-      const result = await response.json()
-      console.log('API Response:', result) // Debug log
-  
-      if (result.errors) {
-        console.error('GraphQL Errors:', result.errors)
-        return []
-      }
-  
-      return result.data?.user?.publication?.posts || []
-    } catch (error) {
-      console.error('Error fetching Hashnode posts:', error)
-      return []
-    }
+  try {
+    console.log('Fetching RSS feed...');
+    const response = await fetch('/api/rss');
+    const xmlData = await response.text();
+
+    const result = await parseXMLPromise(xmlData);
+    const items = result.rss.channel[0].item;
+
+    const posts = items.map(item => ({
+      title: item.title[0].replace(/<!\[CDATA\[|\]\]>/g, ''),
+      brief: item.description[0].replace(/<!\[CDATA\[|\]\]>/g, ''),
+      slug: item.link[0].split('/').pop(),
+      dateAdded: new Date(item['pubDate'][0]),
+      coverImage: item['hashnode:coverImage'] ? item['hashnode:coverImage'][0] : null,
+      link: item.link[0]
+    }));
+
+    console.log('Parsed posts:', posts);
+    return posts;
+
+  } catch (error) {
+    console.error('Error fetching RSS feed:', error);
+    return [];
   }
+}
