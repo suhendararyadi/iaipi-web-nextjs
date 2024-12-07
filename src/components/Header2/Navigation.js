@@ -67,8 +67,24 @@ const Navigation = () => {
                   <li className="nav-item">
                     <Link href="/blog">Berita & Agenda</Link>
                     <ul className="sub-menu">
-                      <li><Link href="/blog">Blog</Link></li>
-                      <li><Link href="/blog-singel">Blog Single</Link></li>
+                      <li>
+                        <Link 
+                          href="https://iaipi-garut.hashnode.dev" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                        >
+                          Berita
+                        </Link>
+                      </li>
+                      <li>
+                        <Link 
+                          href="https://iaipi-garut.hashnode.dev/series/agenda" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                        >
+                          Agenda
+                        </Link>
+                      </li>
                     </ul>
                   </li>
                   <li className="nav-item">
