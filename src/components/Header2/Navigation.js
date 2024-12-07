@@ -38,14 +38,17 @@ const Navigation = () => {
                 <ul className="navbar-nav ml-auto">
                   <li className="nav-item">
                     <Link className="active" href="/">Home</Link>
-                    <ul className="sub-menu">
+                    {/* <ul className="sub-menu">
                       <li><Link href="/index-2">Home 01</Link></li>
                       <li><Link href="/index-3">Home 02</Link></li>
                       <li><Link href="/index-4">Home 03</Link></li>
-                    </ul>
+                    </ul> */}
                   </li>
                   <li className="nav-item">
                     <Link href="/about">Tentang</Link>
+                    <ul className="sub-menu">
+                      <li><Link href="/about">Tentang Institut</Link></li>
+                    </ul>
                   </li>
                   <li className="nav-item">
                     <Link href="/courses">Pendidikan</Link>
