@@ -45,18 +45,19 @@ const Navigation = () => {
                     </ul> */}
                   </li>
                   <li className="nav-item">
-                    <Link href="/about">Tentang</Link>
+                    <Link href="/tentang">Tentang</Link>
                     <ul className="sub-menu">
-                      <li><Link href="/about">Tentang Institut</Link></li>
+                      <li><Link href="/tentang">Tentang Institut</Link></li>
+                      <li><Link href="/pimpinan">Pimpinan Institut</Link></li>
                     </ul>
                   </li>
                   <li className="nav-item">
-                    <Link href="/courses">Pendidikan</Link>
-                    {/* <ul className="sub-menu">
-                      <li><Link href="/courses">Courses</Link></li>
-                      <li><Link href="/courses-singel">Course Single</Link></li>
-                    </ul> */}
+                    <Link href="#">Pendidikan</Link>
+                    <ul className="sub-menu">
+                      <li><Link href="#">Fakultas</Link></li>
+                    </ul>
                   </li>
+
                   <li className="nav-item">
                     <Link href="/events">Mahasiswa</Link>
                     {/* <ul className="sub-menu">

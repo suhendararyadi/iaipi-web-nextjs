@@ -8,7 +8,7 @@ import Counter from '@/components/Counter/Counter'
 import VisiMisi from '@/components/About/VisiMisi'
 import Akreditasi from '@/components/Akreditasi/Akreditasi'
 
-export default function AboutPage() {
+export default function TentangPage() {
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {

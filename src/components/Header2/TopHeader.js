@@ -15,11 +15,11 @@ const TopHeader = () => {
                 </li>
                 <li>
                   <img src="/images/all-icon/email.png" alt="icon" />
-                  <span>info@yourmail.com</span>
+                  <span>info@iaipersisgarut.ac.id</span>
                 </li>
                 <li>
                   <img src="/images/all-icon/map.png" alt="icon" />
-                  <span>127/5 Mark street, New york</span>
+                  <span>Tarogong Kidul, Garut</span>
                 </li>
               </ul>
             </div>

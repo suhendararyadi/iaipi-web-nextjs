@@ -12,10 +12,18 @@ const Footer = () => {
               <div className="footer-about mt-40">
                 <div className="logo">
                   <Link href="/">
-                    <img src="/images/logo-2.png" alt="Logo" />
+                    <img src="/images/logo.jpeg" alt="Logo"
+                      width={100}  // sesuaikan ukuran yang diinginkan
+                      height={100}  // sesuaikan ukuran yang diinginkan
+                      style={{
+                        objectFit: 'contain',
+                        width: 'auto',
+                        maxHeight: '90px'  // sesuaikan ukuran yang diinginkan
+                      }}
+                    />
                   </Link>
                 </div>
-                <p>Gravida nibh vel velit auctor aliquetn quibibendum auci elit cons equat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate.</p>
+                <p>Institut Agama Islam PERSIS Garut adalah perguruan tinggi yang menyelenggarakan pendidikan akademik, profesional dalam kelompok disiplin agama, ilmu pengetahuan, teknologi dan kesenian.</p>
                 <ul className="mt-20">
                   <li><Link href="#"><i className="fa fa-facebook-f"></i></Link></li>
                   <li><Link href="#"><i className="fa fa-twitter"></i></Link></li>
@@ -76,7 +84,7 @@ const Footer = () => {
                       <i className="fa fa-home"></i>
                     </div>
                     <div className="cont">
-                      <p>143 castle road 517 district, kiyev port south Canada</p>
+                      <p>Tarogong Kidul, Garut. Indonesia</p>
                     </div>
                   </li>
                   <li>
@@ -92,7 +100,7 @@ const Footer = () => {
                       <i className="fa fa-envelope-o"></i>
                     </div>
                     <div className="cont">
-                      <p>info@yourmail.com</p>
+                      <p>info@iaipersisgarut.ac.id</p>
                     </div>
                   </li>
                 </ul>
