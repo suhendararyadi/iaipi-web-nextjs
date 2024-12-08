@@ -6,6 +6,7 @@ import PageBanner from '@/components/PageBanner/PageBanner'
 import AboutContent from '@/components/About/AboutContent'
 import Counter from '@/components/Counter/Counter'
 import VisiMisi from '@/components/About/VisiMisi'
+import Akreditasi from '@/components/Akreditasi/Akreditasi'
 
 export default function AboutPage() {
   const [isMounted, setIsMounted] = useState(false)
@@ -30,6 +31,7 @@ export default function AboutPage() {
       <AboutContent />
       <VisiMisi/>
       <Counter />
+      <Akreditasi/>
       <Footer />
     </>
   )
