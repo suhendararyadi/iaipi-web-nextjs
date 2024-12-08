@@ -5,9 +5,7 @@ import Footer from '@/components/Footer/Footer'
 import PageBanner from '@/components/PageBanner/PageBanner'
 import AboutContent from '@/components/About/AboutContent'
 import Counter from '@/components/Counter/Counter'
-import Teachers3 from '@/components/Teachers3/Teachers3'
-import Testimonial from '@/components/Testimonial/Testimonial'
-import PatnarLogo from '@/components/PatnarLogo/PatnarLogo'
+import VisiMisi from '@/components/About/VisiMisi'
 
 export default function AboutPage() {
   const [isMounted, setIsMounted] = useState(false)
@@ -22,18 +20,16 @@ export default function AboutPage() {
     <>
       <Header2 />
       <PageBanner 
-        title="About Us" 
-        backgroundImage="/images/page-banner-1.jpg"
+        title="Tentang IAI Persis Garut" 
+        backgroundImage="/images/page-banner-7.jpg"
         breadcrumbs={[
           { text: 'Home', url: '/' },
-          { text: 'About Us', url: null }
+          { text: 'Tentang Kami', url: null }
         ]}
       />
       <AboutContent />
+      <VisiMisi/>
       <Counter />
-      <Teachers3/>
-      <Testimonial />
-      <PatnarLogo />
       <Footer />
     </>
   )

@@ -10,18 +10,18 @@ const TopHeader = () => {
               <ul>
                 <li>
                   <img src="/images/all-icon/map.png" alt="icon" />
-                  127/5 Mark street, New york
+                  Tarogong Kidul, Garut
                 </li>
                 <li>
                   <img src="/images/all-icon/email.png" alt="icon" />
-                  info@yourmail.com
+                  info@iaipersisgarut.ac.id
                 </li>
               </ul>
             </div>
           </div>
           <div className="col-lg-6">
             <div className="header-opening-time text-lg-right text-center">
-              <p>Opening Hours : Monday to Saturay - 8 Am to 5 Pm</p>
+              <p>Senin - Jumat: 8 Am to 5 Pm</p>
             </div>
           </div>
         </div>

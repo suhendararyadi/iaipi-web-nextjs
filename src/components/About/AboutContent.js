@@ -8,12 +8,15 @@ const AboutContent = () => {
         <div className="row">
           <div className="col-lg-5">
             <div className="section-title mt-50">
-              <h5>About us</h5>
-              <h2>Welcome to Edubin</h2>
+              <h5>Tentang Kami</h5>
+              <h2>Selamat Datang</h2>
             </div>
             <div className="about-cont">
-              <p>Lorem ipsum gravida nibh vel velit auctor aliquetn sollicitudirem quibibendum auci elit cons equat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt mauris.</p>
-              <p>auci elit cons equat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt mauris</p>
+              <p>Institut Agama Islam PERSIS Garut yang selanjutnya disebut IAI PERSIS Garut adalah perguruan tinggi yang menyelenggarakan pendidikan 
+                akademik, profesional dalam kelompok disiplin agama, ilmu 
+                pengetahuan, teknologi dan kesenian</p>
+              <p>IAI PERSIS Garut berdasarkan pada Alquran, Sunah, dan mengacu pada
+              perundang-undangan yang tidak bertentangan dengan Alquran dan Sunah.</p>
             </div>
           </div>
           <div className="col-lg-7">
@@ -29,12 +32,6 @@ const AboutContent = () => {
                 }}
               />
             </div>
-          </div>
-        </div>
-
-        <div className="about-items pt-60">
-          <div className="row justify-content-center">
-            {/* ... Items content remains the same ... */}
           </div>
         </div>
       </div>
