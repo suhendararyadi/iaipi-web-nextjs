@@ -75,10 +75,10 @@ const Counter = () => {
                 data-count="39000"
                 suppressHydrationWarning
               >
-                39000
+                50
               </span>
               <span>+</span>
-              <p>Global Teachers</p>
+              <p>Staff</p>
             </div>
           </div>
         </div>
