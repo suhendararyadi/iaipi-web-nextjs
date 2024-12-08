@@ -7,6 +7,7 @@ import AboutContent from '@/components/About/AboutContent'
 import Counter from '@/components/Counter/Counter'
 import VisiMisi from '@/components/About/VisiMisi'
 import Akreditasi from '@/components/Akreditasi/Akreditasi'
+import Header3 from '@/components/Header3/Header3'
 
 export default function TentangPage() {
   const [isMounted, setIsMounted] = useState(false)

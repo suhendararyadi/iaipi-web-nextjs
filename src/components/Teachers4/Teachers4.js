@@ -34,7 +34,7 @@ const Teachers4 = () => {
           {/* Teachers Section */}
           <div className="col-lg-6">
             <div className="section-title mt-50 pb-25">
-              <h5>Dosen dan Peneliti</h5>
+              <h5>Organisasi</h5>
               <h2>Pimpinan</h2>
             </div>
             <div className="teachers-2">
@@ -103,7 +103,7 @@ const Teachers4 = () => {
           <div className="col-lg-6">
             <div className="happy-student mt-55">
               <div className="happy-title">
-                <h3>Sambutan Rektor</h3>
+                <h3>Rektor</h3>
               </div>
               <div className="student-slied">
                 {/* Student 1 */}

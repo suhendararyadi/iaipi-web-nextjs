@@ -24,7 +24,7 @@ const Counter = () => {
     <section 
       id="counter-part" 
       className="bg_cover pt-65 pb-110" 
-      style={{backgroundImage: "url('/images/bg-2.jpg')"}} 
+      style={{backgroundImage: "url('/images/bg-4.jpg')"}} 
       data-overlay="8"
     >
       <div className="container">

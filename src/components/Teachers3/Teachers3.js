@@ -9,8 +9,8 @@ const Teachers3 = () => {
         <div className="row">
           <div className="col-lg-5">
             <div className="section-title mt-50 pb-35">
-              <h5>Featured Teachers</h5>
-              <h2>Meet Our teachers</h2>
+              <h5>Oragnisasi</h5>
+              <h2>Staf Pimpinan</h2>
             </div>
           </div>
         </div>
@@ -19,11 +19,11 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/teachers/t-1.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-2.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Mark alen</h6></Link>
-                <span>Vice chencelor</span>
+                <Link href="/teachers-singel"><h6>Dr. Daris Tamin</h6></Link>
+                <span>Wakil Rektor 1</span>
               </div>
             </div>
           </div>
@@ -32,11 +32,11 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/teachers/t-2.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-3.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Mark alen</h6></Link>
-                <span>Vice chencelor</span>
+                <Link href="/teachers-singel"><h6>Dr. Nurul Irfan</h6></Link>
+                <span>Wakil Rektor 2</span>
               </div>
             </div>
           </div>
@@ -45,11 +45,11 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/teachers/t-3.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-4.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Mark alen</h6></Link>
-                <span>Vice chencelor</span>
+                <Link href="/teachers-singel"><h6>Dr. Pepen Irpan F.</h6></Link>
+                <span>Wakil Rektor 3</span>
               </div>
             </div>
           </div>
@@ -58,11 +58,11 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/teachers/t-4.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-5.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Mark alen</h6></Link>
-                <span>Vice chencelor</span>
+                <Link href="/teachers-singel"><h6>Dr. Heri M. Tohari</h6></Link>
+                <span>Wakil Rektor 4</span>
               </div>
             </div>
           </div>
@@ -71,11 +71,11 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/teachers/t-5.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-6.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Mark alen</h6></Link>
-                <span>Vice chencelor</span>
+                <Link href="/teachers-singel"><h6>Dr. Gun Gun A. Basith</h6></Link>
+                <span>Dekan Ushuluddin</span>
               </div>
             </div>
           </div>
@@ -84,10 +84,10 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/teachers/t-6.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-7.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Mark alen</h6></Link>
+                <Link href="/teachers-singel"><h6>Konfimasi</h6></Link>
                 <span>Vice chencelor</span>
               </div>
             </div>
@@ -97,10 +97,10 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/teachers/t-7.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-8.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Mark alen</h6></Link>
+                <Link href="/teachers-singel"><h6>Konfirmasi</h6></Link>
                 <span>Vice chencelor</span>
               </div>
             </div>
@@ -110,14 +110,55 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/teachers/t-8.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-9.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Mark alen</h6></Link>
-                <span>Vice chencelor</span>
+                <Link href="/teachers-singel"><h6>Azis Asmana, Lc., M.Ag.</h6></Link>
+                <span>Kaprodi Iimu Hadis (ILHA)</span>
               </div>
             </div>
           </div>
+
+          {/* Teacher 9 */}
+          <div className="col-lg-3 col-sm-6">
+            <div className="singel-teachers mt-30 text-center">
+              <div className="image">
+                <img src="/images/dosen/d-10.jpg" alt="Teachers" />
+              </div>
+              <div className="cont">
+                <Link href="/teachers-singel"><h6>Nurfaedah, S.E, M.E.</h6></Link>
+                <span>Kaprodi Ekonomi Syariah (EKOSY)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Teacher 10 */}
+          <div className="col-lg-3 col-sm-6">
+            <div className="singel-teachers mt-30 text-center">
+              <div className="image">
+                <img src="/images/dosen/d-11.jpg" alt="Teachers" />
+              </div>
+              <div className="cont">
+                <Link href="/teachers-singel"><h6>Yanti Syam Amir, S.Pd., M.Pd.</h6></Link>
+                <span>Kaprodi Bimbingan Konseling Pendidikan Islam (BKPI)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Teacher 11 */}
+          <div className="col-lg-3 col-sm-6">
+            <div className="singel-teachers mt-30 text-center">
+              <div className="image">
+                <img src="/images/dosen/d-12.jpg" alt="Teachers" />
+              </div>
+              <div className="cont">
+                <Link href="/teachers-singel"><h6>Nuraini S. Pramukti, S,Pd., M.Pd.</h6></Link>
+                <span>Kaprodi Pendidikan Guru Madrasah Ibtidaiyah (PGMI)</span>
+              </div>
+            </div>
+          </div>
+
+
         </div>
       </div>
     </section>

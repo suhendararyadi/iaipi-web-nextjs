@@ -30,6 +30,10 @@ export default function RootLayout({ children }) {
         
         {/* Default CSS */}
         <link rel="stylesheet" href="/css/default.css" />
+
+         {/* Header 3 CSS */}
+        <link rel="stylesheet" href="/css/header3.css" />
+      
       </head>
 
       <body>
