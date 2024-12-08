@@ -36,10 +36,10 @@ const Counter = () => {
                 data-count="30000"
                 suppressHydrationWarning
               >
-                30000
+                1000
               </span>
               <span>+</span>
-              <p>Students enrolled</p>
+              <p>Mahasiswa</p>
             </div>
           </div>
           <div className="col-lg-3 col-sm-6">
@@ -49,10 +49,10 @@ const Counter = () => {
                 data-count="41000"
                 suppressHydrationWarning
               >
-                41000
+                4
               </span>
-              <span>+</span>
-              <p>Courses Uploaded</p>
+              <span></span>
+              <p>Program Studi</p>
             </div>
           </div>
           <div className="col-lg-3 col-sm-6">
@@ -62,10 +62,10 @@ const Counter = () => {
                 data-count="11000"
                 suppressHydrationWarning
               >
-                11000
+                30
               </span>
               <span>+</span>
-              <p>People certifie</p>
+              <p>Dosen dan Peneliti</p>
             </div>
           </div>
           <div className="col-lg-3 col-sm-6">
