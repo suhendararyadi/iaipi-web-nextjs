@@ -66,7 +66,12 @@ const Navigation = () => {
                     </ul> */}
                   </li>
                   <li className="nav-item">
-                    <Link href="/blog">Berita & Agenda</Link>
+                    <Link href="https://iaipi-garut.hashnode.dev"
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    >
+                      Berita & Agenda
+                    </Link>
                     <ul className="sub-menu">
                       <li>
                         <Link 
@@ -89,11 +94,11 @@ const Navigation = () => {
                     </ul>
                   </li>
                   <li className="nav-item">
-                    <Link href="/contact">Penerimaan</Link>
-                    <ul className="sub-menu">
+                    <Link href="https://staipersisgarut.pmb.siakad.tech">Penerimaan</Link>
+                    {/* <ul className="sub-menu">
                       <li><Link href="/contact">Contact Us</Link></li>
                       <li><Link href="/contact-2">Contact Us 2</Link></li>
-                    </ul>
+                    </ul> */}
                   </li>
                 </ul>
               </div>
