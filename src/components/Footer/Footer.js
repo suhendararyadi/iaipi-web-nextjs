@@ -117,7 +117,7 @@ const Footer = () => {
             <div className="col-md-8">
               <div className="copyright text-md-left text-center pt-15">
                 <p>
-                  Departemen IT
+                © 2024 Hak Cipta Dilindungi Undang-Undang.
                 </p>
               </div>
             </div>

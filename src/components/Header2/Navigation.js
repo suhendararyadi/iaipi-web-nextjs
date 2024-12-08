@@ -54,16 +54,19 @@ const Navigation = () => {
                   <li className="nav-item">
                     <Link href="#">Pendidikan</Link>
                     <ul className="sub-menu">
-                      <li><Link href="#">Fakultas</Link></li>
+                      <li><Link href="/fakultas">Fakultas</Link></li>
+                      <li><Link href="/magister">Magister S2</Link></li>
                     </ul>
                   </li>
 
                   <li className="nav-item">
                     <Link href="/events">Mahasiswa</Link>
-                    {/* <ul className="sub-menu">
-                      <li><Link href="/events">Events</Link></li>
-                      <li><Link href="/events-singel">Event Single</Link></li>
-                    </ul> */}
+                    <ul className="sub-menu">
+                      <li><Link href="#">Kehidupan Kampus</Link></li>
+                      <li><Link href="#">Unit Kegiatan Mahasiswa</Link></li>
+                      <li><Link href="#">Prestasi Mahasiswa</Link></li>
+                      <li><Link href="#">Beasiswa</Link></li>
+                    </ul>
                   </li>
                   <li className="nav-item">
                     <Link href="https://iaipi-garut.hashnode.dev"
