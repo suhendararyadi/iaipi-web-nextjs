@@ -21,7 +21,7 @@ export default function PimpinanPage() {
       <Header2 />
       <PageBanner 
         title="Pimpinan Institut" 
-        backgroundImage="/images/page-banner-1.jpg"
+        backgroundImage="/images/page-banner-2.jpg"
         breadcrumbs={[
           { text: 'Home', url: '/' },
           { text: 'Pimpinan Institut', url: null }
