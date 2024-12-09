@@ -57,7 +57,7 @@ const Fakultas = () => {
         <div className="row">
           <div className="col-lg-6">
             <div className="section-title pb-45">
-              <h5>Pendidikan</h5>
+              <h5>Pendidikan Sarjana</h5>
               <h2>Fakultas</h2>
             </div>
           </div>

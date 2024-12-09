@@ -19,7 +19,7 @@ export default function FakultasPage() {
   return (
     <>
       <Head>
-        <title>Nama Halaman | Institut Agama Islam PERSIS Garut</title>
+        <title>Fakultas | Institut Agama Islam PERSIS Garut</title>
       </Head>
       <Header2 />
       <PageBanner 
