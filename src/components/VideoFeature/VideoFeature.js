@@ -37,7 +37,7 @@ const VideoFeature = () => {
           <div className="col-lg-5 offset-lg-1 order-first order-lg-last">
             <div className="feature pt-50">
               <div className="feature-title">
-                <h3>Our Facilities</h3>
+                <h3>Tentang Kami</h3>
               </div>
               <ul>
                 <li>
@@ -46,8 +46,8 @@ const VideoFeature = () => {
                       <img src="/images/all-icon/f-1.png" alt="icon" />
                     </div>
                     <div className="cont">
-                      <h4>Global Certificate</h4>
-                      <p>Gravida nibh vel velit auctor aliquetn auci elit cons solliazcitudirem sem quibibendum sem nibhutis.</p>
+                      <h4>Visi</h4>
+                      <p>Menjadi Kampus Unggul Pengemban Turats Islam pada Tahun 2028 di Indonesia.</p>
                     </div>
                   </div>
                 </li>
@@ -57,8 +57,8 @@ const VideoFeature = () => {
                       <img src="/images/all-icon/f-2.png" alt="icon" />
                     </div>
                     <div className="cont">
-                      <h4>Alumni Support</h4>
-                      <p>Gravida nibh vel velit auctor aliquetn auci elit cons solliazcitudirem sem quibibendum sem nibhutis.</p>
+                      <h4>Moto</h4>
+                      <p>Kampus Saintek Dakwah dalam Bidang Keilmuan Turats</p>
                     </div>
                   </div>
                 </li>
@@ -68,8 +68,8 @@ const VideoFeature = () => {
                       <img src="/images/all-icon/f-3.png" alt="icon" />
                     </div>
                     <div className="cont">
-                      <h4>Books & Library</h4>
-                      <p>Gravida nibh vel velit auctor aliquetn auci elit cons solliazcitudirem sem quibibendum sem nibhutis.</p>
+                      <h4>Fasilitas</h4>
+                      <p>Fasilitas Pendidikan yang Lengkap Untuk Menunjang Perkuliahan.</p>
                     </div>
                   </div>
                 </li>

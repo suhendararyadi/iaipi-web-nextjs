@@ -49,7 +49,7 @@ const Counter = () => {
                 data-count="41000"
                 suppressHydrationWarning
               >
-                4
+                8
               </span>
               <span></span>
               <p>Program Studi</p>
