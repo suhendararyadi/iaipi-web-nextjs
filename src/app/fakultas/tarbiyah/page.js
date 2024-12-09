@@ -19,7 +19,7 @@ export default function TarbiyahPage() {
       <Header2 />
       <PageBanner 
         title="Fakultas Tarbiyah" 
-        backgroundImage="/images/page-banner-1.jpg"
+        backgroundImage="/images/page-banner-2.jpg"
         breadcrumbs={[
           { text: 'Home', url: '/' },
           { text: 'Fakultas', url: '/fakultas' },
