@@ -89,7 +89,7 @@ const Course = () => {
               <div className="cont">
                 
                 
-                <Link href="/courses-singel"><h4>FAKULTAS TARBIYAH</h4></Link>
+                <Link href="/fakultas/tarbiyah"><h4>FAKULTAS TARBIYAH</h4></Link>
                 
               </div>
             </div>
@@ -106,7 +106,7 @@ const Course = () => {
               </div>
               <div className="cont">
                 
-                <Link href="/courses-singel"><h4>EKONOMI & BISNIS ISLAM</h4></Link>
+                <Link href="/fakultas/ekonomi"><h4>EKONOMI & BISNIS ISLAM</h4></Link>
                 
               </div>
             </div>
