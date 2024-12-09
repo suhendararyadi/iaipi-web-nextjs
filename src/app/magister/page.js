@@ -19,7 +19,7 @@ export default function MagisterPage() {
       <Header2 />
       <PageBanner 
         title="Program Magister (S2)" 
-        backgroundImage="/images/page-banner-1.jpg"
+        backgroundImage="/images/page-banner-7.jpg"
         breadcrumbs={[
           { text: 'Home', url: '/' },
           { text: 'Program Magister', url: null }
