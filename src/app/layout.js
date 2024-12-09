@@ -13,6 +13,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+      <title>Institut Agama Islam PERSIS Garut</title>
+        <meta name="description" content="Institut Agama Islam PERSIS Garut adalah perguruan tinggi yang menyelenggarakan pendidikan akademik, profesional dalam kelompok disiplin agama, ilmu pengetahuan, teknologi dan kesenian" />
         {/* Font Awesome */}
         <link rel="stylesheet" href="/css/font-awesome.min.css" />
         

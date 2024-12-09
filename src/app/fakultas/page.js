@@ -5,6 +5,7 @@ import Footer from '@/components/Footer/Footer'
 import PageBanner from '@/components/PageBanner/PageBanner'
 import Course from '@/components/Course/Course'
 import Fakultas from '@/components/Fakultas/Fakultas'
+import Head from 'next/head'
 
 export default function FakultasPage() {
   const [isMounted, setIsMounted] = useState(false)
@@ -17,6 +18,9 @@ export default function FakultasPage() {
 
   return (
     <>
+      <Head>
+        <title>Nama Halaman | Institut Agama Islam PERSIS Garut</title>
+      </Head>
       <Header2 />
       <PageBanner 
         title="Fakultas" 
