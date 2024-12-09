@@ -33,7 +33,8 @@ export default function RootLayout({ children }) {
 
          {/* Header 3 CSS */}
         <link rel="stylesheet" href="/css/header3.css" />
-      
+
+        <link rel="stylesheet" href="/css/tabs.css" />
       </head>
 
       <body>
