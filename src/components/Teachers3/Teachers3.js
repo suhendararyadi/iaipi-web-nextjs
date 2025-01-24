@@ -23,7 +23,7 @@ const Teachers3 = () => {
               </div>
               <div className="cont">
                 <Link href="/teachers-singel"><h6>Dr. Daris Tamin</h6></Link>
-                <span>Wakil Rektor 1</span>
+                <span>Wakil Rektor I</span>
               </div>
             </div>
           </div>
