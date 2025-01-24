@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react'
 import Header2 from '@/components/Header2/Header2'
 import Footer from '@/components/Footer/Footer'
 import PageBanner from '@/components/PageBanner/PageBanner'
-import warek2 from '@/components/Pimpinan/Warek2'
-import Warek2 from '@/components/Pimpinan/Warek2'
+import warek4 from '@/components/Pimpinan/Warek4'
+import Warek4 from '@/components/Pimpinan/Warek4'
 
 
-export default function Warek3Page() {
+export default function Warek4Page() {
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function Warek3Page() {
     <>
       <Header2 />
       <PageBanner 
-        title="Wakil Rektor 2" 
+        title="Wakil Rektor 4" 
         backgroundImage="/images/page-banner-7.jpg"
         breadcrumbs={[
           { text: 'Home', url: '/' },
@@ -28,7 +28,7 @@ export default function Warek3Page() {
           { text: 'Wakil Rektor', url: null }
         ]}
       />
-      <Warek2/>
+      <Warek4/>
       <Footer />
     </>
   )

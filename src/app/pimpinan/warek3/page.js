@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react'
 import Header2 from '@/components/Header2/Header2'
 import Footer from '@/components/Footer/Footer'
 import PageBanner from '@/components/PageBanner/PageBanner'
-import Rektor from '@/components/Pimpinan/Rektor'
+import Warek3 from '@/components/Pimpinan/Warek3'
 
 
-export default function RektorPage() {
+export default function Warek3Page() {
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
@@ -19,15 +19,15 @@ export default function RektorPage() {
     <>
       <Header2 />
       <PageBanner 
-        title="Rektor" 
+        title="Wakil Rektor 3" 
         backgroundImage="/images/page-banner-7.jpg"
         breadcrumbs={[
           { text: 'Home', url: '/' },
           { text: 'Pimpinan', url: '/pimpinan' },
-          { text: 'Rektor', url: null }
+          { text: 'Wakil Rektor', url: null }
         ]}
       />
-      <Rektor/>
+      <Warek3/>
       <Footer />
     </>
   )

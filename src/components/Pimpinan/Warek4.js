@@ -2,7 +2,7 @@
 
 import React from "react";
 
-const TeachersSingel = () => {
+const Warek4 = () => {
   return (
     <section id="teachers-singel" className="pt-70 pb-120 gray-bg">
       <div className="container">
@@ -11,11 +11,11 @@ const TeachersSingel = () => {
           <div className="col-lg-4 col-md-8">
             <div className="teachers-left mt-50">
               <div className="hero">
-                <img src="/images/dosen/d-1.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-5.jpg" alt="Teachers" />
               </div>
               <div className="name">
-                <h6>Dr. Tiar Anwar Bachtiar, M.Hum.</h6>
-                <span>Rektor</span>
+                <h6>Dr. Heri Mohamad Tohari, M.Pd.</h6>
+                <span>Wakil Rektor IV Bidang Humas, Kerjasama, dan Alumni</span>
               </div>
               <div className="social">
                 <ul>
@@ -108,23 +108,28 @@ const TeachersSingel = () => {
                     <div className="singel-dashboard pt-40">
                       <h5>Tentang</h5>
                       <p>
-                      Dr. H. Tiar Anwar Bachtiar, S.S, M.Hum (lahir 20 Juni 1979) adalah sejarawan Islam, akademisi, dan penulis Indonesia. 
-                      Ia menjabat sebagai Ketua Sekolah Tinggi Agama Islam PERSIS Garut periode 2024–2028.
+                      __________________________________________________________________________
+                      </p>
+                      <p>
+                      __________________________________________________________________________
+                      </p>
+                      <p>
+                      __________________________________________________________________________
                       </p>
                     </div>
                     <div className="singel-dashboard pt-40">
                       <h5>Pendidikan</h5>
-                      <p>S1 Universitas Padjadjaran</p>
-                      <p>S2 Universitas Indonesia</p>	
-                      <p>S3 Universitas Indonesia</p>
+                      <p>S1 Universitas Gadjah Mada		Universitas Padjadjaran	</p>
+                      <p>S2 Universitas Pendidikan Indonesia</p>	
+                      <p>S3 Universitas Pendidikan Indonesia</p>
 
                     </div>
                     <div className="singel-dashboard pt-40">
                         <h5>ID Penelitian</h5>
-                        <p>Sinta ID: 6919579</p>
+                        <p>Sinta ID: 6724739</p>
                         <p>
                             Google Scholar:  
-                            <a href="https://scholar.google.co.id/citations?hl=id&user=IAAIX9AAAAAJ" target="_blank" rel="noopener noreferrer">
+                            <a href="https://scholar.google.co.id/citations?user=f__HAIUAAAAJ&hl=id" target="_blank" rel="noopener noreferrer">
                              Klik di sini
                             </a>
                         </p>
@@ -229,4 +234,4 @@ const Course = ({ image, price, title, teacherImage, teacherName, reviewsCount, 
   </div>
 );
 
-export default TeachersSingel;
+export default Warek4;

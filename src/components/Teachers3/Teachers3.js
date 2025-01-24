@@ -61,7 +61,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-5.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Dr. Heri M. Tohari</h6></Link>
+                <Link href="/pimpinan/warek4"><h6>Dr. Heri M. Tohari</h6></Link>
                 <span>Wakil Rektor 4</span>
               </div>
             </div>
