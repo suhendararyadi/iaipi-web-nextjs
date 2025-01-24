@@ -46,7 +46,7 @@ const Teachers4 = () => {
                       <img src="/images/teachers/teacher-2/warek-1.jpg" alt="Teacher" />
                     </div>
                     <div className="cont">
-                      <Link href="/teachers-singel"><h5>Dr. Daris Tamin</h5></Link>
+                      <Link href="/pimpinan/warek1"><h5>Dr. Daris Tamin</h5></Link>
                       <p>Wakil Rektor 1</p>
                       {/* <span><i className="fa fa-book"></i></span> */}
                     </div>
@@ -60,7 +60,7 @@ const Teachers4 = () => {
                       <img src="/images/teachers/teacher-2/warek-2.jpg" alt="Teacher" />
                     </div>
                     <div className="cont">
-                      <Link href="/teachers-singel"><h5>Dr. Nurul Irfan</h5></Link>
+                      <Link href="/pimpinan/warek2"><h5>Dr. Nurul Irfan</h5></Link>
                       <p>Wakil Rektor 2</p>
                       {/* <span><i className="fa fa-book"></i>05 Courses</span> */}
                     </div>

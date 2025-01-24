@@ -2,7 +2,7 @@
 
 import React from "react";
 
-const Rektor = () => {
+const TeachersSingel = () => {
   return (
     <section id="teachers-singel" className="pt-70 pb-120 gray-bg">
       <div className="container">
@@ -229,4 +229,4 @@ const Course = ({ image, price, title, teacherImage, teacherName, reviewsCount, 
   </div>
 );
 
-export default Rektor;
+export default TeachersSingel;
