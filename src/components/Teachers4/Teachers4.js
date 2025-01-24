@@ -110,8 +110,10 @@ const Teachers4 = () => {
                 <div className="singel-student">
                   <img src="/images/teachers/teacher-2/quote.png" alt="Quote" />
                   <p>“Selamat datang di website resmi kampus kami, Institut Agama Islam Persis Garut”</p>
-                  <h6>Dr. Tiar Anwar Bachtiar, M.Hum.</h6>
-                  <span>Rektor</span>
+                  <Link href="/pimpinan/rektor"><h6>Dr. Tiar Anwar Bachtiar, M.Hum.</h6></Link>
+                  <br></br>
+                  <br></br>
+           
                 </div>
               </div>
               <div className="student-image">
