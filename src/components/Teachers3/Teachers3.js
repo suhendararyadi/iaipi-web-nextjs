@@ -133,6 +133,45 @@ const Teachers3 = () => {
             </div>
           </div>
 
+          {/* Teacher 8 */}
+          <div className="col-lg-3 col-sm-6">
+            <div className="singel-teachers mt-30 text-center">
+              <div className="image">
+                <img src="/images/dosen/d-9.jpg" alt="Teachers" />
+              </div>
+              <div className="cont">
+                <Link href="/teachers-singel"><h6>Azis Asmana, Lc., M.Ag.</h6></Link>
+                <span>Kaprodi Iimu Hadis (ILHA)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Teacher 11 */}
+          <div className="col-lg-3 col-sm-6">
+            <div className="singel-teachers mt-30 text-center">
+              <div className="image">
+                <img src="/images/dosen/d-16.jpeg" alt="Teachers" />
+              </div>
+              <div className="cont">
+                <Link href="/teachers-singel"><h6>Yan Yan Nurdin, S.Ud., M.Ag.</h6></Link>
+                <span>Ketua Prodi Ilmu Alquran dan Tafsir (IAT)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Teacher 9 */}
+          <div className="col-lg-3 col-sm-6">
+            <div className="singel-teachers mt-30 text-center">
+              <div className="image">
+                <img src="/images/dosen/d-17.jpeg" alt="Teachers" />
+              </div>
+              <div className="cont">
+                <Link href="/teachers-singel"><h6>Mumad Nurjaman, S.Sy., M.H.</h6></Link>
+                <span>Ketua Prodi Manajemen Keuangan Syariah (MKS)</span>
+              </div>
+            </div>
+          </div>
+
           {/* Teacher 11 */}
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
@@ -172,32 +211,6 @@ const Teachers3 = () => {
             </div>
           </div>
 
-          {/* Teacher 8 */}
-          <div className="col-lg-3 col-sm-6">
-            <div className="singel-teachers mt-30 text-center">
-              <div className="image">
-                <img src="/images/dosen/d-9.jpg" alt="Teachers" />
-              </div>
-              <div className="cont">
-                <Link href="/teachers-singel"><h6>Azis Asmana, Lc., M.Ag.</h6></Link>
-                <span>Kaprodi Iimu Hadis (ILHA)</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Teacher 11 */}
-          <div className="col-lg-3 col-sm-6">
-            <div className="singel-teachers mt-30 text-center">
-              <div className="image">
-                <img src="/images/dosen/d-16.jpeg" alt="Teachers" />
-              </div>
-              <div className="cont">
-                <Link href="/teachers-singel"><h6>Yan Yan Nurdin, S.Ud., M.Ag.</h6></Link>
-                <span>Ketua Prodi Ilmu Alquran dan Tafsir (IAT)</span>
-              </div>
-            </div>
-          </div>
-
           {/* Teacher 9 */}
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
@@ -207,19 +220,6 @@ const Teachers3 = () => {
               <div className="cont">
                 <Link href="/teachers-singel"><h6>Nurfaedah, S.E, M.E.</h6></Link>
                 <span>Kaprodi Ekonomi Syariah (EKOSY)</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Teacher 9 */}
-          <div className="col-lg-3 col-sm-6">
-            <div className="singel-teachers mt-30 text-center">
-              <div className="image">
-                <img src="/images/dosen/d-17.jpeg" alt="Teachers" />
-              </div>
-              <div className="cont">
-                <Link href="/teachers-singel"><h6>Mumad Nurjaman, S.Sy., M.H.</h6></Link>
-                <span>Ketua Prodi Manajemen Keuangan Syariah (MKS)</span>
               </div>
             </div>
           </div>
