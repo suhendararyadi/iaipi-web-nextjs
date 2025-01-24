@@ -20,12 +20,12 @@ export default function Warek3Page() {
     <>
       <Header2 />
       <PageBanner 
-        title="Wakil Rektor 2" 
+        title="Wakil Rektor II - Dr. Nurul Irfan, M.Ag." 
         backgroundImage="/images/page-banner-7.jpg"
         breadcrumbs={[
           { text: 'Home', url: '/' },
           { text: 'Pimpinan', url: '/pimpinan' },
-          { text: 'Wakil Rektor', url: null }
+          { text: 'Wakil Rektor II', url: null }
         ]}
       />
       <Warek2/>

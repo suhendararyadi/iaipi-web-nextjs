@@ -20,7 +20,7 @@ export default function Warek4Page() {
     <>
       <Header2 />
       <PageBanner 
-        title="Wakil Rektor 4" 
+        title="Wakil Rektor IV - Dr. Heri Mohamad Tohari, M.Pd." 
         backgroundImage="/images/page-banner-7.jpg"
         breadcrumbs={[
           { text: 'Home', url: '/' },

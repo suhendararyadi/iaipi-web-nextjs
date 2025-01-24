@@ -19,7 +19,7 @@ export default function Warek3Page() {
     <>
       <Header2 />
       <PageBanner 
-        title="Wakil Rektor 3" 
+        title="Wakil Rektor III - Dr. Pepen Irpan Fauzan, M.Hum." 
         backgroundImage="/images/page-banner-7.jpg"
         breadcrumbs={[
           { text: 'Home', url: '/' },
