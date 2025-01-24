@@ -19,7 +19,7 @@ export default function RektorPage() {
     <>
       <Header2 />
       <PageBanner 
-        title="Rektor" 
+        title="Rektor - Dr. Tiar Anwar Bachtiar, M.Hum." 
         backgroundImage="/images/page-banner-7.jpg"
         breadcrumbs={[
           { text: 'Home', url: '/' },

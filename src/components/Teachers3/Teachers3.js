@@ -22,7 +22,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-2.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/pimpinan/warek1"><h6>Dr. Daris Tamin</h6></Link>
+                <Link href="/pimpinan/warek1"><h6>Dr. Daris Tamin, M.Pd.</h6></Link>
                 <span>Wakil Rektor I</span>
               </div>
             </div>
@@ -35,7 +35,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-3.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/pimpinan/warek2"><h6>Dr. Nurul Irfan</h6></Link>
+                <Link href="/pimpinan/warek2"><h6>Dr. Nurul Irfan, M.Ag.</h6></Link>
                 <span>Wakil Rektor 2</span>
               </div>
             </div>
@@ -48,7 +48,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-4.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/pimpinan/warek3"><h6>Dr. Pepen Irpan F.</h6></Link>
+                <Link href="/pimpinan/warek3"><h6>Dr. Pepen Irpan Fauzan, M.Hum.</h6></Link>
                 <span>Wakil Rektor 3</span>
               </div>
             </div>
@@ -61,7 +61,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-5.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/pimpinan/warek4"><h6>Dr. Heri M. Tohari</h6></Link>
+                <Link href="/pimpinan/warek4"><h6>Dr. Heri Mohamad Tohari, M.Pd.</h6></Link>
                 <span>Wakil Rektor 4</span>
               </div>
             </div>
@@ -74,7 +74,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-6.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Dr. Gun Gun A. Basith</h6></Link>
+                <Link href="/pimpinan/dekan1"><h6>Dr. Gun Gun A. Basith</h6></Link>
                 <span>Dekan Fakultas Ushuluddin</span>
               </div>
             </div>
