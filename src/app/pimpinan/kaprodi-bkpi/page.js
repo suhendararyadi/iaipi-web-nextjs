@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react'
 import Header2 from '@/components/Header2/Header2'
 import Footer from '@/components/Footer/Footer'
 import PageBanner from '@/components/PageBanner/PageBanner'
-import KaprodiIAT from '@/components/Pimpinan/KaprodiMKS'
+import KaprodiBKPI from '@/components/Pimpinan/KaprodiBKPI'
 
 
-export default function KaprodiIATPage() {
+export default function KaprodiBKPIPage() {
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
@@ -19,15 +19,15 @@ export default function KaprodiIATPage() {
     <>
       <Header2 />
       <PageBanner 
-        title="Kaprodi IAT - Yan Yan Nurdin, S.Ud., M.Ag." 
+        title="Kaprodi BKPI - Yanti Sam Amir, S.Pd., M.Pd." 
         backgroundImage="/images/page-banner-7.jpg"
         breadcrumbs={[
           { text: 'Home', url: '/' },
           { text: 'Pimpinan', url: '/pimpinan' },
-          { text: 'Kaprodi IAT', url: null }
+          { text: 'Kaprodi BKPI', url: null }
         ]}
       />
-      <KaprodiIAT/>
+      <KaprodiBKPI/>
       <Footer />
     </>
   )

@@ -166,7 +166,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-17.jpeg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Mumad Nurjaman, S.Sy., M.H.</h6></Link>
+                <Link href="/pimpinan/kaprodi-mks"><h6>Mumad Nurjaman, S.Sy., M.H.</h6></Link>
                 <span>Ketua Prodi Manajemen Keuangan Syariah (MKS)</span>
               </div>
             </div>
@@ -179,7 +179,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-15.jpeg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Leni Layinah, S.Pd.I., M.Pd.</h6></Link>
+                <Link href="/pimpinan/kaprodi-pai"><h6>Leni Layinah, S.Pd.I., M.Pd.</h6></Link>
                 <span>Ketua Prodi Pendidikan Agama Islam (PAI)</span>
               </div>
             </div>
@@ -192,7 +192,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-12.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Nuraini S. Pramukti, S,Pd., M.Pd.</h6></Link>
+                <Link href="/pimpinan/kaprodi-pgmi"><h6>Nuraini S. Pramukti, S,Pd., M.Pd.</h6></Link>
                 <span>Kaprodi Pendidikan Guru Madrasah Ibtidaiyah (PGMI)</span>
               </div>
             </div>
@@ -205,7 +205,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-11.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Yanti Syam Amir, S.Pd., M.Pd.</h6></Link>
+                <Link href="/pimpinan/kaprodi-bkpi"><h6>Yanti Syam Amir, S.Pd., M.Pd.</h6></Link>
                 <span>Kaprodi Bimbingan Konseling Pendidikan Islam (BKPI)</span>
               </div>
             </div>
@@ -218,7 +218,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-10.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Nurfaedah, S.E, M.E.</h6></Link>
+                <Link href="/pimpinan/kaprodi-ekosy"><h6>Nurfaedah, S.E, M.E.</h6></Link>
                 <span>Kaprodi Ekonomi Syariah (EKOSY)</span>
               </div>
             </div>

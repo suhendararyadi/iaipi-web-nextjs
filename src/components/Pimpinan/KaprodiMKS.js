@@ -2,7 +2,7 @@
 
 import React from "react";
 
-const KaprodiIAT = () => {
+const KaprodiMKS = () => {
   return (
     <section id="teachers-singel" className="pt-70 pb-120 gray-bg">
       <div className="container">
@@ -11,11 +11,11 @@ const KaprodiIAT = () => {
           <div className="col-lg-4 col-md-8">
             <div className="teachers-left mt-50">
               <div className="hero">
-                <img src="/images/dosen/d-16.jpeg" alt="Teachers" />
+                <img src="/images/dosen/d-17.jpeg" alt="Teachers" />
               </div>
               <div className="name">
-                <h6>Yan Yan Nurdin, S.Ud., M.Ag.</h6>
-                <span>Ketua Prodi Ilmu Alquran dan Tafsir (IAT)</span>
+                <h6>Mumad Nurjaman, S.Sy., M.H.</h6>
+                <span>Ketua Prodi Manajemen Keuangan Syariah (MKS)</span>
               </div>
               <div className="social">
                 <ul>
@@ -119,7 +119,7 @@ const KaprodiIAT = () => {
                     </div>
                     <div className="singel-dashboard pt-40">
                       <h5>Pendidikan</h5>
-                      <p>S1 STAI Persis Garut	</p>
+                      <p>S1 STAI Al-Musaddadiyah Garut</p>
                       <p>S2 Universitas Islam Negeri Sunan Gunung Djati</p>	
                     
                     </div>
@@ -128,7 +128,7 @@ const KaprodiIAT = () => {
                         <p>Sinta ID: -</p>
                         <p>
                             Google Scholar  
-                            <a href="#" target="_blank" rel="noopener noreferrer">
+                            <a href="https://scholar.google.co.id/citations?hl=id&user=OClJpZUAAAAJ" target="_blank" rel="noopener noreferrer">
                              : Klik di sini
                             </a>
                         </p>
@@ -233,4 +233,4 @@ const Course = ({ image, price, title, teacherImage, teacherName, reviewsCount, 
   </div>
 );
 
-export default KaprodiIAT;
+export default KaprodiMKS;
