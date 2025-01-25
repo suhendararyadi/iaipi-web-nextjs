@@ -113,7 +113,7 @@ const Warek4 = () => {
 
                       </p>
                       <p>
-                      Pernah ikut terlibat dalam pemberdayaan “Living Value Education” dan “Pesantren Ramah Anak”, sebuah program kerjasama UNICEF, Terre des Hommes, dan LSAF. Pernah juga menjadi Staf Ahli di DPR RI dan Tenaga Ahli Kurator. Kini aktif terlibat sebagai Fasilitator Program Sekolah Penggerak Kemendikbud RI.
+                      Pernah ikut terlibat dalam pemberdayaan “Living Value Education” dan “Pesantren Ramah Anak”, sebuah program kerjasama UNICEF, Terre des Hommes, dan LSAF. Pernah juga menjadi Staf Ahli di DPR RI. Kini aktif terlibat sebagai Fasilitator Program Sekolah Penggerak Kemendikbud RI.
 
                       </p>
                       <p>
