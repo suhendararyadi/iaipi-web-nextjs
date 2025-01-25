@@ -54,7 +54,7 @@ const Tarbiyah = () => {
             <div className="singel-course mt-30">
               <div className="thum">
                 <div className="image">
-                  <img src="/images/prodi/ilha.jpg" alt="PGMI" />
+                  <img src="/images/prodi/fak-2.jpg" alt="PGMI" />
                 </div>
               </div>
               <div className="cont border">
@@ -83,7 +83,7 @@ const Tarbiyah = () => {
             <div className="singel-course mt-30">
               <div className="thum">
                 <div className="image">
-                  <img src="/images/prodi/ilha.jpg" alt="BKPI" />
+                  <img src="/images/prodi/iat.jpg" alt="BKPI" />
                 </div>
               </div>
               <div className="cont border">
