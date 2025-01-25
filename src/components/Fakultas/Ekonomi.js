@@ -38,7 +38,7 @@ const Ekonomi = () => {
                     <ul className="list-unstyled">
                       <li><i className="fa fa-check-circle text-primary mr-2"></i> Gelar: S.E. (Sarjana Ekonomi)</li>
                       <li><i className="fa fa-check-circle text-primary mr-2"></i> Masa Studi: 8 Semester</li>
-                      <li><i className="fa fa-check-circle text-primary mr-2"></i> Akreditasi: B</li>
+                      <li><i className="fa fa-check-circle text-primary mr-2"></i> Akreditasi: A</li>
                     </ul>
                   </div>
                   <div className="text-center mt-4">
@@ -67,7 +67,7 @@ const Ekonomi = () => {
                     <ul className="list-unstyled">
                       <li><i className="fa fa-check-circle text-primary mr-2"></i> Gelar: S.E. (Sarjana Ekonomi)</li>
                       <li><i className="fa fa-check-circle text-primary mr-2"></i> Masa Studi: 8 Semester</li>
-                      <li><i className="fa fa-check-circle text-primary mr-2"></i> Akreditasi: B</li>
+                      <li><i className="fa fa-check-circle text-primary mr-2"></i> Akreditasi: A</li>
                     </ul>
                   </div>
                   <div className="text-center mt-4">
