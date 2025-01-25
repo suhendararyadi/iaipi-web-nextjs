@@ -108,13 +108,16 @@ const Warek4 = () => {
                     <div className="singel-dashboard pt-40">
                       <h5>Tentang</h5>
                       <p>
-                      __________________________________________________________________________
+                      Aktif sebagai pekerja sosial dan bertindak sebagai penggagas Desa Caang dan menakhkodai The Creative Institute.
+ 
+
                       </p>
                       <p>
-                      __________________________________________________________________________
+                      Pernah ikut terlibat dalam pemberdayaan “Living Value Education” dan “Pesantren Ramah Anak”, sebuah program kerjasama UNICEF, Terre des Hommes, dan LSAF. Pernah juga menjadi Staf Ahli di DPR RI dan Tenaga Ahli Kurator. Kini aktif terlibat sebagai Fasilitator Program Sekolah Penggerak Kemendikbud RI.
+
                       </p>
                       <p>
-                      __________________________________________________________________________
+                      Berprofesi sebagai dosen muda, peneliti, dan penulis di berbagai media massa, jurnal nasional dan internasional. Kerap kali langganan diundang menulis dan mengisi forum internasional yang berkaitan community development, seperti: IIGCE, IIGW, dll.
                       </p>
                     </div>
                     <div className="singel-dashboard pt-40">
