@@ -78,7 +78,7 @@ const Navigation = () => {
                     <ul className="sub-menu">
                       <li>
                         <Link 
-                          href="https://iaipi-garut.hashnode.dev" 
+                          href="https://news.iaipersisgarut.ac.id" 
                           target="_blank" 
                           rel="noopener noreferrer"
                         >
@@ -87,7 +87,7 @@ const Navigation = () => {
                       </li>
                       <li>
                         <Link 
-                          href="https://iaipi-garut.hashnode.dev/series/agenda" 
+                          href="https://news.iaipersisgarut.ac.id/series/agenda" 
                           target="_blank" 
                           rel="noopener noreferrer"
                         >

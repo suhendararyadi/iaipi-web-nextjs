@@ -28,7 +28,7 @@ const VideoFeature = () => {
         <div className="row align-items-center">
           <div className="col-lg-6 order-last order-lg-first">
             <div className="video text-lg-left text-center pt-50">
-              <Link className="Video-popup" href="https://www.youtube.com/watch?v=bRRtdzJH1oE">
+              <Link className="Video-popup" href="https://www.youtube.com/watch?v=2EvLSLtotQg">
                 <i className="fa fa-play"></i>
               </Link>
             </div>

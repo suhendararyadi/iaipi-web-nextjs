@@ -11,11 +11,11 @@ const Dekan1 = () => {
           <div className="col-lg-4 col-md-8">
             <div className="teachers-left mt-50">
               <div className="hero">
-                <img src="/images/dosen/d-6.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-13.jpeg" alt="Teachers" />
               </div>
               <div className="name">
-                <h6>Dr. Gun Gun Abdul Basit, M.Ag.</h6>
-                <span>Dekan Fakultas Ushuludin</span>
+                <h6>Riyan Nuryadin, S.HI., M.Pd.I.</h6>
+                <span>Dekan Fakultas Tarbiyah</span>
               </div>
               <div className="social">
                 <ul>
@@ -119,17 +119,17 @@ const Dekan1 = () => {
                     </div>
                     <div className="singel-dashboard pt-40">
                       <h5>Pendidikan</h5>
-                      <p>S1 Universitas Islam Negeri Sunan Kalijaga			</p>
-                      <p>S2 Universitas Islam Negeri Sunan Gunung Djati</p>	
-                      <p>S3 Universitas Islam Negeri Sunan Gunung Djati</p>
+                      <p>S1 Universitas Islam Negeri Sunan Gunung Djati	</p>
+                      <p>S2 Universitas Ibn Khaldun Bogor</p>	
+                      
 
                     </div>
                     <div className="singel-dashboard pt-40">
                         <h5>ID Penelitian</h5>
-                        <p>Sinta ID: 6724946</p>
+                        <p>Sinta ID: 6725044</p>
                         <p>
                             Google Scholar  
-                            <a href="https://scholar.google.co.id/citations?user=-Ewsc6gAAAAJ&hl=id" target="_blank" rel="noopener noreferrer">
+                            <a href="https://scholar.google.co.id/citations?hl=id&user=U2d-tmcAAAAJ" target="_blank" rel="noopener noreferrer">
                              : Klik di sini
                             </a>
                         </p>
