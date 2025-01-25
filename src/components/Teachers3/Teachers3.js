@@ -87,7 +87,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-13.jpeg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Riyan Nuryadin, S.HI., M.Pd.I.</h6></Link>
+                <Link href="/pimpinan/dekan2"><h6>Riyan Nuryadin, S.HI., M.Pd.I.</h6></Link>
                 <span>Dekan Fakultas Tarbiyah</span>
               </div>
             </div>
@@ -100,7 +100,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-14.jpeg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Aip Zaenal Mutaqin, S.E., M.E.</h6></Link>
+                <Link href="/pimpinan/dekan3"><h6>Aip Zaenal Mutaqin, S.E., M.E.</h6></Link>
                 <span>Dekan Fakultas Ekonomi dan Bisnis Islam</span>
               </div>
             </div>

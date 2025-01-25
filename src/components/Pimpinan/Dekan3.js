@@ -2,7 +2,7 @@
 
 import React from "react";
 
-const Dekan2 = () => {
+const Dekan3 = () => {
   return (
     <section id="teachers-singel" className="pt-70 pb-120 gray-bg">
       <div className="container">
@@ -11,11 +11,11 @@ const Dekan2 = () => {
           <div className="col-lg-4 col-md-8">
             <div className="teachers-left mt-50">
               <div className="hero">
-                <img src="/images/dosen/d-13.jpeg" alt="Teachers" />
+                <img src="/images/dosen/d-14.jpeg" alt="Teachers" />
               </div>
               <div className="name">
-                <h6>Riyan Nuryadin, S.HI., M.Pd.I.</h6>
-                <span>Dekan Fakultas Tarbiyah</span>
+                <h6>Aip Zaenal Mutaqin, S.E., M.E.</h6>
+                <span>Dekan Fakultas Ekonomi dan Bisnis Islam</span>
               </div>
               <div className="social">
                 <ul>
@@ -119,17 +119,17 @@ const Dekan2 = () => {
                     </div>
                     <div className="singel-dashboard pt-40">
                       <h5>Pendidikan</h5>
-                      <p>S1 Universitas Islam Negeri Sunan Gunung Djati	</p>
-                      <p>S2 Universitas Ibn Khaldun Bogor</p>	
+                      <p>S1 Sekolah Tinggi Ilmu Ekonomi STEMBI	</p>
+                      <p>S2 Universitas Islam Negeri Sunan Gunung Djati	</p>	
                       
 
                     </div>
                     <div className="singel-dashboard pt-40">
                         <h5>ID Penelitian</h5>
-                        <p>Sinta ID: 6725044</p>
+                        <p>Sinta ID: 6844793</p>
                         <p>
                             Google Scholar  
-                            <a href="https://scholar.google.co.id/citations?hl=id&user=U2d-tmcAAAAJ" target="_blank" rel="noopener noreferrer">
+                            <a href="https://scholar.google.co.id/citations?hl=id&user=hJnmYR4AAAAJ" target="_blank" rel="noopener noreferrer">
                              : Klik di sini
                             </a>
                         </p>
@@ -234,4 +234,4 @@ const Course = ({ image, price, title, teacherImage, teacherName, reviewsCount, 
   </div>
 );
 
-export default Dekan2;
+export default Dekan3;

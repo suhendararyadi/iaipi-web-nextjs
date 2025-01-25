@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Script from 'next/script'
+import { Analytics } from "@vercel/analytics/react"
 
 export default function RootLayout({ children }) {
   const [loading, setLoading] = useState(true)
@@ -59,6 +60,7 @@ export default function RootLayout({ children }) {
         {/* Main Content */}
         <main>
           {children}
+          <Analytics />
         </main>
 
         {/* Back to top button */}
