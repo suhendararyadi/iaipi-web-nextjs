@@ -140,7 +140,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-9.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Azis Asmana, Lc., M.Ag.</h6></Link>
+                <Link href="/pimpinan/kaprodi-ilha"><h6>Azis Asmana, Lc., M.Ag.</h6></Link>
                 <span>Kaprodi Iimu Hadis (ILHA)</span>
               </div>
             </div>
@@ -153,7 +153,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-16.jpeg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Yan Yan Nurdin, S.Ud., M.Ag.</h6></Link>
+                <Link href="/pimpinan/kaprodi-iat"><h6>Yan Yan Nurdin, S.Ud., M.Ag.</h6></Link>
                 <span>Ketua Prodi Ilmu Alquran dan Tafsir (IAT)</span>
               </div>
             </div>
