@@ -127,7 +127,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-7.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/teachers-singel"><h6>Dr. Yusup Tajri, M.Pd.</h6></Link>
+                <Link href="/pimpinan/kaprodi-mpai"><h6>Dr. Yusup Tajri, M.Pd.</h6></Link>
                 <span>Kaprodi Magister Pendidikan Agama Islam (MPAI)</span>
               </div>
             </div>
