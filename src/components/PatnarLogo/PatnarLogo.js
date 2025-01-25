@@ -57,22 +57,25 @@ const PatnarLogo = () => {
         <div className="row patnar-slied">
           <div className="col-lg-12">
             <div className="singel-patnar text-center mt-40">
-              <img src="/images/patnar-logo/p-1.png" alt="Logo" />
+            <a href="https://staipersisgarut.pmb.siakad.tech" target="_blank" rel="noopener noreferrer">
+              <img src="/images/patnar-logo/pl-1.png" alt="Logo" />
+            </a>
+              
             </div>
           </div>
           <div className="col-lg-12">
             <div className="singel-patnar text-center mt-40">
-              <img src="/images/patnar-logo/p-2.png" alt="Logo" />
+              <img src="/images/patnar-logo/pl-2.png" alt="Logo" />
             </div>
           </div>
           <div className="col-lg-12">
             <div className="singel-patnar text-center mt-40">
-              <img src="/images/patnar-logo/p-3.png" alt="Logo" />
+              <img src="/images/patnar-logo/pl-3.png" alt="Logo" />
             </div>
           </div>
           <div className="col-lg-12">
             <div className="singel-patnar text-center mt-40">
-              <img src="/images/patnar-logo/p-4.png" alt="Logo" />
+              <img src="/images/patnar-logo/pl-4.png" alt="Logo" />
             </div>
           </div>
         </div>

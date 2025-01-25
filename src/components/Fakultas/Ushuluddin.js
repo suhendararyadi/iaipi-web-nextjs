@@ -39,7 +39,7 @@ const Ushuluddin = () => {
                     <ul className="list-unstyled">
                       <li><i className="fa fa-check-circle text-primary mr-2"></i> Gelar: S.Ag. (Sarjana Agama)</li>
                       <li><i className="fa fa-check-circle text-primary mr-2"></i> Masa Studi: 8 Semester</li>
-                      <li><i className="fa fa-check-circle text-primary mr-2"></i> Akreditasi: B</li>
+                      <li><i className="fa fa-check-circle text-primary mr-2"></i> Akreditasi: A</li>
                     </ul>
                   </div>
                   <div className="text-center mt-4">
@@ -68,7 +68,7 @@ const Ushuluddin = () => {
                     <ul className="list-unstyled">
                       <li><i className="fa fa-check-circle text-primary mr-2"></i> Gelar: S.Ag. (Sarjana Agama)</li>
                       <li><i className="fa fa-check-circle text-primary mr-2"></i> Masa Studi: 8 Semester</li>
-                      <li><i className="fa fa-check-circle text-primary mr-2"></i> Akreditasi: B</li>
+                      <li><i className="fa fa-check-circle text-primary mr-2"></i> Akreditasi: A</li>
                     </ul>
                   </div>
                   <div className="text-center mt-4">

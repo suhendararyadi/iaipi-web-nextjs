@@ -24,7 +24,7 @@ const Publication = () => {
           <div className="col-lg-3 col-md-6 col-sm-8">
             <div className="singel-publication mt-30">
               <div className="image">
-                <img src="/images/publication/p-1.jpg" alt="Publication" />
+                <img src="/images/publication/p-1a.jpg" alt="Publication" />
                 
               </div>
               <div className="cont">
@@ -41,7 +41,7 @@ const Publication = () => {
           <div className="col-lg-3 col-md-6 col-sm-8">
             <div className="singel-publication mt-30">
               <div className="image">
-                <img src="/images/publication/p-2.jpg" alt="Publication" />
+                <img src="/images/publication/p-1a.jpg" alt="Publication" />
                 
               </div>
               <div className="cont">
@@ -58,7 +58,7 @@ const Publication = () => {
           <div className="col-lg-3 col-md-6 col-sm-8">
             <div className="singel-publication mt-30">
               <div className="image">
-                <img src="/images/publication/p-3.jpg" alt="Publication" />
+                <img src="/images/publication/p-1a.jpg" alt="Publication" />
                 
               </div>
               <div className="cont">
@@ -75,7 +75,7 @@ const Publication = () => {
           <div className="col-lg-3 col-md-6 col-sm-8">
             <div className="singel-publication mt-30">
               <div className="image">
-                <img src="/images/publication/p-4.jpg" alt="Publication" />
+                <img src="/images/publication/p-1a.jpg" alt="Publication" />
                 
               </div>
               <div className="cont">
