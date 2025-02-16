@@ -12,7 +12,7 @@ const Apply = () => {
               <div className="apply-cont apply-color-1">
                 <h3>Pendaftaran 2025</h3>
                 <p>Pendaftaran tahun akademik 2025 akan segera dimulai. Segera persiapkan diri kamu.</p>
-                <Link href="https://staipersisgarut.pmb.siakad.tech" className="main-btn"
+                <Link href="https://staipersisgarut.pmbonline.siakad.tech/" className="main-btn"
                   target="_blank" 
                   rel="noopener noreferrer"
                 >Daftar</Link>
@@ -24,7 +24,7 @@ const Apply = () => {
               <div className="apply-cont apply-color-2">
                 <h3>Daftar Beasiswa</h3>
                 <p>Kami akan membantu untuk pengajuan beasiswa. Ayo segera bergabung dengan kami</p>
-                <Link href="staipersisgarut.pmb.siakad.tech" className="main-btn"
+                <Link href="https://staipersisgarut.pmbonline.siakad.tech/" className="main-btn"
                 target="_blank" 
                 rel="noopener noreferrer"
                 >Daftar</Link>
