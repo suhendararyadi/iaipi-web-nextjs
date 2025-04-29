@@ -72,7 +72,7 @@ const Fakultas = () => {
                 </div>
               </div>
               <div className="cont">
-                <Link href="fakultas/ushuluddin"><h4>FAKULTAS USULUDIN</h4></Link>
+                <Link href="fakultas/ushuluddin"><h4>FAKULTAS USHULUDIN</h4></Link>
               </div>
             </div>
           </div>
