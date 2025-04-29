@@ -122,9 +122,9 @@ const Warek4 = () => {
                     </div>
                     <div className="singel-dashboard pt-40">
                       <h5>Pendidikan</h5>
-                      <p>S1 Universitas Gadjah Mada		Universitas Padjadjaran	</p>
+                      <p>S1 Universitas Gadjah Mada</p>
                       <p>S2 Universitas Pendidikan Indonesia</p>	
-                      <p>S3 Universitas Pendidikan Indonesia</p>
+                      <p>S3 Universitas Padjadjaran	</p>
 
                     </div>
                     <div className="singel-dashboard pt-40">
