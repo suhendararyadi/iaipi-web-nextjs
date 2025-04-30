@@ -1,7 +1,7 @@
 // src/pages/api/rss.js
 export default async function handler(req, res) {
     try {
-      const response = await fetch('https://iaipi-garut.hashnode.dev/rss.xml', {
+        const response = await fetch('https://news.iaipersisgarut.ac.id/rss.xml', {
         headers: {
           'Accept': 'application/rss+xml'
         }
