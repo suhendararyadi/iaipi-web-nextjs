@@ -35,13 +35,20 @@ const Slider = () => {
 
   return (
     <section id="slider-part" className="slider-active">
-      <div 
-        className="single-slider bg_cover pt-150" 
-        style={{ backgroundImage: "url('/images/slider/slider-iaipi-4.jpeg')" }} 
+      <a 
+          href="https://staipersisgarut.pmbonline.siakad.tech/" 
+          target="_blank" 
+          rel="noopener noreferrer"
         >
-        <div className="container">
-        </div>
-      </div>
+          <div 
+            className="single-slider bg_cover pt-150" 
+            style={{ backgroundImage: "url('/images/slider/slider-iaipi-4.jpeg')" }}
+          >
+            <div className="container">
+              {/* Konten tambahan di sini kalau ada */}
+            </div>
+          </div>
+        </a>
       
       <div 
         className="single-slider bg_cover pt-150" 
