@@ -37,6 +37,14 @@ const Slider = () => {
     <section id="slider-part" className="slider-active">
       <div 
         className="single-slider bg_cover pt-150" 
+        style={{ backgroundImage: "url('/images/slider/slider-iaipi-4.jpeg')" }} 
+        >
+        <div className="container">
+        </div>
+      </div>
+      
+      <div 
+        className="single-slider bg_cover pt-150" 
         style={{ backgroundImage: "url('/images/slider/slider-iaipi-1a.jpg')" }} 
         >
         <div className="container">
