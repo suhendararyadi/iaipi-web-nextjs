@@ -63,16 +63,16 @@ export default function TentangPage() {
             height={1000}
             className="mx-auto rounded-lg shadow-lg"
           />
-          <a
+        </div>
+        
+        <a
             href="https://staipersisgarut.pmbonline.siakad.tech/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-8 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             Daftar Sekarang
-          </a>
-        </div>
-        
+          </a>  
       </section>
       <Footer />
     </>
