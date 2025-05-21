@@ -65,7 +65,10 @@ export default function TentangPage() {
           />
         </div>
         
-        <div className="text-center">
+          
+      </section>
+
+      <div className="text-center">
           <a
             href="https://staipersisgarut.pmbonline.siakad.tech/"
             target="_blank"
@@ -74,8 +77,7 @@ export default function TentangPage() {
           >
             Daftar Sekarang
           </a>
-        </div>  
-      </section>
+        </div>
       <Footer />
     </>
   )
