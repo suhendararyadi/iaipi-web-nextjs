@@ -66,13 +66,13 @@ export default function TentangPage() {
         </div>
         
         <a
-            href="https://staipersisgarut.pmbonline.siakad.tech/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block mt-8 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            Daftar Sekarang
-          </a>  
+          href="https://staipersisgarut.pmbonline.siakad.tech/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mt-8 px-6 py-3 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-colors shadow-lg"
+        >
+          Daftar Sekarang
+        </a>  
       </section>
       <Footer />
     </>
