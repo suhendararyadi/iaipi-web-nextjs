@@ -23,7 +23,7 @@ export default function TentangPage() {
     <>
       <Header2 />
       <PageBanner 
-        title="Tentang IAI Persis Garut" 
+        title="Penerimaan Mahasiswa Baru" 
         backgroundImage="/images/page-banner-7.jpg"
         breadcrumbs={[
           { text: 'Home', url: '/' },
@@ -39,30 +39,38 @@ export default function TentangPage() {
             src="/images/pmb/poster-pmb-1.jpeg"
             alt="Poster PMB"
             width={800}
-            height={1200}
+            height={1000}
             className="mx-auto rounded-lg shadow-lg"
           />
           <Image
             src="/images/pmb/poster-pmb-2.jpeg"
             alt="Poster PMB"
             width={800}
-            height={1200}
+            height={1000}
             className="mx-auto rounded-lg shadow-lg"
           />
           <Image
             src="/images/pmb/poster-pmb-3.jpeg"
             alt="Poster PMB"
             width={800}
-            height={1200}
+            height={1000}
             className="mx-auto rounded-lg shadow-lg"
           />
           <Image
             src="/images/pmb/poster-pmb-4.jpeg"
             alt="Poster PMB"
             width={800}
-            height={1200}
+            height={1000}
             className="mx-auto rounded-lg shadow-lg"
           />
+          <a
+            href="https://staipersisgarut.pmbonline.siakad.tech/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mt-8 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Daftar Sekarang
+          </a>
         </div>
         
       </section>
