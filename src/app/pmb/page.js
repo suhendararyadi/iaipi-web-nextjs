@@ -27,22 +27,44 @@ export default function TentangPage() {
         backgroundImage="/images/page-banner-7.jpg"
         breadcrumbs={[
           { text: 'Home', url: '/' },
-          { text: 'Tentang Kami', url: null }
+          { text: 'Penerimaan Mahasiswa Baru', url: null }
         ]}
       />
 
       {/* ✅ Tambahan Poster PMB */}
       <section className="py-10 px-4 bg-gray-100">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-6">Poster Penerimaan Mahasiswa Baru</h2>
+          <h2 className="text-2xl font-bold mb-6">Penerimaan Mahasiswa Baru tahun 2025</h2>
           <Image
-            src="/images/pmb/poster-pmb.jpeg"
+            src="/images/pmb/poster-pmb-1.jpeg"
+            alt="Poster PMB"
+            width={800}
+            height={1200}
+            className="mx-auto rounded-lg shadow-lg"
+          />
+          <Image
+            src="/images/pmb/poster-pmb-2.jpeg"
+            alt="Poster PMB"
+            width={800}
+            height={1200}
+            className="mx-auto rounded-lg shadow-lg"
+          />
+          <Image
+            src="/images/pmb/poster-pmb-3.jpeg"
+            alt="Poster PMB"
+            width={800}
+            height={1200}
+            className="mx-auto rounded-lg shadow-lg"
+          />
+          <Image
+            src="/images/pmb/poster-pmb-4.jpeg"
             alt="Poster PMB"
             width={800}
             height={1200}
             className="mx-auto rounded-lg shadow-lg"
           />
         </div>
+        
       </section>
       <Footer />
     </>
