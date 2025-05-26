@@ -90,10 +90,10 @@ export default function PmbPage() {
               href="https://staipersisgarut.pmbonline.siakad.tech/" // Pastikan URL ini benar
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-8 py-4 text-white text-lg font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl"
-              // Tambahkan inline style untuk backgroundColor. Kode warna #2563EB adalah untuk blue-600 dari Tailwind.
-              // Kelas bg-blue-600 tetap ada untuk fallback atau jika inline style tidak cukup.
-              style={{ backgroundColor: '#2563EB' }} 
+              className="inline-block px-10 py-4 text-white text-lg font-bold rounded-full hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl shadow-lg"
+              // Menggunakan inline style untuk warna hijau (Tailwind green-600 = #10B981, green-700 = #059669)
+              // Kelas hover:bg-green-700 akan menangani perubahan warna saat hover jika tidak di-override template.
+              style={{ backgroundColor: '#10B981' }} // Warna dasar hijau (green-600)
             >
               Daftar Sekarang!
             </a>
