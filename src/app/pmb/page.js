@@ -7,6 +7,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules'
 
 // Import CSS Swiper
+// Pastikan path ini benar dan file CSS Swiper termuat di browser.
+// Periksa console browser Anda (F12) untuk error terkait CSS.
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
@@ -22,7 +24,10 @@ export default function PmbPage() {
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
+    // Hook ini memastikan kode di dalamnya hanya berjalan di sisi client
     setIsMounted(true)
+    // Anda bisa menambahkan console.log di sini untuk memastikan useEffect berjalan
+    // console.log('PmbPage component mounted, Swiper should initialize if isMounted is true.');
   }, [])
 
   // Daftar path gambar poster Anda
@@ -35,9 +40,14 @@ export default function PmbPage() {
   ]
 
   // Guard clause untuk mencegah rendering di server jika komponen hanya client-side
+  // Ini penting agar Swiper tidak mencoba render di server
   if (!isMounted) {
+    // console.log('PmbPage: isMounted is false, returning null to prevent server-side Swiper rendering.');
     return null 
   }
+
+  // Jika isMounted true, maka komponen akan dirender di client
+  // console.log('PmbPage: isMounted is true, rendering Swiper component.');
 
   return (
     <>
@@ -65,30 +75,53 @@ export default function PmbPage() {
           </div>
          
           {/* Carousel Poster PMB */}
+          {/* Pastikan div pembungkus ini memiliki dimensi yang benar agar Swiper bisa menginisialisasi ukurannya */}
           <div className="w-full max-w-3xl mx-auto rounded-xl overflow-hidden shadow-2xl border border-gray-200">
             <Swiper
+              // Modul yang akan digunakan oleh Swiper
               modules={[Navigation, Pagination, Autoplay, EffectFade]}
-              effect="fade" // Efek transisi fade
+              
+              // Efek transisi
+              effect="fade"
               fadeEffect={{ crossFade: true }}
-              spaceBetween={0} // Tidak ada jarak jika menggunakan fade
-              slidesPerView={1} // Selalu 1 slide terlihat untuk efek fade
-              navigation={{ // Kustomisasi tombol navigasi
-                nextEl: '.swiper-button-next-custom',
-                prevEl: '.swiper-button-prev-custom',
-              }}
-              pagination={{ clickable: true, dynamicBullets: true }} // Pagination dinamis
-              loop={true}
+              
+              spaceBetween={0} // Jarak antar slide (biasanya 0 untuk effect="fade")
+              slidesPerView={1} // Jumlah slide yang terlihat dalam satu waktu
+              
+              // NAVIGASI: Diubah untuk menggunakan navigasi default Swiper sebagai tes
+              // Jika ini berhasil, masalah mungkin ada pada selector tombol navigasi kustom Anda.
+              navigation={true} 
+              // Jika navigasi default (true) berhasil, Anda bisa mencoba kembali ke custom:
+              // navigation={{ 
+              //   nextEl: '.swiper-button-next-custom',
+              //   prevEl: '.swiper-button-prev-custom',
+              // }}
+              
+              // Pagination (titik-titik di bawah slider)
+              pagination={{ clickable: true, dynamicBullets: true }}
+              
+              loop={true} // Membuat slider berputar terus menerus
+              
               autoplay={{
-                delay: 4000, // Ganti slide setiap 4 detik
-                disableOnInteraction: false, // Tetap autoplay setelah interaksi user
-                pauseOnMouseEnter: true, // Jeda autoplay saat mouse di atas slider
+                delay: 4000, // Durasi antar slide (ms)
+                disableOnInteraction: false, // Autoplay tidak berhenti setelah interaksi user
+                pauseOnMouseEnter: true, // Autoplay berhenti saat mouse diarahkan ke slider
               }}
-              className="aspect-[3/4] md:aspect-[4/3]" // Atur rasio aspek untuk konsistensi
-                                                    // Sesuaikan rasio aspek ini dengan gambar Anda
-                                                    // Contoh: 3/4 untuk poster potrait, 4/3 atau 16/9 untuk landscape
+              
+              // ClassName untuk styling container Swiper
+              // Rasio aspek ini penting untuk menjaga konsistensi visual.
+              // Sesuaikan dengan rasio aspek gambar poster Anda.
+              className="aspect-[3/4] md:aspect-[4/3]" 
+                                                    
+              // Untuk debugging, Anda bisa menambahkan event Swiper
+              onInit={(swiper) => console.log('Swiper initialized!', swiper)}
+              onSlideChange={() => console.log('Slide changed')}
+              // Jika ada error saat Swiper init, ini mungkin tidak terpanggil. Cek console untuk error lain.
             >
               {posterImages.map((poster, index) => (
                 <SwiperSlide key={index} className="bg-gray-100">
+                  {/* Pastikan SwiperSlide dirender dengan benar */}
+                  {/* console.log(`Rendering SwiperSlide ${index} with image ${poster.src}`); */}
                   <div className="relative w-full h-full">
                     <Image
                       src={poster.src}
@@ -97,15 +130,21 @@ export default function PmbPage() {
                       style={{ objectFit: 'contain' }} // 'contain' agar gambar utuh, 'cover' untuk mengisi & crop
                       priority={index === 0} // Prioritaskan loading gambar pertama
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Optimasi untuk Next/Image
+                      // Tambahkan penanganan error jika gambar gagal dimuat
+                      onError={(e) => {
+                        console.error(`Error loading image: ${poster.src}`, e.target.id);
+                        // Anda bisa mengganti src ke gambar placeholder jika terjadi error
+                        // e.target.src = '/images/placeholder-image.png'; 
+                      }}
                     />
                   </div>
-                  {/* Anda bisa menambahkan caption di sini jika perlu */}
-                  {/* <div className="absolute bottom-0 left-0 right-0 p-4 bg-black bg-opacity-50 text-white text-center">
-                    {poster.alt}
-                  </div> */}
                 </SwiperSlide>
               ))}
-              {/* Tombol Navigasi Kustom (Opsional, jika ingin styling berbeda) */}
+
+              {/* Tombol Navigasi Kustom (SEMENTARA DIKOMENTARI jika menggunakan navigation={true}) */}
+              {/* Jika Anda kembali menggunakan navigasi kustom, pastikan class .swiper-button-prev-custom dan .swiper-button-next-custom 
+                  benar-benar ada di DOM dan dapat dijangkau oleh Swiper. */}
+              {/*
               <div className="swiper-button-prev-custom absolute top-1/2 left-2 sm:left-4 z-10 transform -translate-y-1/2 p-2 bg-white/70 hover:bg-white rounded-full shadow-md cursor-pointer transition-all">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-gray-700">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -116,6 +155,7 @@ export default function PmbPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
               </div>
+              */}
             </Swiper>
           </div>
         
@@ -132,13 +172,7 @@ export default function PmbPage() {
           </div>
         </div>
       </section>
-      {/* Anda bisa menambahkan section lain di sini jika perlu, misal:
-          - Keunggulan Program Studi
-          - Testimoni Alumni
-          - FAQ
-      */}
       <Footer />
     </>
   )
 }
-
