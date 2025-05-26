@@ -56,6 +56,7 @@ export default function PmbPage() {
           </div>
          
           {/* Kontainer untuk Gambar Poster */}
+          {/* Gambar sudah diatur untuk tampil di tengah (center) dengan mx-auto pada div pembungkus */}
           <div className="space-y-8 md:space-y-12">
             {posterImages.map((poster, index) => (
               <div key={index} className="w-full max-w-2xl mx-auto rounded-lg overflow-hidden shadow-xl border border-gray-200">
@@ -89,7 +90,7 @@ export default function PmbPage() {
               href="https://staipersisgarut.pmbonline.siakad.tech/" // Pastikan URL ini benar
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-8 py-4 bg-green-600 text-white text-lg font-semibold rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl"
+              className="inline-block px-8 py-4 bg-blue-600 text-white text-lg font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl"
             >
               Daftar Sekarang!
             </a>
