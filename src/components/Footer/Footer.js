@@ -125,7 +125,7 @@ const Footer = () => {
             </div>
             <div className="col-md-4">
               <div className="copyright text-md-right text-center pt-15">
-                <p>Developed with ❤️ by Tim IT IAIPI</p>
+                <p>Dikembangkan Oleh Direktorat IT IAIPI</p>
               </div>
             </div>
           </div>
