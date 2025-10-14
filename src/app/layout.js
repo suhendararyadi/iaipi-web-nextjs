@@ -44,12 +44,12 @@ export default function RootLayout({ children }) {
         {/* Canonical URL */}
         <link rel="canonical" href="https://iaipersisgarut.ac.id/" />
         
-        {/* Favicon - Using Logo */}
-        <link rel="icon" type="image/jpeg" href="/images/logo.jpeg" />
-        <link rel="shortcut icon" type="image/jpeg" href="/images/logo.jpeg" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.jpeg" />
-        <link rel="icon" type="image/jpeg" sizes="32x32" href="/images/logo.jpeg" />
-        <link rel="icon" type="image/jpeg" sizes="16x16" href="/images/logo.jpeg" />
+        {/* Favicon - Multiple formats for best compatibility */}
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="shortcut icon" href="/favicon.ico" />
         
         {/* Font Awesome */}
         <link rel="stylesheet" href="/css/font-awesome.min.css" />
