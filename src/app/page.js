@@ -11,7 +11,7 @@ import Teachers2 from "@/components/Teachers2/Teachers2";
 import Publication from '@/components/Publication/Publication'
 import Testimonial from '@/components/Testimonial/Testimonial'
 import News from '@/components/News/News'
-import PatnarLogo from '@/components/PatnarLogo/PatnarLogo'
+import LembagaHome from '@/components/Lembaga/LembagaHome'
 import Footer from '@/components/Footer/Footer'
 import WhatsAppFloat from '@/components/WhatsAppFloat/WhatsAppFloat'
 
@@ -30,7 +30,7 @@ export default function Home() {
       <VideoFeature/>
       <Publication/>
       <Testimonial />
-      <PatnarLogo />
+      <LembagaHome />
       <Footer/>
       <WhatsAppFloat />
     </>

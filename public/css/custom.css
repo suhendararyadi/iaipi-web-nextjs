@@ -4716,3 +4716,189 @@ a {
         display: block;
     }
 }
+
+/* =========================
+   LEMBAGA HOME SECTION
+   Modern cards for institutions/services
+   ========================= */
+
+/* Lembaga Card */
+.lembaga-card-home {
+    display: block;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    text-decoration: none;
+    height: 100%;
+    position: relative;
+}
+
+.lembaga-card-home:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+}
+
+.lembaga-card-home:hover .lembaga-card-body h4 {
+    color: var(--lembaga-color, #006739);
+}
+
+/* Card Header */
+.lembaga-card-header {
+    padding: 30px 30px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.lembaga-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+}
+
+.lembaga-card-home:hover .lembaga-icon {
+    transform: rotateY(360deg);
+}
+
+.lembaga-icon i {
+    font-size: 32px;
+    color: white;
+}
+
+.external-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    background: #f8f9fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Card Body */
+.lembaga-card-body {
+    padding: 0 30px 20px;
+}
+
+.lembaga-card-body h4 {
+    font-size: 24px;
+    font-weight: 900;
+    color: #333;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+.lembaga-card-body h5 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.lembaga-card-body p {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Card Footer */
+.lembaga-card-footer {
+    padding: 20px 30px;
+    border-top: 2px solid #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.access-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 600;
+    color: #006739;
+}
+
+.lembaga-card-home:hover .access-link {
+    color: var(--lembaga-color, #006739);
+}
+
+.access-link i {
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.lembaga-card-home:hover .access-link i {
+    transform: translateX(5px);
+}
+
+/* CTA Section */
+.lembaga-cta {
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.lembaga-cta p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .lembaga-card-home {
+        margin-bottom: 20px;
+    }
+    
+    .lembaga-card-body h4 {
+        font-size: 20px;
+    }
+    
+    .lembaga-card-body h5 {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 767px) {
+    .lembaga-card-header {
+        padding: 25px 25px 15px;
+    }
+    
+    .lembaga-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .lembaga-icon i {
+        font-size: 28px;
+    }
+    
+    .lembaga-card-body {
+        padding: 0 25px 15px;
+    }
+    
+    .lembaga-card-footer {
+        padding: 15px 25px;
+    }
+}
+
+@media (max-width: 575px) {
+    .lembaga-card-body h4 {
+        font-size: 18px;
+    }
+}
