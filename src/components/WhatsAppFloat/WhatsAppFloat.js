@@ -25,14 +25,14 @@ const WhatsAppFloat = () => {
 
   return (
     <Link
-      href="https://wa.me/6282118282828?text=Halo,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20mahasiswa%20baru%20IAIPI%20Garut"
+      href="https://wa.me/6285123123670?text=Halo,%20saya%20ingin%20bertanya%20tentang%20IAIPI%20Garut"
       className="whatsapp-float"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat via WhatsApp"
     >
       <i className="fa fa-whatsapp"></i>
-      <span>Chat Admin PMB</span>
+      <span>Chat Admin</span>
     </Link>
   )
 }

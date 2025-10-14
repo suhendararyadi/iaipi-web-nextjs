@@ -69,7 +69,7 @@ const KontakContent = () => {
     {
       name: 'Penerimaan Mahasiswa Baru (PMB)',
       email: 'pmb@iaipersisgarut.ac.id',
-      phone: '085123123670',
+      phone: '082129526424',
       description: 'Pendaftaran dan informasi calon mahasiswa'
     },
     {
@@ -108,7 +108,7 @@ const KontakContent = () => {
     {
       name: 'WhatsApp',
       icon: 'fa-whatsapp',
-      url: 'https://wa.me/62085123123670',
+      url: 'https://wa.me/6285123123670',
       color: '#25d366'
     }
   ]
