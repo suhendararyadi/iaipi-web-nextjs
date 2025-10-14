@@ -59,10 +59,11 @@ const Navigation = () => {
                     </ul> */}
                   </li>
                   <li className="nav-item">
-                    <Link href="/tentang">Tentang</Link>
+                    <Link href="#">Profil</Link>
                     <ul className="sub-menu">
                       <li><Link href="/tentang" onClick={closeMenu}>Tentang Institut</Link></li>
                       <li><Link href="/pimpinan" onClick={closeMenu}>Pimpinan Institut</Link></li>
+                      <li><Link href="/lembaga-departemen" onClick={closeMenu}>Lembaga dan Departemen</Link></li>
                     </ul>
                   </li>
                   <li className="nav-item">
