@@ -65,6 +65,7 @@ const Navigation = () => {
                       <li><Link href="/pimpinan" onClick={closeMenu}>Pimpinan Institut</Link></li>
                       <li><Link href="/lembaga-departemen" onClick={closeMenu}>Lembaga dan Departemen</Link></li>
                       <li><Link href="/layanan" onClick={closeMenu}>Layanan & Sistem Informasi</Link></li>
+                      <li><Link href="/kontak" onClick={closeMenu}>Kontak</Link></li>
                     </ul>
                   </li>
                   <li className="nav-item">

@@ -5282,3 +5282,255 @@ a {
         text-align: center;
     }
 }
+
+/* =========================
+   KONTAK PAGE STYLES
+   Contact page styling
+   ========================= */
+
+/* Contact Info Cards */
+.contact-info-section {
+    background: white;
+}
+
+.contact-info-card {
+    background: white;
+    padding: 35px 25px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    height: 100%;
+}
+
+.contact-info-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.contact-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    transition: all 0.4s ease;
+}
+
+.contact-info-card:hover .contact-icon {
+    transform: rotateY(360deg) scale(1.1);
+}
+
+.contact-icon i {
+    font-size: 36px;
+    color: white;
+}
+
+.contact-info-card h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.contact-details p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 8px;
+}
+
+.contact-details a {
+    color: #006739;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.contact-details a:hover {
+    color: #008749;
+    text-decoration: underline;
+}
+
+/* Department Cards */
+.departments-section {
+    background: #f8f9fa;
+}
+
+.department-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.department-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.dept-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.dept-header i {
+    font-size: 32px;
+    color: #006739;
+}
+
+.dept-header h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.dept-desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.dept-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dept-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dept-item i {
+    font-size: 16px;
+    color: #006739;
+    width: 20px;
+}
+
+.dept-item a {
+    font-size: 14px;
+    color: #666;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.dept-item a:hover {
+    color: #006739;
+}
+
+/* Map Container */
+.map-container {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Social Media Cards */
+.social-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+.social-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    background: var(--social-color);
+}
+
+.social-card:hover .social-icon {
+    background: white;
+    color: var(--social-color);
+}
+
+.social-card:hover h4,
+.social-card:hover .follow-text {
+    color: white;
+}
+
+.social-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--social-color);
+    margin-bottom: 20px;
+    transition: all 0.4s ease;
+}
+
+.social-icon i {
+    font-size: 36px;
+    color: white;
+}
+
+.social-card h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+.follow-text {
+    font-size: 14px;
+    color: #999;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .contact-info-card {
+        margin-bottom: 20px;
+    }
+    
+    .department-card {
+        margin-bottom: 20px;
+    }
+    
+    .social-card {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .contact-icon {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .contact-icon i {
+        font-size: 32px;
+    }
+    
+    .dept-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .dept-item {
+        flex-direction: column;
+        text-align: center;
+    }
+}

@@ -253,7 +253,7 @@ const LayananContent = () => {
               </div>
               <div className="info-content">
                 <h4>Butuh Bantuan?</h4>
-                <p>Jika mengalami kesulitan dalam mengakses sistem atau memerlukan bantuan teknis, silakan hubungi <strong>Help Desk TI</strong> melalui WhatsApp di <a href="https://wa.me/6282118282828" target="_blank" rel="noopener noreferrer">082118282828</a> atau email ke <a href="mailto:helpdesk@iaipersisgarut.ac.id">helpdesk@iaipersisgarut.ac.id</a></p>
+                <p>Jika mengalami kesulitan dalam mengakses sistem atau memerlukan bantuan teknis, silakan hubungi <strong>Help Desk TI</strong> melalui WhatsApp di <a href="https://wa.me/62085123123670" target="_blank" rel="noopener noreferrer">085123123670</a> atau email ke <a href="mailto:rektorat@iaipersisgarut.ac.id">rektorat@iaipersisgarut.ac.id</a></p>
               </div>
             </div>
           </div>

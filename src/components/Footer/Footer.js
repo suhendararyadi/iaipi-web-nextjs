@@ -28,7 +28,7 @@ const Footer = () => {
                   <li><Link href="https://facebook.com/iaipigarut" target="_blank" rel="noopener noreferrer" aria-label="Facebook IAIPI Garut"><i className="fa fa-facebook-f"></i></Link></li>
                   <li><Link href="https://instagram.com/iaipi_garut" target="_blank" rel="noopener noreferrer" aria-label="Instagram IAIPI Garut"><i className="fa fa-instagram"></i></Link></li>
                   <li><Link href="https://youtube.com/@iaipigarut" target="_blank" rel="noopener noreferrer" aria-label="YouTube IAIPI Garut"><i className="fa fa-youtube"></i></Link></li>
-                  <li><Link href="https://wa.me/6282118282828?text=Halo,%20saya%20ingin%20bertanya%20tentang%20IAIPI%20Garut" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp IAIPI Garut"><i className="fa fa-whatsapp"></i></Link></li>
+                  <li><Link href="https://wa.me/62085123123670?text=Halo,%20saya%20ingin%20bertanya%20tentang%20IAIPI%20Garut" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp IAIPI Garut"><i className="fa fa-whatsapp"></i></Link></li>
                 </ul>
               </div>
             </div>
@@ -82,7 +82,7 @@ const Footer = () => {
                       <i className="fa fa-home"></i>
                     </div>
                     <div className="cont">
-                      <p>Jl. Pramuka No.13, Jayawaras, Kec. Tarogong Kidul, Kabupaten Garut, Jawa Barat 44151</p>
+                      <p>Jl. Aruji Kartawinata No. 2, Tarogong Kidul, Kabupaten Garut, Jawa Barat 44151</p>
                     </div>
                   </li>
                   <li>
@@ -90,8 +90,8 @@ const Footer = () => {
                       <i className="fa fa-phone"></i>
                     </div>
                     <div className="cont">
-                      <p><a href="tel:+622622232891" style={{ color: 'inherit' }}>+62 262 232891</a></p>
-                      <p><a href="https://wa.me/6282118282828" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>+62 821 1828 2828 (WhatsApp)</a></p>
+                      <p><a href="tel:+62085123123670" style={{ color: 'inherit' }}>+62 851 2312 3670</a></p>
+                      <p><a href="https://wa.me/62085123123670" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>+62 851 2312 3670 (WhatsApp)</a></p>
                     </div>
                   </li>
                   <li>
@@ -99,7 +99,7 @@ const Footer = () => {
                       <i className="fa fa-envelope-o"></i>
                     </div>
                     <div className="cont">
-                      <p><a href="mailto:info@iaipersisgarut.ac.id" style={{ color: 'inherit' }}>info@iaipersisgarut.ac.id</a></p>
+                      <p><a href="mailto:rektorat@iaipersisgarut.ac.id" style={{ color: 'inherit' }}>rektorat@iaipersisgarut.ac.id</a></p>
                       <p><a href="mailto:pmb@iaipersisgarut.ac.id" style={{ color: 'inherit' }}>pmb@iaipersisgarut.ac.id</a></p>
                     </div>
                   </li>
