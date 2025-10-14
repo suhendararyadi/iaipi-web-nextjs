@@ -47,13 +47,13 @@ const supportChannels = [
   {
     icon: 'fa-whatsapp',
     label: 'Chat Admin PMB',
-    href: 'https://wa.me/6282118282828?text=Halo,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20IAIPI%20Garut',
+    href: 'https://wa.me/6282129526424?text=Halo,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20IAIPI%20Garut',
     description: 'Respons cepat melalui WhatsApp resmi PMB.'
   },
   {
     icon: 'fa-phone',
-    label: 'Hubungi Kampus',
-    href: 'tel:+62262232891',
+    label: 'Hubungi PMB',
+    href: 'tel:+6282129526424',
     description: 'Senin–Jumat, pukul 08.00–16.00 WIB.'
   },
   {
@@ -112,12 +112,12 @@ const PmbPage = () => {
                     Daftar Online Sekarang
                   </a>
                   <a
-                    href="https://wa.me/6282118282828?text=Halo,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20IAIPI%20Garut"
+                    href="https://wa.me/6282129526424?text=Halo,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20IAIPI%20Garut"
                     className="pmb-btn pmb-btn--ghost"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Konsultasi dengan Admin
+                    Konsultasi dengan Admin PMB
                   </a>
                 </div>
               </div>
