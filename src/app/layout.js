@@ -46,7 +46,11 @@ export default function RootLayout({ children }) {
         
         {/* Favicon - Using Logo */}
         <link rel="icon" type="image/jpeg" href="/images/logo.jpeg" />
-        <link rel="apple-touch-icon" href="/images/logo.jpeg" />
+        <link rel="shortcut icon" type="image/jpeg" href="/images/logo.jpeg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.jpeg" />
+        <link rel="icon" type="image/jpeg" sizes="32x32" href="/images/logo.jpeg" />
+        <link rel="icon" type="image/jpeg" sizes="16x16" href="/images/logo.jpeg" />
+        
         {/* Font Awesome */}
         <link rel="stylesheet" href="/css/font-awesome.min.css" />
         

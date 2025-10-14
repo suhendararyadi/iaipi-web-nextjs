@@ -5645,3 +5645,99 @@ a {
     opacity: 1 !important;
     visibility: visible !important;
 }
+
+/* =========================
+   CUSTOM SLIDER ARROWS - NEW APPROACH
+   Simple, clean arrows with Unicode symbols
+   ========================= */
+
+/* Hide ALL default slick arrows */
+.slider-active .slick-arrow {
+    display: none !important;
+}
+
+/* Show ONLY our custom arrows */
+.slider-active .custom-slider-prev,
+.slider-active .custom-slider-next {
+    display: block !important;
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 60px !important;
+    height: 60px !important;
+    background: rgba(0, 103, 57, 0.8) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    z-index: 999 !important;
+    transition: all 0.3s ease !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Left arrow position */
+.slider-active .custom-slider-prev {
+    left: 20px !important;
+}
+
+/* Right arrow position */
+.slider-active .custom-slider-next {
+    right: 20px !important;
+}
+
+/* Arrow symbol styling */
+.slider-active .custom-slider-prev span,
+.slider-active .custom-slider-next span {
+    display: block !important;
+    font-size: 48px !important;
+    line-height: 60px !important;
+    color: #fff !important;
+    font-weight: 300 !important;
+    text-align: center !important;
+}
+
+/* Hover effects */
+.slider-active .custom-slider-prev:hover,
+.slider-active .custom-slider-next:hover {
+    background: rgba(0, 103, 57, 1) !important;
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+/* Active/Focus state */
+.slider-active .custom-slider-prev:active,
+.slider-active .custom-slider-next:active,
+.slider-active .custom-slider-prev:focus,
+.slider-active .custom-slider-next:focus {
+    background: rgba(0, 103, 57, 1) !important;
+    outline: 2px solid #ffc600 !important;
+}
+
+/* Disabled state */
+.slider-active .custom-slider-prev.slick-disabled,
+.slider-active .custom-slider-next.slick-disabled {
+    opacity: 0.3 !important;
+    cursor: not-allowed !important;
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .slider-active .custom-slider-prev,
+    .slider-active .custom-slider-next {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    
+    .slider-active .custom-slider-prev {
+        left: 10px !important;
+    }
+    
+    .slider-active .custom-slider-next {
+        right: 10px !important;
+    }
+    
+    .slider-active .custom-slider-prev span,
+    .slider-active .custom-slider-next span {
+        font-size: 36px !important;
+        line-height: 45px !important;
+    }
+}

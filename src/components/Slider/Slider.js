@@ -28,8 +28,8 @@ const Slider = () => {
               pauseOnFocus: true,
               fade: true,
               cssEase: 'ease-in-out',
-              prevArrow: '<button type="button" class="slick-prev" aria-label="Previous slide"><i class="fa fa-angle-left"></i></button>',
-              nextArrow: '<button type="button" class="slick-next" aria-label="Next slide"><i class="fa fa-angle-right"></i></button>',
+              prevArrow: '<button type="button" class="custom-slider-prev" aria-label="Previous slide"><span>‹</span></button>',
+              nextArrow: '<button type="button" class="custom-slider-next" aria-label="Next slide"><span>›</span></button>',
             })
           } catch (error) {
             console.log('Slider init error:', error)
