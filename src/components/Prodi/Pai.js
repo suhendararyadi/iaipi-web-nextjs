@@ -7,7 +7,7 @@ const PaiContent = () => {
   const profilLulusan = [
     { icon: "fa-chalkboard-teacher", title: "Guru PAI", desc: "Pendidik PAI di sekolah/madrasah" },
     { icon: "fa-user-tie", title: "Tenaga Kependidikan", desc: "Staff akademik dan administrasi" },
-    { icon: "fa-mosque", title: "Penyuluh Agama", desc: "Da'i dan mubaligh profesional" },
+    { icon: "fa-mosque", title: "Penyuluh Agama", desc: "Da&apos;i dan mubaligh profesional" },
     { icon: "fa-book-reader", title: "Peneliti Pendidikan", desc: "Ahli penelitian pendidikan Islam" }
   ]
 
@@ -229,7 +229,7 @@ const PaiContent = () => {
                       <h5>Lembaga Keagamaan</h5>
                       <ul>
                         <li>Penyuluh Agama</li>
-                        <li>Da'i dan Mubaligh</li>
+                        <li>Da&apos;i dan Mubaligh</li>
                         <li>Ustadz/Ustadzah</li>
                         <li>Konsultan Pendidikan Islam</li>
                       </ul>

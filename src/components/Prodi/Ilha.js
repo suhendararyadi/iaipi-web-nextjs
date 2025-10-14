@@ -94,7 +94,7 @@ const IlhaContent = () => {
   const profilLulusan = [
     { icon: "fa-search", title: "Peneliti Hadis", desc: "Ahli dalam riset dan kajian hadis" },
     { icon: "fa-chalkboard-teacher", title: "Akademisi", desc: "Dosen dan pengajar ilmu hadis" },
-    { icon: "fa-mosque", title: "Da'i & Mubaligh", desc: "Penyebar ajaran Islam berbasis hadis" },
+    { icon: "fa-mosque", title: "Da&apos;i & Mubaligh", desc: "Penyebar ajaran Islam berbasis hadis" },
     { icon: "fa-user-tie", title: "Konsultan Syariah", desc: "Ahli konsultasi hukum Islam" }
   ]
 
@@ -342,7 +342,7 @@ const IlhaContent = () => {
                       </div>
                       <h5>Lembaga Keagamaan</h5>
                       <ul>
-                        <li>Mubaligh & Da'i</li>
+                        <li>Mubaligh & Da&apos;i</li>
                         <li>Konsultan Syariah</li>
                         <li>Pengurus Masjid</li>
                         <li>Lembaga Dakwah</li>
