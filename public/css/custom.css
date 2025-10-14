@@ -109,6 +109,13 @@ textarea:focus {
 }
 
 /* Slider Controls - Fixed for Production */
+/* Hide template arrows completely */
+.slider-active .slick-arrow:not(.slick-prev):not(.slick-next) {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
 .slider-active .slick-prev,
 .slider-active .slick-next {
     width: 50px !important;
@@ -130,21 +137,26 @@ textarea:focus {
     justify-content: center !important;
 }
 
-.slider-active .slick-prev::before,
-.slider-active .slick-next::before {
-    font-family: 'FontAwesome' !important;
+/* Ensure only our button elements show */
+.slider-active button.slick-prev,
+.slider-active button.slick-next {
+    display: flex !important;
+}
+
+/* Style for icon inside button */
+.slider-active .slick-prev i,
+.slider-active .slick-next i {
     font-size: 24px !important;
     color: white !important;
-    opacity: 1 !important;
     line-height: 1 !important;
+    display: block !important;
 }
 
-.slider-active .slick-prev::before {
-    content: '\f104' !important;
-}
-
+/* Fallback if using ::before */
+.slider-active .slick-prev::before,
 .slider-active .slick-next::before {
-    content: '\f105' !important;
+    content: '' !important;
+    display: none !important;
 }
 
 .slider-active .slick-prev:hover,
@@ -1165,8 +1177,8 @@ a {
         height: 40px !important;
     }
     
-    .slider-active .slick-prev::before,
-    .slider-active .slick-next::before {
+    .slider-active .slick-prev i,
+    .slider-active .slick-next i {
         font-size: 18px !important;
     }
     
@@ -1571,4 +1583,37 @@ a {
     .lembaga-title {
         font-size: 16px;
     }
+}
+
+/* =========================
+   FORCE HIDE TEMPLATE SLIDER ARROWS
+   ========================= */
+/* Override template style.css arrows completely */
+.slider-active .next.slick-arrow,
+.slider-active .prev.slick-arrow,
+.slider-active > .slick-arrow:not(button) {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    font-size: 0 !important;
+}
+
+/* Force show only button arrows */
+.slider-active button.slick-prev,
+.slider-active button.slick-next {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Prevent any stacking/overlap */
+.slider-active {
+    position: relative;
+}
+
+.slider-active button.slick-prev,
+.slider-active button.slick-next {
+    position: absolute !important;
 }
