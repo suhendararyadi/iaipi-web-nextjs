@@ -4902,3 +4902,328 @@ a {
         font-size: 18px;
     }
 }
+
+/* =========================
+   LAYANAN PAGE STYLES
+   Services and Information Systems
+   ========================= */
+
+/* Category Filter */
+.category-filter {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 20px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: #f8f9fa;
+    border: 2px solid transparent;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background: white;
+    border-color: #006739;
+    color: #006739;
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    border-color: #006739;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 103, 57, 0.3);
+}
+
+.filter-btn i {
+    font-size: 16px;
+}
+
+/* Layanan Card */
+.layanan-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.layanan-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Status Badge */
+.status-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    z-index: 10;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-badge.active {
+    background: #27ae60;
+    color: white;
+}
+
+.status-badge.coming-soon {
+    background: #f39c12;
+    color: white;
+}
+
+.status-badge i {
+    font-size: 12px;
+}
+
+/* Card Header */
+.layanan-card-header {
+    padding: 30px;
+    text-align: center;
+    background: linear-gradient(180deg, #f8f9fa 0%, white 100%);
+}
+
+.layanan-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: all 0.4s ease;
+}
+
+.layanan-card:hover .layanan-icon {
+    transform: rotateY(360deg) scale(1.1);
+}
+
+.layanan-icon i {
+    font-size: 36px;
+    color: white;
+}
+
+/* Card Body */
+.layanan-card-body {
+    padding: 20px 30px;
+    flex: 1;
+}
+
+.layanan-card-body h4 {
+    font-size: 22px;
+    font-weight: 900;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.layanan-card-body h5 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.layanan-card-body p {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Card Footer */
+.layanan-card-footer {
+    padding: 20px 30px;
+    border-top: 2px solid #f8f9fa;
+}
+
+.access-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.access-btn:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+.access-btn i {
+    font-size: 16px;
+}
+
+.access-btn.disabled {
+    background: #95a5a6 !important;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.access-btn.disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Info Box */
+.layanan-info-box {
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    padding: 30px;
+    border-radius: 16px;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    box-shadow: 0 8px 30px rgba(0, 103, 57, 0.3);
+}
+
+.layanan-info-box .info-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.layanan-info-box .info-icon i {
+    font-size: 28px;
+    color: #ffc600;
+}
+
+.layanan-info-box .info-content h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.layanan-info-box .info-content p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.layanan-info-box .info-content a {
+    color: #ffc600;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.layanan-info-box .info-content a:hover {
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .category-filter {
+        gap: 8px;
+        padding: 15px;
+    }
+    
+    .filter-btn {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+    
+    .layanan-card {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .filter-btn span {
+        display: none;
+    }
+    
+    .filter-btn {
+        padding: 10px 15px;
+        justify-content: center;
+    }
+    
+    .filter-btn.active span {
+        display: inline;
+    }
+    
+    .layanan-card-header {
+        padding: 25px;
+    }
+    
+    .layanan-icon {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .layanan-icon i {
+        font-size: 32px;
+    }
+    
+    .layanan-card-body {
+        padding: 15px 25px;
+    }
+    
+    .layanan-card-footer {
+        padding: 15px 25px;
+    }
+    
+    .layanan-info-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+    }
+}
+
+@media (max-width: 575px) {
+    .category-filter {
+        gap: 6px;
+    }
+    
+    .filter-btn {
+        padding: 8px 12px;
+    }
+    
+    .layanan-card-body h4 {
+        font-size: 20px;
+    }
+    
+    .layanan-card-body h5 {
+        font-size: 14px;
+    }
+}
