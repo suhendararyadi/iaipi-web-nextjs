@@ -93,9 +93,9 @@ const BkpiContent = () => {
 
   const profilLulusan = [
     { icon: "fa-search", title: "Peneliti Hadis", desc: "Ahli dalam riset dan kajian hadis" },
-    { icon: "fa-chalkboard-teacher", title: "Akademisi", desc: "Dosen dan pengajar ilmu hadis" },
+    { icon: "fa-graduation-cap", title: "Akademisi", desc: "Dosen dan pengajar ilmu hadis" },
     { icon: "fa-mosque", title: "Da&apos;i & Mubaligh", desc: "Penyebar ajaran Islam berbasis hadis" },
-    { icon: "fa-user-tie", title: "Konsultan Syariah", desc: "Ahli konsultasi hukum Islam" }
+    { icon: "fa-user", title: "Konsultan Syariah", desc: "Ahli konsultasi hukum Islam" }
   ]
 
   return (
@@ -351,7 +351,7 @@ const BkpiContent = () => {
                     
                     <div className="sector-card">
                       <div className="sector-icon">
-                        <i className="fa fa-landmark"></i>
+                        <i className="fa fa-university"></i>
                       </div>
                       <h5>Pemerintahan</h5>
                       <ul>
@@ -364,7 +364,7 @@ const BkpiContent = () => {
                     
                     <div className="sector-card">
                       <div className="sector-icon">
-                        <i className="fa fa-book-reader"></i>
+                        <i className="fa fa-book"></i>
                       </div>
                       <h5>Media & Publikasi</h5>
                       <ul>

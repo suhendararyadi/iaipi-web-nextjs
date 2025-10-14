@@ -11,7 +11,7 @@ const Fakultas = () => {
       image: "/images/course/fak-1.jpg",
       description: "Fakultas yang fokus pada studi keislaman fundamental dalam bidang Ilmu Hadis dan Ilmu Al-Quran Tafsir.",
       prodi: ["Ilmu Hadis (ILHA)", "Ilmu Al-Quran dan Tafsir (IAT)"],
-      icon: "fa-book-open",
+      icon: "fa-book",
       color: "#006739"
     },
     {

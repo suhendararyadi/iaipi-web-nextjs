@@ -70,7 +70,7 @@ const Ekonomi = () => {
                     </div>
                   </div>
                   <div className="stat-box">
-                    <i className="fa fa-user-tie"></i>
+                    <i className="fa fa-user"></i>
                     <div>
                       <h5>12+</h5>
                       <p>Dosen</p>

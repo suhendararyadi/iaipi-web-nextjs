@@ -48,7 +48,7 @@ const Ushuluddin = () => {
           <div className="col-lg-8 mx-auto">
             <div className="faculty-overview-card">
               <div className="overview-icon">
-                <i className="fa fa-book-open"></i>
+                <i className="fa fa-book"></i>
               </div>
               <div className="overview-content">
                 <h3>Fakultas Ushuluddin</h3>
@@ -70,7 +70,7 @@ const Ushuluddin = () => {
                     </div>
                   </div>
                   <div className="stat-box">
-                    <i className="fa fa-user-tie"></i>
+                    <i className="fa fa-user"></i>
                     <div>
                       <h5>15+</h5>
                       <p>Dosen</p>

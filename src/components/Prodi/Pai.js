@@ -5,10 +5,10 @@ const PaiContent = () => {
   const [activeTab, setActiveTab] = useState('profil')
 
   const profilLulusan = [
-    { icon: "fa-chalkboard-teacher", title: "Guru PAI", desc: "Pendidik PAI di sekolah/madrasah" },
-    { icon: "fa-user-tie", title: "Tenaga Kependidikan", desc: "Staff akademik dan administrasi" },
+    { icon: "fa-graduation-cap", title: "Guru PAI", desc: "Pendidik PAI di sekolah/madrasah" },
+    { icon: "fa-user", title: "Tenaga Kependidikan", desc: "Staff akademik dan administrasi" },
     { icon: "fa-mosque", title: "Penyuluh Agama", desc: "Da&apos;i dan mubaligh profesional" },
-    { icon: "fa-book-reader", title: "Peneliti Pendidikan", desc: "Ahli penelitian pendidikan Islam" }
+    { icon: "fa-book", title: "Peneliti Pendidikan", desc: "Ahli penelitian pendidikan Islam" }
   ]
 
   const fasilitasData = [
@@ -211,7 +211,7 @@ const PaiContent = () => {
                   <div className="karir-sectors">
                     <div className="sector-card">
                       <div className="sector-icon">
-                        <i className="fa fa-school"></i>
+                        <i className="fa fa-university"></i>
                       </div>
                       <h5>Lembaga Pendidikan</h5>
                       <ul>
@@ -237,7 +237,7 @@ const PaiContent = () => {
                     
                     <div className="sector-card">
                       <div className="sector-icon">
-                        <i className="fa fa-landmark"></i>
+                        <i className="fa fa-university"></i>
                       </div>
                       <h5>Instansi Pemerintah</h5>
                       <ul>
@@ -250,7 +250,7 @@ const PaiContent = () => {
                     
                     <div className="sector-card">
                       <div className="sector-icon">
-                        <i className="fa fa-book-reader"></i>
+                        <i className="fa fa-book"></i>
                       </div>
                       <h5>Media & Penelitian</h5>
                       <ul>
