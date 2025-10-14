@@ -4663,3 +4663,56 @@ a {
 .header-sticky .btn-register {
     padding: 10px 20px !important;
 }
+
+/* =========================
+   FIX: REGISTER BUTTON ALIGNMENT
+   Center button vertically with menu items
+   ========================= */
+
+/* Override previous styles for better alignment */
+.navigation-2 .navbar-nav .nav-item-register {
+    display: flex;
+    align-items: center;
+    margin-left: 15px !important;
+}
+
+.navigation-2 .navbar-nav .nav-item-register .btn-register {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px;
+    padding: 10px 24px !important;
+    margin: 0 !important;
+    line-height: 1.5 !important;
+    height: auto !important;
+}
+
+/* Ensure navbar items are aligned */
+.navigation-2 .navbar-nav {
+    align-items: center !important;
+}
+
+.navigation-2 .navbar-nav > li {
+    display: flex;
+    align-items: center;
+}
+
+.navigation-2 .navbar-nav > li > a {
+    display: flex;
+    align-items: center;
+}
+
+/* Mobile alignment fix */
+@media (max-width: 991px) {
+    .navigation-2 .navbar-nav .nav-item-register {
+        margin: 10px 0 !important;
+    }
+    
+    .navigation-2 .navbar-nav {
+        align-items: stretch !important;
+    }
+    
+    .navigation-2 .navbar-nav > li {
+        display: block;
+    }
+}
