@@ -96,8 +96,8 @@ const LembagaDepartemen = () => {
                 <p>
                   Untuk informasi lebih lanjut mengenai lembaga dan departemen, 
                   silakan hubungi Bagian Administrasi Umum Institut Agama Islam PERSIS Garut 
-                  melalui email: <a href="mailto:admin@iaipersisgarut.ac.id">admin@iaipersisgarut.ac.id</a> atau 
-                  telepon: <a href="tel:+622622328911">+62-262-232891</a>
+                  melalui email: <a href="mailto:rektorat@iaipersisgarut.ac.id">rektorat@iaipersisgarut.ac.id</a> atau 
+                  telepon: <a href="tel:+6285123123670">+62 851 2312 3670</a>
                 </p>
               </div>
             </div>

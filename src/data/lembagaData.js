@@ -3,23 +3,23 @@
 const lembagaData = [
   {
     id: 1,
-    name: "LPPM IAI Persis Garut",
+    name: "LPM",
+    fullName: "Lembaga Penjaminan Mutu",
+    description: "Lembaga yang bertanggung jawab dalam menjamin dan meningkatkan mutu pendidikan, akreditasi, dan sistem penjaminan mutu internal institusi.",
+    url: "https://lpm.iaipersisgarut.ac.id",
+    icon: "fa-certificate",
+    category: "Lembaga",
+    status: "active"
+  },
+  {
+    id: 2,
+    name: "LPPM",
     fullName: "Lembaga Penelitian dan Pengabdian kepada Masyarakat",
     description: "Lembaga yang mengelola dan mengkoordinasikan kegiatan penelitian dan pengabdian kepada masyarakat untuk meningkatkan kualitas Tri Dharma Perguruan Tinggi.",
     url: "https://lppm.iaipersisgarut.ac.id",
     icon: "fa-flask",
     category: "Lembaga",
     status: "active"
-  },
-  {
-    id: 2,
-    name: "LP2M",
-    fullName: "Lembaga Penjaminan Mutu Pendidikan",
-    description: "Lembaga yang bertanggung jawab dalam menjamin dan meningkatkan mutu pendidikan, akreditasi, dan sistem penjaminan mutu internal institusi.",
-    url: "",
-    icon: "fa-certificate",
-    category: "Lembaga",
-    status: "coming_soon"
   },
   {
     id: 3,

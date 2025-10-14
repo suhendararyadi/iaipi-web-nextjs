@@ -44,12 +44,14 @@ const Footer = () => {
                   <li><Link href="/tentang"><i className="fa fa-angle-right"></i>Tentang</Link></li>
                   <li><Link href="/fakultas"><i className="fa fa-angle-right"></i>Fakultas</Link></li>
                   <li><Link href="/magister"><i className="fa fa-angle-right"></i>Magister</Link></li>
-                  <li><Link href="https://news.iaipersisgarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>Berita</Link></li>
+                  <li><Link href="/lembaga-departemen"><i className="fa fa-angle-right"></i>Lembaga</Link></li>
                 </ul>
                 <ul>
-                  <li><Link href="https://jurnal.iaipigarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>Jurnal</Link></li>
+                  <li><Link href="/layanan"><i className="fa fa-angle-right"></i>Layanan & Sistem</Link></li>
+                  <li><Link href="/kontak"><i className="fa fa-angle-right"></i>Kontak</Link></li>
                   <li><Link href="/pimpinan"><i className="fa fa-angle-right"></i>Pimpinan</Link></li>
-                  <li><Link href="https://staipersisgarut.pmbonline.siakad.tech" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>PMB Online</Link></li>
+                  <li><Link href="/pmb"><i className="fa fa-angle-right"></i>PMB</Link></li>
+                  <li><Link href="https://news.iaipersisgarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>Berita</Link></li>
                 </ul>
               </div>
             </div>
@@ -61,11 +63,11 @@ const Footer = () => {
                   <h6>Layanan</h6>
                 </div>
                 <ul>
-                  <li><Link href="https://jurnal.iaipigarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>Portal Jurnal</Link></li>
-                  <li><Link href="https://news.iaipersisgarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>Portal Berita</Link></li>
-                  <li><Link href="https://staipersisgarut.pmbonline.siakad.tech" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>Pendaftaran</Link></li>
-                  <li><Link href="#"><i className="fa fa-angle-right"></i>E-Learning</Link></li>
-                  <li><Link href="#"><i className="fa fa-angle-right"></i>Perpustakaan</Link></li>
+                  <li><Link href="https://siakad.iaipersisgarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>SIAKAD</Link></li>
+                  <li><Link href="https://lpm.iaipersisgarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>LPM</Link></li>
+                  <li><Link href="https://lppm.iaipersisgarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>LPPM</Link></li>
+                  <li><Link href="https://jurnal.iaipigarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>Jurnal</Link></li>
+                  <li><Link href="https://news.iaipersisgarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>Berita</Link></li>
                 </ul>
               </div>
             </div>
