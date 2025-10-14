@@ -4540,8 +4540,8 @@ a {
 .btn-register {
     display: inline-flex !important;
     align-items: center;
-    gap: 8px;
-    padding: 12px 24px !important;
+    justify-content: center;
+    padding: 12px 28px !important;
     background: linear-gradient(135deg, #ffc600 0%, #ffb700 100%) !important;
     color: #333 !important;
     font-weight: 700 !important;
@@ -4558,11 +4558,6 @@ a {
     transform: translateY(-2px) !important;
     box-shadow: 0 6px 20px rgba(255, 198, 0, 0.6) !important;
     color: #000 !important;
-}
-
-.btn-register i {
-    font-size: 16px;
-    animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
@@ -4591,26 +4586,22 @@ a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
+    padding: 8px 16px;
     background: linear-gradient(135deg, #ffc600 0%, #ffb700 100%);
     color: #333;
-    border-radius: 50%;
+    border-radius: 20px;
     box-shadow: 0 4px 15px rgba(255, 198, 0, 0.4);
     transition: all 0.3s ease;
     text-decoration: none;
+    font-weight: 700;
+    font-size: 12px;
 }
 
 .btn-register-mobile:hover {
     background: linear-gradient(135deg, #ffb700 0%, #ffa500 100%);
-    transform: scale(1.1);
+    transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(255, 198, 0, 0.6);
     color: #000;
-}
-
-.btn-register-mobile i {
-    font-size: 18px;
-    animation: pulse 2s infinite;
 }
 
 /* Desktop - Hide mobile button */
@@ -4625,15 +4616,6 @@ a {
     .btn-register {
         padding: 10px 20px !important;
         font-size: 13px !important;
-    }
-    
-    .btn-register span {
-        display: none;
-    }
-    
-    .btn-register i {
-        font-size: 18px;
-        margin: 0;
     }
     
     .nav-item-register {

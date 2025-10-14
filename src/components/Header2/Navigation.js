@@ -120,7 +120,6 @@ const Navigation = () => {
                       className="btn-register"
                       onClick={closeMenu}
                     >
-                      <i className="fa fa-edit"></i>
                       <span>Daftar Sekarang</span>
                     </Link>
                   </li>
@@ -132,7 +131,7 @@ const Navigation = () => {
             {/* Tombol Pendaftaran Mobile */}
             <div className="register-btn-wrapper">
               <Link href="/pmb" className="btn-register-mobile">
-                <i className="fa fa-edit"></i>
+                <span>PMB</span>
               </Link>
             </div>
           </div>
