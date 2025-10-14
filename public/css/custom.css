@@ -2750,3 +2750,1363 @@ a {
         font-size: 14px;
     }
 }
+
+/* =========================
+   FAKULTAS & PRODI OPTIMIZATION
+   Modern UI/UX for Faculty & Study Program Pages
+   ========================= */
+
+/* =========================
+   1. HALAMAN UTAMA FAKULTAS
+   ========================= */
+
+/* Fakultas Cards */
+.fakultas-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    position: relative;
+    height: 100%;
+}
+
+.fakultas-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.fakultas-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+}
+
+.fakultas-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.fakultas-card:hover .fakultas-image-wrapper img {
+    transform: scale(1.1);
+}
+
+.fakultas-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.fakultas-card:hover .fakultas-overlay {
+    opacity: 1;
+}
+
+.fakultas-icon {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.fakultas-icon i {
+    font-size: 36px;
+    color: white;
+}
+
+.fakultas-content {
+    padding: 30px;
+}
+
+.fakultas-content h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #006739;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.fakultas-description {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.prodi-list {
+    margin-bottom: 25px;
+}
+
+.prodi-list h6 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.prodi-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.prodi-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.prodi-list li i {
+    color: #006739;
+    font-size: 16px;
+}
+
+.fakultas-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 25px;
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.fakultas-btn:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 103, 57, 0.3);
+    color: white;
+}
+
+.fakultas-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+/* Fakultas Stats */
+.fakultas-stats-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.fakultas-stat-item {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    min-width: 220px;
+}
+
+.fakultas-stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.fakultas-stat-item .stat-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fakultas-stat-item .stat-icon i {
+    font-size: 28px;
+    color: white;
+}
+
+.fakultas-stat-item .stat-content h4 {
+    font-size: 32px;
+    font-weight: 900;
+    color: #006739;
+    margin: 0;
+    line-height: 1;
+}
+
+.fakultas-stat-item .stat-content p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0 0;
+}
+
+/* Fakultas CTA */
+.fakultas-cta {
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    padding: 40px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.cta-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.cta-icon i {
+    font-size: 32px;
+    color: #ffc600;
+}
+
+.cta-content {
+    flex: 1;
+}
+
+.cta-content h4 {
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 8px;
+}
+
+.cta-content p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+.cta-action .cta-btn {
+    padding: 15px 35px;
+    background: white;
+    color: #006739;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.cta-action .cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+}
+
+/* =========================
+   2. HALAMAN FAKULTAS DETAIL
+   ========================= */
+
+/* Faculty Overview Card */
+.faculty-overview-card {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.overview-icon {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+}
+
+.overview-icon i {
+    font-size: 48px;
+    color: white;
+}
+
+.faculty-overview-card h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #006739;
+    margin-bottom: 15px;
+}
+
+.faculty-overview-card .lead {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.overview-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.stat-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 25px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.stat-box i {
+    font-size: 32px;
+    color: #006739;
+}
+
+.stat-box h5 {
+    font-size: 28px;
+    font-weight: 900;
+    color: #006739;
+    margin: 0;
+    line-height: 1;
+}
+
+.stat-box p {
+    font-size: 13px;
+    color: #666;
+    margin: 3px 0 0;
+}
+
+/* Prodi Card Modern */
+.prodi-card-modern {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+    transition: all 0.4s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.prodi-card-modern:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.akreditasi-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.badge-grade {
+    display: block;
+    font-size: 28px;
+    font-weight: 900;
+    color: white;
+    line-height: 1;
+}
+
+.badge-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 5px;
+}
+
+.prodi-image-wrapper {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.prodi-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.prodi-card-modern:hover .prodi-image-wrapper img {
+    transform: scale(1.1);
+}
+
+.prodi-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.prodi-code {
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.prodi-content {
+    padding: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.prodi-content h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #006739;
+    margin-bottom: 15px;
+}
+
+.prodi-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.prodi-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.info-item i {
+    font-size: 22px;
+    color: #006739;
+}
+
+.info-item .label {
+    display: block;
+    font-size: 11px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-item .value {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: #333;
+}
+
+.prodi-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.highlight-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: white;
+    border: 2px solid;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+}
+
+.highlight-tag i {
+    font-size: 10px;
+}
+
+.prodi-detail-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 25px;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: auto;
+}
+
+.prodi-detail-btn:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+/* Visi Misi Faculty */
+.visi-misi-faculty {
+    background: #f8f9fa;
+    padding: 40px;
+    border-radius: 16px;
+}
+
+.vm-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    gap: 20px;
+    height: 100%;
+}
+
+.vm-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.vm-icon i {
+    font-size: 28px;
+    color: white;
+}
+
+.vm-content h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #006739;
+    margin-bottom: 15px;
+}
+
+.vm-content p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.vm-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.vm-content ul li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 25px;
+}
+
+.vm-content ul li:before {
+    content: "\f00c";
+    font-family: "FontAwesome";
+    position: absolute;
+    left: 0;
+    color: #006739;
+}
+
+/* Faculty CTA Footer */
+.faculty-cta-footer {
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    padding: 40px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.faculty-cta-footer .cta-content h4 {
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 10px;
+}
+
+.faculty-cta-footer .cta-content p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+.faculty-cta-footer .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 35px;
+    background: white;
+    color: #006739;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.faculty-cta-footer .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+}
+
+/* =========================
+   3. HALAMAN DETAIL PRODI
+   ========================= */
+
+/* Prodi Header */
+.prodi-header-card {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.prodi-header-left {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.prodi-badge {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+}
+
+.prodi-title-wrapper h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #006739;
+    margin: 0 0 5px;
+}
+
+.prodi-subtitle {
+    font-size: 15px;
+    color: #999;
+    margin: 0;
+}
+
+.prodi-header-right .quick-info {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.prodi-header-right .info-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.prodi-header-right .info-box i {
+    font-size: 24px;
+    color: #006739;
+}
+
+.prodi-header-right .info-box .label {
+    display: block;
+    font-size: 11px;
+    color: #999;
+    text-transform: uppercase;
+}
+
+.prodi-header-right .info-box strong {
+    display: block;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Prodi Tabs Modern */
+.prodi-tabs-modern {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.tab-btn-modern {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 30px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.tab-btn-modern:hover {
+    border-color: #006739;
+    color: #006739;
+    transform: translateY(-3px);
+}
+
+.tab-btn-modern.active {
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    border-color: #006739;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 103, 57, 0.3);
+}
+
+.tab-btn-modern i {
+    font-size: 20px;
+}
+
+/* Tab Content Modern */
+.tab-content-modern {
+    animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content-card {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.content-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #006739;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #006739;
+}
+
+.lead-text {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* Profil Lulusan Card */
+.profil-lulusan-card {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.profil-lulusan-card:hover {
+    background: white;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.profil-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+}
+
+.profil-icon i {
+    font-size: 32px;
+    color: white;
+}
+
+.profil-lulusan-card h5 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #006739;
+    margin-bottom: 8px;
+}
+
+.profil-lulusan-card p {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+}
+
+/* Kompetensi List */
+.kompetensi-list {
+    display: grid;
+    gap: 15px;
+}
+
+.kompetensi-item {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.kompetensi-item:hover {
+    background: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transform: translateX(10px);
+}
+
+.kompetensi-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.kompetensi-icon i {
+    font-size: 24px;
+    color: white;
+}
+
+.kompetensi-content h6 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #006739;
+    margin: 0 0 5px;
+}
+
+.kompetensi-content p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Kurikulum Timeline */
+.kurikulum-timeline {
+    position: relative;
+    padding-left: 40px;
+}
+
+.kurikulum-timeline:before {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e0e0e0;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -40px;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 103, 57, 0.3);
+}
+
+.timeline-content {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.semester-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.semester-header h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #006739;
+    margin: 0;
+}
+
+.semester-meta {
+    display: flex;
+    gap: 10px;
+}
+
+.sks-badge {
+    padding: 6px 15px;
+    background: #006739;
+    color: white;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.fokus-badge {
+    padding: 6px 15px;
+    background: #f8f9fa;
+    color: #666;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.matkul-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 10px;
+}
+
+.matkul-chip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.matkul-chip:hover {
+    background: #e0e0e0;
+}
+
+.mk-name {
+    font-size: 13px;
+    color: #333;
+    flex: 1;
+}
+
+.mk-sks {
+    font-size: 12px;
+    font-weight: 700;
+    color: #006739;
+    background: white;
+    padding: 3px 10px;
+    border-radius: 12px;
+}
+
+/* Fasilitas Card Modern */
+.fasilitas-card-modern {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 12px;
+    display: flex;
+    gap: 20px;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.fasilitas-card-modern:hover {
+    background: white;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.fasilitas-icon-modern {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.fasilitas-icon-modern i {
+    font-size: 28px;
+    color: white;
+}
+
+.fasilitas-content-modern h5 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #006739;
+    margin-bottom: 15px;
+}
+
+.fasilitas-content-modern ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fasilitas-content-modern ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.fasilitas-content-modern ul li i {
+    color: #006739;
+    font-size: 14px;
+}
+
+/* Karir Sectors */
+.karir-sectors {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.sector-card {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.sector-card:hover {
+    background: white;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.sector-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.sector-icon i {
+    font-size: 32px;
+    color: white;
+}
+
+.sector-card h5 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #006739;
+    margin-bottom: 15px;
+}
+
+.sector-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sector-card ul li {
+    padding: 6px 0;
+    font-size: 14px;
+    color: #666;
+    position: relative;
+    padding-left: 20px;
+}
+
+.sector-card ul li:before {
+    content: "\f105";
+    font-family: "FontAwesome";
+    position: absolute;
+    left: 0;
+    color: #006739;
+}
+
+.alumni-note {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.alumni-note i {
+    font-size: 32px;
+    color: #006739;
+}
+
+.alumni-note p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Prodi CTA Footer */
+.prodi-cta-footer {
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    padding: 30px 40px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.cta-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cta-left i {
+    font-size: 48px;
+    color: #ffc600;
+}
+
+.cta-left h4 {
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 5px;
+}
+
+.cta-left p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+.cta-right {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-daftar,
+.btn-info {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.btn-daftar {
+    background: white;
+    color: #006739;
+}
+
+.btn-daftar:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+}
+
+.btn-info {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-info:hover {
+    background: white;
+    color: #006739;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 991px) {
+    .fakultas-stats-wrapper {
+        gap: 15px;
+    }
+    
+    .fakultas-stat-item {
+        min-width: 180px;
+        padding: 20px;
+    }
+    
+    .fakultas-cta,
+    .faculty-cta-footer,
+    .prodi-cta-footer {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .prodi-header-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .prodi-header-left {
+        flex-direction: column;
+    }
+    
+    .quick-info {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .fakultas-card {
+        margin-bottom: 20px;
+    }
+    
+    .prodi-tabs-modern {
+        flex-direction: column;
+    }
+    
+    .tab-btn-modern {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .content-card {
+        padding: 25px;
+    }
+    
+    .kurikulum-timeline {
+        padding-left: 30px;
+    }
+    
+    .timeline-marker {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    .semester-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .matkul-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .karir-sectors {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-right {
+        width: 100%;
+    }
+    
+    .btn-daftar,
+    .btn-info {
+        flex: 1;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 575px) {
+    .fakultas-content {
+        padding: 20px;
+    }
+    
+    .prodi-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .overview-stats {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .stat-box {
+        width: 100%;
+    }
+    
+    .vm-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .vm-icon {
+        margin: 0 auto;
+    }
+}
