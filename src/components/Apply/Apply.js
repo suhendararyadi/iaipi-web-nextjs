@@ -13,7 +13,7 @@ const Apply = () => {
 
   useEffect(() => {
     // Set deadline: 31 Desember 2024
-    const deadline = new Date('2024-12-31T23:59:59').getTime()
+    const deadline = new Date('2025-12-31T23:59:59').getTime()
 
     const timer = setInterval(() => {
       const now = new Date().getTime()
@@ -83,7 +83,7 @@ const Apply = () => {
                   </Link>
                 </div>
                 <small className="deadline-text">
-                  <i className="fa fa-calendar"></i> Pendaftaran ditutup: 31 Desember 2024
+                  <i className="fa fa-calendar"></i> Pendaftaran ditutup: 31 Desember 2025
                 </small>
               </div>
             </div>
@@ -103,7 +103,7 @@ const Apply = () => {
                 <div className="social-proof">
                   <div className="proof-item">
                     <i className="fa fa-users"></i>
-                    <span><strong>500+</strong> Penerima Beasiswa</span>
+                    <span><strong>20+</strong> Penerima Beasiswa</span>
                   </div>
                   <div className="proof-item">
                     <i className="fa fa-trophy"></i>
