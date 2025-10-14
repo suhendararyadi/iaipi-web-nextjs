@@ -82,7 +82,7 @@ const Testimonial = () => {
   ]
 
   return (
-    <section id="testimonial" className="section pt-115 pb-115 bg_cover" style={{backgroundImage: "url('/images/bg-2.jpg')"}} data-overlay="8">
+    <section id="testimonial" className="section pt-115 pb-115 bg_cover" style={{backgroundImage: "url('/images/slider/slider-iaipi-2.jpg')"}} data-overlay="8">
       <div className="container">
         <div className="row">
           <div className="col-lg-6">

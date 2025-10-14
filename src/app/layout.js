@@ -44,8 +44,9 @@ export default function RootLayout({ children }) {
         {/* Canonical URL */}
         <link rel="canonical" href="https://iaipersisgarut.ac.id/" />
         
-        {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" />
+        {/* Favicon - Using Logo */}
+        <link rel="icon" type="image/jpeg" href="/images/logo.jpeg" />
+        <link rel="apple-touch-icon" href="/images/logo.jpeg" />
         {/* Font Awesome */}
         <link rel="stylesheet" href="/css/font-awesome.min.css" />
         

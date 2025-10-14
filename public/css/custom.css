@@ -108,16 +108,37 @@ textarea:focus {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Slider Controls - Fixed for Production */
-/* Hide template arrows completely */
-.slider-active .slick-arrow:not(.slick-prev):not(.slick-next) {
+/* =========================
+   SLIDER CONTROLS FIX - COMPREHENSIVE
+   Fixes double arrow issue by hiding ALL template arrows
+   and showing ONLY custom button arrows
+   ========================= */
+
+/* STEP 1: Hide ALL template arrows with extreme prejudice */
+.slider-active .slick-arrow,
+.slider-active .next,
+.slider-active .prev,
+.slider-active .slick-arrow.next,
+.slider-active .slick-arrow.prev,
+.slider-active > .slick-arrow,
+.slider-active > .next,
+.slider-active > .prev {
     display: none !important;
     opacity: 0 !important;
     visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+    pointer-events: none !important;
 }
 
-.slider-active .slick-prev,
-.slider-active .slick-next {
+/* STEP 2: Force show ONLY button.slick-prev and button.slick-next */
+.slider-active button.slick-prev,
+.slider-active button.slick-next {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
     width: 50px !important;
     height: 50px !important;
     background: rgba(255, 255, 255, 0.2) !important;
@@ -126,21 +147,14 @@ textarea:focus {
     border: 2px solid rgba(255, 255, 255, 0.3) !important;
     transition: all 0.3s ease !important;
     z-index: 10 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
     position: absolute !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
     font-size: 0 !important;
-    display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-}
-
-/* Ensure only our button elements show */
-.slider-active button.slick-prev,
-.slider-active button.slick-next {
-    display: flex !important;
+    left: auto !important;
+    pointer-events: auto !important;
 }
 
 /* Style for icon inside button */
@@ -169,21 +183,39 @@ textarea:focus {
     visibility: visible !important;
 }
 
-.slider-active .slick-prev {
+/* STEP 3: Position button arrows correctly */
+.slider-active button.slick-prev {
     left: 30px !important;
+    right: auto !important;
 }
 
-.slider-active .slick-next {
+.slider-active button.slick-next {
     right: 30px !important;
+    left: auto !important;
 }
 
-/* Override hover states from style.css */
-.slider-active:hover .slick-prev {
+/* STEP 4: Override ALL hover states from template */
+.slider-active:hover .slick-arrow,
+.slider-active:hover .next,
+.slider-active:hover .prev {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    left: -9999px !important;
+}
+
+.slider-active:hover button.slick-prev {
+    display: flex !important;
     left: 30px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
-.slider-active:hover .slick-next {
+.slider-active:hover button.slick-next {
+    display: flex !important;
     right: 30px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 /* Slider Dots - Fixed for Production */
@@ -544,7 +576,7 @@ a {
    ========================= */
 .whatsapp-float {
     position: fixed;
-    bottom: 30px;
+    bottom: 100px;
     right: 30px;
     background: #25D366;
     color: white;
@@ -1144,7 +1176,7 @@ a {
         width: 50px;
         height: 50px;
         font-size: 24px;
-        bottom: 20px;
+        bottom: 80px;
         right: 20px;
     }
     
@@ -1617,3 +1649,56 @@ a {
 .slider-active button.slick-next {
     position: absolute !important;
 }
+
+/* =========================
+   NUCLEAR OPTION - FINAL OVERRIDE
+   Last resort to ensure NO template arrows show
+   Must be at END of file for maximum specificity
+   ========================= */
+
+/* Hide EVERYTHING that's not a button element */
+.slider-active *:not(button).slick-arrow,
+.slider-active span.slick-arrow,
+.slider-active div.slick-arrow,
+.slider-active a.slick-arrow,
+.slider-active i.slick-arrow {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    position: absolute !important;
+    left: -10000px !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+}
+
+/* Specifically target template arrow classes */
+.slider-active .next.slick-arrow,
+.slider-active .prev.slick-arrow,
+.slider-active > .next,
+.slider-active > .prev {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    position: fixed !important;
+    left: -10000px !important;
+    top: -10000px !important;
+}
+
+/* Ensure button arrows always show */
+.slider-active button[class*="slick-prev"],
+.slider-active button[class*="slick-next"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: absolute !important;
+}
+
+/* Prevent any animation or transition that might reveal hidden arrows */
+.slider-active .slick-arrow:not(button) {
+    transition: none !important;
+    animation: none !important;
+}
+
