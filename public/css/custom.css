@@ -5516,3 +5516,132 @@ a {
         text-align: center;
     }
 }
+
+/* =========================
+   SLIDER ARROW FIX - FINAL
+   Complete fix for both left and right arrows
+   ========================= */
+
+/* Remove ALL previous arrow hiding behaviors */
+.slider-active .slick-arrow:not(button) {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    left: -99999px !important;
+}
+
+/* Force BOTH button arrows to always show */
+.slider-active button.slick-prev,
+.slider-active button.slick-next {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 50px !important;
+    height: 50px !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: 2px solid rgba(255, 255, 255, 0.5) !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    z-index: 100 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Position left arrow */
+.slider-active button.slick-prev {
+    left: 30px !important;
+    right: auto !important;
+}
+
+/* Position right arrow */
+.slider-active button.slick-next {
+    right: 30px !important;
+    left: auto !important;
+}
+
+/* Icon styling */
+.slider-active button.slick-prev i,
+.slider-active button.slick-next i {
+    font-size: 24px !important;
+    color: white !important;
+    display: block !important;
+    line-height: 1 !important;
+}
+
+/* Remove any ::before content */
+.slider-active button.slick-prev::before,
+.slider-active button.slick-next::before {
+    content: '' !important;
+    display: none !important;
+}
+
+/* Hover state */
+.slider-active button.slick-prev:hover,
+.slider-active button.slick-next:hover {
+    background: rgba(255, 255, 255, 0.4) !important;
+    border-color: rgba(255, 255, 255, 0.8) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+/* Focus state for accessibility */
+.slider-active button.slick-prev:focus,
+.slider-active button.slick-next:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.8) !important;
+    outline-offset: 2px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Disabled state */
+.slider-active button.slick-prev.slick-disabled,
+.slider-active button.slick-next.slick-disabled {
+    opacity: 0.3 !important;
+    cursor: not-allowed !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 767px) {
+    .slider-active button.slick-prev,
+    .slider-active button.slick-next {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .slider-active button.slick-prev {
+        left: 10px !important;
+    }
+    
+    .slider-active button.slick-next {
+        right: 10px !important;
+    }
+    
+    .slider-active button.slick-prev i,
+    .slider-active button.slick-next i {
+        font-size: 18px !important;
+    }
+}
+
+/* Override any conflicting hover states from parent */
+.slider-active:hover button.slick-prev,
+.slider-active:hover button.slick-next,
+.slider-active button.slick-prev:not(:hover),
+.slider-active button.slick-next:not(:hover) {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+}
+
+/* Ensure no hiding on any state */
+.slider-active button.slick-prev,
+.slider-active button.slick-next {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
