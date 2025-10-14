@@ -62,21 +62,21 @@ const Testimonial = () => {
       name: "Ahmad Fauzi",
       program: "Ilmu Al-Qur'an dan Tafsir",
       year: "Alumni 2023",
-      photo: "/images/testimonial/t-1.jpg",
+      photo: "https://ui-avatars.com/api/?name=Ahmad+Fauzi&size=200&background=006739&color=ffffff&bold=true",
       testimony: "Alhamdulillah, IAIPI Garut memberikan pengalaman belajar yang luar biasa. Dosen-dosen yang berkompeten dan lingkungan Islami membuat saya semakin mencintai ilmu Al-Qur'an."
     },
     {
       name: "Siti Nurhaliza",
       program: "Ekonomi Syariah",
       year: "Mahasiswa Aktif",
-      photo: "/images/testimonial/t-2.jpg",
+      photo: "https://ui-avatars.com/api/?name=Siti+Nurhaliza&size=200&background=3498db&color=ffffff&bold=true",
       testimony: "Kampus yang nyaman dengan sistem pembelajaran modern. Program beasiswa sangat membantu saya dalam menuntut ilmu. Recommended untuk yang ingin kuliah di kampus Islami!"
     },
     {
       name: "Muhammad Rizki",
       program: "Ilmu Hadits",
       year: "Alumni 2022",
-      photo: "/images/testimonial/t-3.jpg",
+      photo: "https://ui-avatars.com/api/?name=Muhammad+Rizki&size=200&background=9b59b6&color=ffffff&bold=true",
       testimony: "Terima kasih IAIPI Garut telah membimbing saya menjadi pribadi yang lebih baik. Ilmu yang didapat tidak hanya akademis tapi juga pembinaan karakter Islami."
     }
   ]
