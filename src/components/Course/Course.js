@@ -7,47 +7,63 @@ const Course = () => {
 
   useEffect(() => {
     setIsMounted(true)
-    // Inisialisasi slider course
+    
     const initCourseSlider = () => {
       if (window.jQuery) {
         const $ = window.jQuery
-        $('.course-slied').slick({
-          dots: false,
-          infinite: true,
-          speed: 800,
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          autoplay: true,
-          arrows: true,
-          prevArrow: '<span class="prev"><i class="fa fa-angle-left"></i></span>',
-          nextArrow: '<span class="next"><i class="fa fa-angle-right"></i></span>',
-          responsive: [
-            {
-              breakpoint: 1200,
-              settings: {
-                slidesToShow: 3,
-              }
-            },
-            {
-              breakpoint: 992,
-              settings: {
-                slidesToShow: 2,
-              }
-            },
-            {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: 1,
-              }
-            }
-          ]
-        })
+        
+        if ($('.course-slied').length && !$('.course-slied').hasClass('slick-initialized')) {
+          try {
+            $('.course-slied').slick({
+              dots: false,
+              infinite: true,
+              speed: 800,
+              slidesToShow: 3,
+              slidesToScroll: 1,
+              autoplay: true,
+              arrows: true,
+              prevArrow: '<span class="prev"><i class="fa fa-angle-left"></i></span>',
+              nextArrow: '<span class="next"><i class="fa fa-angle-right"></i></span>',
+              responsive: [
+                {
+                  breakpoint: 1200,
+                  settings: {
+                    slidesToShow: 3,
+                  }
+                },
+                {
+                  breakpoint: 992,
+                  settings: {
+                    slidesToShow: 2,
+                  }
+                },
+                {
+                  breakpoint: 768,
+                  settings: {
+                    slidesToShow: 1,
+                  }
+                }
+              ]
+            })
+          } catch (error) {
+            console.log('Course slider init error:', error)
+          }
+        }
       }
     }
 
-    // Tunggu sebentar untuk memastikan jQuery sudah dimuat
-    setTimeout(initCourseSlider, 100)
-  }, [])
+    setTimeout(initCourseSlider, 300)
+
+    return () => {
+      if (window.jQuery && $('.course-slied').length && $('.course-slied').hasClass('slick-initialized')) {
+        try {
+          window.jQuery('.course-slied').slick('unslick')
+        } catch (e) {
+          console.log('Course slider cleanup error:', e)
+        }
+      }
+    }
+  }, [isMounted])
 
   if (!isMounted) return null
 

@@ -38,6 +38,9 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="/css/header3.css" />
 
         <link rel="stylesheet" href="/css/tabs.css" />
+
+        {/* Custom CSS */}
+        <link rel="stylesheet" href="/css/custom.css" />
       </head>
 
       <body>
@@ -68,11 +71,11 @@ export default function RootLayout({ children }) {
           <i className="fa fa-angle-up"></i>
         </a>
 
-        {/* Vendor Scripts */}
-        <Script 
+        {/* Vendor Scripts - Modernizr disabled to prevent hydration errors */}
+        {/* <Script 
           src="/js/vendor/modernizr-3.6.0.min.js" 
           strategy="beforeInteractive"
-        />
+        /> */}
         <Script 
           src="/js/vendor/jquery-1.12.4.min.js" 
           strategy="beforeInteractive"

@@ -7,23 +7,41 @@ const Teachers2 = () => {
 
   useEffect(() => {
     setIsMounted(true)
-    // Inisialisasi slider untuk testimonial siswa
+    
     const initStudentSlider = () => {
       if (window.jQuery) {
         const $ = window.jQuery
-        $('.student-slied').slick({
-          dots: false,
-          infinite: true,
-          autoplay: true,
-          arrows: false,
-          speed: 800,
-          slidesToShow: 1,
-          slidesToScroll: 1
-        })
+        
+        if ($('.student-slied').length && !$('.student-slied').hasClass('slick-initialized')) {
+          try {
+            $('.student-slied').slick({
+              dots: false,
+              infinite: true,
+              autoplay: true,
+              arrows: false,
+              speed: 800,
+              slidesToShow: 1,
+              slidesToScroll: 1
+            })
+          } catch (error) {
+            console.log('Student slider init error:', error)
+          }
+        }
       }
     }
-    setTimeout(initStudentSlider, 100)
-  }, [])
+    
+    setTimeout(initStudentSlider, 300)
+
+    return () => {
+      if (window.jQuery && $('.student-slied').length && $('.student-slied').hasClass('slick-initialized')) {
+        try {
+          window.jQuery('.student-slied').slick('unslick')
+        } catch (e) {
+          console.log('Student slider cleanup error:', e)
+        }
+      }
+    }
+  }, [isMounted])
 
   if (!isMounted) return null
 

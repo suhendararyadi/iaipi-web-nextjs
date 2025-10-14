@@ -4,16 +4,22 @@ import Link from 'next/link'
 import { getHashnodePosts } from '@/utils/hashnodeApi'
 
 const News = () => {
-  const [posts, setPosts] = useState(null)
+  const [posts, setPosts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const posts = await getHashnodePosts()
-        setPosts(posts)
+        if (posts && posts.length > 0) {
+          setPosts(posts)
+        } else {
+          setError('Tidak ada artikel yang tersedia')
+        }
       } catch (error) {
-        console.error('Error:', error)
+        console.error('Error fetching posts:', error)
+        setError('Gagal memuat artikel')
       } finally {
         setIsLoading(false)
       }
@@ -42,7 +48,7 @@ const News = () => {
     )
   }
 
-  if (!posts || posts.length === 0) {
+  if (error || !posts || posts.length === 0) {
     return (
       <section id="news-part" className="section pt-115 pb-110">
         <div className="container">
@@ -55,7 +61,7 @@ const News = () => {
             </div>
           </div>
           <div className="text-center">
-            <p>Tidak ada artikel yang tersedia.</p>
+            <p>{error || 'Tidak ada artikel yang tersedia.'}</p>
           </div>
         </div>
       </section>

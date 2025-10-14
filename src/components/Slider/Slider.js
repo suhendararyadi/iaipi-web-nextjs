@@ -7,26 +7,44 @@ const Slider = () => {
 
   useEffect(() => {
     setIsMounted(true)
-    // Inisialisasi slider setelah komponen benar-benar di-mount
+    
     const initSlider = () => {
       if (window.jQuery) {
         const $ = window.jQuery
-        $('.slider-active').slick({
-          dots: false,
-          infinite: true,
-          speed: 1500,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          arrows: true,
-          prevArrow: '<span class="prev"><i class="fa fa-angle-left"></i></span>',
-          nextArrow: '<span class="next"><i class="fa fa-angle-right"></i></span>',
-        })
+        
+        if ($('.slider-active').length && !$('.slider-active').hasClass('slick-initialized')) {
+          try {
+            $('.slider-active').slick({
+              dots: false,
+              infinite: true,
+              speed: 1500,
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              arrows: true,
+              autoplay: true,
+              autoplaySpeed: 5000,
+              prevArrow: '<span class="prev"><i class="fa fa-angle-left"></i></span>',
+              nextArrow: '<span class="next"><i class="fa fa-angle-right"></i></span>',
+            })
+          } catch (error) {
+            console.log('Slider init error:', error)
+          }
+        }
       }
     }
 
-    // Tunggu sebentar untuk memastikan jQuery sudah dimuat
-    setTimeout(initSlider, 100)
-  }, [])
+    setTimeout(initSlider, 300)
+
+    return () => {
+      if (window.jQuery && $('.slider-active').length && $('.slider-active').hasClass('slick-initialized')) {
+        try {
+          window.jQuery('.slider-active').slick('unslick')
+        } catch (e) {
+          console.log('Slider cleanup error:', e)
+        }
+      }
+    }
+  }, [isMounted])
 
   // Jangan render apa pun sampai mounted
   if (!isMounted) {

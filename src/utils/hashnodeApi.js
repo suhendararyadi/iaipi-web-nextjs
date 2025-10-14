@@ -6,11 +6,26 @@ const parseXMLPromise = promisify(parseString);
 
 export async function getHashnodePosts() {
   try {
-    console.log('Fetching RSS feed...');
     const response = await fetch('/api/rss');
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
     const xmlData = await response.text();
 
+    if (!xmlData || xmlData.trim() === '') {
+      console.warn('Empty RSS feed response');
+      return [];
+    }
+
     const result = await parseXMLPromise(xmlData);
+    
+    if (!result || !result.rss || !result.rss.channel || !result.rss.channel[0] || !result.rss.channel[0].item) {
+      console.warn('Invalid RSS feed structure');
+      return [];
+    }
+    
     const items = result.rss.channel[0].item;
 
     const posts = items.map(item => ({
@@ -22,11 +37,10 @@ export async function getHashnodePosts() {
       link: item.link[0]
     }));
 
-    console.log('Parsed posts:', posts);
     return posts;
 
   } catch (error) {
-    console.error('Error fetching RSS feed:', error);
+    console.error('Error fetching RSS feed:', error.message || error);
     return [];
   }
 }
