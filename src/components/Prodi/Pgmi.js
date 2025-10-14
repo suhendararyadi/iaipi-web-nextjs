@@ -4,190 +4,408 @@ import { useState } from 'react'
 const PgmiContent = () => {
   const [activeTab, setActiveTab] = useState('profil')
 
-  const kurikulum = [
-    { semester: "1", matkul: [
-      { kode: "IAI2410401", nama: "Pancasila dan Kewarganegaraan", sks: 3 },
-      { kode: "IAI2410402", nama: "Bahasa Indonesia", sks: 2 },
-      { kode: "IAI2410405", nama: "Ilmu Tauhid", sks: 2 },
-      { kode: "IAI2410407", nama: "Fiqh Ibadah", sks: 2 },
-      { kode: "IAI2410412", nama: "Ulumul Qur'an", sks: 2 },
-      { kode: "IAI2410415", nama: "Filsafat Umum", sks: 2 },
-      { kode: "TRB2410420", nama: "Bahasa Arab", sks: 2 },
-      { kode: "IAI2410417", nama: "Bahasa Inggris", sks: 2 },
-      { kode: "IAI2410418", nama: "Filsafat dan Landasan Pendidikan Islam", sks: 2 }
-    ]},
-    { semester: "3", matkul: [
-      { kode: "20PGM1303", nama: "Matematika I (Aljabar dan Bilangan)", sks: 2 },
-      { kode: "20PGM2336", nama: "Konsep Sejarah Peradaban Islam", sks: 2 },
-      { kode: "20STP1106", nama: "Ulumul Hadits", sks: 2 },
-      { kode: "20PGM1302", nama: "Pembelajaran Bahasa dan Sastera Indonesia", sks: 2 },
-      { kode: "20STP1312", nama: "Kewirausahaan", sks: 2 },
-      { kode: "20TRB1304", nama: "Hadits Tarbawi", sks: 2 },
-      { kode: "20TRB3305", nama: "Sosiologi", sks: 2 },
-      { kode: "20TRB3306", nama: "Psikologi Pendidikan", sks: 2 },
-      { kode: "20PGM1312", nama: "Pembelajaran PKn MI/SD", sks: 2 },
-      { kode: "20PGM1316", nama: "Kepramukaan/ Syubbaanul Yaum", sks: 2 },
-      { kode: "20PGM1317", nama: "Pengembangan Media dan Sumber Pembelajaran MI/SD", sks: 2 },
-      { kode: "20PGM1206", nama: "Kajian IPA MI/SD", sks: 2 }
-    ]},
-    { semester: "5", matkul: [
-      { kode: "20STP1613", nama: "Ushul al-Dakwah", sks: 2 },
-      { kode: "20TRB2509", nama: "Filsafat Pendidikan", sks: 2 },
-      { kode: "20TRB1510", nama: "Komunikasi Pembelajaran", sks: 2 },
-      { kode: "20PGM1504", nama: "Matematika II (Geometri dan Pengukuran)", sks: 2 },
-      { kode: "20PGM2426", nama: "Manajemen Pendidikan Dasar (MI/SD)", sks: 2 },
-      { kode: "20PGM1519", nama: "Penjasorkes", sks: 2 },
-      { kode: "20PGM1520", nama: "Pengembangan Sistem Evaluasi/Penilaian Autentik MI/SD", sks: 2 },
-      { kode: "20PGM2528", nama: "Pembelajaran Tematik/Pembelajaran Terpadu", sks: 2 },
-      { kode: "20PGM2529", nama: "Pendidikan Inklusi", sks: 2 },
-      { kode: "20PGM3539", nama: "Reaktualisasi Kearifan Lokal", sks: 2 },
-      { kode: "20PGM1424", nama: "Pengenalan Lapangan Pendidikan (PLP) 1", sks: 2 }
-    ]},
-    { semester: "7", matkul: [
-      { kode: "20STP1714", nama: "Pengenalan Lapangan Pendidikan (PLP) 2", sks: 4 },
-      { kode: "20STP1715", nama: "MPM/KKN", sks: 4 },
-      { kode: "20STP1716", nama: "Komprehensif", sks: 2 },
-      { kode: "20TRB2716", nama: "Seminar Proposal", sks: 2 }
-    ]}
+  const kurikulumSingkat = [
+    {
+      semester: "Semester 1",
+      totalSKS: 19,
+      fokus: "Dasar Keilmuan Islam & Bahasa Arab",
+      matkul: [
+        { nama: "Pancasila dan Kewarganegaraan", sks: 3 },
+        { nama: "Bahasa Indonesia", sks: 2 },
+        { nama: "Ilmu Tauhid", sks: 2 },
+        { nama: "Fiqih Ibadah", sks: 2 },
+        { nama: "Ulumul Quran", sks: 2 },
+        { nama: "Pengantar Pendidikan Guru Madrasah Ibtidaiyah", sks: 2 },
+        { nama: "Ilmu Nahwu", sks: 2 },
+        { nama: "Hadis Ilmu", sks: 2 },
+        { nama: "Hadis Thaharah", sks: 2 }
+      ]
+    },
+    {
+      semester: "Semester 3",
+      totalSKS: 24,
+      fokus: "Pendalaman Pendidikan Guru Madrasah Ibtidaiyah & Metodologi",
+      matkul: [
+        { nama: "Ulumul Hadits 3", sks: 2 },
+        { nama: "Takhrij Hadits 1", sks: 2 },
+        { nama: "Ilmu Ma'ajim", sks: 2 },
+        { nama: "Tadwin Sunnah 1", sks: 2 },
+        { nama: "Hadits 3", sks: 2 },
+        { nama: "Ushul Tafsir", sks: 2 },
+        { nama: "Tafsir 3", sks: 2 },
+        { nama: "Ushul Fiqih", sks: 2 },
+        { nama: "Hadits Ahkam 3", sks: 2 },
+        { nama: "Fiqih 3", sks: 2 },
+        { nama: "Kepersisan", sks: 2 }
+      ]
+    },
+    {
+      semester: "Semester 5",
+      totalSKS: 24,
+      fokus: "Spesialisasi & Penelitian Hadis",
+      matkul: [
+        { nama: "Sejarah dan Perkembangan Hadits di Indonesia", sks: 2 },
+        { nama: "Digitalisasi Hadits", sks: 2 },
+        { nama: "Model-Model Penelitian Hadits", sks: 2 },
+        { nama: "Inkar Sunnah", sks: 2 },
+        { nama: "Hadits dan Isu-isu Kontemporer", sks: 2 },
+        { nama: "Hermeneutika dan Al-Quran", sks: 2 },
+        { nama: "Ilmu Jarh Ta'dil 1", sks: 2 },
+        { nama: "Hadits Ahkam 5", sks: 2 },
+        { nama: "Metode Kritik Matan", sks: 2 },
+        { nama: "Hadits 5", sks: 2 }
+      ]
+    },
+    {
+      semester: "Semester 7",
+      totalSKS: 10,
+      fokus: "Ujian Komprehensif & Praktek Profesi",
+      matkul: [
+        { nama: "Ujian Komprehensif", sks: 2 },
+        { nama: "Metodologi Penelitian Mahasiswa (MPM)", sks: 4 },
+        { nama: "PPL/Praktek Profesi", sks: 4 }
+      ]
+    }
+  ]
+
+  const fasilitasData = [
+    {
+      icon: "fa-desktop",
+      title: "Lab Digital Hadis",
+      items: ["Software Maktabah Syamilah", "Akses Database Hadis Online", "Komputer & Internet"]
+    },
+    {
+      icon: "fa-book",
+      title: "Perpustakaan Khusus",
+      items: ["Koleksi 500+ Kitab Hadis", "Jurnal Nasional & Internasional", "E-Library 24/7"]
+    },
+    {
+      icon: "fa-flask",
+      title: "Lab Penelitian",
+      items: ["Ruang Diskusi Kelompok", "Software Analisis Data", "Bimbingan Penelitian"]
+    },
+    {
+      icon: "fa-language",
+      title: "Lab Bahasa Arab",
+      items: ["Multimedia Learning", "Native Speaker", "Conversation Practice"]
+    }
+  ]
+
+  const profilLulusan = [
+    { icon: "fa-search", title: "Peneliti Hadis", desc: "Ahli dalam riset dan kajian hadis" },
+    { icon: "fa-chalkboard-teacher", title: "Akademisi", desc: "Dosen dan pengajar ilmu hadis" },
+    { icon: "fa-mosque", title: "Da'i & Mubaligh", desc: "Penyebar ajaran Islam berbasis hadis" },
+    { icon: "fa-user-tie", title: "Konsultan Syariah", desc: "Ahli konsultasi hukum Islam" }
   ]
 
   return (
-    <section id="prodi-part" className="pt-115 pb-120">
+    <section id="prodi-detail-section" className="pt-70 pb-70">
       <div className="container">
+        {/* Prodi Header */}
+        <div className="row mb-5">
+          <div className="col-lg-12">
+            <div className="prodi-header-card">
+              <div className="prodi-header-left">
+                <div className="prodi-badge">PGMI</div>
+                <div className="prodi-title-wrapper">
+                  <h2>Program Studi Pendidikan Guru Madrasah Ibtidaiyah</h2>
+                  <p className="prodi-subtitle">Fakultas Tarbiyah</p>
+                </div>
+              </div>
+              <div className="prodi-header-right">
+                <div className="quick-info">
+                  <div className="info-box">
+                    <i className="fa fa-certificate"></i>
+                    <div>
+                      <span className="label">Akreditasi</span>
+                      <strong>B (Baik)</strong>
+                    </div>
+                  </div>
+                  <div className="info-box">
+                    <i className="fa fa-award"></i>
+                    <div>
+                      <span className="label">Gelar</span>
+                      <strong>S.Pd.</strong>
+                    </div>
+                  </div>
+                  <div className="info-box">
+                    <i className="fa fa-calendar"></i>
+                    <div>
+                      <span className="label">Durasi</span>
+                      <strong>4 Tahun</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Tab Navigation */}
+        <div className="row mb-4">
+          <div className="col-lg-12">
+            <div className="prodi-tabs-modern">
+              <button 
+                className={`tab-btn-modern ${activeTab === 'profil' ? 'active' : ''}`}
+                onClick={() => setActiveTab('profil')}
+              >
+                <i className="fa fa-user"></i>
+                <span>Profil</span>
+              </button>
+              <button 
+                className={`tab-btn-modern ${activeTab === 'kurikulum' ? 'active' : ''}`}
+                onClick={() => setActiveTab('kurikulum')}
+              >
+                <i className="fa fa-book"></i>
+                <span>Kurikulum</span>
+              </button>
+              <button 
+                className={`tab-btn-modern ${activeTab === 'fasilitas' ? 'active' : ''}`}
+                onClick={() => setActiveTab('fasilitas')}
+              >
+                <i className="fa fa-building"></i>
+                <span>Fasilitas</span>
+              </button>
+              <button 
+                className={`tab-btn-modern ${activeTab === 'karir' ? 'active' : ''}`}
+                onClick={() => setActiveTab('karir')}
+              >
+                <i className="fa fa-briefcase"></i>
+                <span>Prospek Karir</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Tab Content */}
         <div className="row">
           <div className="col-lg-12">
-            {/* Tab Navigation */}
-            <ul className="nav custom-tabs" role="tablist">
-              <li className="nav-item">
-                <button 
-                  className={`nav-link ${activeTab === 'profil' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('profil')}
-                >
-                  <i className="fa fa-user mr-2"></i>
-                  Profil
-                </button>
-              </li>
-              <li className="nav-item">
-                <button 
-                  className={`nav-link ${activeTab === 'kurikulum' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('kurikulum')}
-                >
-                  <i className="fa fa-book mr-2"></i>
-                  Kurikulum
-                </button>
-              </li>
-              <li className="nav-item">
-                <button 
-                  className={`nav-link ${activeTab === 'fasilitas' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('fasilitas')}
-                >
-                  <i className="fa fa-building mr-2"></i>
-                  Fasilitas
-                </button>
-              </li>
-            </ul>
-
-            {/* Tab Content */}
-            <div className="tab-content">
-              {/* Profil Content */}
-              <div className={`tab-pane fade ${activeTab === 'profil' ? 'show active' : ''}`}>
-                <div className="tab-content-card">
-                  <h4 className="tab-title">Program Studi Pendidikan Guru Madrasah Ibtidaiyah (PGMI)</h4>
-                  <p className="mb-4">Program Studi PGMI mempersiapkan mahasiswa untuk menjadi guru profesional di tingkat Madrasah Ibtidaiyah/Sekolah Dasar yang memiliki kompetensi dalam pembelajaran terpadu dan nilai-nilai keislaman. Program ini dirancang untuk menghasilkan guru MI/SD yang mampu mengintegrasikan berbagai mata pelajaran dengan pendekatan tematik.</p>
+            {/* PROFIL TAB */}
+            {activeTab === 'profil' && (
+              <div className="tab-content-modern fade-in">
+                <div className="content-card">
+                  <h3 className="content-title">Tentang Program Studi</h3>
+                  <p className="lead-text">Program Studi Pendidikan Guru Madrasah Ibtidaiyah fokus pada pengkajian dan penelitian hadis Nabi Muhammad SAW sebagai sumber kedua ajaran Islam. Program studi ini mempersiapkan mahasiswa untuk menjadi ahli dalam bidang hadis yang mampu memahami, meneliti, dan mengembangkan kajian hadis secara komprehensif.</p>
                   
-                  <div className="row mt-4">
-                    <div className="col-md-6">
-                      <h5>Profil Lulusan</h5>
-                      <ul className="list-unstyled">
-                        <li><i className="fa fa-check-circle text-primary mr-2"></i> Guru Kelas MI/SD</li>
-                        <li><i className="fa fa-check-circle text-primary mr-2"></i> Peneliti Pendidikan Dasar</li>
-                        <li><i className="fa fa-check-circle text-primary mr-2"></i> Pengembang Media Pembelajaran</li>
-                        <li><i className="fa fa-check-circle text-primary mr-2"></i> Konsultan Pendidikan Dasar</li>
-                      </ul>
-                    </div>
-                    <div className="col-md-6">
-                      <h5>Informasi Program</h5>
-                      <ul className="list-unstyled">
-                        <li><i className="fa fa-check-circle text-primary mr-2"></i> Gelar: S.Pd. (Sarjana Pendidikan)</li>
-                        <li><i className="fa fa-check-circle text-primary mr-2"></i> Masa Studi: 8 Semester</li>
-                        <li><i className="fa fa-check-circle text-primary mr-2"></i> Akreditasi: B</li>
-                        <li><i className="fa fa-check-circle text-primary mr-2"></i> Bahasa Pengantar: Indonesia</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Kurikulum Content */}
-              <div className={`tab-pane fade ${activeTab === 'kurikulum' ? 'show active' : ''}`}>
-                <div className="tab-content-card">
-                  <h4 className="tab-title">Kurikulum Program Studi</h4>
-                  
-                  {kurikulum.map((sem, index) => (
-                    <div key={index} className="mb-4">
-                      <h5 className="mb-3">Semester {sem.semester}</h5>
-                      <div className="table-responsive">
-                        <table className="table table-bordered">
-                          <thead className="bg-primary text-white">
-                            <tr>
-                              <th>Kode</th>
-                              <th>Mata Kuliah</th>
-                              <th>SKS</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {sem.matkul.map((mk, idx) => (
-                              <tr key={idx}>
-                                <td>{mk.kode}</td>
-                                <td>{mk.nama}</td>
-                                <td>{mk.sks}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Fasilitas Content */}
-              <div className={`tab-pane fade ${activeTab === 'fasilitas' ? 'show active' : ''}`}>
-                <div className="tab-content-card">
-                  <h4 className="tab-title">Fasilitas Program Studi</h4>
+                  {/* Profil Lulusan Grid */}
+                  <h4 className="mt-5 mb-4">Profil Lulusan</h4>
                   <div className="row">
-                    <div className="col-md-6">
-                      <div className="card mb-4">
-                        <div className="card-body">
-                          <h5 className="card-title">
-                            <i className="fa fa-desktop text-primary mr-2"></i>
-                            Laboratorium
-                          </h5>
-                          <ul className="list-unstyled">
-                            <li><i className="fa fa-check-circle text-primary mr-2"></i> Lab Micro Teaching</li>
-                            <li><i className="fa fa-check-circle text-primary mr-2"></i> Lab IPA</li>
-                            <li><i className="fa fa-check-circle text-primary mr-2"></i> Lab Multimedia</li>
-                          </ul>
+                    {profilLulusan.map((profil, idx) => (
+                      <div key={idx} className="col-lg-3 col-md-6 mb-4">
+                        <div className="profil-lulusan-card">
+                          <div className="profil-icon">
+                            <i className={`fa ${profil.icon}`}></i>
+                          </div>
+                          <h5>{profil.title}</h5>
+                          <p>{profil.desc}</p>
                         </div>
                       </div>
+                    ))}
+                  </div>
+
+                  {/* Kompetensi */}
+                  <h4 className="mt-5 mb-4">Kompetensi Lulusan</h4>
+                  <div className="kompetensi-list">
+                    <div className="kompetensi-item">
+                      <div className="kompetensi-icon">
+                        <i className="fa fa-check-circle"></i>
+                      </div>
+                      <div className="kompetensi-content">
+                        <h6>Penguasaan Pendidikan Guru Madrasah Ibtidaiyah</h6>
+                        <p>Mampu memahami dan menganalisis hadis dengan metodologi yang tepat</p>
+                      </div>
                     </div>
-                    <div className="col-md-6">
-                      <div className="card mb-4">
-                        <div className="card-body">
-                          <h5 className="card-title">
-                            <i className="fa fa-book text-primary mr-2"></i>
-                            Perpustakaan
-                          </h5>
-                          <ul className="list-unstyled">
-                            <li><i className="fa fa-check-circle text-primary mr-2"></i> Koleksi Buku SD/MI</li>
-                            <li><i className="fa fa-check-circle text-primary mr-2"></i> Media Pembelajaran</li>
-                            <li><i className="fa fa-check-circle text-primary mr-2"></i> Modul Praktikum</li>
-                          </ul>
-                        </div>
+                    <div className="kompetensi-item">
+                      <div className="kompetensi-icon">
+                        <i className="fa fa-check-circle"></i>
+                      </div>
+                      <div className="kompetensi-content">
+                        <h6>Kritik Sanad dan Matan</h6>
+                        <p>Menguasai metode kritik hadis baik dari sisi sanad maupun matan</p>
+                      </div>
+                    </div>
+                    <div className="kompetensi-item">
+                      <div className="kompetensi-icon">
+                        <i className="fa fa-check-circle"></i>
+                      </div>
+                      <div className="kompetensi-content">
+                        <h6>Penelitian Hadis</h6>
+                        <p>Mampu melakukan penelitian ilmiah dalam bidang ilmu hadis</p>
+                      </div>
+                    </div>
+                    <div className="kompetensi-item">
+                      <div className="kompetensi-icon">
+                        <i className="fa fa-check-circle"></i>
+                      </div>
+                      <div className="kompetensi-content">
+                        <h6>Bahasa Arab</h6>
+                        <p>Menguasai bahasa Arab untuk memahami teks-teks hadis original</p>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
+            )}
+
+            {/* KURIKULUM TAB */}
+            {activeTab === 'kurikulum' && (
+              <div className="tab-content-modern fade-in">
+                <div className="content-card">
+                  <h3 className="content-title">Struktur Kurikulum</h3>
+                  <p className="mb-4">Kurikulum dirancang untuk menghasilkan lulusan yang kompeten dalam bidang ilmu hadis dengan total 144 SKS.</p>
+                  
+                  <div className="kurikulum-timeline">
+                    {kurikulumSingkat.map((sem, idx) => (
+                      <div key={idx} className="timeline-item">
+                        <div className="timeline-marker">{idx + 1}</div>
+                        <div className="timeline-content">
+                          <div className="semester-header">
+                            <h4>{sem.semester}</h4>
+                            <div className="semester-meta">
+                              <span className="sks-badge">{sem.totalSKS} SKS</span>
+                              <span className="fokus-badge">{sem.fokus}</span>
+                            </div>
+                          </div>
+                          <div className="matkul-grid">
+                            {sem.matkul.map((mk, midx) => (
+                              <div key={midx} className="matkul-chip">
+                                <span className="mk-name">{mk.nama}</span>
+                                <span className="mk-sks">{mk.sks} SKS</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* FASILITAS TAB */}
+            {activeTab === 'fasilitas' && (
+              <div className="tab-content-modern fade-in">
+                <div className="content-card">
+                  <h3 className="content-title">Fasilitas Program Studi</h3>
+                  <p className="mb-5">Didukung oleh fasilitas modern untuk menunjang pembelajaran dan penelitian mahasiswa.</p>
+                  
+                  <div className="row">
+                    {fasilitasData.map((fasilitas, idx) => (
+                      <div key={idx} className="col-lg-6 mb-4">
+                        <div className="fasilitas-card-modern">
+                          <div className="fasilitas-icon-modern">
+                            <i className={`fa ${fasilitas.icon}`}></i>
+                          </div>
+                          <div className="fasilitas-content-modern">
+                            <h5>{fasilitas.title}</h5>
+                            <ul>
+                              {fasilitas.items.map((item, iidx) => (
+                                <li key={iidx}>
+                                  <i className="fa fa-check"></i>
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* KARIR TAB */}
+            {activeTab === 'karir' && (
+              <div className="tab-content-modern fade-in">
+                <div className="content-card">
+                  <h3 className="content-title">Prospek Karir</h3>
+                  <p className="mb-5">Lulusan Program Studi Pendidikan Guru Madrasah Ibtidaiyah memiliki peluang karir yang luas di berbagai sektor.</p>
+                  
+                  <div className="karir-sectors">
+                    <div className="sector-card">
+                      <div className="sector-icon">
+                        <i className="fa fa-university"></i>
+                      </div>
+                      <h5>Akademisi & Pendidikan</h5>
+                      <ul>
+                        <li>Dosen Pendidikan Guru Madrasah Ibtidaiyah</li>
+                        <li>Guru PAI</li>
+                        <li>Peneliti Hadis</li>
+                        <li>Asisten Riset</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="sector-card">
+                      <div className="sector-icon">
+                        <i className="fa fa-mosque"></i>
+                      </div>
+                      <h5>Lembaga Keagamaan</h5>
+                      <ul>
+                        <li>Mubaligh & Da'i</li>
+                        <li>Konsultan Syariah</li>
+                        <li>Pengurus Masjid</li>
+                        <li>Lembaga Dakwah</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="sector-card">
+                      <div className="sector-icon">
+                        <i className="fa fa-landmark"></i>
+                      </div>
+                      <h5>Pemerintahan</h5>
+                      <ul>
+                        <li>Kementerian Agama</li>
+                        <li>MUI (Majelis Ulama)</li>
+                        <li>BAZNAS</li>
+                        <li>Kantor Urusan Agama</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="sector-card">
+                      <div className="sector-icon">
+                        <i className="fa fa-book-reader"></i>
+                      </div>
+                      <h5>Media & Publikasi</h5>
+                      <ul>
+                        <li>Penulis Buku Islam</li>
+                        <li>Editor Jurnal</li>
+                        <li>Content Creator</li>
+                        <li>Jurnalis Islami</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="alumni-note mt-5">
+                    <i className="fa fa-info-circle"></i>
+                    <p><strong>Alumni kami</strong> telah bekerja di berbagai institusi pendidikan, lembaga penelitian, dan organisasi Islam di seluruh Indonesia.</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* CTA Footer */}
+        <div className="row mt-5">
+          <div className="col-lg-12">
+            <div className="prodi-cta-footer">
+              <div className="cta-left">
+                <i className="fa fa-graduation-cap"></i>
+                <div>
+                  <h4>Tertarik Bergabung?</h4>
+                  <p>Daftar sekarang dan jadilah ahli dalam bidang Pendidikan Guru Madrasah Ibtidaiyah</p>
+                </div>
+              </div>
+              <div className="cta-right">
+                <a href="/pmb" className="btn-daftar">
+                  <i className="fa fa-edit"></i>
+                  Daftar Sekarang
+                </a>
+                <a href="/contact" className="btn-info">
+                  <i className="fa fa-info-circle"></i>
+                  Info Lebih Lanjut
+                </a>
               </div>
             </div>
           </div>
