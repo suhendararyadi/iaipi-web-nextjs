@@ -6,38 +6,52 @@ import Image from 'next/image'
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  return (
-    <div className="navigation navigation-2">
-      <div className="container">
-        <div className="row no-gutters">
-          <div className="col-lg-11 col-md-10 col-sm-9 col-9">
-            <nav className="navbar navbar-expand-lg">
-              <Link className="navbar-brand" href="/" style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
-                <Image 
-                  src="/images/logo.jpeg" 
-                  alt="Logo"
-                  width={110}
-                  height={110}
-                  style={{
-                    objectFit: 'contain',
-                  }}
-                  priority
-                />
-              </Link>
-              <button 
-                className="navbar-toggler" 
-                type="button"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-              >
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-              </button>
+  const closeMenu = () => setIsMenuOpen(false)
 
-              <div className={`collapse navbar-collapse sub-menu-bar ${isMenuOpen ? 'show' : ''}`} id="navbarSupportedContent">
+  return (
+    <>
+      {/* Overlay untuk close menu di mobile */}
+      {isMenuOpen && (
+        <div 
+          className="mobile-menu-overlay"
+          onClick={closeMenu}
+          aria-hidden="true"
+        />
+      )}
+
+      <div className="navigation navigation-2">
+        <div className="container">
+          <div className="row no-gutters">
+            <div className="col-lg-11 col-md-10 col-sm-9 col-9">
+              <nav className="navbar navbar-expand-lg">
+                <Link className="navbar-brand" href="/" style={{ height: '60px', display: 'flex', alignItems: 'center' }}>
+                  <Image 
+                    src="/images/logo.jpeg" 
+                    alt="Logo Institut Agama Islam PERSIS Garut"
+                    width={110}
+                    height={110}
+                    style={{
+                      objectFit: 'contain',
+                    }}
+                    priority
+                  />
+                </Link>
+                <button 
+                  className="navbar-toggler" 
+                  type="button"
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                  aria-expanded={isMenuOpen}
+                >
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                </button>
+
+                <div className={`collapse navbar-collapse sub-menu-bar ${isMenuOpen ? 'show' : ''}`} id="navbarSupportedContent">
                 <ul className="navbar-nav ml-auto">
                   <li className="nav-item">
-                    <Link className="active" href="/">Home</Link>
+                    <Link className="active" href="/" onClick={closeMenu}>Home</Link>
                     {/* <ul className="sub-menu">
                       <li><Link href="/index-2">Home 01</Link></li>
                       <li><Link href="/index-3">Home 02</Link></li>
@@ -47,25 +61,25 @@ const Navigation = () => {
                   <li className="nav-item">
                     <Link href="/tentang">Tentang</Link>
                     <ul className="sub-menu">
-                      <li><Link href="/tentang">Tentang Institut</Link></li>
-                      <li><Link href="/pimpinan">Pimpinan Institut</Link></li>
+                      <li><Link href="/tentang" onClick={closeMenu}>Tentang Institut</Link></li>
+                      <li><Link href="/pimpinan" onClick={closeMenu}>Pimpinan Institut</Link></li>
                     </ul>
                   </li>
                   <li className="nav-item">
                     <Link href="#">Pendidikan</Link>
                     <ul className="sub-menu">
-                      <li><Link href="/fakultas">Fakultas</Link></li>
-                      <li><Link href="/magister">Magister S2</Link></li>
+                      <li><Link href="/fakultas" onClick={closeMenu}>Fakultas</Link></li>
+                      <li><Link href="/magister" onClick={closeMenu}>Magister S2</Link></li>
                     </ul>
                   </li>
 
                   <li className="nav-item">
-                    <Link href="/events">Mahasiswa</Link>
+                    <Link href="#">Mahasiswa</Link>
                     <ul className="sub-menu">
-                      <li><Link href="#">Kehidupan Kampus</Link></li>
-                      <li><Link href="#">Unit Kegiatan Mahasiswa</Link></li>
-                      <li><Link href="#">Prestasi Mahasiswa</Link></li>
-                      <li><Link href="#">Beasiswa</Link></li>
+                      <li><Link href="#" onClick={closeMenu}>Kehidupan Kampus</Link></li>
+                      <li><Link href="#" onClick={closeMenu}>Unit Kegiatan Mahasiswa</Link></li>
+                      <li><Link href="#" onClick={closeMenu}>Prestasi Mahasiswa</Link></li>
+                      <li><Link href="#" onClick={closeMenu}>Beasiswa</Link></li>
                     </ul>
                   </li>
                   <li className="nav-item">
@@ -115,9 +129,10 @@ const Navigation = () => {
               </ul>
             </div>
           </div> */}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

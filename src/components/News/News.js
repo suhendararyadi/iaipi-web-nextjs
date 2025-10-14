@@ -1,7 +1,41 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { getHashnodePosts } from '@/utils/hashnodeApi'
+import NewsSkeletonLoader from './NewsSkeletonLoader'
+
+// Fallback static articles
+const fallbackArticles = [
+  {
+    title: "Penerimaan Mahasiswa Baru Tahun Akademik 2025/2026",
+    brief: "IAIPI Garut membuka pendaftaran mahasiswa baru untuk tahun akademik 2025/2026. Tersedia program sarjana dan magister dengan berbagai beasiswa menarik.",
+    link: "https://staipersisgarut.pmbonline.siakad.tech/",
+    dateAdded: new Date('2024-10-01'),
+    coverImage: "/images/news/pmb-2025.jpg"
+  },
+  {
+    title: "Program Beasiswa Penuh untuk Hafidz Al-Quran",
+    brief: "Beasiswa full 100% tersedia bagi calon mahasiswa yang hafal Al-Quran minimal 15 juz.",
+    link: "/pmb",
+    dateAdded: new Date('2024-09-25'),
+    coverImage: "/images/news/beasiswa.jpg"
+  },
+  {
+    title: "IAIPI Garut Raih Akreditasi B dari BAN-PT",
+    brief: "Institut Agama Islam PERSIS Garut berhasil meraih akreditasi institusi B dari Badan Akreditasi Nasional Perguruan Tinggi.",
+    link: "/tentang",
+    dateAdded: new Date('2024-09-15'),
+    coverImage: "/images/akreditasi/sertifikat-2021.png"
+  },
+  {
+    title: "Jurnal IAIPI Terindex SINTA dan Google Scholar",
+    brief: "8 jurnal ilmiah IAIPI Garut kini terindex di SINTA dan Google Scholar, meningkatkan visibilitas penelitian dosen dan mahasiswa.",
+    link: "https://jurnal.iaipigarut.ac.id",
+    dateAdded: new Date('2024-09-10'),
+    coverImage: "/images/publication/p-1a.jpg"
+  }
+]
 
 const News = () => {
   const [posts, setPosts] = useState([])
@@ -15,11 +49,15 @@ const News = () => {
         if (posts && posts.length > 0) {
           setPosts(posts)
         } else {
-          setError('Tidak ada artikel yang tersedia')
+          // Use fallback if API returns empty
+          setPosts(fallbackArticles)
+          setError(null)
         }
       } catch (error) {
         console.error('Error fetching posts:', error)
-        setError('Gagal memuat artikel')
+        // Use fallback on error
+        setPosts(fallbackArticles)
+        setError(null)
       } finally {
         setIsLoading(false)
       }
@@ -28,44 +66,9 @@ const News = () => {
     fetchPosts()
   }, [])
 
+  // Show skeleton loader while loading
   if (isLoading) {
-    return (
-      <section id="news-part" className="section pt-115 pb-110">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6">
-              <div className="section-title pb-50">
-                <h5>Berita dan Agenda</h5>
-                <h2>Berita Terbaru</h2>
-              </div>
-            </div>
-          </div>
-          <div className="text-center">
-            <p>Memuat artikel...</p>
-          </div>
-        </div>
-      </section>
-    )
-  }
-
-  if (error || !posts || posts.length === 0) {
-    return (
-      <section id="news-part" className="section pt-115 pb-110">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6">
-              <div className="section-title pb-50">
-                <h5>Berita dan Agenda</h5>
-                <h2>Berita Terbaru</h2>
-              </div>
-            </div>
-          </div>
-          <div className="text-center">
-            <p>{error || 'Tidak ada artikel yang tersedia.'}</p>
-          </div>
-        </div>
-      </section>
-    )
+    return <NewsSkeletonLoader />
   }
 
   return (
@@ -84,11 +87,17 @@ const News = () => {
             {posts[0] && (
               <div className="singel-news mt-30">
                 <div className="news-thum pb-25">
-                  <img 
-                    src={posts[0].coverImage || "/images/news/n-1.jpg"} 
-                    alt={posts[0].title}
-                    style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
-                  />
+                  {posts[0].coverImage ? (
+                    <Image
+                      src={posts[0].coverImage}
+                      alt={posts[0].title}
+                      width={600}
+                      height={400}
+                      style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+                    />
+                  ) : (
+                    <div style={{ width: '100%', height: '400px', background: '#f0f0f0' }} />
+                  )}
                 </div>
                 <div className="news-cont">
                   <ul>
@@ -122,11 +131,17 @@ const News = () => {
                 <div className="row">
                   <div className="col-sm-4">
                     <div className="news-thum mt-30">
-                      <img 
-                        src={post.coverImage || "/images/news/ns-1.jpg"} 
-                        alt={post.title}
-                        style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
-                      />
+                      {post.coverImage ? (
+                        <Image
+                          src={post.coverImage}
+                          alt={post.title}
+                          width={200}
+                          height={150}
+                          style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+                        />
+                      ) : (
+                        <div style={{ width: '100%', height: '150px', background: '#f0f0f0' }} />
+                      )}
                     </div>
                   </div>
                   <div className="col-sm-8">

@@ -13,6 +13,7 @@ import Testimonial from '@/components/Testimonial/Testimonial'
 import News from '@/components/News/News'
 import PatnarLogo from '@/components/PatnarLogo/PatnarLogo'
 import Footer from '@/components/Footer/Footer'
+import WhatsAppFloat from '@/components/WhatsAppFloat/WhatsAppFloat'
 
 export default function Home() {
   return (
@@ -28,10 +29,10 @@ export default function Home() {
       <Apply/>
       <VideoFeature/>
       <Publication/>
-      {/* <Testimonial /> */}
+      <Testimonial />
       <PatnarLogo />
       <Footer/>
-      {/* Konten lainnya */}
+      <WhatsAppFloat />
     </>
   )
 }

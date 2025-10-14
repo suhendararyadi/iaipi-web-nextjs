@@ -25,10 +25,10 @@ const Footer = () => {
                 </div>
                 <p>Institut Agama Islam PERSIS Garut adalah perguruan tinggi yang menyelenggarakan pendidikan akademik, profesional dalam kelompok disiplin agama, ilmu pengetahuan, teknologi dan kesenian.</p>
                 <ul className="mt-20">
-                  <li><Link href="#"><i className="fa fa-facebook-f"></i></Link></li>
-                  <li><Link href="#"><i className="fa fa-twitter"></i></Link></li>
-                  <li><Link href="#"><i className="fa fa-google-plus"></i></Link></li>
-                  <li><Link href="#"><i className="fa fa-instagram"></i></Link></li>
+                  <li><Link href="https://facebook.com/iaipigarut" target="_blank" rel="noopener noreferrer" aria-label="Facebook IAIPI Garut"><i className="fa fa-facebook-f"></i></Link></li>
+                  <li><Link href="https://instagram.com/iaipi_garut" target="_blank" rel="noopener noreferrer" aria-label="Instagram IAIPI Garut"><i className="fa fa-instagram"></i></Link></li>
+                  <li><Link href="https://youtube.com/@iaipigarut" target="_blank" rel="noopener noreferrer" aria-label="YouTube IAIPI Garut"><i className="fa fa-youtube"></i></Link></li>
+                  <li><Link href="https://wa.me/6282118282828?text=Halo,%20saya%20ingin%20bertanya%20tentang%20IAIPI%20Garut" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp IAIPI Garut"><i className="fa fa-whatsapp"></i></Link></li>
                 </ul>
               </div>
             </div>
@@ -41,33 +41,31 @@ const Footer = () => {
                 </div>
                 <ul>
                   <li><Link href="/"><i className="fa fa-angle-right"></i>Home</Link></li>
-                  <li><Link href="/about"><i className="fa fa-angle-right"></i>About us</Link></li>
-                  <li><Link href="/courses"><i className="fa fa-angle-right"></i>Courses</Link></li>
-                  <li><Link href="/blog"><i className="fa fa-angle-right"></i>News</Link></li>
-                  <li><Link href="/events"><i className="fa fa-angle-right"></i>Event</Link></li>
+                  <li><Link href="/tentang"><i className="fa fa-angle-right"></i>Tentang</Link></li>
+                  <li><Link href="/fakultas"><i className="fa fa-angle-right"></i>Fakultas</Link></li>
+                  <li><Link href="/magister"><i className="fa fa-angle-right"></i>Magister</Link></li>
+                  <li><Link href="https://news.iaipersisgarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>Berita</Link></li>
                 </ul>
                 <ul>
-                  <li><Link href="#"><i className="fa fa-angle-right"></i>Gallery</Link></li>
-                  <li><Link href="/shop"><i className="fa fa-angle-right"></i>Shop</Link></li>
-                  <li><Link href="/teachers"><i className="fa fa-angle-right"></i>Teachers</Link></li>
-                  <li><Link href="#"><i className="fa fa-angle-right"></i>Support</Link></li>
-                  <li><Link href="/contact"><i className="fa fa-angle-right"></i>Contact</Link></li>
+                  <li><Link href="https://jurnal.iaipigarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>Jurnal</Link></li>
+                  <li><Link href="/pimpinan"><i className="fa fa-angle-right"></i>Pimpinan</Link></li>
+                  <li><Link href="https://staipersisgarut.pmbonline.siakad.tech" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>PMB Online</Link></li>
                 </ul>
               </div>
             </div>
 
-            {/* Support */}
+            {/* Quick Links */}
             <div className="col-lg-2 col-md-6 col-sm-6">
               <div className="footer-link support mt-40">
                 <div className="footer-title pb-25">
-                  <h6>Support</h6>
+                  <h6>Layanan</h6>
                 </div>
                 <ul>
-                  <li><Link href="#"><i className="fa fa-angle-right"></i>FAQS</Link></li>
-                  <li><Link href="#"><i className="fa fa-angle-right"></i>Privacy</Link></li>
-                  <li><Link href="#"><i className="fa fa-angle-right"></i>Policy</Link></li>
-                  <li><Link href="#"><i className="fa fa-angle-right"></i>Support</Link></li>
-                  <li><Link href="#"><i className="fa fa-angle-right"></i>Documentation</Link></li>
+                  <li><Link href="https://jurnal.iaipigarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>Portal Jurnal</Link></li>
+                  <li><Link href="https://news.iaipersisgarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>Portal Berita</Link></li>
+                  <li><Link href="https://staipersisgarut.pmbonline.siakad.tech" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>Pendaftaran</Link></li>
+                  <li><Link href="#"><i className="fa fa-angle-right"></i>E-Learning</Link></li>
+                  <li><Link href="#"><i className="fa fa-angle-right"></i>Perpustakaan</Link></li>
                 </ul>
               </div>
             </div>
@@ -84,7 +82,7 @@ const Footer = () => {
                       <i className="fa fa-home"></i>
                     </div>
                     <div className="cont">
-                      <p>Tarogong Kidul, Garut. Indonesia</p>
+                      <p>Jl. Pramuka No.13, Jayawaras, Kec. Tarogong Kidul, Kabupaten Garut, Jawa Barat 44151</p>
                     </div>
                   </li>
                   <li>
@@ -92,7 +90,8 @@ const Footer = () => {
                       <i className="fa fa-phone"></i>
                     </div>
                     <div className="cont">
-                      <p>+3 123 456 789</p>
+                      <p><a href="tel:+622622232891" style={{ color: 'inherit' }}>+62 262 232891</a></p>
+                      <p><a href="https://wa.me/6282118282828" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>+62 821 1828 2828 (WhatsApp)</a></p>
                     </div>
                   </li>
                   <li>
@@ -100,7 +99,8 @@ const Footer = () => {
                       <i className="fa fa-envelope-o"></i>
                     </div>
                     <div className="cont">
-                      <p>info@iaipersisgarut.ac.id</p>
+                      <p><a href="mailto:info@iaipersisgarut.ac.id" style={{ color: 'inherit' }}>info@iaipersisgarut.ac.id</a></p>
+                      <p><a href="mailto:pmb@iaipersisgarut.ac.id" style={{ color: 'inherit' }}>pmb@iaipersisgarut.ac.id</a></p>
                     </div>
                   </li>
                 </ul>
@@ -117,12 +117,14 @@ const Footer = () => {
             <div className="col-md-8">
               <div className="copyright text-md-left text-center pt-15">
                 <p>
-                © 2024 Hak Cipta Dilindungi Undang-Undang.
+                  © 2024 Institut Agama Islam PERSIS Garut. All rights reserved.
                 </p>
               </div>
             </div>
             <div className="col-md-4">
-              <div className="copyright text-md-right text-center pt-15"></div>
+              <div className="copyright text-md-right text-center pt-15">
+                <p>Developed with ❤️ by Tim IT IAIPI</p>
+              </div>
             </div>
           </div>
         </div>

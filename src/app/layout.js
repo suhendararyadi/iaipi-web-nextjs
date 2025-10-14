@@ -3,19 +3,49 @@ import { useEffect, useState } from 'react'
 import Script from 'next/script'
 import { Analytics } from "@vercel/analytics/react"
 
+// Google Analytics ID - Replace with your actual GA4 Measurement ID
+const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX' // TODO: Replace with real ID
+
 export default function RootLayout({ children }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Sembunyikan preloader setelah semua konten dimuat
-    setLoading(false)
+    // Sembunyikan preloader lebih cepat untuk better UX
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 200)
+    
+    return () => clearTimeout(timer)
   }, [])
 
   return (
     <html lang="en">
       <head>
-      <title>Institut Agama Islam PERSIS Garut</title>
-        <meta name="description" content="Institut Agama Islam PERSIS Garut adalah perguruan tinggi yang menyelenggarakan pendidikan akademik, profesional dalam kelompok disiplin agama, ilmu pengetahuan, teknologi dan kesenian" />
+        <title>Institut Agama Islam PERSIS Garut | Kampus Saintek Dakwah Turats Islam</title>
+        <meta name="description" content="IAIPI Garut - Perguruan Tinggi Islam terkemuka di Jawa Barat. Tersedia program S1 dan S2 dengan akreditasi B. Beasiswa penuh untuk hafidz Al-Qur'an. Daftar sekarang!" />
+        <meta name="keywords" content="kampus islam garut, iaipi garut, perguruan tinggi islam, kuliah di garut, beasiswa kuliah, ekonomi syariah, ilmu alquran, ilmu hadits, fakultas tarbiyah, magister iaipi" />
+        <meta name="author" content="Institut Agama Islam PERSIS Garut" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://iaipersisgarut.ac.id/" />
+        <meta property="og:title" content="Institut Agama Islam PERSIS Garut | Kampus Saintek Dakwah" />
+        <meta property="og:description" content="Perguruan Tinggi Islam terkemuka dengan program S1 & S2. Beasiswa penuh tersedia!" />
+        <meta property="og:image" content="https://iaipersisgarut.ac.id/images/logo.jpeg" />
+
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://iaipersisgarut.ac.id/" />
+        <meta property="twitter:title" content="Institut Agama Islam PERSIS Garut" />
+        <meta property="twitter:description" content="Kampus Islam terkemuka di Garut dengan beasiswa penuh" />
+        <meta property="twitter:image" content="https://iaipersisgarut.ac.id/images/logo.jpeg" />
+
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://iaipersisgarut.ac.id/" />
+        
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
         {/* Font Awesome */}
         <link rel="stylesheet" href="/css/font-awesome.min.css" />
         
@@ -44,6 +74,11 @@ export default function RootLayout({ children }) {
       </head>
 
       <body>
+        {/* Skip to main content - Accessibility */}
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+
         {/* Preloader */}
         {loading && (
           <div className="preloader">
@@ -61,7 +96,7 @@ export default function RootLayout({ children }) {
         )}
 
         {/* Main Content */}
-        <main>
+        <main id="main-content">
           {children}
           <Analytics />
         </main>
@@ -120,6 +155,52 @@ export default function RootLayout({ children }) {
           src="/js/main.js" 
           strategy="afterInteractive"
         />
+
+        {/* Google Analytics 4 */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+
+        {/* Structured Data - Organization */}
+        <Script id="structured-data-org" type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "EducationalOrganization",
+              "name": "Institut Agama Islam PERSIS Garut",
+              "alternateName": "IAIPI Garut",
+              "url": "https://iaipersisgarut.ac.id",
+              "logo": "https://iaipersisgarut.ac.id/images/logo.jpeg",
+              "description": "Institut Agama Islam PERSIS Garut adalah perguruan tinggi Islam yang menyelenggarakan pendidikan akademik dan profesional",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Jl. Pramuka No.13, Jayawaras",
+                "addressLocality": "Garut",
+                "addressRegion": "Jawa Barat",
+                "postalCode": "44151",
+                "addressCountry": "ID"
+              },
+              "telephone": "+62-262-232891",
+              "email": "info@iaipersisgarut.ac.id",
+              "sameAs": [
+                "https://facebook.com/iaipigarut",
+                "https://instagram.com/iaipi_garut",
+                "https://youtube.com/@iaipigarut"
+              ]
+            }
+          `}
+        </Script>
       </body>
     </html>
   )
