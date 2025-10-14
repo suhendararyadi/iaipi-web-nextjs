@@ -4110,3 +4110,69 @@ a {
         margin: 0 auto;
     }
 }
+
+/* =========================
+   MAGISTER PAGE STYLES
+   Additional styles for magister program
+   ========================= */
+
+/* Info Box Small - for magister highlights */
+.info-box-small {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid #006739;
+    transition: all 0.3s ease;
+}
+
+.info-box-small:hover {
+    background: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transform: translateX(5px);
+}
+
+.info-box-small h6 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #006739;
+    margin-bottom: 10px;
+}
+
+.info-box-small h6 i {
+    margin-right: 8px;
+    color: #ffc600;
+}
+
+.info-box-small p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.info-box-small ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+.info-box-small ul li {
+    padding: 5px 0;
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-box-small ul li i {
+    color: #006739;
+    font-size: 14px;
+}
+
+/* Responsive for info-box-small */
+@media (max-width: 767px) {
+    .info-box-small {
+        margin-bottom: 15px;
+    }
+}

@@ -1,65 +1,61 @@
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const MagisterContent = () => {
-  return (
-    <section id="course-part" className="pt-115 pb-120">
-      <div className="container">
-        {/* Penjelasan Program Magister */}
-        <div className="row">
-          <div className="col-lg-8">
-            <div className="section-title mt-50">
-              <h5>Program Pascasarjana</h5>
-              <h2>Program Magister (S2)</h2>
-            </div>
-            <div className="about-cont pb-50">
-              <p>Program Magister IAI PERSIS Garut merupakan jenjang pendidikan lanjutan yang dirancang untuk mengembangkan kompetensi dan keahlian profesional dalam bidang pendidikan Islam. Program ini menawarkan pendidikan berkualitas dengan kurikulum yang komprehensif dan relevan dengan kebutuhan pendidikan modern.</p>
-            </div>
-          </div>
-        </div>
+  const prodiData = {
+    id: 1,
+    name: "Magister Pendidikan Agama Islam",
+    code: "MPAI",
+    slug: "mpai",
+    image: "/images/prodi/ilha.jpg",
+    description: "Program Magister PAI dirancang untuk menghasilkan ahli dan praktisi pendidikan Islam yang memiliki kedalaman ilmu, kemampuan riset, dan kepemimpinan dalam bidang pendidikan Islam.",
+    akreditasi: "B",
+    gelar: "M.Pd.",
+    durasi: "4 Semester",
+    color: "#006739",
+    highlights: [
+      "Riset & Publikasi",
+      "Kelas Regular & Weekend",
+      "Beasiswa Tersedia"
+    ]
+  }
 
-        {/* Program Studi S2 */}
-        <div className="row justify-content-center">
-          {/* MPAI */}
-          <div className="col-lg-8">
-            <div className="singel-course mt-30">
-              <div className="thum">
-                <div className="image">
-                  <img src="/images/prodi/ilha.jpg" alt="Magister PAI" />
-                </div>
+  return (
+    <section id="magister-section" className="pt-70 pb-70">
+      <div className="container">
+        {/* Program Overview */}
+        <div className="row mb-5">
+          <div className="col-lg-10 mx-auto">
+            <div className="faculty-overview-card">
+              <div className="overview-icon">
+                <i className="fa fa-graduation-cap"></i>
               </div>
-              <div className="cont border">
-                <h4>Magister Pendidikan Agama Islam (MPAI)</h4>
-                <div className="course-teacher mt-3">
-                  <div className="description">
-                    <p>Program Magister Pendidikan Agama Islam (MPAI) dirancang untuk menghasilkan ahli dan praktisi pendidikan Islam yang memiliki kedalaman ilmu dan kemampuan riset. Program ini mempersiapkan lulusan untuk menjadi pendidik profesional, peneliti, dan pemimpin dalam bidang pendidikan Islam.</p>
-                  </div>
-                  
-                  <div className="info-list mt-4">
-                    <div className="row">
-                      <div className="col-md-6">
-                        <h5>Informasi Program:</h5>
-                        <ul className="list-unstyled">
-                          <li><i className="fa fa-check-circle text-primary mr-2"></i> Gelar: M.Pd. (Magister Pendidikan)</li>
-                          <li><i className="fa fa-check-circle text-primary mr-2"></i> Masa Studi: 4 Semester</li>
-                          <li><i className="fa fa-check-circle text-primary mr-2"></i> Akreditasi: B</li>
-                          <li><i className="fa fa-check-circle text-primary mr-2"></i> Kelas: Regular & Weekend</li>
-                        </ul>
-                      </div>
-                      <div className="col-md-6">
-                        <h5>Prospek Karir:</h5>
-                        <ul className="list-unstyled">
-                          <li><i className="fa fa-arrow-right text-primary mr-2"></i> Dosen PAI</li>
-                          <li><i className="fa fa-arrow-right text-primary mr-2"></i> Peneliti Pendidikan Islam</li>
-                          <li><i className="fa fa-arrow-right text-primary mr-2"></i> Konsultan Pendidikan</li>
-                          <li><i className="fa fa-arrow-right text-primary mr-2"></i> Pengembang Kurikulum</li>
-                        </ul>
-                      </div>
+              <div className="overview-content">
+                <h3>Program Pascasarjana - Magister (S2)</h3>
+                <p className="lead">Program Magister IAI PERSIS Garut merupakan jenjang pendidikan lanjutan yang dirancang untuk mengembangkan kompetensi dan keahlian profesional dalam bidang pendidikan Islam. Program ini menawarkan pendidikan berkualitas dengan kurikulum yang komprehensif dan relevan dengan kebutuhan pendidikan modern.</p>
+                
+                <div className="overview-stats">
+                  <div className="stat-box">
+                    <i className="fa fa-graduation-cap"></i>
+                    <div>
+                      <h5>1</h5>
+                      <p>Program Studi</p>
                     </div>
                   </div>
-
-                  <div className="text-center mt-4">
-                    <Link href="/magister/mpai" className="main-btn">Detail Program</Link>
+                  <div className="stat-box">
+                    <i className="fa fa-users"></i>
+                    <div>
+                      <h5>100+</h5>
+                      <p>Mahasiswa</p>
+                    </div>
+                  </div>
+                  <div className="stat-box">
+                    <i className="fa fa-user"></i>
+                    <div>
+                      <h5>10+</h5>
+                      <p>Dosen</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -67,29 +63,165 @@ const MagisterContent = () => {
           </div>
         </div>
 
-        {/* Visi Misi Program */}
-        <div className="row mt-50">
+        {/* Program Studi Section */}
+        <div className="row mb-5">
           <div className="col-lg-12">
-            <div className="about-items">
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="about-singel-items mt-30">
-                    <h4>Visi</h4>
-                    <p>Menjadi program pascasarjana unggulan dalam pengembangan pendidikan Islam yang berbasis riset dan keilmuan modern dengan tetap berpegang pada nilai-nilai Islam.</p>
+            <div className="section-title text-center pb-40">
+              <h5>Program Studi Pascasarjana</h5>
+              <h2>Magister Pendidikan Agama Islam</h2>
+            </div>
+          </div>
+        </div>
+
+        {/* MPAI Card */}
+        <div className="row justify-content-center">
+          <div className="col-lg-8 mb-4">
+            <div className="prodi-card-modern">
+              {/* Akreditasi Badge */}
+              <div className="akreditasi-badge" style={{ backgroundColor: prodiData.color }}>
+                <span className="badge-grade">{prodiData.akreditasi}</span>
+                <span className="badge-label">Akreditasi</span>
+              </div>
+
+              {/* Image */}
+              <div className="prodi-image-wrapper">
+                <Image
+                  src={prodiData.image}
+                  alt={prodiData.name}
+                  width={700}
+                  height={400}
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto'
+                  }}
+                />
+                <div className="prodi-overlay">
+                  <div className="prodi-code">{prodiData.code}</div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="prodi-content">
+                <h4>{prodiData.name}</h4>
+                <p className="prodi-description">{prodiData.description}</p>
+
+                {/* Info Grid */}
+                <div className="prodi-info-grid">
+                  <div className="info-item">
+                    <i className="fa fa-award"></i>
+                    <div>
+                      <span className="label">Gelar</span>
+                      <span className="value">{prodiData.gelar}</span>
+                    </div>
+                  </div>
+                  <div className="info-item">
+                    <i className="fa fa-clock"></i>
+                    <div>
+                      <span className="label">Durasi</span>
+                      <span className="value">{prodiData.durasi}</span>
+                    </div>
                   </div>
                 </div>
-                <div className="col-md-6">
-                  <div className="about-singel-items mt-30">
-                    <h4>Misi</h4>
-                    <ul>
-                      <li>Menyelenggarakan pendidikan pascasarjana yang berkualitas</li>
-                      <li>Mengembangkan penelitian dalam bidang pendidikan Islam</li>
-                      <li>Menghasilkan lulusan yang kompeten dan profesional</li>
-                      <li>Menjalin kerjasama dengan berbagai institusi pendidikan tinggi</li>
-                    </ul>
+
+                {/* Highlights */}
+                <div className="prodi-highlights">
+                  {prodiData.highlights.map((highlight, idx) => (
+                    <span key={idx} className="highlight-tag" style={{ borderColor: prodiData.color }}>
+                      <i className="fa fa-check"></i>
+                      {highlight}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Info Boxes */}
+                <div className="row mt-4">
+                  <div className="col-md-6 mb-3">
+                    <div className="info-box-small">
+                      <h6>Prospek Karir:</h6>
+                      <ul>
+                        <li><i className="fa fa-check-circle"></i> Dosen PAI</li>
+                        <li><i className="fa fa-check-circle"></i> Peneliti Pendidikan</li>
+                        <li><i className="fa fa-check-circle"></i> Konsultan Pendidikan</li>
+                        <li><i className="fa fa-check-circle"></i> Pengembang Kurikulum</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="col-md-6 mb-3">
+                    <div className="info-box-small">
+                      <h6>Keunggulan:</h6>
+                      <ul>
+                        <li><i className="fa fa-check-circle"></i> Kurikulum Komprehensif</li>
+                        <li><i className="fa fa-check-circle"></i> Dosen Berkualitas</li>
+                        <li><i className="fa fa-check-circle"></i> Riset Terstruktur</li>
+                        <li><i className="fa fa-check-circle"></i> Jaringan Alumni Luas</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* CTA Button */}
+                <Link 
+                  href={`/magister/${prodiData.slug}`} 
+                  className="prodi-detail-btn"
+                  style={{ backgroundColor: prodiData.color }}
+                >
+                  <span>Lihat Detail Program</span>
+                  <i className="fa fa-arrow-right"></i>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Visi Misi Section */}
+        <div className="row mt-5">
+          <div className="col-lg-12">
+            <div className="visi-misi-faculty">
+              <div className="row">
+                <div className="col-md-6 mb-4">
+                  <div className="vm-card">
+                    <div className="vm-icon">
+                      <i className="fa fa-eye"></i>
+                    </div>
+                    <div className="vm-content">
+                      <h4>Visi</h4>
+                      <p>Menjadi program pascasarjana unggulan dalam pengembangan pendidikan Islam yang berbasis riset dan keilmuan modern dengan tetap berpegang pada nilai-nilai Islam pada tahun 2028.</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6 mb-4">
+                  <div className="vm-card">
+                    <div className="vm-icon">
+                      <i className="fa fa-bullseye"></i>
+                    </div>
+                    <div className="vm-content">
+                      <h4>Misi</h4>
+                      <ul>
+                        <li>Menyelenggarakan pendidikan pascasarjana yang berkualitas</li>
+                        <li>Mengembangkan penelitian dalam bidang pendidikan Islam</li>
+                        <li>Menghasilkan lulusan yang kompeten dan profesional</li>
+                        <li>Menjalin kerjasama dengan berbagai institusi pendidikan tinggi</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA Footer */}
+        <div className="row mt-5">
+          <div className="col-lg-12">
+            <div className="faculty-cta-footer">
+              <div className="cta-content">
+                <h4>Siap Melanjutkan Studi ke Jenjang Magister?</h4>
+                <p>Daftarkan diri Anda sekarang dan raih gelar Magister Pendidikan Agama Islam!</p>
+              </div>
+              <Link href="/pmb" className="cta-button">
+                <i className="fa fa-edit"></i>
+                Daftar Sekarang
+              </Link>
             </div>
           </div>
         </div>
