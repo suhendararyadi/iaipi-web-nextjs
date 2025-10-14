@@ -4526,3 +4526,140 @@ a {
         margin-bottom: 10px;
     }
 }
+
+/* =========================
+   TOMBOL PENDAFTARAN KHUSUS
+   Special registration button in navigation
+   ========================= */
+
+/* Navigation Register Button */
+.nav-item-register {
+    margin-left: 15px !important;
+}
+
+.btn-register {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px !important;
+    background: linear-gradient(135deg, #ffc600 0%, #ffb700 100%) !important;
+    color: #333 !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    border-radius: 25px !important;
+    box-shadow: 0 4px 15px rgba(255, 198, 0, 0.4) !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+    border: none !important;
+}
+
+.btn-register:hover {
+    background: linear-gradient(135deg, #ffb700 0%, #ffa500 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(255, 198, 0, 0.6) !important;
+    color: #000 !important;
+}
+
+.btn-register i {
+    font-size: 16px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.btn-register span {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Mobile Register Button */
+.register-btn-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.btn-register-mobile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #ffc600 0%, #ffb700 100%);
+    color: #333;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(255, 198, 0, 0.4);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-register-mobile:hover {
+    background: linear-gradient(135deg, #ffb700 0%, #ffa500 100%);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 198, 0, 0.6);
+    color: #000;
+}
+
+.btn-register-mobile i {
+    font-size: 18px;
+    animation: pulse 2s infinite;
+}
+
+/* Desktop - Hide mobile button */
+@media (min-width: 992px) {
+    .btn-register-mobile {
+        display: none;
+    }
+}
+
+/* Tablet & Mobile - Adjust desktop button */
+@media (max-width: 991px) {
+    .btn-register {
+        padding: 10px 20px !important;
+        font-size: 13px !important;
+    }
+    
+    .btn-register span {
+        display: none;
+    }
+    
+    .btn-register i {
+        font-size: 18px;
+        margin: 0;
+    }
+    
+    .nav-item-register {
+        margin-left: 0 !important;
+    }
+}
+
+/* Mobile Menu - Full width button */
+@media (max-width: 991px) {
+    .navbar-collapse.show .nav-item-register {
+        margin: 15px 0 !important;
+        text-align: center;
+    }
+    
+    .navbar-collapse.show .btn-register {
+        width: 100%;
+        justify-content: center;
+        padding: 15px 24px !important;
+    }
+    
+    .navbar-collapse.show .btn-register span {
+        display: inline;
+    }
+}
+
+/* Sticky Header Adjustment */
+.header-sticky .btn-register {
+    padding: 10px 20px !important;
+}

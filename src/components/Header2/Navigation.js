@@ -111,26 +111,29 @@ const Navigation = () => {
                       </li>
                     </ul>
                   </li>
-                  <li className="nav-item">
-                    <Link
-                      href="/pmb"
+                  {/* Tombol Pendaftaran Khusus */}
+                  <li className="nav-item nav-item-register">
+                    <Link 
+                      href="/pmb" 
+                      className="btn-register"
                       onClick={closeMenu}
                     >
-                      Pendaftaran
+                      <i className="fa fa-edit"></i>
+                      <span>Daftar Sekarang</span>
                     </Link>
                   </li>
                 </ul>
               </div>
             </nav>
           </div>
-          {/* <div className="col-lg-1 col-md-2 col-sm-3 col-3">
-            <div className="right-icon text-right">
-              <ul>
-                <li><Link href="#" id="search"><i className="fa fa-search"></i></Link></li>
-                <li><Link href="#"><i className="fa fa-shopping-bag"></i><span>0</span></Link></li>
-              </ul>
+          <div className="col-lg-1 col-md-2 col-sm-3 col-3">
+            {/* Tombol Pendaftaran Mobile */}
+            <div className="register-btn-wrapper">
+              <Link href="/pmb" className="btn-register-mobile">
+                <i className="fa fa-edit"></i>
+              </Link>
             </div>
-          </div> */}
+          </div>
           </div>
         </div>
       </div>
