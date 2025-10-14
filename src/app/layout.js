@@ -76,6 +76,9 @@ export default function RootLayout({ children }) {
 
         {/* Custom CSS */}
         <link rel="stylesheet" href="/css/custom.css" />
+        
+        {/* Slider Fix CSS - Must load last */}
+        <link rel="stylesheet" href="/css/slider-fix.css" />
       </head>
 
       <body>

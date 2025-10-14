@@ -5741,3 +5741,53 @@ a {
         line-height: 45px !important;
     }
 }
+
+/* =========================
+   CRITICAL FIX: Arrows visible on slider hover
+   Override any hover states that hide arrows
+   ========================= */
+
+/* Force arrows to stay visible when hovering slider */
+.slider-active:hover .custom-slider-prev,
+.slider-active:hover .custom-slider-next {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+/* Ensure arrows are always clickable */
+.slider-active .custom-slider-prev,
+.slider-active .custom-slider-next {
+    pointer-events: auto !important;
+}
+
+/* Override any parent hover that might hide children */
+.slider-active:hover > *:not(.custom-slider-prev):not(.custom-slider-next) {
+    /* Allow other elements to be affected by hover */
+}
+
+.slider-active:hover .custom-slider-prev,
+.slider-active:hover .custom-slider-next {
+    /* Force arrows to remain visible and on top */
+    z-index: 9999 !important;
+    display: block !important;
+    opacity: 1 !important;
+}
+
+/* When hovering the slider wrapper */
+.slider-wrapper:hover ~ .custom-slider-prev,
+.slider-wrapper:hover ~ .custom-slider-next {
+    display: block !important;
+    opacity: 1 !important;
+}
+
+/* Ensure arrows stay visible in all states */
+.slider-active.slick-slider:hover .custom-slider-prev,
+.slider-active.slick-slider:hover .custom-slider-next,
+.slider-active .slick-list:hover ~ .custom-slider-prev,
+.slider-active .slick-list:hover ~ .custom-slider-next {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}

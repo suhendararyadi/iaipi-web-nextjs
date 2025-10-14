@@ -1,0 +1,131 @@
+/* =========================
+   SLIDER ARROWS - DEFINITIVE FIX
+   Separate file to ensure proper loading order
+   ========================= */
+
+/* Step 1: Hide ALL Slick default arrows completely */
+.slider-active .slick-prev:not(.custom-slider-prev),
+.slider-active .slick-next:not(.custom-slider-next),
+.slider-active .slick-arrow:not(.custom-slider-prev):not(.custom-slider-next) {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    left: -99999px !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* Step 2: Show ONLY our custom arrows - ALWAYS */
+.slider-active .custom-slider-prev,
+.slider-active .custom-slider-next {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 60px !important;
+    height: 60px !important;
+    background: rgba(0, 103, 57, 0.85) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    z-index: 9999 !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Step 3: Position */
+.slider-active .custom-slider-prev {
+    left: 20px !important;
+    right: auto !important;
+}
+
+.slider-active .custom-slider-next {
+    right: 20px !important;
+    left: auto !important;
+}
+
+/* Step 4: Symbol styling */
+.slider-active .custom-slider-prev span,
+.slider-active .custom-slider-next span {
+    display: block !important;
+    font-size: 48px !important;
+    line-height: 60px !important;
+    color: #ffffff !important;
+    font-weight: 300 !important;
+    text-align: center !important;
+    user-select: none !important;
+}
+
+/* Step 5: Hover - MUST stay visible */
+.slider-active:hover .custom-slider-prev,
+.slider-active:hover .custom-slider-next,
+.slider-active .custom-slider-prev:hover,
+.slider-active .custom-slider-next:hover {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    background: rgba(0, 103, 57, 1) !important;
+}
+
+.slider-active .custom-slider-prev:hover,
+.slider-active .custom-slider-next:hover {
+    transform: translateY(-50%) scale(1.08) !important;
+}
+
+/* Step 6: Active/Focus */
+.slider-active .custom-slider-prev:active,
+.slider-active .custom-slider-next:active,
+.slider-active .custom-slider-prev:focus,
+.slider-active .custom-slider-next:focus {
+    background: rgba(0, 103, 57, 1) !important;
+    outline: 3px solid #ffc600 !important;
+    outline-offset: 2px !important;
+}
+
+/* Step 7: Disabled */
+.slider-active .custom-slider-prev.slick-disabled,
+.slider-active .custom-slider-next.slick-disabled {
+    opacity: 0.3 !important;
+    cursor: not-allowed !important;
+}
+
+/* Step 8: Override ANY parent/sibling hover states */
+.slider-active:hover > .custom-slider-prev,
+.slider-active:hover > .custom-slider-next,
+.slider-active .slick-list:hover ~ .custom-slider-prev,
+.slider-active .slick-list:hover ~ .custom-slider-next,
+.slider-active .slick-track:hover ~ .custom-slider-prev,
+.slider-active .slick-track:hover ~ .custom-slider-next,
+.slider-active .single-slider:hover ~ .custom-slider-prev,
+.slider-active .single-slider:hover ~ .custom-slider-next {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Step 9: Mobile */
+@media (max-width: 767px) {
+    .slider-active .custom-slider-prev,
+    .slider-active .custom-slider-next {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    
+    .slider-active .custom-slider-prev {
+        left: 10px !important;
+    }
+    
+    .slider-active .custom-slider-next {
+        right: 10px !important;
+    }
+    
+    .slider-active .custom-slider-prev span,
+    .slider-active .custom-slider-next span {
+        font-size: 36px !important;
+        line-height: 45px !important;
+    }
+}
