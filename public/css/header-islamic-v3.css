@@ -396,6 +396,63 @@
     }
 }
 
+/* =========================
+   MOBILE HAMBURGER MENU ICON
+   Fix visibility on white background
+   ========================= */
+
+/* Hamburger icon - visible on white nav bar */
+.islamic-header-v3 .navbar-toggler {
+    border: 2px solid var(--islamic-gold) !important;
+    border-radius: 6px !important;
+    padding: 8px 10px !important;
+    background: rgba(255, 198, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+}
+
+.islamic-header-v3 .navbar-toggler:hover {
+    background: rgba(255, 198, 0, 0.2) !important;
+    border-color: var(--islamic-green-dark) !important;
+}
+
+.islamic-header-v3 .navbar-toggler:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(255, 198, 0, 0.3) !important;
+}
+
+/* Icon bars - yellow color for visibility */
+.islamic-header-v3 .navbar-toggler .icon-bar {
+    background-color: var(--islamic-gold) !important;
+    width: 28px !important;
+    height: 3px !important;
+    border-radius: 2px !important;
+    display: block !important;
+    margin: 5px 0 !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Active state animation */
+.islamic-header-v3 .navbar-toggler.active .icon-bar:nth-of-type(1) {
+    transform: rotate(45deg) !important;
+    top: 8px !important;
+    background-color: var(--islamic-green-dark) !important;
+}
+
+.islamic-header-v3 .navbar-toggler.active .icon-bar:nth-of-type(2) {
+    opacity: 0 !important;
+}
+
+.islamic-header-v3 .navbar-toggler.active .icon-bar:nth-of-type(3) {
+    transform: rotate(-45deg) !important;
+    top: -8px !important;
+    background-color: var(--islamic-green-dark) !important;
+}
+
+.islamic-header-v3 .navbar-toggler.active {
+    background: rgba(0, 103, 57, 0.1) !important;
+    border-color: var(--islamic-green-dark) !important;
+}
+
 /* Mobile Responsive */
 @media (max-width: 991px) {
     .islamic-top-info-bar {
