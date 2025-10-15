@@ -306,53 +306,40 @@
     width: 4px;
 }
 
-/* Button Style - Same as Slider Button */
+/* Modern Pill Button - Clean & Flat Design */
 .navigation-2.islamic-header-v3 .btn-register {
     display: inline-block !important;
     background-color: #ffc600 !important;
     color: #006739 !important;
-    border: 1px solid #ffc600 !important;
-    padding: 0 35px !important;
-    font-size: 16px !important;
+    border: 2px solid #ffc600 !important;
+    padding: 12px 32px !important;
+    font-size: 15px !important;
     font-family: 'Montserrat', sans-serif !important;
     font-weight: 700 !important;
-    line-height: 50px !important;
-    border-radius: 5px !important;
+    line-height: 1.5 !important;
+    border-radius: 50px !important;
     text-align: center !important;
     white-space: nowrap !important;
     cursor: pointer !important;
     position: relative !important;
-    overflow: hidden !important;
-    z-index: 5 !important;
-    transition: all 0.4s ease-in-out !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s ease !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
 }
 
-/* Ripple effect */
-.navigation-2.islamic-header-v3 .btn-register::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
+/* Remove any pseudo-elements */
+.navigation-2.islamic-header-v3 .btn-register::before,
+.navigation-2.islamic-header-v3 .btn-register::after {
+    display: none !important;
 }
 
-.navigation-2.islamic-header-v3 .btn-register:hover::before {
-    width: 300px;
-    height: 300px;
-}
-
+/* Smooth Hover Effect */
 .navigation-2.islamic-header-v3 .btn-register:hover {
+    background-color: #006739 !important;
     color: #ffc600 !important;
     border-color: #006739 !important;
-    background-color: #006739 !important;
-    transform: translateY(-3px) !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
+    transform: none !important;
+    box-shadow: none !important;
 }
 
 /* Islamic Star Divider Below Nav */
