@@ -58,15 +58,7 @@ const Navigation = () => {
                 <div className={`collapse navbar-collapse sub-menu-bar ${isMenuOpen ? 'show' : ''}`} id="navbarSupportedContent">
                 <ul className="navbar-nav ml-auto">
                   <li className="nav-item">
-                    <Link className="active" href="/" onClick={closeMenu}>Home</Link>
-                    {/* <ul className="sub-menu">
-                      <li><Link href="/index-2">Home 01</Link></li>
-                      <li><Link href="/index-3">Home 02</Link></li>
-                      <li><Link href="/index-4">Home 03</Link></li>
-                    </ul> */}
-                  </li>
-                  <li className="nav-item">
-                    <Link href="#">Profil</Link>
+                    <Link href="/tentang">Profil</Link>
                     <ul className="sub-menu">
                       <li><Link href="/tentang" onClick={closeMenu}>Tentang Institut</Link></li>
                       <li><Link href="/pimpinan" onClick={closeMenu}>Pimpinan Institut</Link></li>
@@ -97,7 +89,7 @@ const Navigation = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     >
-                      Berita & Agenda
+                      Berita
                     </Link>
                     <ul className="sub-menu">
                       <li>
