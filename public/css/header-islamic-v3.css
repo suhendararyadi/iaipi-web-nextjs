@@ -306,7 +306,7 @@
     width: 4px;
 }
 
-/* Rounded Gold Button - Restored Style */
+/* Rounded Gold Button - Compact Style */
 .navigation-2.islamic-header-v3 .btn-register {
     background: linear-gradient(
         135deg, 
@@ -314,16 +314,18 @@
         var(--islamic-gold-light) 100%
     ) !important;
     color: white !important;
-    padding: 12px 32px !important;
-    border-radius: 30px !important;
+    padding: 10px 24px !important;
+    border-radius: 25px !important;
     font-weight: 700 !important;
-    font-size: 14px !important;
-    letter-spacing: 0.5px !important;
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35) !important;
+    font-size: 13px !important;
+    letter-spacing: 0.3px !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
     border: none !important;
     position: relative !important;
     overflow: hidden !important;
     transition: all 0.4s ease !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
 }
 
 /* Shimmer effect on button */
