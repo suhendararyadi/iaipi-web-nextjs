@@ -151,11 +151,30 @@
     background: white;
     box-shadow: 0 4px 20px rgba(0, 103, 57, 0.1);
     position: relative;
+    overflow: hidden;
+}
+
+/* Islamic Ornament Pattern on White Nav Bar */
+.islamic-white-nav-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/images/islamic-ornament-topbar.svg');
+    background-size: 100px 50px;
+    background-repeat: repeat;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .islamic-white-nav-bar .container {
     padding-top: 8px;
     padding-bottom: 8px;
+    position: relative;
+    z-index: 1;
 }
 
 /* Logo in White Bar */
@@ -210,14 +229,36 @@
 
 /* Dropdown Menu */
 .navigation-2.islamic-header-v3 .sub-menu {
-    background: white;
+    background: linear-gradient(
+        135deg,
+        var(--islamic-green-dark) 0%,
+        var(--islamic-green-light) 100%
+    );
     border: none;
-    border-left: 4px solid var(--islamic-green-dark);
-    box-shadow: 0 10px 40px rgba(0, 103, 57, 0.2);
+    border-left: 4px solid var(--islamic-gold);
+    box-shadow: 0 10px 40px rgba(0, 103, 57, 0.3);
     border-radius: 0 8px 8px 0;
     padding: 15px 0;
     min-width: 250px;
     margin-top: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Islamic Ornament on dropdown background */
+.navigation-2.islamic-header-v3 .sub-menu::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/images/islamic-ornament-topbar.svg');
+    background-size: 80px 40px;
+    background-repeat: repeat;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
 }
 
 /* Gold accent strip on dropdown */
@@ -230,14 +271,17 @@
     height: 100%;
     background: linear-gradient(
         180deg,
-        var(--islamic-green-dark) 0%,
-        var(--islamic-gold) 50%,
-        var(--islamic-green-dark) 100%
+        var(--islamic-gold) 0%,
+        var(--islamic-gold-light) 50%,
+        var(--islamic-gold) 100%
     );
+    z-index: 2;
 }
 
 .navigation-2.islamic-header-v3 .sub-menu li {
-    border-bottom: 1px solid rgba(0, 103, 57, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1;
 }
 
 .navigation-2.islamic-header-v3 .sub-menu li:last-child {
@@ -245,13 +289,14 @@
 }
 
 .navigation-2.islamic-header-v3 .sub-menu li a {
-    color: var(--islamic-text) !important;
+    color: white !important;
     padding: 12px 25px !important;
     font-size: 14px !important;
     transition: all 0.3s ease !important;
     display: flex !important;
     align-items: center !important;
     position: relative !important;
+    z-index: 1;
 }
 
 /* Left bar indicator on hover */
@@ -264,15 +309,16 @@
     width: 0;
     background: var(--islamic-gold);
     transition: width 0.3s ease;
+    z-index: 1;
 }
 
 .navigation-2.islamic-header-v3 .sub-menu li a:hover {
     background: linear-gradient(
         90deg,
-        rgba(0, 103, 57, 0.05) 0%,
+        rgba(212, 175, 55, 0.3) 0%,
         transparent 100%
     );
-    color: var(--islamic-green-dark) !important;
+    color: white !important;
     padding-left: 35px !important;
 }
 
@@ -280,56 +326,50 @@
     width: 4px;
 }
 
-/* Academic Style Button */
+/* Rounded Gold Button - Restored Style */
 .navigation-2.islamic-header-v3 .btn-register {
     background: linear-gradient(
-        135deg,
-        var(--islamic-green-dark) 0%,
-        var(--islamic-green-light) 100%
+        135deg, 
+        var(--islamic-gold) 0%, 
+        var(--islamic-gold-light) 100%
     ) !important;
     color: white !important;
-    padding: 14px 32px !important;
-    border-radius: 6px !important;
+    padding: 12px 32px !important;
+    border-radius: 30px !important;
     font-weight: 700 !important;
-    font-size: 13px !important;
-    letter-spacing: 1px !important;
-    text-transform: uppercase !important;
-    box-shadow: 0 4px 15px rgba(0, 103, 57, 0.25) !important;
+    font-size: 14px !important;
+    letter-spacing: 0.5px !important;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35) !important;
     border: none !important;
     position: relative !important;
     overflow: hidden !important;
-    transition: all 0.3s ease !important;
+    transition: all 0.4s ease !important;
 }
 
-/* Gold accent on button */
+/* Shimmer effect on button */
 .navigation-2.islamic-header-v3 .btn-register::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    width: 4px;
+    left: -100%;
+    width: 100%;
     height: 100%;
-    background: var(--islamic-gold);
-    transition: width 0.3s ease;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    transition: left 0.5s ease;
 }
 
 .navigation-2.islamic-header-v3 .btn-register:hover::before {
-    width: 100%;
-}
-
-.navigation-2.islamic-header-v3 .btn-register span {
-    position: relative;
-    z-index: 1;
+    left: 100%;
 }
 
 .navigation-2.islamic-header-v3 .btn-register:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 25px rgba(0, 103, 57, 0.35) !important;
-    background: linear-gradient(
-        135deg,
-        var(--islamic-gold) 0%,
-        var(--islamic-gold-light) 100%
-    ) !important;
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5) !important;
 }
 
 /* Islamic Star Divider Below Nav */
