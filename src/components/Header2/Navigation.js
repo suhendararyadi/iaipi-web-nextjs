@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import IslamicDivider from './IslamicDivider'
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -19,7 +20,15 @@ const Navigation = () => {
         />
       )}
 
-      <div className="navigation navigation-2">
+      <div className="navigation navigation-2 islamic-header">
+        {/* Islamic Corner Ornaments */}
+        <div className="islamic-corner-decoration islamic-corner-tl"></div>
+        <div className="islamic-corner-decoration islamic-corner-tr"></div>
+        
+        {/* Islamic Star Ornaments */}
+        <span className="islamic-ornament islamic-ornament-left">✦</span>
+        <span className="islamic-ornament islamic-ornament-right">✦</span>
+        
         <div className="container">
           <div className="row no-gutters">
             <div className="col-lg-11 col-md-10 col-sm-9 col-9">
@@ -138,6 +147,9 @@ const Navigation = () => {
           </div>
         </div>
       </div>
+      
+      {/* Islamic Star Divider */}
+      <IslamicDivider />
     </>
   )
 }
