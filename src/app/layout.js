@@ -80,8 +80,9 @@ export default function RootLayout({ children }) {
         {/* Slider Fix CSS - Must load last */}
         <link rel="stylesheet" href="/css/slider-fix.css" />
         
-        {/* Islamic Header CSS */}
-        <link rel="stylesheet" href="/css/header-islamic.css" />
+        {/* Islamic Header CSS - Switch between v1 and v2 */}
+        {/* <link rel="stylesheet" href="/css/header-islamic.css" /> */}
+        <link rel="stylesheet" href="/css/header-islamic-v2.css" />
       </head>
 
       <body>

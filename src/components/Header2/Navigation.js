@@ -20,14 +20,18 @@ const Navigation = () => {
         />
       )}
 
-      <div className="navigation navigation-2 islamic-header">
-        {/* Islamic Corner Ornaments */}
-        <div className="islamic-corner-decoration islamic-corner-tl"></div>
-        <div className="islamic-corner-decoration islamic-corner-tr"></div>
+      <div className="navigation navigation-2 islamic-header-v2">
+        {/* Islamic Geometric Top Border */}
+        <div className="islamic-top-border">
+          <div className="islamic-zigzag"></div>
+        </div>
         
-        {/* Islamic Star Ornaments */}
-        <span className="islamic-ornament islamic-ornament-left">✦</span>
-        <span className="islamic-ornament islamic-ornament-right">✦</span>
+        {/* Islamic Bottom Gradient */}
+        <div className="islamic-bottom-gradient"></div>
+        
+        {/* Islamic Side Ornaments */}
+        <span className="islamic-side-ornament islamic-side-ornament-left">✦</span>
+        <span className="islamic-side-ornament islamic-side-ornament-right">✦</span>
         
         <div className="container">
           <div className="row no-gutters">
