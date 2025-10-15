@@ -163,9 +163,9 @@
     right: 0;
     bottom: 0;
     background-image: url('/images/islamic-ornament-topbar.svg');
-    background-size: 100px 50px;
+    background-size: 120px 60px;
     background-repeat: repeat;
-    opacity: 0.03;
+    opacity: 0.08;
     pointer-events: none;
     z-index: 0;
 }
@@ -207,24 +207,21 @@
     padding: 18px 20px !important;
     position: relative !important;
     transition: all 0.3s ease !important;
-    border-bottom: 3px solid transparent !important;
 }
 
-/* Bottom Border on Hover */
+/* Hover Effect - No Border */
 .navigation-2.islamic-header-v3 .nav-item .nav-link:hover,
 .navigation-2.islamic-header-v3 .nav-item > a:hover {
-    color: var(--islamic-green-dark) !important;
-    border-bottom-color: var(--islamic-gold) !important;
-    background: rgba(212, 175, 55, 0.05);
+    color: var(--islamic-gold) !important;
+    background: rgba(212, 175, 55, 0.08);
 }
 
-/* Active State */
+/* Active State - No Border */
 .navigation-2.islamic-header-v3 .nav-item.active .nav-link,
 .navigation-2.islamic-header-v3 .nav-item.active > a {
     color: var(--islamic-green-dark) !important;
     font-weight: 700 !important;
-    border-bottom-color: var(--islamic-green-dark) !important;
-    background: rgba(0, 103, 57, 0.05);
+    background: rgba(0, 103, 57, 0.08);
 }
 
 /* Dropdown Menu */
@@ -469,19 +466,7 @@
     
     .navigation-2.islamic-header-v3 .nav-item .nav-link,
     .navigation-2.islamic-header-v3 .nav-item > a {
-        border-bottom: none !important;
-        border-left: 3px solid transparent !important;
         padding: 12px 15px !important;
-    }
-    
-    .navigation-2.islamic-header-v3 .nav-item .nav-link:hover,
-    .navigation-2.islamic-header-v3 .nav-item > a:hover {
-        border-left-color: var(--islamic-gold) !important;
-    }
-    
-    .navigation-2.islamic-header-v3 .nav-item.active .nav-link,
-    .navigation-2.islamic-header-v3 .nav-item.active > a {
-        border-left-color: var(--islamic-green-dark) !important;
     }
     
     .navigation-2.islamic-header-v3 .btn-register {
