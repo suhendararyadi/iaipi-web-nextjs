@@ -58,89 +58,53 @@ const Slider = () => {
 
   return (
     <section id="slider-part" className="slider-active">
-      {/* Slide 1 - PMB Link */}
+      {/* Slide 1 */}
       <div className="single-slider slider-wrapper">
         <Image 
           src="/images/slider/slider-iaipi-4.jpeg"
-          alt="Pendaftaran Mahasiswa Baru IAIPI Garut - Daftar Sekarang"
+          alt="Pendaftaran Mahasiswa Baru IAIPI Garut"
           fill
           priority
-          quality={85}
+          quality={90}
           sizes="100vw"
           style={{ objectFit: 'cover' }}
         />
-        <div className="slider-overlay"></div>
-        <div className="container slider-content">
-          <div className="slider-text">
-            <h2 className="slider-title">Pendaftaran Mahasiswa Baru 2025</h2>
-            <p className="slider-subtitle">Wujudkan Impianmu Kuliah di Kampus Islami Terbaik</p>
-            <Link 
-              href="https://staipersisgarut.pmbonline.siakad.tech/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="main-btn slider-btn"
-            >
-              Daftar Sekarang
-            </Link>
-          </div>
-        </div>
       </div>
       
       {/* Slide 2 */}
       <div className="single-slider slider-wrapper">
         <Image 
           src="/images/slider/slider-iaipi-1a.jpg"
-          alt="Kampus Institut Agama Islam PERSIS Garut - Gedung Utama"
+          alt="Kampus Institut Agama Islam PERSIS Garut"
           fill
-          quality={85}
+          quality={90}
           sizes="100vw"
           style={{ objectFit: 'cover' }}
         />
-        <div className="slider-overlay"></div>
-        <div className="container slider-content">
-          <div className="slider-text">
-            <h2 className="slider-title">Institut Agama Islam PERSIS Garut</h2>
-            <p className="slider-subtitle">Kampus Saintek Dakwah Berbasis Turats Islam</p>
-          </div>
-        </div>
       </div>
 
       {/* Slide 3 */}
       <div className="single-slider slider-wrapper">
         <Image 
           src="/images/slider/slider-iaipi-2.jpg"
-          alt="Kegiatan Mahasiswa IAIPI Garut - Pembelajaran Aktif"
+          alt="Kegiatan Mahasiswa IAIPI Garut"
           fill
-          quality={85}
+          quality={90}
           sizes="100vw"
           style={{ objectFit: 'cover' }}
         />
-        <div className="slider-overlay"></div>
-        <div className="container slider-content">
-          <div className="slider-text">
-            <h2 className="slider-title">Pendidikan Berkualitas</h2>
-            <p className="slider-subtitle">Dosen Berkompeten & Fasilitas Modern</p>
-          </div>
-        </div>
       </div>
 
       {/* Slide 4 */}
       <div className="single-slider slider-wrapper">
         <Image 
           src="/images/slider/slider-iaipi-3.jpg"
-          alt="Suasana Kampus IAIPI Garut - Lingkungan Belajar Nyaman"
+          alt="Suasana Kampus IAIPI Garut"
           fill
-          quality={85}
+          quality={90}
           sizes="100vw"
           style={{ objectFit: 'cover' }}
         />
-        <div className="slider-overlay"></div>
-        <div className="container slider-content">
-          <div className="slider-text">
-            <h2 className="slider-title">Lingkungan Islami</h2>
-            <p className="slider-subtitle">Kampus dengan Nuansa Religius yang Kental</p>
-          </div>
-        </div>
       </div>
 
       {/* Slide 5 */}
@@ -149,11 +113,10 @@ const Slider = () => {
           src="/images/slider/slider-iaipi-1.jpg"
           alt="Aktivitas Kampus IAIPI Garut"
           fill
-          quality={85}
+          quality={90}
           sizes="100vw"
           style={{ objectFit: 'cover' }}
         />
-        <div className="slider-overlay"></div>
       </div>
     </section>
   )
