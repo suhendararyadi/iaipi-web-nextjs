@@ -73,11 +73,21 @@ textarea:focus {
    ========================= */
 .slider-wrapper {
     position: relative;
-    height: 70vh;
-    min-height: 500px;
-    max-height: 800px;
+    height: 90vh;
+    min-height: 650px;
+    max-height: 1000px;
     display: flex;
     align-items: center;
+}
+
+/* Alternative: Use aspect ratio for perfect 16:9 display */
+@supports (aspect-ratio: 16 / 9) {
+    .slider-wrapper {
+        aspect-ratio: 16 / 9;
+        height: auto;
+        min-height: 650px;
+        max-height: 1000px;
+    }
 }
 
 /* Slider overlay disabled - show original image colors */
@@ -1159,9 +1169,18 @@ a {
    ========================= */
 @media only screen and (max-width: 991px) {
     .slider-wrapper {
-        height: 60vh;
-        min-height: 450px;
-        max-height: 700px;
+        height: 70vh;
+        min-height: 500px;
+        max-height: 800px;
+    }
+    
+    @supports (aspect-ratio: 16 / 9) {
+        .slider-wrapper {
+            aspect-ratio: 16 / 9;
+            height: auto;
+            min-height: 500px;
+            max-height: 800px;
+        }
     }
     
     .slider-title {
@@ -1188,9 +1207,18 @@ a {
 
 @media only screen and (max-width: 767px) {
     .slider-wrapper {
-        height: 50vh;
-        min-height: 350px;
-        max-height: 600px;
+        height: 60vh;
+        min-height: 400px;
+        max-height: 650px;
+    }
+    
+    @supports (aspect-ratio: 16 / 9) {
+        .slider-wrapper {
+            aspect-ratio: 16 / 9;
+            height: auto;
+            min-height: 400px;
+            max-height: 650px;
+        }
     }
     
     .slider-title {
