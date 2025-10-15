@@ -36,7 +36,7 @@
     overflow: hidden;
 }
 
-/* Subtle pattern on top bar */
+/* Islamic Geometric Ornament Pattern on top bar */
 .islamic-top-info-bar::before {
     content: '';
     position: absolute;
@@ -44,14 +44,12 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 10px,
-        rgba(255, 255, 255, 0.02) 10px,
-        rgba(255, 255, 255, 0.02) 20px
-    );
+    background-image: url('/images/islamic-ornament-topbar.svg');
+    background-size: 150px 75px;
+    background-repeat: repeat;
+    opacity: 0.6;
     pointer-events: none;
+    z-index: 0;
 }
 
 .islamic-top-info-bar .container {
