@@ -146,15 +146,6 @@ const Navigation = () => {
         </div>
         </div>
       </div>
-      
-      {/* Islamic Star Divider V3 */}
-      <div className="islamic-divider-v3">
-        <div className="islamic-divider-stars-v3">
-          <span>✦</span>
-          <span>✦</span>
-          <span>✦</span>
-        </div>
-      </div>
     </>
   )
 }
