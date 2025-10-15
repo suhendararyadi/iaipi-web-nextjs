@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import IslamicDivider from './IslamicDivider'
+import TopInfoBar from './TopInfoBar'
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -20,20 +21,13 @@ const Navigation = () => {
         />
       )}
 
-      <div className="navigation navigation-2 islamic-header-v2">
-        {/* Islamic Geometric Top Border */}
-        <div className="islamic-top-border">
-          <div className="islamic-zigzag"></div>
-        </div>
+      <div className="navigation navigation-2 islamic-header-v3">
+        {/* Top Info Bar - Dark Green */}
+        <TopInfoBar />
         
-        {/* Islamic Bottom Gradient */}
-        <div className="islamic-bottom-gradient"></div>
-        
-        {/* Islamic Side Ornaments */}
-        <span className="islamic-side-ornament islamic-side-ornament-left">✦</span>
-        <span className="islamic-side-ornament islamic-side-ornament-right">✦</span>
-        
-        <div className="container">
+        {/* White Navigation Bar */}
+        <div className="islamic-white-nav-bar">
+          <div className="container">
           <div className="row no-gutters">
             <div className="col-lg-11 col-md-10 col-sm-9 col-9">
               <nav className="navbar navbar-expand-lg">
@@ -150,10 +144,17 @@ const Navigation = () => {
           </div>
           </div>
         </div>
+        </div>
       </div>
       
-      {/* Islamic Star Divider */}
-      <IslamicDivider />
+      {/* Islamic Star Divider V3 */}
+      <div className="islamic-divider-v3">
+        <div className="islamic-divider-stars-v3">
+          <span>✦</span>
+          <span>✦</span>
+          <span>✦</span>
+        </div>
+      </div>
     </>
   )
 }
