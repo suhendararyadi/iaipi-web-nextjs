@@ -32,11 +32,50 @@ textarea:focus {
 }
 
 /* =========================
+   HERO BANNER ISLAMIC ORNAMENT
+   Geometric Islamic pattern overlay on all hero banners
+   ========================= */
+
+/* Add Islamic ornament pattern on top of hero banner overlay */
+#page-banner::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-image: url('/images/islamic-ornament-hero.svg') !important;
+    background-repeat: repeat !important;
+    background-size: 180px 180px !important;
+    background-position: center center !important;
+    opacity: 0.6 !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+}
+
+/* Ensure content is above ornament */
+#page-banner .container,
+#page-banner .page-banner-cont {
+    position: relative !important;
+    z-index: 5 !important;
+}
+
+/* Adjust ornament for mobile */
+@media (max-width: 767px) {
+    #page-banner::after {
+        background-size: 120px 120px !important;
+        opacity: 0.5 !important;
+    }
+}
+
+/* =========================
    SLIDER ENHANCEMENTS
    ========================= */
 .slider-wrapper {
     position: relative;
-    min-height: 600px;
+    height: 70vh;
+    min-height: 500px;
+    max-height: 800px;
     display: flex;
     align-items: center;
 }
@@ -1120,7 +1159,9 @@ a {
    ========================= */
 @media only screen and (max-width: 991px) {
     .slider-wrapper {
-        min-height: 500px;
+        height: 60vh;
+        min-height: 450px;
+        max-height: 700px;
     }
     
     .slider-title {
@@ -1147,7 +1188,9 @@ a {
 
 @media only screen and (max-width: 767px) {
     .slider-wrapper {
-        min-height: 400px;
+        height: 50vh;
+        min-height: 350px;
+        max-height: 600px;
     }
     
     .slider-title {
@@ -5654,20 +5697,23 @@ a {
 /* Show ONLY our custom arrows */
 .slider-active .custom-slider-prev,
 .slider-active .custom-slider-next {
-    display: block !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     position: absolute !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
     width: 60px !important;
     height: 60px !important;
-    background: rgba(0, 103, 57, 0.8) !important;
-    border: none !important;
-    border-radius: 8px !important;
+    background: rgba(0, 103, 57, 0.9) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 10px !important;
     cursor: pointer !important;
-    z-index: 999 !important;
+    z-index: 99999 !important;
     transition: all 0.3s ease !important;
     opacity: 1 !important;
     visibility: visible !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Left arrow position */
@@ -5695,7 +5741,9 @@ a {
 .slider-active .custom-slider-prev:hover,
 .slider-active .custom-slider-next:hover {
     background: rgba(0, 103, 57, 1) !important;
-    transform: translateY(-50%) scale(1.1) !important;
+    border-color: rgba(255, 198, 0, 0.8) !important;
+    transform: translateY(-50%) scale(1.08) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
 }
 
 /* Active/Focus state */
@@ -5759,7 +5807,7 @@ a {
 
 /* Override any parent hover that might hide children */
 .slider-active:hover > *:not(.custom-slider-prev):not(.custom-slider-next) {
-    /* Allow other elements to be affected by hover */
+    /* Intentionally empty - ensures proper specificity */
 }
 
 .slider-active:hover .custom-slider-prev,
