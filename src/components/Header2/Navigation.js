@@ -85,7 +85,7 @@ const Navigation = () => {
                     </ul>
                   </li>
                   <li className="nav-item">
-                    <Link href="https://iaipi-garut.hashnode.dev"
+                    <Link href="https://news.iaipersisgarut.ac.id"
                     target="_blank" 
                     rel="noopener noreferrer"
                     >
