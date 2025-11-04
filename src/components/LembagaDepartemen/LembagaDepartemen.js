@@ -3,6 +3,17 @@ import Link from 'next/link'
 import lembagaData from '@/data/lembagaData'
 
 const LembagaDepartemen = () => {
+  // Sort data: active (non-prodi) > prodi (active) > coming_soon
+  const sortedData = [...lembagaData].sort((a, b) => {
+    // Priority: active non-prodi (1) > prodi (2) > coming_soon (3)
+    const getPriority = (item) => {
+      if (item.status === 'active' && item.category !== 'Prodi') return 1
+      if (item.category === 'Prodi') return 2
+      return 3
+    }
+    return getPriority(a) - getPriority(b)
+  })
+
   return (
     <section className="lembaga-section pt-90 pb-90">
       <div className="container">
@@ -11,9 +22,9 @@ const LembagaDepartemen = () => {
           <div className="col-lg-8 mx-auto text-center">
             <div className="section-title pb-50">
               <h5>Struktur Organisasi</h5>
-              <h2>Lembaga dan Departemen</h2>
+              <h2>Lembaga, Departemen & Program Studi</h2>
               <p className="mt-3">
-                Berbagai lembaga dan unit yang mendukung operasional Institut Agama Islam PERSIS Garut
+                Berbagai lembaga, unit, dan program studi yang mendukung operasional Institut Agama Islam PERSIS Garut
                 dalam menjalankan Tri Dharma Perguruan Tinggi
               </p>
             </div>
@@ -33,13 +44,16 @@ const LembagaDepartemen = () => {
               <span className="filter-badge badge-unit">
                 <i className="fa fa-cogs"></i> {lembagaData.filter(l => l.category === 'Unit').length} Unit
               </span>
+              <span className="filter-badge badge-prodi">
+                <i className="fa fa-graduation-cap"></i> {lembagaData.filter(l => l.category === 'Prodi').length} Program Studi
+              </span>
             </div>
           </div>
         </div>
 
         {/* Lembaga Cards Grid */}
         <div className="row">
-          {lembagaData.map((lembaga) => (
+          {sortedData.map((lembaga) => (
             <div key={lembaga.id} className="col-lg-4 col-md-6 col-sm-12 mb-4">
               <article className={`lembaga-card ${lembaga.status === 'coming_soon' ? 'coming-soon' : ''}`}>
                 {lembaga.status === 'coming_soon' && (
@@ -58,20 +72,35 @@ const LembagaDepartemen = () => {
                 <div className="lembaga-card-body">
                   <h3 className="lembaga-title">{lembaga.name}</h3>
                   <h4 className="lembaga-subtitle">{lembaga.fullName}</h4>
+                  {lembaga.fakultas && (
+                    <p className="lembaga-fakultas">
+                      <i className="fa fa-university"></i> Fakultas {lembaga.fakultas}
+                    </p>
+                  )}
                   <p className="lembaga-description">{lembaga.description}</p>
                 </div>
 
                 <div className="lembaga-card-footer">
                   {lembaga.url ? (
-                    <Link 
-                      href={lembaga.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="lembaga-link"
-                    >
-                      <span>Kunjungi Website</span>
-                      <i className="fa fa-external-link"></i>
-                    </Link>
+                    lembaga.category === 'Prodi' ? (
+                      <Link 
+                        href={lembaga.url}
+                        className="lembaga-link"
+                      >
+                        <span>Lihat Detail Prodi</span>
+                        <i className="fa fa-arrow-right"></i>
+                      </Link>
+                    ) : (
+                      <Link 
+                        href={lembaga.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="lembaga-link"
+                      >
+                        <span>Kunjungi Website</span>
+                        <i className="fa fa-external-link"></i>
+                      </Link>
+                    )
                   ) : (
                     <button className="lembaga-link disabled" disabled>
                       <span>Website Segera Hadir</span>

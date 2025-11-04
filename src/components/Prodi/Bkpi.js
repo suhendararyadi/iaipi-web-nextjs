@@ -101,6 +101,32 @@ const BkpiContent = () => {
   return (
     <section id="prodi-detail-section" className="pt-70 pb-70">
       <div className="container">
+        {/* Website Prodi Notice */}
+        <div className="row mb-4">
+          <div className="col-lg-12">
+            <div className="prodi-website-notice">
+              <div className="notice-icon">
+                <i className="fa fa-globe"></i>
+              </div>
+              <div className="notice-content">
+                <h5>Website Resmi Program Studi BKPI</h5>
+                <p>Untuk informasi lebih lengkap dan terbaru tentang Program Studi Bimbingan Konseling Pendidikan Islam, kunjungi website resmi kami.</p>
+              </div>
+              <div className="notice-action">
+                <a 
+                  href="https://bkpi.iaipersisgarut.ac.id/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn-visit-website"
+                >
+                  <span>Kunjungi Website</span>
+                  <i className="fa fa-external-link"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Prodi Header */}
         <div className="row mb-5">
           <div className="col-lg-12">
@@ -398,11 +424,20 @@ const BkpiContent = () => {
                 </div>
               </div>
               <div className="cta-right">
+                <a 
+                  href="https://bkpi.iaipersisgarut.ac.id/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn-website"
+                >
+                  <i className="fa fa-globe"></i>
+                  Website Prodi
+                </a>
                 <a href="/pmb" className="btn-daftar">
                   <i className="fa fa-edit"></i>
                   Daftar Sekarang
                 </a>
-                <a href="/contact" className="btn-info">
+                <a href="/kontak" className="btn-info">
                   <i className="fa fa-info-circle"></i>
                   Info Lebih Lanjut
                 </a>

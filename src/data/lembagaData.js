@@ -123,12 +123,90 @@ const lembagaData = [
   },
   {
     id: 13,
+    name: "ILHA",
+    fullName: "Program Studi Ilmu Hadis",
+    description: "Fokus pada pengkajian dan penelitian hadis Nabi Muhammad SAW sebagai sumber kedua ajaran Islam dengan metodologi riset yang mendalam.",
+    url: "/fakultas/ushuluddin/ilha",
+    icon: "fa-book",
+    category: "Prodi",
+    fakultas: "Ushuluddin",
+    status: "active"
+  },
+  {
+    id: 14,
+    name: "IAT",
+    fullName: "Program Studi Ilmu Al-Quran dan Tafsir",
+    description: "Berfokus pada pengkajian dan penelitian Al-Quran sebagai sumber utama ajaran Islam dengan kajian tafsir kontemporer.",
+    url: "/fakultas/ushuluddin/iat",
+    icon: "fa-quran",
+    category: "Prodi",
+    fakultas: "Ushuluddin",
+    status: "active"
+  },
+  {
+    id: 15,
+    name: "PAI",
+    fullName: "Program Studi Pendidikan Agama Islam",
+    description: "Menyiapkan tenaga pendidik profesional dalam bidang Pendidikan Agama Islam dengan kompetensi pedagogik dan keislaman yang mumpuni.",
+    url: "/fakultas/tarbiyah/pai",
+    icon: "fa-graduation-cap",
+    category: "Prodi",
+    fakultas: "Tarbiyah",
+    status: "active"
+  },
+  {
+    id: 16,
+    name: "PGMI",
+    fullName: "Program Studi Pendidikan Guru Madrasah Ibtidaiyah",
+    description: "Fokus pada penyiapan guru profesional untuk tingkat MI/SD dengan kompetensi pembelajaran terpadu berbasis nilai-nilai Islam.",
+    url: "/fakultas/tarbiyah/pgmi",
+    icon: "fa-child",
+    category: "Prodi",
+    fakultas: "Tarbiyah",
+    status: "active"
+  },
+  {
+    id: 17,
     name: "BKPI",
     fullName: "Program Studi Bimbingan Konseling Pendidikan Islam",
-    description: "Program studi yang fokus pada pengembangan konseling berbasis nilai-nilai Islam untuk membantu individu mengatasi masalah pendidikan, sosial, dan spiritual.",
-    url: "https://bkpi.iaipersisgarut.ac.id",
+    description: "Menyiapkan konselor pendidikan kompeten dalam layanan bimbingan dan konseling dengan pendekatan Islam.",
+    url: "/fakultas/tarbiyah/bkpi",
     icon: "fa-comments",
     category: "Prodi",
+    fakultas: "Tarbiyah",
+    status: "active"
+  },
+  {
+    id: 18,
+    name: "EKOSY",
+    fullName: "Program Studi Ekonomi Syariah",
+    description: "Mempersiapkan profesional dalam bidang ekonomi berbasis prinsip-prinsip syariah dengan pemahaman mendalam tentang teori ekonomi Islam.",
+    url: "/fakultas/ekonomi/ekosy",
+    icon: "fa-money",
+    category: "Prodi",
+    fakultas: "Ekonomi & Bisnis Islam",
+    status: "active"
+  },
+  {
+    id: 19,
+    name: "MKS",
+    fullName: "Program Studi Manajemen Keuangan Syariah",
+    description: "Fokus pada pengembangan kompetensi dalam pengelolaan keuangan berbasis syariah, perbankan syariah, dan lembaga keuangan syariah.",
+    url: "/fakultas/ekonomi/mks",
+    icon: "fa-bank",
+    category: "Prodi",
+    fakultas: "Ekonomi & Bisnis Islam",
+    status: "active"
+  },
+  {
+    id: 20,
+    name: "MPAI",
+    fullName: "Program Magister Pendidikan Agama Islam (S2)",
+    description: "Program Magister yang dirancang untuk menghasilkan ahli dan praktisi pendidikan Islam dengan kedalaman ilmu, kemampuan riset, dan kepemimpinan.",
+    url: "/magister/mpai",
+    icon: "fa-mortar-board",
+    category: "Prodi",
+    fakultas: "Pascasarjana",
     status: "active"
   }
 ]

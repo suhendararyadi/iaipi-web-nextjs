@@ -5875,3 +5875,512 @@ a {
     opacity: 1 !important;
     visibility: visible !important;
 }
+
+/* =========================
+   TESTIMONIAL SLIDER ARROWS - BEST PRACTICE
+   Modern, Accessible, and Consistent Design
+   ========================= */
+
+/* Hide default slick arrows for testimonial */
+.testimonial-slied .slick-arrow:not(button) {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* Modern Testimonial Arrow Styling */
+.testimonial-slied button.slick-prev,
+.testimonial-slied button.slick-next {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 55px !important;
+    height: 55px !important;
+    background: linear-gradient(135deg, #006739 0%, #008749 100%) !important;
+    border: 2px solid rgba(255, 198, 0, 0.4) !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    z-index: 100 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 4px 15px rgba(0, 103, 57, 0.3) !important;
+    font-size: 0 !important;
+}
+
+/* Position arrows */
+.testimonial-slied button.slick-prev {
+    left: 30px !important;
+    right: auto !important;
+}
+
+.testimonial-slied button.slick-next {
+    right: 30px !important;
+    left: auto !important;
+}
+
+/* Icon styling inside button */
+.testimonial-slied button.slick-prev i,
+.testimonial-slied button.slick-next i {
+    font-size: 26px !important;
+    color: #ffc600 !important;
+    display: block !important;
+    line-height: 1 !important;
+    font-weight: bold !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Remove default ::before content */
+.testimonial-slied button.slick-prev::before,
+.testimonial-slied button.slick-next::before {
+    content: '' !important;
+    display: none !important;
+}
+
+/* Hover state - Interactive & Engaging */
+.testimonial-slied button.slick-prev:hover,
+.testimonial-slied button.slick-next:hover {
+    background: linear-gradient(135deg, #008749 0%, #00a357 100%) !important;
+    border-color: #ffc600 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(-50%) scale(1.15) !important;
+    box-shadow: 0 6px 25px rgba(0, 103, 57, 0.5) !important;
+}
+
+.testimonial-slied button.slick-prev:hover i,
+.testimonial-slied button.slick-next:hover i {
+    color: #ffffff !important;
+    transform: scale(1.1);
+}
+
+/* Focus state for accessibility */
+.testimonial-slied button.slick-prev:focus,
+.testimonial-slied button.slick-next:focus {
+    outline: 3px solid #ffc600 !important;
+    outline-offset: 3px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Active/pressed state */
+.testimonial-slied button.slick-prev:active,
+.testimonial-slied button.slick-next:active {
+    transform: translateY(-50%) scale(1.05) !important;
+}
+
+/* Disabled state */
+.testimonial-slied button.slick-prev.slick-disabled,
+.testimonial-slied button.slick-next.slick-disabled {
+    opacity: 0.4 !important;
+    cursor: not-allowed !important;
+    background: linear-gradient(135deg, #cccccc 0%, #999999 100%) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.testimonial-slied button.slick-prev.slick-disabled:hover,
+.testimonial-slied button.slick-next.slick-disabled:hover {
+    transform: translateY(-50%) scale(1) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Mobile & Tablet Responsive */
+@media (max-width: 991px) {
+    .testimonial-slied button.slick-prev,
+    .testimonial-slied button.slick-next {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    
+    .testimonial-slied button.slick-prev {
+        left: 15px !important;
+    }
+    
+    .testimonial-slied button.slick-next {
+        right: 15px !important;
+    }
+    
+    .testimonial-slied button.slick-prev i,
+    .testimonial-slied button.slick-next i {
+        font-size: 22px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .testimonial-slied button.slick-prev,
+    .testimonial-slied button.slick-next {
+        width: 40px !important;
+        height: 40px !important;
+        bottom: -60px !important;
+        top: auto !important;
+        transform: none !important;
+    }
+    
+    .testimonial-slied button.slick-prev {
+        left: 50% !important;
+        margin-left: -60px !important;
+    }
+    
+    .testimonial-slied button.slick-next {
+        right: 50% !important;
+        margin-right: -60px !important;
+    }
+    
+    .testimonial-slied button.slick-prev:hover,
+    .testimonial-slied button.slick-next:hover {
+        transform: scale(1.1) !important;
+    }
+    
+    .testimonial-slied button.slick-prev i,
+    .testimonial-slied button.slick-next i {
+        font-size: 20px !important;
+    }
+}
+
+/* Enhanced dots styling for testimonial */
+.testimonial-slied .slick-dots {
+    position: relative !important;
+    bottom: auto !important;
+    margin-top: 40px !important;
+    text-align: center !important;
+}
+
+.testimonial-slied .slick-dots li button {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50% !important;
+    background-color: rgba(255, 255, 255, 0.4) !important;
+    border: 2px solid rgba(255, 255, 255, 0.6) !important;
+    transition: all 0.3s ease !important;
+}
+
+.testimonial-slied .slick-dots li.slick-active button {
+    background-color: #ffc600 !important;
+    border-color: #ffc600 !important;
+    transform: scale(1.3) !important;
+}
+
+.testimonial-slied .slick-dots li button:hover {
+    background-color: rgba(255, 198, 0, 0.6) !important;
+    transform: scale(1.2) !important;
+}
+
+/* Ensure arrows always visible (override any hiding) */
+.testimonial-slied:hover button.slick-prev,
+.testimonial-slied:hover button.slick-next,
+.testimonial-slied button.slick-prev:not(:hover),
+.testimonial-slied button.slick-next:not(:hover) {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+}
+
+/* Smooth entrance animation */
+@keyframes testimonialArrowFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+}
+
+.testimonial-slied.slick-initialized button.slick-prev,
+.testimonial-slied.slick-initialized button.slick-next {
+    animation: testimonialArrowFadeIn 0.5s ease-out forwards;
+}
+
+/* =========================
+   END TESTIMONIAL SLIDER ARROWS
+   ========================= */
+
+/* =========================
+   PRODI WEBSITE NOTICE - BKPI
+   Modern Info Box untuk Website Prodi
+   ========================= */
+
+/* Notice Box Container */
+.prodi-website-notice {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 25px 30px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border: 2px solid #006739;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 103, 57, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative line */
+.prodi-website-notice::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+}
+
+.prodi-website-notice:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(0, 103, 57, 0.15);
+    border-color: #008749;
+}
+
+/* Notice Icon */
+.prodi-website-notice .notice-icon {
+    flex-shrink: 0;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 103, 57, 0.3);
+}
+
+.prodi-website-notice .notice-icon i {
+    font-size: 32px;
+    color: #ffc600;
+}
+
+/* Notice Content */
+.prodi-website-notice .notice-content {
+    flex: 1;
+}
+
+.prodi-website-notice .notice-content h5 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #006739;
+    margin-bottom: 8px;
+}
+
+.prodi-website-notice .notice-content p {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+/* Notice Action Button */
+.prodi-website-notice .notice-action {
+    flex-shrink: 0;
+}
+
+.btn-visit-website {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    color: white !important;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 12px rgba(0, 103, 57, 0.3);
+}
+
+.btn-visit-website:hover {
+    background: linear-gradient(135deg, #008749 0%, #00a357 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 103, 57, 0.4);
+    color: white !important;
+    border-color: #ffc600;
+}
+
+.btn-visit-website i {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.btn-visit-website:hover i {
+    transform: translateX(3px);
+}
+
+/* Website Button in CTA Footer */
+.btn-website {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+    color: white !important;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn-website:hover {
+    background: linear-gradient(135deg, #8e44ad 0%, #7d3c98 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
+    color: white !important;
+}
+
+.btn-website i {
+    font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .prodi-website-notice {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+        padding: 25px 20px;
+    }
+    
+    .prodi-website-notice .notice-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .prodi-website-notice .notice-icon i {
+        font-size: 28px;
+    }
+    
+    .prodi-website-notice .notice-content h5 {
+        font-size: 18px;
+    }
+    
+    .prodi-website-notice .notice-content p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 767px) {
+    .prodi-website-notice {
+        padding: 20px 15px;
+    }
+    
+    .prodi-website-notice .notice-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .prodi-website-notice .notice-icon i {
+        font-size: 24px;
+    }
+    
+    .btn-visit-website {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    .prodi-cta-footer .cta-right {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .prodi-cta-footer .cta-right a {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .btn-website {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Pulse animation for attention */
+@keyframes pulseNotice {
+    0% {
+        box-shadow: 0 4px 15px rgba(0, 103, 57, 0.1);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(0, 103, 57, 0.2);
+    }
+    100% {
+        box-shadow: 0 4px 15px rgba(0, 103, 57, 0.1);
+    }
+}
+
+.prodi-website-notice {
+    animation: pulseNotice 3s ease-in-out infinite;
+}
+
+.prodi-website-notice:hover {
+    animation: none;
+}
+
+/* =========================
+   END PRODI WEBSITE NOTICE
+   ========================= */
+
+/* =========================
+   LEMBAGA PAGE - PRODI ENHANCEMENTS
+   Additional Styling for Program Studi Cards
+   ========================= */
+
+/* Fakultas Label in Prodi Card */
+.lembaga-fakultas {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, rgba(0, 103, 57, 0.1) 0%, rgba(0, 135, 73, 0.1) 100%);
+    border-left: 3px solid #006739;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #006739;
+    margin-bottom: 12px;
+}
+
+.lembaga-fakultas i {
+    font-size: 14px;
+    color: #008749;
+}
+
+/* Update lembaga title for better spacing with fakultas */
+.lembaga-card-body .lembaga-fakultas + .lembaga-description {
+    margin-top: 12px;
+}
+
+/* Prodi Category Badge Styling Enhancement */
+.badge-prodi {
+    background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%) !important;
+    color: white !important;
+}
+
+.badge-prodi:hover {
+    background: linear-gradient(135deg, #8e44ad 0%, #7d3c98 100%) !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767px) {
+    .lembaga-fakultas {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+    
+    .lembaga-fakultas i {
+        font-size: 12px;
+    }
+}
+
+/* =========================
+   END LEMBAGA PAGE - PRODI ENHANCEMENTS
+   ========================= */
