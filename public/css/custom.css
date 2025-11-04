@@ -1357,6 +1357,11 @@ a {
     color: white;
 }
 
+.badge-prodi {
+    background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+    color: white;
+}
+
 .filter-badge:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
@@ -1463,6 +1468,11 @@ a {
 
 .badge-unit {
     background: #3498db;
+    color: white;
+}
+
+.badge-prodi {
+    background: #9b59b6;
     color: white;
 }
 

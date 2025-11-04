@@ -120,6 +120,16 @@ const lembagaData = [
     icon: "fa-users",
     category: "Pusat",
     status: "coming_soon"
+  },
+  {
+    id: 13,
+    name: "BKPI",
+    fullName: "Program Studi Bimbingan Konseling Pendidikan Islam",
+    description: "Program studi yang fokus pada pengembangan konseling berbasis nilai-nilai Islam untuk membantu individu mengatasi masalah pendidikan, sosial, dan spiritual.",
+    url: "https://bkpi.iaipersisgarut.ac.id",
+    icon: "fa-comments",
+    category: "Prodi",
+    status: "active"
   }
 ]
 
