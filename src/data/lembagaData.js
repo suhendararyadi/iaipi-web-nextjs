@@ -138,7 +138,7 @@ const lembagaData = [
     fullName: "Program Studi Ilmu Al-Quran dan Tafsir",
     description: "Berfokus pada pengkajian dan penelitian Al-Quran sebagai sumber utama ajaran Islam dengan kajian tafsir kontemporer.",
     url: "/fakultas/ushuluddin/iat",
-    icon: "fa-bookmark",
+    icon: "fa-file-text-o",
     category: "Prodi",
     fakultas: "Ushuluddin",
     status: "active"
