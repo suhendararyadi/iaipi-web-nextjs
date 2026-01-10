@@ -34,7 +34,7 @@ const MagisterContent = () => {
               <div className="overview-content">
                 <h3>Program Pascasarjana - Magister (S2)</h3>
                 <p className="lead">Program Magister IAI PERSIS Garut merupakan jenjang pendidikan lanjutan yang dirancang untuk mengembangkan kompetensi dan keahlian profesional dalam bidang pendidikan Islam. Program ini menawarkan pendidikan berkualitas dengan kurikulum yang komprehensif dan relevan dengan kebutuhan pendidikan modern.</p>
-                
+
                 <div className="overview-stats">
                   <div className="stat-box">
                     <i className="fa fa-graduation-cap"></i>
@@ -160,8 +160,8 @@ const MagisterContent = () => {
                 </div>
 
                 {/* CTA Button */}
-                <Link 
-                  href={`/magister/${prodiData.slug}`} 
+                <Link
+                  href={`/magister/${prodiData.slug}`}
                   className="prodi-detail-btn"
                   style={{ backgroundColor: prodiData.color }}
                 >
@@ -185,7 +185,7 @@ const MagisterContent = () => {
                     </div>
                     <div className="vm-content">
                       <h4>Visi</h4>
-                      <p>Menjadi program pascasarjana unggulan dalam pengembangan pendidikan Islam yang berbasis riset dan keilmuan modern dengan tetap berpegang pada nilai-nilai Islam pada tahun 2028.</p>
+                      <p>Menjadi Prodi Magister Pendidikan Agama Islam (MPAI) yang unggul berbasis turats Islam di Jawa Barat pada Tahun 2033.</p>
                     </div>
                   </div>
                 </div>
@@ -197,10 +197,10 @@ const MagisterContent = () => {
                     <div className="vm-content">
                       <h4>Misi</h4>
                       <ul>
-                        <li>Menyelenggarakan pendidikan pascasarjana yang berkualitas</li>
-                        <li>Mengembangkan penelitian dalam bidang pendidikan Islam</li>
-                        <li>Menghasilkan lulusan yang kompeten dan profesional</li>
-                        <li>Menjalin kerjasama dengan berbagai institusi pendidikan tinggi</li>
+                        <li>Menyelenggarakan perkuliahan dengan acuan turats Islam.</li>
+                        <li>Melakukan riset dengan referensi utama turats Islam.</li>
+                        <li>Menyelenggarakan pengabdian kepada masyarakat berbasis turats Islam.</li>
+                        <li>Melakukan publikasi kepada masyarakat berbasis turats Islam.</li>
                       </ul>
                     </div>
                   </div>
