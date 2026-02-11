@@ -26,10 +26,20 @@ const lembagaData = [
     name: "Perpustakaan",
     fullName: "Perpustakaan Institut",
     description: "Unit yang menyediakan layanan perpustakaan digital dan konvensional dengan koleksi buku, jurnal, dan referensi ilmiah yang mendukung pembelajaran dan penelitian.",
-    url: "",
+    url: "https://library.iaipersisgarut.ac.id",
     icon: "fa-book",
     category: "Unit",
-    status: "coming_soon"
+    status: "active"
+  },
+  {
+    id: 21,
+    name: "Repository",
+    fullName: "Institutional Repository",
+    description: "Pusat arsip digital untuk karya ilmiah, skripsi, tesis, dan publikasi penelitian akademik Institut Agama Islam Persis Garut.",
+    url: "https://repository.iaipersisgarut.ac.id",
+    icon: "fa-database",
+    category: "Unit",
+    status: "active"
   },
   {
     id: 4,
@@ -135,7 +145,7 @@ const lembagaData = [
   {
     id: 14,
     name: "IAT",
-    fullName: "Program Studi Ilmu Al-Quran dan Tafsir",
+    fullName: "Program Studi Ilmu Al-Quran and Tafsir",
     description: "Berfokus pada pengkajian dan penelitian Al-Quran sebagai sumber utama ajaran Islam dengan kajian tafsir kontemporer.",
     url: "/fakultas/ushuluddin/iat",
     icon: "fa-file-text-o",

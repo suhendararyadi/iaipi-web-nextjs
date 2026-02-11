@@ -29,19 +29,19 @@ const LembagaHome = () => {
       shortName: "Perpustakaan",
       description: "Pusat sumber belajar dan informasi digital kampus",
       icon: "fa-book",
-      url: "#",
+      url: "https://library.iaipersisgarut.ac.id",
       color: "#9b59b6",
-      isExternal: false
+      isExternal: true
     },
     {
-      id: 4,
-      name: "Sistem Informasi Akademik",
-      shortName: "SIAKAD",
-      description: "Portal akademik mahasiswa dan dosen",
-      icon: "fa-desktop",
-      url: "#",
+      id: 21,
+      name: "Institutional Repository",
+      shortName: "Repository",
+      description: "Pusat arsip digital karya ilmiah dan penelitian",
+      icon: "fa-database",
+      url: "https://repository.iaipersisgarut.ac.id",
       color: "#e67e22",
-      isExternal: false
+      isExternal: true
     }
   ]
 

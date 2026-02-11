@@ -64,6 +64,8 @@ const Footer = () => {
                 </div>
                 <ul>
                   <li><Link href="https://siakad.iaipersisgarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>SIAKAD</Link></li>
+                  <li><Link href="https://library.iaipersisgarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>Perpustakaan</Link></li>
+                  <li><Link href="https://repository.iaipersisgarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>Repository</Link></li>
                   <li><Link href="https://lpm.iaipersisgarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>LPM</Link></li>
                   <li><Link href="https://lppm.iaipersisgarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>LPPM</Link></li>
                   <li><Link href="https://jurnal.iaipigarut.ac.id" target="_blank" rel="noopener noreferrer"><i className="fa fa-angle-right"></i>Jurnal</Link></li>
