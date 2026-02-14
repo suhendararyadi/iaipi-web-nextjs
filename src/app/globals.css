@@ -66,23 +66,25 @@ a {
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-  background: rgba(7, 41, 77, 0.5);
+  background: rgba(7, 41, 77, 0.7);
   color: #fff;
   border: none;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   cursor: pointer;
-  display: flex;
+  display: flex !important; /* Force display since Slick might hide them */
   align-items: center;
   justify-content: center;
-  font-size: 30px;
+  font-size: 24px;
   transition: all 0.3s ease;
+  visibility: hidden;
   opacity: 0;
 }
 
 #slider-part:hover .custom-slider-prev,
 #slider-part:hover .custom-slider-next {
+  visibility: visible;
   opacity: 1;
 }
 
@@ -96,8 +98,9 @@ a {
 
 .custom-slider-prev:hover,
 .custom-slider-next:hover {
-  background: #ffc600;
-  color: #07294d;
+  background: #ffc600 !important;
+  color: #07294d !important;
+  transform: translateY(-50%) scale(1.1);
 }
 
 /* Slider Progress Bar (Indicator) */
