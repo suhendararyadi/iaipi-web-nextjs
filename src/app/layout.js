@@ -5,6 +5,9 @@ import WhatsAppFloat from '@/components/WhatsAppFloat/WhatsAppFloat'
 import BottomNav from '@/components/Navigation/BottomNav'
 import { Analytics } from "@vercel/analytics/react"
 
+// Google Analytics ID
+const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'
+
 export default function RootLayout({ children }) {
   const [loading, setLoading] = useState(true)
 
