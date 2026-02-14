@@ -22,6 +22,16 @@ const lembagaData = [
     status: "active"
   },
   {
+    id: 3,
+    name: "Perpustakaan",
+    fullName: "Perpustakaan Institut",
+    description: "Unit lembaga yang menyediakan layanan perpustakaan digital dan konvensional dengan koleksi buku, jurnal, dan referensi ilmiah yang mendukung pembelajaran dan penelitian.",
+    url: "https://library.iaipersisgarut.ac.id",
+    icon: "fa-book",
+    category: "Lembaga",
+    status: "active"
+  },
+  {
     id: 4,
     name: "UPT TIK",
     fullName: "Unit Pelaksana Teknis Teknologi Informasi dan Komunikasi",
