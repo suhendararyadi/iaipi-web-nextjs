@@ -42,6 +42,16 @@ const lembagaData = [
     status: "active"
   },
   {
+    id: 22,
+    name: "IAIPI Press",
+    fullName: "Penerbitan Buku Akademik",
+    description: "Lembaga penerbitan kampus yang memfasilitasi publikasi buku ajar, monograf, dan karya ilmiah dosen serta mahasiswa dalam bentuk cetak maupun digital.",
+    url: "https://press.iaipersisgarut.ac.id",
+    icon: "fa-print",
+    category: "Lembaga",
+    status: "active"
+  },
+  {
     id: 4,
     name: "UPT TIK",
     fullName: "Unit Pelaksana Teknis Teknologi Informasi dan Komunikasi",
