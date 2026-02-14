@@ -53,7 +53,7 @@ const ModernSlider = () => {
     setIsMounted(true)
   }, [])
 
-  if (!isMounted) return <div className="slider-placeholder" style={{ height: '600px', background: '#07294d' }}></div>
+  if (!isMounted) return <div className="slider-placeholder" style={{ height: '750px', background: '#07294d' }}></div>
 
   return (
     <div className="modern-slider-container">
@@ -83,7 +83,7 @@ const ModernSlider = () => {
                 sizes="100vw"
                 style={{ objectFit: 'cover', zIndex: 1 }}
               />
-              <div className="slider-overlay" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2, background: 'rgba(0,0,0,0.3)' }}></div>
+              <div className="slider-overlay" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2, background: 'rgba(0,0,0,0.2)' }}></div>
             </div>
           </SwiperSlide>
         ))}
@@ -123,12 +123,17 @@ const ModernSlider = () => {
           background: #07294d;
         }
         :global(.main-banner-swiper) {
-          height: 600px !important;
+          height: 750px !important;
           width: 100% !important;
+        }
+        @media (max-width: 991px) {
+          :global(.main-banner-swiper) {
+            height: 600px !important;
+          }
         }
         @media (max-width: 767px) {
           :global(.main-banner-swiper) {
-            height: 400px !important;
+            height: 450px !important;
           }
         }
         .slider-nav-container {
@@ -138,8 +143,8 @@ const ModernSlider = () => {
           width: 100%;
           z-index: 50;
           background: rgba(7, 41, 77, 0.85);
-          backdrop-filter: blur(8px);
-          padding: 20px 0;
+          backdrop-filter: blur(10px);
+          padding: 25px 0;
           border-top: 1px solid rgba(255,255,255,0.1);
         }
         .custom-container {
@@ -150,7 +155,7 @@ const ModernSlider = () => {
         .slider-nav-row {
           display: flex;
           justify-content: space-between;
-          gap: 15px;
+          gap: 20px;
         }
         .nav-item {
           flex: 1;
@@ -162,11 +167,11 @@ const ModernSlider = () => {
         .nav-title {
           display: block;
           color: rgba(255, 255, 255, 0.6);
-          font-size: 13px;
+          font-size: 14px;
           font-weight: 500;
-          margin-bottom: 10px;
+          margin-bottom: 12px;
           text-transform: uppercase;
-          letter-spacing: 1px;
+          letter-spacing: 1.2px;
         }
         .nav-item.active .nav-title {
           color: #ffc600;
@@ -174,26 +179,26 @@ const ModernSlider = () => {
         }
         .progress-line-container {
           width: 100%;
-          height: 3px;
+          height: 4px;
           background: rgba(255, 255, 255, 0.15);
           border-radius: 2px;
           overflow: hidden;
         }
         .progress-line-fill {
           height: 100%;
-          background: #ffc600;
-          box-shadow: 0 0 10px rgba(255, 198, 0, 0.5);
+          background: #00a651; /* Hijau IAIPI Branding */
+          box-shadow: 0 0 12px rgba(0, 166, 81, 0.6);
         }
         @media (max-width: 767px) {
           .nav-title {
-            font-size: 9px;
+            font-size: 10px;
             letter-spacing: 0.5px;
           }
           .slider-nav-container {
-            padding: 12px 0;
+            padding: 15px 0;
           }
           .slider-nav-row {
-            gap: 5px;
+            gap: 8px;
           }
         }
       `}</style>
