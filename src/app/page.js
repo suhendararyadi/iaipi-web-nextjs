@@ -1,6 +1,6 @@
 import Header from '@/components/Header/Header'
 import Header2 from '@/components/Header2/Header2'
-import Slider from '@/components/Slider/Slider'
+import Slider from '@/components/Slider/ModernSlider'
 import Category from '@/components/Category/Category'
 import About from '@/components/About/About'
 import Apply from '@/components/Apply/Apply'
