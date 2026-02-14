@@ -44,6 +44,10 @@ const SLIDE_DATA = [
 
 const AUTOPLAY_DELAY = 5000
 
+// Warna Branding Footer (IAIPI Hijau Tua)
+const BRAND_GREEN = "#07294d" // Menyesuaikan dengan navy footer yang kamu maksud (biasanya footer pakai navy-dark ini)
+const IAIPI_GREEN = "#006a4e" // Alternatif Hijau Tua jika #07294d dirasa masih terlalu biru
+
 const ModernSlider = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const [swiper, setSwiper] = useState(null)
@@ -53,7 +57,7 @@ const ModernSlider = () => {
     setIsMounted(true)
   }, [])
 
-  if (!isMounted) return <div className="slider-placeholder" style={{ height: '750px', background: '#00a651' }}></div>
+  if (!isMounted) return <div className="slider-placeholder" style={{ height: '750px', background: BRAND_GREEN }}></div>
 
   return (
     <div className="modern-slider-container">
@@ -120,7 +124,7 @@ const ModernSlider = () => {
           position: relative;
           width: 100%;
           overflow: hidden;
-          background: #00a651;
+          background: #07294d;
         }
         :global(.main-banner-swiper) {
           height: 750px !important;
@@ -142,10 +146,10 @@ const ModernSlider = () => {
           left: 0;
           width: 100%;
           z-index: 50;
-          background: rgba(0, 166, 81, 0.9); /* Hijau IAIPI Branding */
+          background: #006a4e; /* Warna Hijau Tua Footer IAIPI */
           backdrop-filter: blur(10px);
           padding: 25px 0;
-          border-top: 1px solid rgba(255,255,255,0.2);
+          border-top: 1px solid rgba(255,255,255,0.1);
         }
         .custom-container {
           max-width: 1200px;
