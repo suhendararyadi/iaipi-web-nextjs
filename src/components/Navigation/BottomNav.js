@@ -74,7 +74,7 @@ const BottomNav = () => {
           bottom: 0;
           left: 0;
           width: 100%;
-          background: var(--iaipi-green, #006a4e);
+          background: #006a4e; /* Gunakan hex langsung untuk kepastian */
           backdrop-filter: blur(10px);
           z-index: 99999;
           border-top: 1px solid rgba(255, 255, 255, 0.15);
@@ -95,35 +95,41 @@ const BottomNav = () => {
           height: 65px;
         }
 
-        .bottom-nav-item {
+        /* Gunakan selector yang lebih spesifik agar Link dan A punya style identik */
+        .bottom-nav-row :global(.bottom-nav-item) {
           flex: 1;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          color: rgba(255, 255, 255, 0.7);
-          text-decoration: none;
-          transition: all 0.3s ease;
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          justify-content: center !important;
+          color: rgba(255, 255, 255, 0.7) !important;
+          text-decoration: none !important;
+          transition: all 0.3s ease !important;
+          background: transparent !important;
+          border: none !important;
+          outline: none !important;
         }
 
-        .bottom-nav-item i {
-          font-size: 20px;
-          margin-bottom: 4px;
+        .bottom-nav-row :global(.bottom-nav-item i) {
+          font-size: 20px !important;
+          margin-bottom: 4px !important;
+          display: block !important;
         }
 
-        .bottom-nav-item span {
-          font-size: 10px;
-          font-weight: 500;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
+        .bottom-nav-row :global(.bottom-nav-item span) {
+          font-size: 10px !important;
+          font-weight: 500 !important;
+          text-transform: uppercase !important;
+          letter-spacing: 0.5px !important;
+          display: block !important;
         }
 
-        .bottom-nav-item.active {
-          color: var(--iaipi-yellow, #ffc600);
+        .bottom-nav-row :global(.bottom-nav-item.active) {
+          color: #ffc600 !important;
         }
 
-        .bottom-nav-item:active {
-          transform: scale(0.9);
+        .bottom-nav-row :global(.bottom-nav-item:active) {
+          transform: scale(0.9) !important;
         }
       `}</style>
     </nav>
