@@ -51,6 +51,39 @@ const LayananContent = () => {
       status: "active"
     },
     {
+      id: 7,
+      name: "Repository Institusional",
+      shortName: "Repository",
+      category: "publikasi",
+      description: "Pusat arsip digital untuk karya ilmiah, skripsi, tesis, dan publikasi penelitian akademik Institut Agama Islam Persis Garut.",
+      url: "https://repository.iaipersisgarut.ac.id",
+      icon: "fa-database",
+      color: "#34495e",
+      status: "active"
+    },
+    {
+      id: 13,
+      name: "IAIPI Press",
+      shortName: "Press",
+      category: "publikasi",
+      description: "Lembaga penerbitan kampus yang memfasilitasi publikasi buku ajar, monograf, dan karya ilmiah dalam bentuk cetak maupun digital.",
+      url: "https://press.iaipersisgarut.ac.id",
+      icon: "fa-print",
+      color: "#e67e22",
+      status: "active"
+    },
+    {
+      id: 6,
+      name: "Sistem Informasi Perpustakaan",
+      shortName: "SIPERPUS",
+      category: "akademik",
+      description: "Layanan perpustakaan digital dengan koleksi buku, jurnal, dan referensi ilmiah yang mendukung pembelajaran.",
+      url: "https://library.iaipersisgarut.ac.id",
+      icon: "fa-book",
+      color: "#e74c3c",
+      status: "active"
+    },
+    {
       id: 5,
       name: "Portal E-Learning",
       shortName: "E-Learning",
@@ -58,29 +91,7 @@ const LayananContent = () => {
       description: "Platform pembelajaran online untuk kuliah jarak jauh dan materi digital.",
       url: "#",
       icon: "fa-laptop",
-      color: "#e67e22",
-      status: "coming"
-    },
-    {
-      id: 6,
-      name: "Sistem Informasi Perpustakaan",
-      shortName: "SIPERPUS",
-      category: "akademik",
-      description: "Katalog online, peminjaman buku, dan akses e-book perpustakaan.",
-      url: "#",
-      icon: "fa-book",
-      color: "#e74c3c",
-      status: "coming"
-    },
-    {
-      id: 7,
-      name: "Repository Institusional",
-      shortName: "Repository",
-      category: "publikasi",
-      description: "Kumpulan karya ilmiah, skripsi, tesis, dan publikasi civitas akademika.",
-      url: "#",
-      icon: "fa-archive",
-      color: "#34495e",
+      color: "#2980b9",
       status: "coming"
     },
     {

@@ -22,36 +22,6 @@ const lembagaData = [
     status: "active"
   },
   {
-    id: 3,
-    name: "Perpustakaan",
-    fullName: "Perpustakaan Institut",
-    description: "Unit yang menyediakan layanan perpustakaan digital dan konvensional dengan koleksi buku, jurnal, dan referensi ilmiah yang mendukung pembelajaran dan penelitian.",
-    url: "https://library.iaipersisgarut.ac.id",
-    icon: "fa-book",
-    category: "Unit",
-    status: "active"
-  },
-  {
-    id: 21,
-    name: "Repository",
-    fullName: "Institutional Repository",
-    description: "Pusat arsip digital untuk karya ilmiah, skripsi, tesis, dan publikasi penelitian akademik Institut Agama Islam Persis Garut.",
-    url: "https://repository.iaipersisgarut.ac.id",
-    icon: "fa-database",
-    category: "Unit",
-    status: "active"
-  },
-  {
-    id: 22,
-    name: "IAIPI Press",
-    fullName: "Penerbitan Buku Akademik",
-    description: "Lembaga penerbitan kampus yang memfasilitasi publikasi buku ajar, monograf, dan karya ilmiah dosen serta mahasiswa dalam bentuk cetak maupun digital.",
-    url: "https://press.iaipersisgarut.ac.id",
-    icon: "fa-print",
-    category: "Lembaga",
-    status: "active"
-  },
-  {
     id: 4,
     name: "UPT TIK",
     fullName: "Unit Pelaksana Teknis Teknologi Informasi dan Komunikasi",
