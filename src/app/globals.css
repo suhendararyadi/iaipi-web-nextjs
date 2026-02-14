@@ -65,35 +65,33 @@ a {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
-  background: rgba(7, 41, 77, 0.7);
-  color: #fff;
+  z-index: 100; /* Ditingkatkan agar di atas elemen lain */
+  background: #07294d !important; /* Warna solid agar tidak transparan */
+  color: #fff !important;
   border: none;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   cursor: pointer;
-  display: flex !important; /* Force display since Slick might hide them */
+  display: flex !important;
   align-items: center;
   justify-content: center;
   font-size: 24px;
   transition: all 0.3s ease;
-  visibility: hidden;
-  opacity: 0;
+  opacity: 1; /* Selalu muncul dulu untuk debugging, nanti kita atur hover-nya */
 }
 
-#slider-part:hover .custom-slider-prev,
-#slider-part:hover .custom-slider-next {
-  visibility: visible;
-  opacity: 1;
+/* Container slider harus relatif */
+#slider-part {
+  position: relative !important;
 }
 
 .custom-slider-prev {
-  left: 20px;
+  left: 30px !important;
 }
 
 .custom-slider-next {
-  right: 20px;
+  right: 30px !important;
 }
 
 .custom-slider-prev:hover,
@@ -101,6 +99,11 @@ a {
   background: #ffc600 !important;
   color: #07294d !important;
   transform: translateY(-50%) scale(1.1);
+}
+
+/* Pastikan panah bawaan slick hilang */
+.slick-arrow.slick-hidden {
+  display: none;
 }
 
 /* Slider Progress Bar (Indicator) */
