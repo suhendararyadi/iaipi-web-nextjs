@@ -42,9 +42,14 @@ a {
 }
 
 /* Slider Styles */
-#slider-part {
+.slider-container {
   position: relative;
-  overflow: hidden;
+  width: 100%;
+}
+
+#slider-part {
+  position: relative !important;
+  z-index: 1;
 }
 
 .slider-wrapper {
@@ -65,8 +70,8 @@ a {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 100; /* Ditingkatkan agar di atas elemen lain */
-  background: #07294d !important; /* Warna solid agar tidak transparan */
+  z-index: 9999 !important; /* Level Dewa */
+  background: #07294d !important;
   color: #fff !important;
   border: none;
   width: 50px;
@@ -77,13 +82,8 @@ a {
   align-items: center;
   justify-content: center;
   font-size: 24px;
-  transition: all 0.3s ease;
-  opacity: 1; /* Selalu muncul dulu untuk debugging, nanti kita atur hover-nya */
-}
-
-/* Container slider harus relatif */
-#slider-part {
-  position: relative !important;
+  transition: all 0.2s ease;
+  pointer-events: auto !important;
 }
 
 .custom-slider-prev {
@@ -101,9 +101,9 @@ a {
   transform: translateY(-50%) scale(1.1);
 }
 
-/* Pastikan panah bawaan slick hilang */
-.slick-arrow.slick-hidden {
-  display: none;
+/* Sembunyikan panah bawaan */
+.slick-prev, .slick-next, .slick-arrow {
+  display: none !important;
 }
 
 /* Slider Progress Bar (Indicator) */
@@ -140,8 +140,6 @@ a {
   color: #ffc600 !important;
   opacity: 1;
 }
-
-/* Header3 */
 
 /* Header 3 Styles */
 .header-3 {

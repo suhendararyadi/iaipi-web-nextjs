@@ -82,7 +82,7 @@ const Slider = () => {
   }
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div className="slider-container">
       <section id="slider-part" className="slider-active">
         {/* Slide 1 */}
         <div className="single-slider slider-wrapper">
