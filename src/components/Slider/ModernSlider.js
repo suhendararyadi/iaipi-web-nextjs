@@ -91,7 +91,7 @@ const ModernSlider = () => {
 
       {/* Hybrid Text-Progress Navigation */}
       <div className="slider-nav-container">
-        <div className="container">
+        <div className="custom-container">
           <div className="slider-nav-row">
             {SLIDE_DATA.map((slide, index) => (
               <div
@@ -120,6 +120,7 @@ const ModernSlider = () => {
           position: relative;
           width: 100%;
           overflow: hidden;
+          min-height: 400px;
         }
         .main-banner-swiper {
           height: 600px;
@@ -152,6 +153,11 @@ const ModernSlider = () => {
           background: rgba(7, 41, 77, 0.8);
           backdrop-filter: blur(5px);
           padding: 15px 0;
+        }
+        .custom-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 15px;
         }
         .slider-nav-row {
           display: flex;
