@@ -44,10 +44,6 @@ const SLIDE_DATA = [
 
 const AUTOPLAY_DELAY = 5000
 
-// Warna Branding Footer (IAIPI Hijau Tua)
-const BRAND_GREEN = "#07294d" // Menyesuaikan dengan navy footer yang kamu maksud (biasanya footer pakai navy-dark ini)
-const IAIPI_GREEN = "#006a4e" // Alternatif Hijau Tua jika #07294d dirasa masih terlalu biru
-
 const ModernSlider = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const [swiper, setSwiper] = useState(null)
@@ -57,7 +53,7 @@ const ModernSlider = () => {
     setIsMounted(true)
   }, [])
 
-  if (!isMounted) return <div className="slider-placeholder" style={{ height: '750px', background: BRAND_GREEN }}></div>
+  if (!isMounted) return <div className="slider-placeholder" style={{ height: '750px', background: 'var(--iaipi-navy)' }}></div>
 
   return (
     <div className="modern-slider-container">
@@ -124,7 +120,7 @@ const ModernSlider = () => {
           position: relative;
           width: 100%;
           overflow: hidden;
-          background: #07294d;
+          background: var(--iaipi-navy);
         }
         :global(.main-banner-swiper) {
           height: 750px !important;
@@ -146,7 +142,7 @@ const ModernSlider = () => {
           left: 0;
           width: 100%;
           z-index: 50;
-          background: #006a4e; /* Warna Hijau Tua Footer IAIPI */
+          background: var(--iaipi-green);
           backdrop-filter: blur(10px);
           padding: 25px 0;
           border-top: 1px solid rgba(255,255,255,0.1);
@@ -178,7 +174,7 @@ const ModernSlider = () => {
           letter-spacing: 1.2px;
         }
         .nav-item.active .nav-title {
-          color: #ffc600; /* Kuning Branding */
+          color: var(--iaipi-yellow);
           font-weight: 700;
         }
         .progress-line-container {
@@ -190,7 +186,7 @@ const ModernSlider = () => {
         }
         .progress-line-fill {
           height: 100%;
-          background: #ffc600; /* Kuning Branding */
+          background: var(--iaipi-yellow);
           box-shadow: 0 0 12px rgba(255, 198, 0, 0.6);
         }
         @media (max-width: 767px) {
@@ -199,7 +195,7 @@ const ModernSlider = () => {
             letter-spacing: 0.5px;
           }
           .slider-nav-container {
-            padding: 15px 0;
+            padding: 12px 0;
           }
           .slider-nav-row {
             gap: 8px;

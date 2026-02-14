@@ -1,10 +1,8 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Script from 'next/script'
-import { Analytics } from "@vercel/analytics/react"
-
-// Google Analytics ID - Replace with your actual GA4 Measurement ID
-const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX' // TODO: Replace with real ID
+import WhatsAppFloat from '@/components/WhatsAppFloat/WhatsAppFloat'
+import BottomNav from '@/components/Navigation/BottomNav'
 
 export default function RootLayout({ children }) {
   const [loading, setLoading] = useState(true)
@@ -112,6 +110,7 @@ export default function RootLayout({ children }) {
         <main id="main-content">
           {children}
           <Analytics />
+          <BottomNav />
         </main>
 
         {/* Back to top button */}
