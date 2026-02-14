@@ -53,7 +53,7 @@ const ModernSlider = () => {
     setIsMounted(true)
   }, [])
 
-  if (!isMounted) return <div className="slider-placeholder" style={{ height: '750px', background: '#07294d' }}></div>
+  if (!isMounted) return <div className="slider-placeholder" style={{ height: '750px', background: '#00a651' }}></div>
 
   return (
     <div className="modern-slider-container">
@@ -83,7 +83,7 @@ const ModernSlider = () => {
                 sizes="100vw"
                 style={{ objectFit: 'cover', zIndex: 1 }}
               />
-              <div className="slider-overlay" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2, background: 'rgba(0,0,0,0.2)' }}></div>
+              <div className="slider-overlay" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2, background: 'rgba(0,0,0,0.15)' }}></div>
             </div>
           </SwiperSlide>
         ))}
@@ -120,7 +120,7 @@ const ModernSlider = () => {
           position: relative;
           width: 100%;
           overflow: hidden;
-          background: #07294d;
+          background: #00a651;
         }
         :global(.main-banner-swiper) {
           height: 750px !important;
@@ -142,10 +142,10 @@ const ModernSlider = () => {
           left: 0;
           width: 100%;
           z-index: 50;
-          background: rgba(7, 41, 77, 0.85);
+          background: rgba(0, 166, 81, 0.9); /* Hijau IAIPI Branding */
           backdrop-filter: blur(10px);
           padding: 25px 0;
-          border-top: 1px solid rgba(255,255,255,0.1);
+          border-top: 1px solid rgba(255,255,255,0.2);
         }
         .custom-container {
           max-width: 1200px;
@@ -166,7 +166,7 @@ const ModernSlider = () => {
         }
         .nav-title {
           display: block;
-          color: rgba(255, 255, 255, 0.6);
+          color: rgba(255, 255, 255, 0.8);
           font-size: 14px;
           font-weight: 500;
           margin-bottom: 12px;
@@ -174,20 +174,20 @@ const ModernSlider = () => {
           letter-spacing: 1.2px;
         }
         .nav-item.active .nav-title {
-          color: #ffc600;
+          color: #ffc600; /* Kuning Branding */
           font-weight: 700;
         }
         .progress-line-container {
           width: 100%;
           height: 4px;
-          background: rgba(255, 255, 255, 0.15);
+          background: rgba(255, 255, 255, 0.2);
           border-radius: 2px;
           overflow: hidden;
         }
         .progress-line-fill {
           height: 100%;
-          background: #00a651; /* Hijau IAIPI Branding */
-          box-shadow: 0 0 12px rgba(0, 166, 81, 0.6);
+          background: #ffc600; /* Kuning Branding */
+          box-shadow: 0 0 12px rgba(255, 198, 0, 0.6);
         }
         @media (max-width: 767px) {
           .nav-title {
