@@ -67,6 +67,65 @@ const BottomNav = () => {
           )
         })}
       </div>
+
+      <style jsx>{`
+        .bottom-nav {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          background: var(--iaipi-green, #006a4e);
+          backdrop-filter: blur(10px);
+          z-index: 99999;
+          border-top: 1px solid rgba(255, 255, 255, 0.15);
+          padding-bottom: env(safe-area-inset-bottom);
+          box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+
+        @media (min-width: 768px) {
+          .bottom-nav {
+            display: none;
+          }
+        }
+
+        .bottom-nav-row {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          height: 65px;
+        }
+
+        .bottom-nav-item {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          color: rgba(255, 255, 255, 0.7);
+          text-decoration: none;
+          transition: all 0.3s ease;
+        }
+
+        .bottom-nav-item i {
+          font-size: 20px;
+          margin-bottom: 4px;
+        }
+
+        .bottom-nav-item span {
+          font-size: 10px;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        .bottom-nav-item.active {
+          color: var(--iaipi-yellow, #ffc600);
+        }
+
+        .bottom-nav-item:active {
+          transform: scale(0.9);
+        }
+      `}</style>
     </nav>
   )
 }
