@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Script from 'next/script'
 import WhatsAppFloat from '@/components/WhatsAppFloat/WhatsAppFloat'
 import BottomNav from '@/components/Navigation/BottomNav'
+import { Analytics } from "@vercel/analytics/react"
 
 export default function RootLayout({ children }) {
   const [loading, setLoading] = useState(true)
