@@ -14,10 +14,9 @@ const BottomNav = () => {
     },
     {
       id: 2,
-      name: 'Berita',
-      icon: 'fa-newspaper-o',
-      url: 'https://news.iaipersisgarut.ac.id',
-      external: true,
+      name: 'Fakultas',
+      icon: 'fa-graduation-cap',
+      url: '/fakultas',
     },
     {
       id: 3,
