@@ -142,10 +142,10 @@ const ModernSlider = () => {
           left: 0;
           width: 100%;
           z-index: 50;
-          background: var(--iaipi-green);
-          backdrop-filter: blur(10px);
+          background: rgba(0, 106, 78, 0.7); /* Transparan hijau untuk efek glass */
+          backdrop-filter: blur(15px) saturate(150%);
           padding: 25px 0;
-          border-top: 1px solid rgba(255,255,255,0.1);
+          border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
         .custom-container {
           max-width: 1200px;
@@ -166,16 +166,20 @@ const ModernSlider = () => {
         }
         .nav-title {
           display: block;
-          color: rgba(255, 255, 255, 0.8);
+          color: #ffffff; /* Putih bersih agar tidak gelap */
+          text-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Shadow agar lebih timbul */
           font-size: 14px;
-          font-weight: 500;
+          font-weight: 600; /* Lebih tebal sedikit */
           margin-bottom: 12px;
           text-transform: uppercase;
           letter-spacing: 1.2px;
+          opacity: 0.8;
         }
         .nav-item.active .nav-title {
           color: var(--iaipi-yellow);
-          font-weight: 700;
+          opacity: 1;
+          font-weight: 800;
+          text-shadow: 0 0 10px rgba(255, 198, 0, 0.3);
         }
         .progress-line-container {
           width: 100%;
