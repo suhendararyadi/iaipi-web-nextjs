@@ -166,20 +166,20 @@ const ModernSlider = () => {
         }
         .nav-title {
           display: block;
-          color: #ffffff; /* Putih bersih agar tidak gelap */
-          text-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Shadow agar lebih timbul */
+          color: #ffffff; /* Putih bersih saat tidak aktif */
+          text-shadow: 0 2px 4px rgba(0,0,0,0.3);
           font-size: 14px;
-          font-weight: 600; /* Lebih tebal sedikit */
+          font-weight: 600;
           margin-bottom: 12px;
           text-transform: uppercase;
           letter-spacing: 1.2px;
           opacity: 0.8;
         }
         .nav-item.active .nav-title {
-          color: var(--iaipi-yellow);
+          color: #ffc600; /* Kuning cerah saat aktif */
           opacity: 1;
           font-weight: 800;
-          text-shadow: 0 0 10px rgba(255, 198, 0, 0.3);
+          text-shadow: 0 0 10px rgba(255, 198, 0, 0.4);
         }
         .progress-line-container {
           width: 100%;
@@ -190,7 +190,7 @@ const ModernSlider = () => {
         }
         .progress-line-fill {
           height: 100%;
-          background: var(--iaipi-yellow);
+          background: #ffc600; /* Progress bar warna kuning sesuai branding */
           box-shadow: 0 0 12px rgba(255, 198, 0, 0.6);
         }
         @media (max-width: 767px) {
