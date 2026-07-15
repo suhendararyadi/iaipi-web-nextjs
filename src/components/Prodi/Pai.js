@@ -1,34 +1,153 @@
 'use client'
 import { useState } from 'react'
 
-// Profil, visi, SK pendirian, status akreditasi, dan kerangka kurikulum di bawah ini
-// disampaikan langsung oleh pengelola prodi (bukan hasil ekstraksi dokumen PDF seperti
-// PGMI). Rincian fasilitas belum tercantum spesifik di sumbernya dan masih berupa
-// kerangka umum — perlu disesuaikan/diverifikasi dengan data sarana FTK sebelum publish.
+// Sumber: Dokumen Kurikulum Program Studi PAI FTK IAI Persis Garut Tahun 2024
+// (SK Dekan FTK No. 00255/B.3-E.5/IAIPI-G/2024), 150 SKS/8 semester. Identitas, visi,
+// misi, tujuan, profil lulusan, CPL, dan struktur mata kuliah diambil langsung dari
+// dokumen resmi tersebut (Bagian II & VII). Fasilitas fisik tidak dirinci di dokumen
+// kurikulum sehingga masih bersifat perkiraan berdasarkan nama mata kuliah — perlu
+// dikonfirmasi ke prodi sebelum publish.
 const PaiContent = () => {
   const [activeTab, setActiveTab] = useState('profil')
 
   const profilLulusan = [
-    { icon: "fa-graduation-cap", title: "Pendidik PAI Profesional", desc: "Mengajar Pendidikan Agama Islam di sekolah, madrasah, dan lembaga pendidikan Islam" },
+    { icon: "fa-graduation-cap", title: "Pendidik PAI Profesional", desc: "Mengajar Pendidikan Agama Islam di sekolah, madrasah, pesantren, dan lembaga pendidikan Islam" },
     { icon: "fa-lightbulb-o", title: "Pengembang Pendidikan Islam", desc: "Mengembangkan kurikulum, media, dan program pendidikan Islam yang inovatif" },
-    { icon: "fa-search", title: "Peneliti Pemula Pendidikan Islam", desc: "Melakukan penelitian awal dalam bidang pendidikan agama Islam" },
-    { icon: "fa-institution", title: "Penggerak Dakwah & Pemberdayaan", desc: "Menggerakkan dakwah dan pemberdayaan masyarakat berbasis nilai Islam" },
-    { icon: "fa-rocket", title: "Edupreneur Pendidikan Islam", desc: "Merintis lembaga pendidikan, pelatihan, atau konten dakwah digital" }
+    { icon: "fa-search", title: "Peneliti Pendidikan Islam", desc: "Melakukan penelitian dalam bidang pendidikan agama Islam, pembelajaran, dan kajian keislaman" },
+    { icon: "fa-institution", title: "Penggerak Dakwah & Pemberdayaan", desc: "Membina masyarakat, menggerakkan dakwah, dan mengembangkan literasi keislaman" },
+    { icon: "fa-rocket", title: "Edupreneur Pendidikan Islam", desc: "Mengembangkan lembaga, media, pelatihan, dan usaha kreatif berbasis pendidikan Islam" }
   ]
 
-  const kurikulumHighlight = [
-    { label: "Beban Studi", value: "144 SKS", icon: "fa-list-alt" },
-    { label: "Masa Studi", value: "8 Semester", icon: "fa-calendar" },
-    { label: "Pendekatan", value: "OBE (Outcome-Based Education)", icon: "fa-bullseye" },
-    { label: "Acuan", value: "KKNI, SN-Dikti & MBKM", icon: "fa-balance-scale" }
-  ]
-
-  const strukturKurikulum = [
-    { icon: "fa-institution", title: "Penguatan Keislaman & Turats", desc: "Pendalaman Al-Qur'an, Hadis, Fiqih, Akidah Akhlak, SKI, dan khazanah turats Islam" },
-    { icon: "fa-child", title: "Ilmu Kependidikan & Pedagogik PAI", desc: "Teori pendidikan, psikologi belajar, dan metodologi pembelajaran PAI" },
-    { icon: "fa-laptop", title: "Metodologi Pembelajaran & Teknologi Pendidikan", desc: "Strategi pembelajaran aktif serta pemanfaatan teknologi dalam pengajaran PAI" },
-    { icon: "fa-flask", title: "Penelitian Pendidikan", desc: "Metodologi penelitian dan penulisan karya ilmiah bidang pendidikan Islam" },
-    { icon: "fa-users", title: "Dakwah & Pemberdayaan Masyarakat", desc: "Praktik dakwah, pengabdian, dan pemberdayaan masyarakat berbasis nilai Islam" }
+  const kurikulumSingkat = [
+    {
+      semester: "Semester 1",
+      totalSKS: 19,
+      fokus: "Penguatan Dasar Keislaman, Akademik & Literasi",
+      matkul: [
+        { nama: "Pancasila dan Kewarganegaraan", sks: 3 },
+        { nama: "Bahasa Indonesia", sks: 2 },
+        { nama: "Ilmu Tauhid", sks: 2 },
+        { nama: "Fiqh Ibadah", sks: 2 },
+        { nama: "Ulumul Qur'an", sks: 2 },
+        { nama: "Filsafat Umum", sks: 2 },
+        { nama: "Bahasa Arab", sks: 2 },
+        { nama: "Bahasa Inggris", sks: 2 },
+        { nama: "Filsafat dan Landasan Pendidikan Islam", sks: 2 }
+      ]
+    },
+    {
+      semester: "Semester 2",
+      totalSKS: 20,
+      fokus: "Penguatan Dasar Keislaman, Akademik & Literasi",
+      matkul: [
+        { nama: "Bahasa dan Budaya Sunda", sks: 2 },
+        { nama: "Ilmu Akhlak dan Adab", sks: 2 },
+        { nama: "Praktik Ibadah dan Baca Tulis Al-Qur'an", sks: 2 },
+        { nama: "Ulumul Hadis", sks: 2 },
+        { nama: "Panduan Hidup Islam", sks: 2 },
+        { nama: "Psikologi Pendidikan", sks: 2 },
+        { nama: "Fiqih Muamalah dan Jinayah", sks: 2 },
+        { nama: "Tafsir Tarbawi", sks: 2 },
+        { nama: "Hadis Tarbawi", sks: 2 },
+        { nama: "Ilmu Alamiah Sosial Budaya Dasar (IASBD)", sks: 2 }
+      ]
+    },
+    {
+      semester: "Semester 3",
+      totalSKS: 24,
+      fokus: "Penguatan Pedagogik & Penguasaan Materi PAI",
+      matkul: [
+        { nama: "Kepersisan", sks: 2 },
+        { nama: "Ushul Fiqh", sks: 2 },
+        { nama: "Dunia Islam Kontemporer", sks: 2 },
+        { nama: "Perkembangan Peserta Didik", sks: 2 },
+        { nama: "Manajemen dan Administrasi Pendidikan", sks: 2 },
+        { nama: "Ilmu Nahwu dan Sharaf", sks: 2 },
+        { nama: "English for Academic Purposes", sks: 2 },
+        { nama: "Ilmu Pendidikan Islam", sks: 2 },
+        { nama: "Belajar dan Pembelajaran PAI", sks: 2 },
+        { nama: "Bimbingan Konseling", sks: 2 },
+        { nama: "Sosiologi Pendidikan", sks: 2 },
+        { nama: "Fiqih Munakahat dan Mawarits", sks: 2 }
+      ]
+    },
+    {
+      semester: "Semester 4",
+      totalSKS: 24,
+      fokus: "Penguatan Pedagogik & Penguasaan Materi PAI",
+      matkul: [
+        { nama: "Ushul ad-Dakwah", sks: 2 },
+        { nama: "Komunikasi Pembelajaran", sks: 2 },
+        { nama: "Penelitian Tindakan Kelas", sks: 2 },
+        { nama: "Kapita Selekta dan Perbandingan Pendidikan", sks: 2 },
+        { nama: "Pengembangan Kurikulum Pendidikan", sks: 2 },
+        { nama: "Model dan Metode Pembelajaran PAI", sks: 2 },
+        { nama: "Pendidikan Karakter dan Nilai (Pilihan)", sks: 2 },
+        { nama: "Materi Pembelajaran SKI MTs/SMP", sks: 2 },
+        { nama: "Materi Pembelajaran Akidah Akhlak MTs/SMP", sks: 2 },
+        { nama: "Materi Pembelajaran Fikih MTs/SMP", sks: 2 },
+        { nama: "Materi Pembelajaran Al-Qur'an Hadis MTs/SMP", sks: 2 },
+        { nama: "Teknik Penulisan Karya Ilmiah", sks: 2 }
+      ]
+    },
+    {
+      semester: "Semester 5",
+      totalSKS: 24,
+      fokus: "Penguatan Teknologi Pembelajaran & Penelitian",
+      matkul: [
+        { nama: "Sejarah Peradaban Islam", sks: 2 },
+        { nama: "Statistika Pendidikan", sks: 2 },
+        { nama: "Perencanaan Pembelajaran PAI", sks: 2 },
+        { nama: "Inovasi Pendidikan", sks: 2 },
+        { nama: "Metodologi Penelitian Pendidikan", sks: 2 },
+        { nama: "Media dan Strategi Pembelajaran PAI", sks: 2 },
+        { nama: "Materi Pembelajaran SKI MA/SMA", sks: 2 },
+        { nama: "Materi Pembelajaran Akidah Akhlak MA/SMA", sks: 2 },
+        { nama: "Materi Pembelajaran Fikih MA/SMA", sks: 2 },
+        { nama: "Materi Pembelajaran Al-Qur'an Hadis MA/SMA", sks: 2 },
+        { nama: "Pembelajaran Bahasa Arab di Madrasah/Sekolah", sks: 2 },
+        { nama: "Manajemen Lembaga Pendidikan Madrasah dan Pesantren", sks: 2 }
+      ]
+    },
+    {
+      semester: "Semester 6",
+      totalSKS: 23,
+      fokus: "Penguatan Teknologi Pembelajaran & Penelitian",
+      matkul: [
+        { nama: "Evaluasi Pembelajaran", sks: 2 },
+        { nama: "Pembelajaran PAI Anak Berkebutuhan Khusus (ABK)", sks: 2 },
+        { nama: "Edupreneurship", sks: 2 },
+        { nama: "Studi Naskah Arab", sks: 2 },
+        { nama: "Pendidikan Agama Islam Luar Sekolah", sks: 2 },
+        { nama: "Computational Thinking", sks: 2 },
+        { nama: "Pengelolaan Kelas", sks: 2 },
+        { nama: "Microteaching", sks: 2 },
+        { nama: "Akhlak dan Etika Profesi Guru", sks: 2 },
+        { nama: "E-Learning PAI", sks: 2 },
+        { nama: "Masa Pengabdian pada Masyarakat", sks: 3 }
+      ]
+    },
+    {
+      semester: "Semester 7",
+      totalSKS: 10,
+      fokus: "Praktik Lapangan & Implementasi Pembelajaran",
+      matkul: [
+        { nama: "Telaah Pendidikan dan Pembelajaran Pesantren", sks: 2 },
+        { nama: "Artificial Intelligence (AI) for Islamic Education", sks: 2 },
+        { nama: "Seminar PAI", sks: 2 },
+        { nama: "Praktik Pengalaman Lapangan (PPL)", sks: 4 },
+        { nama: "Ujian Komprehensif", sks: 0 },
+        { nama: "Sidang Proposal", sks: 0 }
+      ]
+    },
+    {
+      semester: "Semester 8",
+      totalSKS: 6,
+      fokus: "Penelitian & Penyelesaian Tugas Akhir",
+      matkul: [
+        { nama: "Tugas Akhir (Skripsi)", sks: 6 }
+      ]
+    }
   ]
 
   const fasilitasData = [
@@ -177,8 +296,8 @@ const PaiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Kompetensi Pedagogik</h6>
-                        <p>Menguasai metodologi pembelajaran PAI yang efektif dan inovatif</p>
+                        <h6>Sikap dan Tata Nilai</h6>
+                        <p>Bertakwa kepada Allah Swt., menjunjung tinggi akhlakul karimah, integritas, dan mengembangkan semangat dakwah serta kepedulian sosial</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -186,8 +305,8 @@ const PaiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Kompetensi Profesional</h6>
-                        <p>Memahami materi Al-Quran, Hadis, Fiqih, Akidah Akhlak, SKI, dan mengintegrasikan teknologi dalam pembelajaran PAI</p>
+                        <h6>Pengetahuan Keislaman & Kependidikan</h6>
+                        <p>Menguasai konsep dasar pendidikan Islam, kajian Al-Qur'an, Hadis, Fikih, Akhlak, SKI, turats Islam, serta teknologi pembelajaran</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -195,8 +314,8 @@ const PaiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Kompetensi Sosial</h6>
-                        <p>Mampu berdakwah, berkomunikasi, dan memberdayakan masyarakat berbasis nilai Islam</p>
+                        <h6>Keterampilan Umum</h6>
+                        <p>Mampu berpikir kritis, menyusun karya ilmiah, berkomunikasi efektif, dan memanfaatkan teknologi informasi</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -204,8 +323,8 @@ const PaiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Kompetensi Kepribadian</h6>
-                        <p>Memiliki akhlak mulia dan menjadi teladan bagi peserta didik</p>
+                        <h6>Keterampilan Khusus</h6>
+                        <p>Mampu merancang, melaksanakan, dan mengevaluasi pembelajaran PAI berbasis OBE dan teknologi, serta mengintegrasikan turats Islam dalam pembelajaran</p>
                       </div>
                     </div>
                   </div>
@@ -217,39 +336,31 @@ const PaiContent = () => {
               <div className="tab-content-modern fade-in">
                 <div className="content-card">
                   <h3 className="content-title">Struktur Kurikulum</h3>
-                  <p className="mb-4">Kurikulum PAI 2024 dikembangkan dengan paradigma integratif — memadukan ilmu pendidikan Islam, penguatan turats, dan ilmu pengetahuan modern — berbasis Outcome-Based Education (OBE) dan mengacu pada KKNI, SN-Dikti, serta kebijakan Merdeka Belajar Kampus Merdeka (MBKM).</p>
+                  <p className="mb-4">Kurikulum PAI 2024 dikembangkan dengan paradigma integratif — memadukan ilmu pendidikan Islam, penguatan turats, dan ilmu pengetahuan modern — berbasis Outcome-Based Education (OBE) dan mengacu pada KKNI, SN-Dikti, serta kebijakan Merdeka Belajar Kampus Merdeka (MBKM), dengan total 150 SKS.</p>
 
-                  <div className="row">
-                    {kurikulumHighlight.map((item, idx) => (
-                      <div key={idx} className="col-lg-3 col-md-6 mb-4">
-                        <div className="info-box-small text-center">
-                          <h6><i className={`fa ${item.icon}`}></i> {item.label}</h6>
-                          <p>{item.value}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <h4 className="mt-5 mb-4">Kelompok Mata Kuliah</h4>
-                  <div className="row">
-                    {strukturKurikulum.map((item, idx) => (
-                      <div key={idx} className="col-lg-6 mb-4">
-                        <div className="fasilitas-card-modern">
-                          <div className="fasilitas-icon-modern">
-                            <i className={`fa ${item.icon}`}></i>
+                  <div className="kurikulum-timeline">
+                    {kurikulumSingkat.map((sem, idx) => (
+                      <div key={idx} className="timeline-item">
+                        <div className="timeline-marker">{idx + 1}</div>
+                        <div className="timeline-content">
+                          <div className="semester-header">
+                            <h4>{sem.semester}</h4>
+                            <div className="semester-meta">
+                              <span className="sks-badge">{sem.totalSKS} SKS</span>
+                              <span className="fokus-badge">{sem.fokus}</span>
+                            </div>
                           </div>
-                          <div className="fasilitas-content-modern">
-                            <h5>{item.title}</h5>
-                            <p>{item.desc}</p>
+                          <div className="matkul-grid">
+                            {sem.matkul.map((mk, midx) => (
+                              <div key={midx} className="matkul-chip">
+                                <span className="mk-name">{mk.nama}</span>
+                                <span className="mk-sks">{mk.sks} SKS</span>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       </div>
                     ))}
-                  </div>
-
-                  <div className="alumni-note mt-4">
-                    <i className="fa fa-info-circle"></i>
-                    <p>Setiap mata kuliah diturunkan dari profil lulusan dan Capaian Pembelajaran Lulusan (CPL) yang mencakup sikap, pengetahuan, keterampilan umum, dan keterampilan khusus, sehingga membentuk kompetensi pedagogik, profesional, sosial, dan kepribadian yang seimbang.</p>
                   </div>
                 </div>
               </div>
@@ -372,6 +483,63 @@ const PaiContent = () => {
                 </div>
               </div>
             )}
+          </div>
+        </div>
+
+        {/* Visi, Misi & Tujuan */}
+        <div className="row mt-5">
+          <div className="col-lg-12">
+            <div className="visi-misi-faculty">
+              <div className="row">
+                <div className="col-lg-4 col-md-6 mb-4">
+                  <div className="vm-card">
+                    <div className="vm-icon">
+                      <i className="fa fa-eye"></i>
+                    </div>
+                    <div className="vm-content">
+                      <h4>Visi</h4>
+                      <p>Menjadi Program Studi Pendidikan Agama Islam yang unggul dalam pengembangan pendidikan Islam berbasis turats, teknologi pembelajaran, dan nilai-nilai Persatuan Islam untuk menghasilkan pendidik profesional, religius, dan berdaya saing pada tahun 2028.</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-4 col-md-6 mb-4">
+                  <div className="vm-card">
+                    <div className="vm-icon">
+                      <i className="fa fa-bullseye"></i>
+                    </div>
+                    <div className="vm-content">
+                      <h4>Misi</h4>
+                      <ul>
+                        <li>Menyelenggarakan pendidikan dan pembelajaran PAI yang unggul dan berbasis turats</li>
+                        <li>Mengembangkan penelitian dalam bidang pendidikan agama Islam</li>
+                        <li>Melaksanakan pengabdian kepada masyarakat</li>
+                        <li>Mengembangkan budaya akademik Islami</li>
+                        <li>Mengembangkan kerja sama strategis dengan sekolah, madrasah, pesantren, dan lembaga dakwah</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-4 col-md-6 mb-4">
+                  <div className="vm-card">
+                    <div className="vm-icon">
+                      <i className="fa fa-flag"></i>
+                    </div>
+                    <div className="vm-content">
+                      <h4>Tujuan</h4>
+                      <p>Menghasilkan sarjana Pendidikan Agama Islam yang:</p>
+                      <ul>
+                        <li>Unggul dalam bidang pendidikan Islam</li>
+                        <li>Profesional dalam pembelajaran</li>
+                        <li>Menguasai turats Islam</li>
+                        <li>Berakhlakul karimah</li>
+                        <li>Adaptif terhadap perkembangan teknologi</li>
+                        <li>Memiliki kemampuan dakwah serta kepemimpinan sosial</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
