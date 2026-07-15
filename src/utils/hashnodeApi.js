@@ -1,14 +1,20 @@
 // src/utils/hashnodeApi.js
 
-const GQL_ENDPOINT = 'https://gql.hashnode.com';
+// NOTE: trailing slash is required. Posting to 'https://gql.hashnode.com' (no slash)
+// triggers a redirect that turns the POST into a GET, which returns the GraphQL
+// playground HTML instead of JSON. The official endpoint is the slashed URL.
+const GQL_ENDPOINT = 'https://gql.hashnode.com/';
 const PUBLICATION_HOST = 'news.iaipersisgarut.ac.id';
 
+// `id` is included so Hashnode's Stellate CDN can invalidate this query's cache
+// correctly when posts change.
 const QUERY = `
   query {
     publication(host: "${PUBLICATION_HOST}") {
       posts(first: 6) {
         edges {
           node {
+            id
             title
             brief
             slug
@@ -42,9 +48,7 @@ function mapPosts(edges) {
   }));
 }
 
-// Returns { posts, debug }. `debug` explains why posts is empty (used by /api/news
-// while diagnosing). Sends a browser-like User-Agent because Hashnode sits behind
-// Cloudflare and can reject requests without one.
+// Returns { posts, debug }. `debug` explains an empty result (used by /api/news).
 export async function fetchHashnode() {
   try {
     const response = await fetch(GQL_ENDPOINT, {
@@ -52,12 +56,9 @@ export async function fetchHashnode() {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        'User-Agent':
-          'Mozilla/5.0 (compatible; iaipi-web/1.0; +https://iaipersisgarut.ac.id)',
       },
       body: JSON.stringify({ query: QUERY }),
-      // Bypass fetch cache while diagnosing so we always see the live result.
-      cache: 'no-store',
+      next: { revalidate: 3600 }, // cache 1 hour (server-side ISR)
     });
 
     const text = await response.text();
@@ -71,34 +72,25 @@ export async function fetchHashnode() {
         debug: {
           stage: 'json-parse-failed',
           status: response.status,
-          ok: response.ok,
-          snippet: text.slice(0, 300),
+          contentType: response.headers.get('content-type'),
+          snippet: text.slice(0, 200),
         },
       };
     }
 
     if (json.errors) {
-      return {
-        posts: [],
-        debug: { stage: 'graphql-errors', status: response.status, errors: json.errors },
-      };
+      return { posts: [], debug: { stage: 'graphql-errors', errors: json.errors } };
     }
 
     const edges = json?.data?.publication?.posts?.edges;
     if (!edges) {
       return {
         posts: [],
-        debug: {
-          stage: 'no-edges',
-          status: response.status,
-          hasData: !!json.data,
-          hasPublication: !!json?.data?.publication,
-          snippet: text.slice(0, 300),
-        },
+        debug: { stage: 'no-edges', hasPublication: !!json?.data?.publication },
       };
     }
 
-    return { posts: mapPosts(edges), debug: { stage: 'ok', status: response.status, count: edges.length } };
+    return { posts: mapPosts(edges), debug: { stage: 'ok', count: edges.length } };
   } catch (error) {
     return { posts: [], debug: { stage: 'fetch-threw', message: String(error) } };
   }
