@@ -37,6 +37,23 @@ const Ushuluddin = () => {
         "Metode Tahfidz",
         "Qira'at Sab'ah"
       ]
+    },
+    {
+      id: 3,
+      name: "Sejarah Peradaban Islam",
+      code: "SPI",
+      slug: "spi",
+      image: "/images/prodi/iat.jpg",
+      description: "Mengkaji perkembangan sejarah, pemikiran, dan kebudayaan Islam dari masa klasik hingga kontemporer.",
+      akreditasi: "B",
+      gelar: "S.Hum.",
+      durasi: "8 Semester",
+      color: "#8e44ad",
+      highlights: [
+        "Historiografi Islam",
+        "Kajian Manuskrip",
+        "Riset Peradaban"
+      ]
     }
   ]
 
@@ -58,7 +75,7 @@ const Ushuluddin = () => {
                   <div className="stat-box">
                     <i className="fa fa-graduation-cap"></i>
                     <div>
-                      <h5>2</h5>
+                      <h5>3</h5>
                       <p>Program Studi</p>
                     </div>
                   </div>
@@ -94,7 +111,7 @@ const Ushuluddin = () => {
 
         <div className="row">
           {prodiData.map((prodi, index) => (
-            <div key={prodi.id} className="col-lg-6 mb-4">
+            <div key={prodi.id} className="col-lg-4 mb-4">
               <div className="prodi-card-modern">
                 {/* Akreditasi Badge */}
                 <div className="akreditasi-badge" style={{ backgroundColor: prodi.color }}>

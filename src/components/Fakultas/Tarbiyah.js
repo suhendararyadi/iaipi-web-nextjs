@@ -54,6 +54,23 @@ const Tarbiyah = () => {
         "Teknik Konseling",
         "Konseling Islami"
       ]
+    },
+    {
+      id: 4,
+      name: "Pendidikan Bahasa Arab",
+      code: "PBA",
+      slug: "pba",
+      image: "/images/prodi/iat.jpg",
+      description: "Menyiapkan guru profesional yang mampu mengajar Bahasa Arab dengan pendekatan pedagogik modern berbasis nilai-nilai Islam.",
+      akreditasi: "B",
+      gelar: "S.Pd.",
+      durasi: "8 Semester",
+      color: "#e74c3c",
+      highlights: [
+        "Lab Bahasa Arab",
+        "Program Native Speaker",
+        "Penerjemahan"
+      ]
     }
   ]
 
@@ -75,7 +92,7 @@ const Tarbiyah = () => {
                   <div className="stat-box">
                     <i className="fa fa-graduation-cap"></i>
                     <div>
-                      <h5>3</h5>
+                      <h5>4</h5>
                       <p>Program Studi</p>
                     </div>
                   </div>
@@ -111,7 +128,7 @@ const Tarbiyah = () => {
 
         <div className="row">
           {prodiData.map((prodi, index) => (
-            <div key={prodi.id} className="col-lg-4 mb-4">
+            <div key={prodi.id} className="col-lg-3 col-md-6 mb-4">
               <div className="prodi-card-modern">
                 {/* Akreditasi Badge */}
                 <div className="akreditasi-badge" style={{ backgroundColor: prodi.color }}>

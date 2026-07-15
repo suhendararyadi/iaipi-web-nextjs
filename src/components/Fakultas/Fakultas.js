@@ -10,7 +10,7 @@ const Fakultas = () => {
       slug: "ushuluddin",
       image: "/images/course/fak-1.jpg",
       description: "Fakultas yang fokus pada studi keislaman fundamental dalam bidang Ilmu Hadis dan Ilmu Al-Quran Tafsir.",
-      prodi: ["Ilmu Hadis (ILHA)", "Ilmu Al-Quran dan Tafsir (IAT)"],
+      prodi: ["Ilmu Hadis (ILHA)", "Ilmu Al-Quran dan Tafsir (IAT)", "Sejarah Peradaban Islam (SPI)"],
       icon: "fa-book",
       color: "#006739"
     },
@@ -20,7 +20,7 @@ const Fakultas = () => {
       slug: "tarbiyah",
       image: "/images/course/fak-2.jpg",
       description: "Fakultas pendidikan Islam yang mencetak guru dan pendidik profesional dengan kompetensi pedagogik dan keilmuan yang solid.",
-      prodi: ["Pendidikan Agama Islam (PAI)", "Pendidikan Guru MI (PGMI)", "Bimbingan Konseling Islam (BKPI)"],
+      prodi: ["Pendidikan Agama Islam (PAI)", "Pendidikan Guru MI (PGMI)", "Bimbingan Konseling Islam (BKPI)", "Pendidikan Bahasa Arab (PBA)"],
       icon: "fa-graduation-cap",
       color: "#3498db"
     },
@@ -45,7 +45,9 @@ const Fakultas = () => {
             <div className="section-title text-center pb-50">
               <h5>Pendidikan Sarjana</h5>
               <h2>Fakultas di IAI PERSIS Garut</h2>
-              <p className="mt-3">3 Fakultas dengan 8 Program Studi Terakreditasi BAN-PT</p>
+              {/* DRAFT: total prodi naik 8->10 dgn tambahan PBA & SPI; status akreditasi
+                  keduanya belum diverifikasi, cek ulang sebelum publish */}
+              <p className="mt-3">3 Fakultas dengan 10 Program Studi Terakreditasi BAN-PT</p>
             </div>
           </div>
         </div>
@@ -126,7 +128,7 @@ const Fakultas = () => {
                   <i className="fa fa-graduation-cap"></i>
                 </div>
                 <div className="stat-content">
-                  <h4>8</h4>
+                  <h4>10</h4>
                   <p>Program Studi</p>
                 </div>
               </div>
