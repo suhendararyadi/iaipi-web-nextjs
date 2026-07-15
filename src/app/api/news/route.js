@@ -1,10 +1,9 @@
-import { fetchHashnode } from '@/utils/hashnodeApi'
+import { getHashnodePosts } from '@/utils/hashnodeApi'
 
 export const revalidate = 3600
 
-// Server-side news source (Hashnode RSS feed). `debug` is included temporarily to
-// confirm the fix and can be removed later.
+// Server-side news source: the blog's public Hashnode RSS feed.
 export async function GET() {
-  const { posts, debug } = await fetchHashnode()
-  return Response.json({ posts, debug })
+  const posts = await getHashnodePosts()
+  return Response.json({ posts })
 }
