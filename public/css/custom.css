@@ -4495,17 +4495,15 @@ a {
 .pmb-poster-card__image {
     position: relative;
     width: 100%;
-    padding-top: 130%;
     overflow: hidden;
+    background: #f4f7fb;
 }
 
 .pmb-poster-card__image img {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: static;
+    display: block;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
 }
 
 .pmb-poster-card__caption {
@@ -4601,6 +4599,151 @@ a {
     .pmb-step-list__number {
         margin-bottom: 10px;
     }
+}
+
+/* =========================
+   PROGRAM STUDI
+   ========================= */
+
+.pmb-faculty-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 26px 28px;
+    height: 100%;
+    box-shadow: 0 12px 30px rgba(7, 41, 77, 0.08);
+    margin-bottom: 30px;
+}
+
+.pmb-faculty-card h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #07294d;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pmb-faculty-card h4 i {
+    color: #ffc600;
+    background: #07294d;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+.pmb-faculty-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pmb-faculty-card li {
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(7, 41, 77, 0.12);
+    color: #35516f;
+    font-size: 15px;
+}
+
+.pmb-faculty-card li:last-child {
+    border-bottom: none;
+}
+
+/* =========================
+   BIAYA KULIAH
+   ========================= */
+
+.pmb-fee-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 30px 32px;
+    height: 100%;
+    box-shadow: 0 18px 40px rgba(7, 41, 77, 0.1);
+    margin-bottom: 30px;
+}
+
+.pmb-fee-card h4 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #07294d;
+    margin-bottom: 18px;
+}
+
+.pmb-fee-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.pmb-fee-table tr {
+    border-bottom: 1px solid rgba(7, 41, 77, 0.08);
+}
+
+.pmb-fee-table td {
+    padding: 10px 0;
+    font-size: 15px;
+    color: #35516f;
+}
+
+.pmb-fee-table td:last-child {
+    text-align: right;
+    font-weight: 700;
+    color: #07294d;
+    white-space: nowrap;
+}
+
+.pmb-fee-card__minimum {
+    margin-top: 18px;
+    background: linear-gradient(135deg, #07294d, #0c3a6b);
+    color: #ffffff;
+    text-align: center;
+    font-weight: 700;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.pmb-fee-note {
+    font-size: 13px;
+    color: #6a7a8c;
+    margin-top: 20px;
+}
+
+/* =========================
+   PERSYARATAN UMUM
+   ========================= */
+
+.pmb-requirements {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pmb-requirements li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    font-size: 15px;
+    color: #35516f;
+}
+
+.pmb-requirements li i {
+    color: #ffffff;
+    background: #07294d;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    margin-top: 2px;
+    flex-shrink: 0;
 }
 
 /* =========================

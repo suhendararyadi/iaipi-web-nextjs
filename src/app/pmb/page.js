@@ -4,28 +4,96 @@ import Footer from '@/components/Footer/Footer'
 import PageBanner from '@/components/PageBanner/PageBanner'
 
 const posterImages = [
-  { src: '/images/pmb/poster-pmb-1.jpeg', alt: 'Poster PMB 1 - Informasi Umum' },
-  { src: '/images/pmb/poster-pmb-2.jpeg', alt: 'Poster PMB 2 - Jadwal Penting' },
-  { src: '/images/pmb/poster-pmb-3.jpeg', alt: 'Poster PMB 3 - Program Studi' },
-  { src: '/images/pmb/poster-pmb-4.jpeg', alt: 'Poster PMB 4 - Cara Pendaftaran' }
+  { src: '/images/pmb/poster-pmb-1.jpeg', alt: 'Poster PMB 1 - Informasi Umum PMB TA 2026/2027', width: 554, height: 1024 },
+  { src: '/images/pmb/poster-pmb-2.jpeg', alt: 'Poster PMB 2 - Keunggulan dan Program Studi', width: 479, height: 1024 },
+  { src: '/images/pmb/poster-pmb-3.jpeg', alt: 'Poster PMB 3 - Biaya Kuliah dan Jadwal Pendaftaran', width: 503, height: 1024 }
 ]
 
 const highlightItems = [
   {
-    icon: 'fa-graduation-cap',
-    title: 'Program Terakreditasi',
-    description: 'Program Sarjana & Magister dengan akreditasi BAN-PT dan kurikulum berbasis turats Islam.'
+    icon: 'fa-moon-o',
+    title: 'Kampus Islami',
+    description: 'Nuansa religius yang mendukung pengembangan karakter Islami.'
   },
   {
-    icon: 'fa-money',
-    title: 'Beasiswa Hingga 100%',
-    description: 'Beasiswa khusus hafidz Al-Qur’an, prestasi akademik, dan bantuan keringanan UKT.'
+    icon: 'fa-certificate',
+    title: 'Terakreditasi BAN-PT',
+    description: 'Terakreditasi oleh Badan Akreditasi Nasional Perguruan Tinggi.'
   },
   {
-    icon: 'fa-calendar-check-o',
-    title: 'Pendaftaran Fleksibel',
-    description: 'Pendaftaran online dibuka sepanjang tahun dengan jadwal seleksi yang terstruktur.'
+    icon: 'fa-university',
+    title: 'Kemenag Berdampak',
+    description: 'Bagian dari transformasi pendidikan tinggi Islam oleh Kementerian Agama.'
+  },
+  {
+    icon: 'fa-desktop',
+    title: 'Blended Learning',
+    description: 'Perpaduan pembelajaran tatap muka dan daring yang fleksibel.'
+  },
+  {
+    icon: 'fa-user-circle-o',
+    title: 'Dosen Profesional',
+    description: 'Tenaga pendidik berkualitas dan berpengalaman di bidangnya.'
+  },
+  {
+    icon: 'fa-flask',
+    title: 'Penelitian Aktif',
+    description: '8 Jurnal ilmiah terindex SINTA dan Google Scholar untuk mendukung riset.'
   }
+]
+
+const faculties = [
+  {
+    name: 'Fakultas Tarbiyah dan Keguruan',
+    icon: 'fa-graduation-cap',
+    programs: [
+      'Pendidikan Agama Islam (S1)',
+      'Pendidikan Guru Madrasah Ibtidaiyah (S1)',
+      'Pendidikan Bahasa Arab (S1)',
+      'Bimbingan dan Konseling Pendidikan Islam (S1)'
+    ]
+  },
+  {
+    name: 'Fakultas Ekonomi dan Bisnis Islam',
+    icon: 'fa-line-chart',
+    programs: ['Ekonomi Syariah (S1)', 'Manajemen Keuangan Syariah (S1)']
+  },
+  {
+    name: 'Fakultas Ushuluddin',
+    icon: 'fa-book',
+    programs: ['Ilmu Hadits (S1)', 'Ilmu Al-Qur’an dan Tafsir (S1)', 'Sejarah Peradaban Islam (S1)']
+  },
+  {
+    name: 'Program Magister',
+    icon: 'fa-graduation-cap',
+    programs: ['Pendidikan Agama Islam (S2)', 'Ilmu Hadits (S2)']
+  }
+]
+
+const ukmList = [
+  { name: 'Aksara', desc: 'Kepenulisan' },
+  { name: 'Trekata', desc: 'Fotografi, Videografi, Desain Grafis' },
+  { name: 'Imaraga', desc: 'Olahraga' },
+  { name: 'Shurulkhan', desc: 'Beladiri' },
+  { name: 'Himpara', desc: 'Pecinta Alam' },
+  { name: 'Protokoler', desc: 'Keprotokolan' }
+]
+
+const feeS1 = [
+  ['Pendaftaran*', 'Rp 350.000'],
+  ['Biaya Semester Reguler**', 'Rp 2.500.000'],
+  ['Dana Pengembangan Kampus*', 'Rp 2.500.000'],
+  ['Perlengkapan Mahasiswa*', 'Rp 1.400.000'],
+  ['Pembinaan THQ* (PAI, PGMI, BKPI, PBA, EKOSY, MKS)', 'Rp 300.000'],
+  ['Pembinaan THQ* (ILHA, IAT)', 'Rp 500.000']
+]
+
+const feeS2 = [
+  ['Pendaftaran*', 'Rp 500.000'],
+  ['Biaya Semester Reguler**', 'Rp 4.500.000'],
+  ['Dana Pengembangan Kampus*', 'Rp 3.000.000'],
+  ['Perlengkapan Mahasiswa*', 'Rp 1.700.000'],
+  ['Pembinaan THQ*', 'Rp 200.000']
 ]
 
 const registrationSteps = [
@@ -34,33 +102,41 @@ const registrationSteps = [
     description: 'Kunjungi portal PMB dan lengkapi formulir data diri serta pilihan program studi.'
   },
   {
-    title: 'Unggah Dokumen & Pembayaran',
+    title: 'Unggah Dokumen dan Pembayaran',
     description: 'Upload dokumen persyaratan dan lakukan pembayaran biaya pendaftaran sesuai petunjuk.'
   },
   {
-    title: 'Ikuti Seleksi & Pengumuman',
+    title: 'Ikuti Seleksi dan Pengumuman',
     description: 'Ikuti proses seleksi, kemudian pantau pengumuman hasil dan lakukan daftar ulang.'
   }
+]
+
+const requirements = [
+  'Fotokopi Ijazah/Surat Keterangan Lulus',
+  'Fotokopi KTP',
+  'Pas foto berwarna',
+  'Mengisi formulir pendaftaran online',
+  'Dokumen lain sesuai ketentuan'
 ]
 
 const supportChannels = [
   {
     icon: 'fa-whatsapp',
     label: 'Chat Admin PMB',
-    href: 'https://wa.me/6282129526424?text=Halo,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20IAIPI%20Garut',
-    description: 'Respons cepat melalui WhatsApp resmi PMB.'
+    href: 'https://wa.me/6282129526424?text=Halo,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20IAI%20Persis%20Garut',
+    description: '+62 821-2952-6424'
   },
   {
-    icon: 'fa-phone',
-    label: 'Hubungi PMB',
-    href: 'tel:+6282129526424',
-    description: 'Senin–Jumat, pukul 08.00–16.00 WIB.'
+    icon: 'fa-globe',
+    label: 'Website PMB',
+    href: 'https://iaipersisgarut.ac.id/pmb',
+    description: 'iaipersisgarut.ac.id/pmb'
   },
   {
-    icon: 'fa-envelope-o',
-    label: 'Email PMB',
-    href: 'mailto:pmb@iaipersisgarut.ac.id',
-    description: 'Kami merespons dalam 1×24 jam kerja.'
+    icon: 'fa-instagram',
+    label: 'Instagram',
+    href: 'https://instagram.com/pmb.iaipersis',
+    description: '@pmb.iaipersis'
   }
 ]
 
@@ -69,7 +145,7 @@ const PmbPage = () => {
     <>
       <Header2 />
       <PageBanner
-        title="Penerimaan Mahasiswa Baru"
+        title="Penerimaan Mahasiswa Baru 2026/2027"
         backgroundImage="/images/page-banner-7.jpg"
         breadcrumbs={[
           { text: 'Home', url: '/' },
@@ -82,29 +158,30 @@ const PmbPage = () => {
           <div className="row align-items-center">
             <div className="col-lg-7">
               <div className="pmb-intro__content">
-                <h2>Mulai Perjalanan Akademik Bersama IAIPI Garut</h2>
+                <h2>Menjadi Kampus Unggul Pengembangan Turats Islam pada Tahun 2028</h2>
                 <p>
-                  Dapatkan pengalaman belajar yang memadukan nilai-nilai Islam, keilmuan modern,
-                  dan lingkungan kampus yang hangat. Isi formulir pendaftaran secara online dan
-                  raih kesempatan beasiswa sampai 100%.
+                  IAI Persis Garut membuka Penerimaan Mahasiswa Baru Tahun Akademik 2026/2027 untuk
+                  jenjang Sarjana (S1) dan Magister (S2). Biaya kuliah bisa dicicil secara ringan,
+                  fleksibel, dan terjangkau agar setiap calon mahasiswa siap memulai perjalanan
+                  akademiknya bersama IAI Persis Garut.
                 </p>
                 <div className="pmb-intro__stats">
                   <div>
-                    <strong>7+</strong>
-                    <span>Program Studi Favorit</span>
+                    <strong>11</strong>
+                    <span>Program Studi S1 & S2</span>
                   </div>
                   <div>
-                    <strong>100%</strong>
-                    <span>Beasiswa Hafidz</span>
+                    <strong>Gel. 5</strong>
+                    <span>Gelombang Pendaftaran Aktif</span>
                   </div>
                   <div>
-                    <strong>24/7</strong>
-                    <span>Dukungan Pendaftaran</span>
+                    <strong>2,9 Jt</strong>
+                    <span>Biaya Minimum Langsung Kuliah</span>
                   </div>
                 </div>
                 <div className="pmb-intro__cta">
                   <a
-                    href="https://staipersisgarut.pmbonline.siakad.tech/"
+                    href="https://iaipersisgarut.ac.id/pmb"
                     className="pmb-btn pmb-btn--primary"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -112,7 +189,7 @@ const PmbPage = () => {
                     Daftar Online Sekarang
                   </a>
                   <a
-                    href="https://wa.me/6282129526424?text=Halo,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20IAIPI%20Garut"
+                    href="https://wa.me/6282129526424?text=Halo,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20IAI%20Persis%20Garut"
                     className="pmb-btn pmb-btn--ghost"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -124,24 +201,21 @@ const PmbPage = () => {
             </div>
             <div className="col-lg-5">
               <div className="pmb-intro__card">
-                <h4>Timeline Pendaftaran 2025</h4>
+                <h4>Jadwal Pendaftaran Gelombang 5</h4>
                 <ul>
                   <li>
-                    <span>Gelombang 1</span>
-                    <span>Maret – Mei 2025</span>
+                    <span>Beasiswa</span>
+                    <span>3 Juli – 31 Juli 2026</span>
                   </li>
                   <li>
-                    <span>Gelombang 2</span>
-                    <span>Juni – Agustus 2025</span>
-                  </li>
-                  <li>
-                    <span>Gelombang 3</span>
-                    <span>September – Oktober 2025</span>
+                    <span>Reguler</span>
+                    <span>3 Juli – 31 Agustus 2026</span>
                   </li>
                 </ul>
                 <p className="pmb-intro__note">
-                  Jadwal seleksi dapat berubah mengikuti kebijakan kampus. Pantau informasi terbaru
-                  melalui portal PMB dan media sosial IAIPI Garut.
+                  Tes dapat dilakukan kapan saja setelah melakukan pembayaran biaya formulir selama
+                  periode pendaftaran. Jadwal dapat berubah mengikuti kebijakan kampus, pantau
+                  informasi terbaru melalui portal PMB dan media sosial IAI Persis Garut.
                 </p>
               </div>
             </div>
@@ -153,7 +227,7 @@ const PmbPage = () => {
         <div className="container">
           <div className="section-title text-center pb-40">
             <h5>Keunggulan PMB</h5>
-            <h2>Kenapa Daftar di IAIPI Garut?</h2>
+            <h2>Kenapa Daftar di IAI Persis Garut?</h2>
           </div>
           <div className="row">
             {highlightItems.map((item) => (
@@ -171,18 +245,117 @@ const PmbPage = () => {
         </div>
       </section>
 
+      <section className="pmb-programs pt-100 pb-80">
+        <div className="container">
+          <div className="section-title text-center pb-40">
+            <h5>Program Studi</h5>
+            <h2>Pilihan Program Studi S1 dan S2</h2>
+          </div>
+          <div className="row">
+            {faculties.map((faculty) => (
+              <div key={faculty.name} className="col-lg-6">
+                <div className="pmb-faculty-card">
+                  <h4>
+                    <i className={`fa ${faculty.icon}`} aria-hidden="true"></i>
+                    {faculty.name}
+                  </h4>
+                  <ul>
+                    {faculty.programs.map((program) => (
+                      <li key={program}>{program}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="section-title text-center pt-20 pb-30">
+            <h5>Unit Kegiatan Mahasiswa</h5>
+            <h2>Kembangkan Minat dan Bakatmu</h2>
+          </div>
+          <div className="row">
+            {ukmList.map((ukm) => (
+              <div key={ukm.name} className="col-lg-2 col-md-4 col-sm-6">
+                <div className="pmb-highlight-card" style={{ textAlign: 'center' }}>
+                  <h4>{ukm.name}</h4>
+                  <p>{ukm.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="pmb-fee pt-80 pb-80 gray-bg">
+        <div className="container">
+          <div className="section-title text-center pb-40">
+            <h5>Biaya Kuliah</h5>
+            <h2>Rincian Biaya Program S1 dan S2</h2>
+            <p>
+              *dibayar sekali, **dibayar tiap semester. Biaya dapat dicicil/dibayarkan secara
+              bertahap sesuai syarat dan ketentuan yang berlaku.
+            </p>
+          </div>
+          <div className="row">
+            <div className="col-lg-6">
+              <div className="pmb-fee-card">
+                <h4>S1 &ndash; Program Sarjana</h4>
+                <table className="pmb-fee-table">
+                  <tbody>
+                    {feeS1.map((row) => (
+                      <tr key={row[0]}>
+                        <td>{row[0]}</td>
+                        <td>{row[1]}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <div className="pmb-fee-card__minimum">Biaya Minimum 2,9 Jt Bisa Langsung Kuliah</div>
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div className="pmb-fee-card">
+                <h4>S2 &ndash; Program Magister</h4>
+                <table className="pmb-fee-table">
+                  <tbody>
+                    {feeS2.map((row) => (
+                      <tr key={row[0]}>
+                        <td>{row[0]}</td>
+                        <td>{row[1]}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <div className="pmb-fee-card__minimum">Biaya Minimum 4 Jt Bisa Langsung Kuliah</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="pmb-steps pt-100 pb-80">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-5">
               <div className="section-title pb-25">
                 <h5>Langkah Pendaftaran</h5>
-                <h2>Tiga Langkah Praktis Menjadi Mahasiswa IAIPI</h2>
+                <h2>Tiga Langkah Praktis Menjadi Mahasiswa IAI Persis Garut</h2>
                 <p>
                   Proses pendaftaran dirancang sederhana sehingga calon mahasiswa dapat fokus
                   menyiapkan dokumen penting dan mengikuti seleksi dengan tenang.
                 </p>
               </div>
+              <div className="section-title pb-10">
+                <h5>Persyaratan Umum</h5>
+              </div>
+              <ul className="pmb-requirements">
+                {requirements.map((item) => (
+                  <li key={item}>
+                    <i className="fa fa-check" aria-hidden="true"></i>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
             <div className="col-lg-7">
               <ol className="pmb-step-list">
@@ -205,23 +378,28 @@ const PmbPage = () => {
         <div className="container">
           <div className="section-title text-center pb-40">
             <h5>Informasi Detail</h5>
-            <h2>Poster Penerimaan Mahasiswa Baru</h2>
+            <h2>Poster Penerimaan Mahasiswa Baru TA 2026/2027</h2>
             <p>
-              Simak poster resmi untuk melihat syarat, alur, dan jadwal lengkap PMB IAIPI Garut.
+              Simak poster resmi untuk melihat syarat, alur, dan jadwal lengkap PMB IAI Persis Garut,
+              atau{' '}
+              <a href="/images/pmb/poster-pmb-full.jpeg" target="_blank" rel="noopener noreferrer">
+                unduh poster lengkap
+              </a>
+              .
             </p>
           </div>
           <div className="row">
-            {posterImages.map((poster) => (
-              <div key={poster.alt} className="col-lg-6">
+            {posterImages.map((poster, index) => (
+              <div key={poster.alt} className="col-lg-4 col-md-6">
                 <article className="pmb-poster-card">
                   <div className="pmb-poster-card__image">
                     <Image
                       src={poster.src}
                       alt={poster.alt}
-                      width={800}
-                      height={1000}
-                      priority={poster.alt.endsWith('Umum')}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 540px"
+                      width={poster.width}
+                      height={poster.height}
+                      priority={index === 0}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                     />
                   </div>
                   <div className="pmb-poster-card__caption">
@@ -243,7 +421,7 @@ const PmbPage = () => {
                 <h5>Layanan Informasi</h5>
                 <h2>Butuh Bantuan? Tim PMB Siap Membantu</h2>
                 <p>
-                  Jika ada pertanyaan seputar persyaratan, beasiswa, atau proses seleksi, hubungi kami
+                  Jika ada pertanyaan seputar persyaratan, biaya, atau proses seleksi, hubungi kami
                   melalui kanal berikut.
                 </p>
               </div>
