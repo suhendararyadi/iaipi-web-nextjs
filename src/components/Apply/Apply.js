@@ -12,8 +12,8 @@ const Apply = () => {
   })
 
   useEffect(() => {
-    // Set deadline: 31 Desember 2024
-    const deadline = new Date('2025-12-31T23:59:59').getTime()
+    // Deadline gelombang 5 reguler TA 2026/2027 (lihat /pmb)
+    const deadline = new Date('2026-08-31T23:59:59').getTime()
 
     const timer = setInterval(() => {
       const now = new Date().getTime()
@@ -44,9 +44,9 @@ const Apply = () => {
             <div className="col-lg-6">
               <div className="apply-cont apply-color-1">
                 <div className="apply-badge">
-                  <i className="fa fa-clock-o"></i> Batch Terakhir
+                  <i className="fa fa-clock-o"></i> Gelombang 5
                 </div>
-                <h3>Pendaftaran Mahasiswa Baru 2025/2026</h3>
+                <h3>Pendaftaran Mahasiswa Baru 2026/2027</h3>
                 <p>
                   <strong>Kuota Terbatas!</strong> Daftar sekarang dan raih kesempatan menjadi bagian dari kampus Islam terbaik di Garut.
                 </p>
@@ -77,13 +77,13 @@ const Apply = () => {
                     className="main-btn cta-primary"
                     target="_blank" 
                     rel="noopener noreferrer"
-                    onClick={() => trackCTAClick('Daftar PMB 2025', 'Apply Section - Main')}
+                    onClick={() => trackCTAClick('Daftar PMB 2026', 'Apply Section - Main')}
                   >
                     <i className="fa fa-user-plus"></i> Daftar Sekarang
                   </Link>
                 </div>
                 <small className="deadline-text">
-                  <i className="fa fa-calendar"></i> Pendaftaran ditutup: 31 Desember 2025
+                  <i className="fa fa-calendar"></i> Pendaftaran ditutup: 31 Agustus 2026
                 </small>
               </div>
             </div>
@@ -94,7 +94,7 @@ const Apply = () => {
                 <div className="apply-badge scholarship">
                   <i className="fa fa-graduation-cap"></i> Beasiswa Tersedia
                 </div>
-                <h3>Program Beasiswa 2025</h3>
+                <h3>Program Beasiswa 2026</h3>
                 <p>
                   Dapatkan bantuan biaya kuliah hingga <strong>100%</strong>. Beasiswa prestasi, hafidz Quran, dan kurang mampu tersedia untuk mahasiswa berprestasi.
                 </p>
@@ -123,7 +123,7 @@ const Apply = () => {
                   </Link>
                 </div>
                 <small className="deadline-text">
-                  <i className="fa fa-info-circle"></i> Syarat & ketentuan berlaku
+                  <i className="fa fa-calendar"></i> Pendaftaran beasiswa ditutup: 31 Juli 2026
                 </small>
               </div>
             </div>
