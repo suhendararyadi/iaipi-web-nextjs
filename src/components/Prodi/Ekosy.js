@@ -1,6 +1,9 @@
 'use client'
 import { useState } from 'react'
 
+// DRAFT: kurikulum/fasilitas/kompetensi/karir di bawah ini bersifat generik (pola umum
+// prodi Ekonomi Syariah PTAI), BUKAN data resmi kampus. Wajib direview & diganti dengan
+// data kurikulum asli sebelum publish.
 const EkosyContent = () => {
   const [activeTab, setActiveTab] = useState('profil')
 
@@ -8,7 +11,7 @@ const EkosyContent = () => {
     {
       semester: "Semester 1",
       totalSKS: 19,
-      fokus: "Dasar Keilmuan Islam & Bahasa Arab",
+      fokus: "Dasar Keilmuan Islam & Ekonomi",
       matkul: [
         { nama: "Pancasila dan Kewarganegaraan", sks: 3 },
         { nama: "Bahasa Indonesia", sks: 2 },
@@ -16,9 +19,9 @@ const EkosyContent = () => {
         { nama: "Fiqih Ibadah", sks: 2 },
         { nama: "Ulumul Quran", sks: 2 },
         { nama: "Pengantar Ekonomi Syariah", sks: 2 },
-        { nama: "Ilmu Nahwu", sks: 2 },
-        { nama: "Hadis Ilmu", sks: 2 },
-        { nama: "Hadis Thaharah", sks: 2 }
+        { nama: "Pengantar Ilmu Ekonomi", sks: 2 },
+        { nama: "Matematika Ekonomi", sks: 2 },
+        { nama: "Bahasa Arab", sks: 2 }
       ]
     },
     {
@@ -26,34 +29,34 @@ const EkosyContent = () => {
       totalSKS: 24,
       fokus: "Pendalaman Ekonomi Syariah & Metodologi",
       matkul: [
-        { nama: "Ulumul Hadits 3", sks: 2 },
-        { nama: "Takhrij Hadits 1", sks: 2 },
-        { nama: "Ilmu Ma'ajim", sks: 2 },
-        { nama: "Tadwin Sunnah 1", sks: 2 },
-        { nama: "Hadits 3", sks: 2 },
-        { nama: "Ushul Tafsir", sks: 2 },
-        { nama: "Tafsir 3", sks: 2 },
+        { nama: "Ekonomi Mikro Islam", sks: 2 },
+        { nama: "Ekonomi Makro Islam", sks: 2 },
+        { nama: "Fiqih Muamalah", sks: 2 },
+        { nama: "Akuntansi Syariah 1", sks: 2 },
+        { nama: "Manajemen Keuangan", sks: 2 },
+        { nama: "Statistik Ekonomi", sks: 2 },
         { nama: "Ushul Fiqih", sks: 2 },
-        { nama: "Hadits Ahkam 3", sks: 2 },
-        { nama: "Fiqih 3", sks: 2 },
-        { nama: "Kepersisan", sks: 2 }
+        { nama: "Hukum Bisnis Syariah", sks: 2 },
+        { nama: "Kepersisan", sks: 2 },
+        { nama: "Bahasa Inggris Ekonomi", sks: 2 },
+        { nama: "Pengantar Bisnis", sks: 2 }
       ]
     },
     {
       semester: "Semester 5",
       totalSKS: 24,
-      fokus: "Spesialisasi & Penelitian Hadis",
+      fokus: "Spesialisasi & Penelitian Ekonomi Syariah",
       matkul: [
-        { nama: "Sejarah dan Perkembangan Hadits di Indonesia", sks: 2 },
-        { nama: "Digitalisasi Hadits", sks: 2 },
-        { nama: "Model-Model Penelitian Hadits", sks: 2 },
-        { nama: "Inkar Sunnah", sks: 2 },
-        { nama: "Hadits dan Isu-isu Kontemporer", sks: 2 },
-        { nama: "Hermeneutika dan Al-Quran", sks: 2 },
-        { nama: "Ilmu Jarh Ta'dil 1", sks: 2 },
-        { nama: "Hadits Ahkam 5", sks: 2 },
-        { nama: "Metode Kritik Matan", sks: 2 },
-        { nama: "Hadits 5", sks: 2 }
+        { nama: "Perbankan Syariah", sks: 2 },
+        { nama: "Manajemen Zakat & Wakaf", sks: 2 },
+        { nama: "Ekonometrika", sks: 2 },
+        { nama: "Kewirausahaan Syariah", sks: 2 },
+        { nama: "Pasar Modal Syariah", sks: 2 },
+        { nama: "Akuntansi Syariah 2", sks: 2 },
+        { nama: "Metodologi Penelitian Ekonomi", sks: 2 },
+        { nama: "Analisis Laporan Keuangan Syariah", sks: 2 },
+        { nama: "Fiqih Muamalah Kontemporer", sks: 2 },
+        { nama: "Manajemen Risiko Syariah", sks: 2 }
       ]
     },
     {
@@ -71,31 +74,31 @@ const EkosyContent = () => {
   const fasilitasData = [
     {
       icon: "fa-desktop",
-      title: "Lab Digital Hadis",
-      items: ["Software Maktabah Syamilah", "Akses Database Hadis Online", "Komputer & Internet"]
+      title: "Lab Komputer Akuntansi",
+      items: ["Software Akuntansi Syariah", "Simulasi Aplikasi Perbankan", "Komputer & Internet"]
     },
     {
       icon: "fa-book",
       title: "Perpustakaan Khusus",
-      items: ["Koleksi 500+ Kitab Hadis", "Jurnal Nasional & Internasional", "E-Library 24/7"]
+      items: ["Koleksi Buku Ekonomi Islam", "Jurnal Nasional & Internasional", "E-Library 24/7"]
     },
     {
       icon: "fa-flask",
       title: "Lab Penelitian",
-      items: ["Ruang Diskusi Kelompok", "Software Analisis Data", "Bimbingan Penelitian"]
+      items: ["Ruang Diskusi Kelompok", "Software Analisis Data (SPSS/Eviews)", "Bimbingan Penelitian"]
     },
     {
-      icon: "fa-language",
-      title: "Lab Bahasa Arab",
-      items: ["Multimedia Learning", "Native Speaker", "Conversation Practice"]
+      icon: "fa-university",
+      title: "Bank Mini Syariah",
+      items: ["Simulasi Transaksi Perbankan", "Praktik Layanan Nasabah", "Sistem Informasi Perbankan"]
     }
   ]
 
   const profilLulusan = [
-    { icon: "fa-search", title: "Peneliti Hadis", desc: "Ahli dalam riset dan kajian hadis" },
-    { icon: "fa-graduation-cap", title: "Akademisi", desc: "Dosen dan pengajar ilmu hadis" },
-    { icon: "fa-mosque", title: "Da&apos;i & Mubaligh", desc: "Penyebar ajaran Islam berbasis hadis" },
-    { icon: "fa-user", title: "Konsultan Syariah", desc: "Ahli konsultasi hukum Islam" }
+    { icon: "fa-university", title: "Praktisi Perbankan Syariah", desc: "Ahli dalam operasional dan layanan bank syariah" },
+    { icon: "fa-line-chart", title: "Analis Keuangan Syariah", desc: "Menilai kelayakan dan risiko keuangan berbasis syariah" },
+    { icon: "fa-lightbulb-o", title: "Wirausahawan Syariah", desc: "Membangun bisnis berbasis prinsip syariah" },
+    { icon: "fa-search", title: "Peneliti Ekonomi Islam", desc: "Mengkaji isu ekonomi dan keuangan Islam kontemporer" }
   ]
 
   return (
@@ -185,7 +188,7 @@ const EkosyContent = () => {
               <div className="tab-content-modern fade-in">
                 <div className="content-card">
                   <h3 className="content-title">Tentang Program Studi</h3>
-                  <p className="lead-text">Program Studi Ekonomi Syariah fokus pada pengkajian dan penelitian hadis Nabi Muhammad SAW sebagai sumber kedua ajaran Islam. Program studi ini mempersiapkan mahasiswa untuk menjadi ahli dalam bidang hadis yang mampu memahami, meneliti, dan mengembangkan kajian hadis secara komprehensif.</p>
+                  <p className="lead-text">Program Studi Ekonomi Syariah mempersiapkan profesional dalam bidang ekonomi berbasis prinsip-prinsip syariah, dengan pemahaman mendalam tentang teori ekonomi Islam dan aplikasinya. Program studi ini mempersiapkan mahasiswa untuk menjadi ahli dalam bidang ekonomi syariah yang mampu memahami, menganalisis, dan mengembangkan praktik ekonomi Islam secara komprehensif.</p>
                   
                   {/* Profil Lulusan Grid */}
                   <h4 className="mt-5 mb-4">Profil Lulusan</h4>
@@ -212,7 +215,7 @@ const EkosyContent = () => {
                       </div>
                       <div className="kompetensi-content">
                         <h6>Penguasaan Ekonomi Syariah</h6>
-                        <p>Mampu memahami dan menganalisis hadis dengan metodologi yang tepat</p>
+                        <p>Mampu memahami dan menerapkan prinsip ekonomi Islam dalam praktik</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -220,8 +223,8 @@ const EkosyContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Kritik Sanad dan Matan</h6>
-                        <p>Menguasai metode kritik hadis baik dari sisi sanad maupun matan</p>
+                        <h6>Analisis Keuangan Syariah</h6>
+                        <p>Menguasai analisis laporan keuangan berbasis prinsip syariah</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -229,8 +232,8 @@ const EkosyContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Penelitian Hadis</h6>
-                        <p>Mampu melakukan penelitian ilmiah dalam bidang ilmu hadis</p>
+                        <h6>Penelitian Ekonomi</h6>
+                        <p>Mampu melakukan penelitian ilmiah dalam bidang ekonomi syariah</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -238,8 +241,8 @@ const EkosyContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Bahasa Arab</h6>
-                        <p>Menguasai bahasa Arab untuk memahami teks-teks hadis original</p>
+                        <h6>Fiqih Muamalah</h6>
+                        <p>Menguasai landasan fiqih untuk transaksi ekonomi dan bisnis</p>
                       </div>
                     </div>
                   </div>
@@ -252,7 +255,7 @@ const EkosyContent = () => {
               <div className="tab-content-modern fade-in">
                 <div className="content-card">
                   <h3 className="content-title">Struktur Kurikulum</h3>
-                  <p className="mb-4">Kurikulum dirancang untuk menghasilkan lulusan yang kompeten dalam bidang ilmu hadis dengan total 144 SKS.</p>
+                  <p className="mb-4">Kurikulum dirancang untuk menghasilkan lulusan yang kompeten dalam bidang ekonomi syariah dengan total 144 SKS.</p>
                   
                   <div className="kurikulum-timeline">
                     {kurikulumSingkat.map((sem, idx) => (
@@ -327,51 +330,51 @@ const EkosyContent = () => {
                       <div className="sector-icon">
                         <i className="fa fa-university"></i>
                       </div>
-                      <h5>Akademisi & Pendidikan</h5>
+                      <h5>Perbankan & Keuangan</h5>
                       <ul>
-                        <li>Dosen Ekonomi Syariah</li>
-                        <li>Guru PAI</li>
-                        <li>Peneliti Hadis</li>
-                        <li>Asisten Riset</li>
+                        <li>Staf Bank Syariah</li>
+                        <li>Analis Kredit Syariah</li>
+                        <li>Account Officer</li>
+                        <li>Customer Service Bank Syariah</li>
                       </ul>
                     </div>
-                    
+
                     <div className="sector-card">
                       <div className="sector-icon">
-                        <i className="fa fa-mosque"></i>
+                        <i className="fa fa-handshake-o"></i>
                       </div>
-                      <h5>Lembaga Keagamaan</h5>
+                      <h5>Lembaga Keuangan Syariah</h5>
                       <ul>
-                        <li>Mubaligh & Da&apos;i</li>
-                        <li>Konsultan Syariah</li>
-                        <li>Pengurus Masjid</li>
-                        <li>Lembaga Dakwah</li>
+                        <li>Staf Asuransi Syariah</li>
+                        <li>Pengelola BMT/Koperasi Syariah</li>
+                        <li>Konsultan Keuangan Syariah</li>
+                        <li>Staf Pegadaian Syariah</li>
                       </ul>
                     </div>
-                    
+
                     <div className="sector-card">
                       <div className="sector-icon">
                         <i className="fa fa-university"></i>
                       </div>
-                      <h5>Pemerintahan</h5>
+                      <h5>Pemerintahan & Regulator</h5>
                       <ul>
                         <li>Kementerian Agama</li>
-                        <li>MUI (Majelis Ulama)</li>
+                        <li>Otoritas Jasa Keuangan (OJK)</li>
                         <li>BAZNAS</li>
-                        <li>Kantor Urusan Agama</li>
+                        <li>Dinas Koperasi & UKM</li>
                       </ul>
                     </div>
-                    
+
                     <div className="sector-card">
                       <div className="sector-icon">
-                        <i className="fa fa-book"></i>
+                        <i className="fa fa-lightbulb-o"></i>
                       </div>
-                      <h5>Media & Publikasi</h5>
+                      <h5>Akademisi & Wirausaha</h5>
                       <ul>
-                        <li>Penulis Buku Islam</li>
-                        <li>Editor Jurnal</li>
-                        <li>Content Creator</li>
-                        <li>Jurnalis Islami</li>
+                        <li>Dosen Ekonomi Syariah</li>
+                        <li>Peneliti Ekonomi Islam</li>
+                        <li>Wirausahawan Syariah</li>
+                        <li>Konsultan Bisnis Syariah</li>
                       </ul>
                     </div>
                   </div>

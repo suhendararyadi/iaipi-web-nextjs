@@ -1,6 +1,9 @@
 'use client'
 import { useState } from 'react'
 
+// DRAFT: kurikulum/fasilitas/kompetensi/karir di bawah ini bersifat generik (pola umum
+// prodi Ilmu Al-Quran dan Tafsir PTAI, diadaptasi dari struktur Ilmu Hadis), BUKAN data
+// resmi kampus. Wajib direview & diganti dengan data kurikulum asli sebelum publish.
 const IatContent = () => {
   const [activeTab, setActiveTab] = useState('profil')
 
@@ -17,8 +20,8 @@ const IatContent = () => {
         { nama: "Ulumul Quran", sks: 2 },
         { nama: "Pengantar Ilmu Al-Quran dan Tafsir", sks: 2 },
         { nama: "Ilmu Nahwu", sks: 2 },
-        { nama: "Hadis Ilmu", sks: 2 },
-        { nama: "Hadis Thaharah", sks: 2 }
+        { nama: "Ilmu Qiraat", sks: 2 },
+        { nama: "Sejarah Turunnya Al-Quran", sks: 2 }
       ]
     },
     {
@@ -26,15 +29,15 @@ const IatContent = () => {
       totalSKS: 24,
       fokus: "Pendalaman Ilmu Al-Quran dan Tafsir & Metodologi",
       matkul: [
-        { nama: "Ulumul Hadits 3", sks: 2 },
-        { nama: "Takhrij Hadits 1", sks: 2 },
-        { nama: "Ilmu Ma'ajim", sks: 2 },
-        { nama: "Tadwin Sunnah 1", sks: 2 },
-        { nama: "Hadits 3", sks: 2 },
+        { nama: "Ulumul Quran 3", sks: 2 },
+        { nama: "Ilmu Rasm Al-Quran", sks: 2 },
+        { nama: "Ilmu I'jaz Al-Quran", sks: 2 },
+        { nama: "Kaidah Tafsir", sks: 2 },
+        { nama: "Tafsir Tahlili 1", sks: 2 },
         { nama: "Ushul Tafsir", sks: 2 },
         { nama: "Tafsir 3", sks: 2 },
         { nama: "Ushul Fiqih", sks: 2 },
-        { nama: "Hadits Ahkam 3", sks: 2 },
+        { nama: "Ilmu Asbab Nuzul", sks: 2 },
         { nama: "Fiqih 3", sks: 2 },
         { nama: "Kepersisan", sks: 2 }
       ]
@@ -42,18 +45,18 @@ const IatContent = () => {
     {
       semester: "Semester 5",
       totalSKS: 24,
-      fokus: "Spesialisasi & Penelitian Hadis",
+      fokus: "Spesialisasi & Penelitian Tafsir",
       matkul: [
-        { nama: "Sejarah dan Perkembangan Hadits di Indonesia", sks: 2 },
-        { nama: "Digitalisasi Hadits", sks: 2 },
-        { nama: "Model-Model Penelitian Hadits", sks: 2 },
-        { nama: "Inkar Sunnah", sks: 2 },
-        { nama: "Hadits dan Isu-isu Kontemporer", sks: 2 },
-        { nama: "Hermeneutika dan Al-Quran", sks: 2 },
-        { nama: "Ilmu Jarh Ta'dil 1", sks: 2 },
-        { nama: "Hadits Ahkam 5", sks: 2 },
-        { nama: "Metode Kritik Matan", sks: 2 },
-        { nama: "Hadits 5", sks: 2 }
+        { nama: "Sejarah dan Perkembangan Tafsir di Indonesia", sks: 2 },
+        { nama: "Digitalisasi Kajian Al-Quran", sks: 2 },
+        { nama: "Model-Model Penelitian Tafsir", sks: 2 },
+        { nama: "Tafsir Maudhu'i", sks: 2 },
+        { nama: "Isu-isu Kontemporer dalam Tafsir", sks: 2 },
+        { nama: "Hermeneutika Al-Quran", sks: 2 },
+        { nama: "Ilmu Munasabah Al-Quran", sks: 2 },
+        { nama: "Tafsir Ahkam", sks: 2 },
+        { nama: "Metode Kritik Tafsir", sks: 2 },
+        { nama: "Tafsir 5", sks: 2 }
       ]
     },
     {
@@ -71,13 +74,13 @@ const IatContent = () => {
   const fasilitasData = [
     {
       icon: "fa-desktop",
-      title: "Lab Digital Hadis",
-      items: ["Software Maktabah Syamilah", "Akses Database Hadis Online", "Komputer & Internet"]
+      title: "Lab Digital Al-Quran",
+      items: ["Software Maktabah Syamilah", "Akses Database Tafsir Online", "Komputer & Internet"]
     },
     {
       icon: "fa-book",
       title: "Perpustakaan Khusus",
-      items: ["Koleksi 500+ Kitab Hadis", "Jurnal Nasional & Internasional", "E-Library 24/7"]
+      items: ["Koleksi Kitab Tafsir & Ulumul Quran", "Jurnal Nasional & Internasional", "E-Library 24/7"]
     },
     {
       icon: "fa-flask",
@@ -86,16 +89,16 @@ const IatContent = () => {
     },
     {
       icon: "fa-language",
-      title: "Lab Bahasa Arab",
-      items: ["Multimedia Learning", "Native Speaker", "Conversation Practice"]
+      title: "Lab Bahasa Arab & Tahfidz",
+      items: ["Multimedia Learning", "Pembinaan Tahfidz Al-Quran", "Conversation Practice"]
     }
   ]
 
   const profilLulusan = [
-    { icon: "fa-search", title: "Peneliti Hadis", desc: "Ahli dalam riset dan kajian hadis" },
-    { icon: "fa-graduation-cap", title: "Akademisi", desc: "Dosen dan pengajar ilmu hadis" },
-    { icon: "fa-mosque", title: "Da&apos;i & Mubaligh", desc: "Penyebar ajaran Islam berbasis hadis" },
-    { icon: "fa-user", title: "Konsultan Syariah", desc: "Ahli konsultasi hukum Islam" }
+    { icon: "fa-search", title: "Peneliti Al-Quran & Tafsir", desc: "Ahli dalam riset dan kajian tafsir" },
+    { icon: "fa-graduation-cap", title: "Akademisi", desc: "Dosen dan pengajar ilmu Al-Quran dan tafsir" },
+    { icon: "fa-mosque", title: "Da&apos;i & Mubaligh", desc: "Penyebar ajaran Islam berbasis Al-Quran" },
+    { icon: "fa-user", title: "Konsultan Keagamaan", desc: "Ahli konsultasi tafsir dan pemahaman Al-Quran" }
   ]
 
   return (
@@ -185,7 +188,7 @@ const IatContent = () => {
               <div className="tab-content-modern fade-in">
                 <div className="content-card">
                   <h3 className="content-title">Tentang Program Studi</h3>
-                  <p className="lead-text">Program Studi Ilmu Al-Quran dan Tafsir fokus pada pengkajian dan penelitian hadis Nabi Muhammad SAW sebagai sumber kedua ajaran Islam. Program studi ini mempersiapkan mahasiswa untuk menjadi ahli dalam bidang hadis yang mampu memahami, meneliti, dan mengembangkan kajian hadis secara komprehensif.</p>
+                  <p className="lead-text">Program Studi Ilmu Al-Quran dan Tafsir berfokus pada pengkajian dan penelitian Al-Quran sebagai sumber utama ajaran Islam. Program studi ini mempersiapkan mahasiswa untuk menjadi ahli dalam bidang Al-Quran dan tafsir yang mampu memahami, meneliti, dan mengembangkan kajian Al-Quran secara komprehensif.</p>
                   
                   {/* Profil Lulusan Grid */}
                   <h4 className="mt-5 mb-4">Profil Lulusan</h4>
@@ -212,7 +215,7 @@ const IatContent = () => {
                       </div>
                       <div className="kompetensi-content">
                         <h6>Penguasaan Ilmu Al-Quran dan Tafsir</h6>
-                        <p>Mampu memahami dan menganalisis hadis dengan metodologi yang tepat</p>
+                        <p>Mampu memahami dan menganalisis ayat Al-Quran dengan metodologi tafsir yang tepat</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -220,8 +223,8 @@ const IatContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Kritik Sanad dan Matan</h6>
-                        <p>Menguasai metode kritik hadis baik dari sisi sanad maupun matan</p>
+                        <h6>Metodologi Tafsir</h6>
+                        <p>Menguasai berbagai metode penafsiran Al-Quran klasik dan kontemporer</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -229,8 +232,8 @@ const IatContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Penelitian Hadis</h6>
-                        <p>Mampu melakukan penelitian ilmiah dalam bidang ilmu hadis</p>
+                        <h6>Penelitian Tafsir</h6>
+                        <p>Mampu melakukan penelitian ilmiah dalam bidang ilmu Al-Quran dan tafsir</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -239,7 +242,7 @@ const IatContent = () => {
                       </div>
                       <div className="kompetensi-content">
                         <h6>Bahasa Arab</h6>
-                        <p>Menguasai bahasa Arab untuk memahami teks-teks hadis original</p>
+                        <p>Menguasai bahasa Arab untuk memahami teks Al-Quran dan tafsir original</p>
                       </div>
                     </div>
                   </div>
@@ -252,7 +255,7 @@ const IatContent = () => {
               <div className="tab-content-modern fade-in">
                 <div className="content-card">
                   <h3 className="content-title">Struktur Kurikulum</h3>
-                  <p className="mb-4">Kurikulum dirancang untuk menghasilkan lulusan yang kompeten dalam bidang ilmu hadis dengan total 144 SKS.</p>
+                  <p className="mb-4">Kurikulum dirancang untuk menghasilkan lulusan yang kompeten dalam bidang ilmu Al-Quran dan tafsir dengan total 144 SKS.</p>
                   
                   <div className="kurikulum-timeline">
                     {kurikulumSingkat.map((sem, idx) => (
@@ -331,11 +334,11 @@ const IatContent = () => {
                       <ul>
                         <li>Dosen Ilmu Al-Quran dan Tafsir</li>
                         <li>Guru PAI</li>
-                        <li>Peneliti Hadis</li>
+                        <li>Peneliti Tafsir</li>
                         <li>Asisten Riset</li>
                       </ul>
                     </div>
-                    
+
                     <div className="sector-card">
                       <div className="sector-icon">
                         <i className="fa fa-mosque"></i>
@@ -343,12 +346,12 @@ const IatContent = () => {
                       <h5>Lembaga Keagamaan</h5>
                       <ul>
                         <li>Mubaligh & Da&apos;i</li>
-                        <li>Konsultan Syariah</li>
+                        <li>Konsultan Tafsir</li>
                         <li>Pengurus Masjid</li>
                         <li>Lembaga Dakwah</li>
                       </ul>
                     </div>
-                    
+
                     <div className="sector-card">
                       <div className="sector-icon">
                         <i className="fa fa-university"></i>
@@ -361,14 +364,14 @@ const IatContent = () => {
                         <li>Kantor Urusan Agama</li>
                       </ul>
                     </div>
-                    
+
                     <div className="sector-card">
                       <div className="sector-icon">
                         <i className="fa fa-book"></i>
                       </div>
                       <h5>Media & Publikasi</h5>
                       <ul>
-                        <li>Penulis Buku Islam</li>
+                        <li>Penulis Buku Tafsir</li>
                         <li>Editor Jurnal</li>
                         <li>Content Creator</li>
                         <li>Jurnalis Islami</li>

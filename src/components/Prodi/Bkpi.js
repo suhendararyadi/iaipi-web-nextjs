@@ -1,6 +1,9 @@
 'use client'
 import { useState } from 'react'
 
+// DRAFT: kurikulum/fasilitas/kompetensi/karir di bawah ini bersifat generik (pola umum
+// prodi BKPI PTAI), BUKAN data resmi kampus. Data resmi kemungkinan tersedia di
+// bkpi.iaipersisgarut.ac.id — wajib direview & disamakan sebelum publish.
 const BkpiContent = () => {
   const [activeTab, setActiveTab] = useState('profil')
 
@@ -8,52 +11,52 @@ const BkpiContent = () => {
     {
       semester: "Semester 1",
       totalSKS: 19,
-      fokus: "Dasar Keilmuan Islam & Bahasa Arab",
+      fokus: "Dasar Keilmuan Islam & Psikologi",
       matkul: [
         { nama: "Pancasila dan Kewarganegaraan", sks: 3 },
         { nama: "Bahasa Indonesia", sks: 2 },
         { nama: "Ilmu Tauhid", sks: 2 },
         { nama: "Fiqih Ibadah", sks: 2 },
         { nama: "Ulumul Quran", sks: 2 },
-        { nama: "Pengantar Bimbingan Konseling Pendidikan Islam", sks: 2 },
-        { nama: "Ilmu Nahwu", sks: 2 },
-        { nama: "Hadis Ilmu", sks: 2 },
-        { nama: "Hadis Thaharah", sks: 2 }
+        { nama: "Pengantar Bimbingan Konseling", sks: 2 },
+        { nama: "Psikologi Umum", sks: 2 },
+        { nama: "Psikologi Perkembangan", sks: 2 },
+        { nama: "Bahasa Arab", sks: 2 }
       ]
     },
     {
       semester: "Semester 3",
       totalSKS: 24,
-      fokus: "Pendalaman Bimbingan Konseling Pendidikan Islam & Metodologi",
+      fokus: "Pendalaman Konseling & Metodologi",
       matkul: [
-        { nama: "Ulumul Hadits 3", sks: 2 },
-        { nama: "Takhrij Hadits 1", sks: 2 },
-        { nama: "Ilmu Ma'ajim", sks: 2 },
-        { nama: "Tadwin Sunnah 1", sks: 2 },
-        { nama: "Hadits 3", sks: 2 },
-        { nama: "Ushul Tafsir", sks: 2 },
-        { nama: "Tafsir 3", sks: 2 },
+        { nama: "Teori Konseling", sks: 2 },
+        { nama: "Fiqih Muamalah", sks: 2 },
+        { nama: "Psikologi Kepribadian", sks: 2 },
+        { nama: "Teknik Bimbingan Kelompok", sks: 2 },
+        { nama: "Asesmen Psikologis", sks: 2 },
         { nama: "Ushul Fiqih", sks: 2 },
-        { nama: "Hadits Ahkam 3", sks: 2 },
-        { nama: "Fiqih 3", sks: 2 },
-        { nama: "Kepersisan", sks: 2 }
+        { nama: "Bimbingan Konseling Islami", sks: 2 },
+        { nama: "Kepersisan", sks: 2 },
+        { nama: "Psikologi Sosial", sks: 2 },
+        { nama: "Bahasa Inggris Konseling", sks: 2 },
+        { nama: "Etika Profesi Konseling", sks: 2 }
       ]
     },
     {
       semester: "Semester 5",
       totalSKS: 24,
-      fokus: "Spesialisasi & Penelitian Hadis",
+      fokus: "Spesialisasi & Penelitian Bimbingan Konseling",
       matkul: [
-        { nama: "Sejarah dan Perkembangan Hadits di Indonesia", sks: 2 },
-        { nama: "Digitalisasi Hadits", sks: 2 },
-        { nama: "Model-Model Penelitian Hadits", sks: 2 },
-        { nama: "Inkar Sunnah", sks: 2 },
-        { nama: "Hadits dan Isu-isu Kontemporer", sks: 2 },
-        { nama: "Hermeneutika dan Al-Quran", sks: 2 },
-        { nama: "Ilmu Jarh Ta'dil 1", sks: 2 },
-        { nama: "Hadits Ahkam 5", sks: 2 },
-        { nama: "Metode Kritik Matan", sks: 2 },
-        { nama: "Hadits 5", sks: 2 }
+        { nama: "Konseling Individual", sks: 2 },
+        { nama: "Konseling Krisis & Trauma", sks: 2 },
+        { nama: "Metodologi Penelitian Konseling", sks: 2 },
+        { nama: "Bimbingan Karir", sks: 2 },
+        { nama: "Konseling Keluarga Islami", sks: 2 },
+        { nama: "Psikoterapi Islam", sks: 2 },
+        { nama: "Statistik Konseling", sks: 2 },
+        { nama: "Manajemen BK di Sekolah", sks: 2 },
+        { nama: "Konseling Anak Berkebutuhan Khusus", sks: 2 },
+        { nama: "Supervisi Konseling", sks: 2 }
       ]
     },
     {
@@ -71,13 +74,13 @@ const BkpiContent = () => {
   const fasilitasData = [
     {
       icon: "fa-desktop",
-      title: "Lab Digital Hadis",
-      items: ["Software Maktabah Syamilah", "Akses Database Hadis Online", "Komputer & Internet"]
+      title: "Lab Konseling",
+      items: ["Ruang Konseling Individual & Kelompok", "Kamera Observasi & Perekam Sesi", "Alat Tes Psikologi"]
     },
     {
       icon: "fa-book",
       title: "Perpustakaan Khusus",
-      items: ["Koleksi 500+ Kitab Hadis", "Jurnal Nasional & Internasional", "E-Library 24/7"]
+      items: ["Koleksi Buku Konseling & Psikologi Islam", "Jurnal Nasional & Internasional", "E-Library 24/7"]
     },
     {
       icon: "fa-flask",
@@ -85,17 +88,17 @@ const BkpiContent = () => {
       items: ["Ruang Diskusi Kelompok", "Software Analisis Data", "Bimbingan Penelitian"]
     },
     {
-      icon: "fa-language",
-      title: "Lab Bahasa Arab",
-      items: ["Multimedia Learning", "Native Speaker", "Conversation Practice"]
+      icon: "fa-heart",
+      title: "Klinik Konseling Mahasiswa",
+      items: ["Layanan Konseling Praktik Mahasiswa", "Pendampingan Kasus Nyata", "Supervisi Dosen Pembimbing"]
     }
   ]
 
   const profilLulusan = [
-    { icon: "fa-search", title: "Peneliti Hadis", desc: "Ahli dalam riset dan kajian hadis" },
-    { icon: "fa-graduation-cap", title: "Akademisi", desc: "Dosen dan pengajar ilmu hadis" },
-    { icon: "fa-mosque", title: "Da&apos;i & Mubaligh", desc: "Penyebar ajaran Islam berbasis hadis" },
-    { icon: "fa-user", title: "Konsultan Syariah", desc: "Ahli konsultasi hukum Islam" }
+    { icon: "fa-graduation-cap", title: "Konselor Sekolah", desc: "Memberi layanan bimbingan konseling di satuan pendidikan" },
+    { icon: "fa-heart", title: "Konselor Islami", desc: "Mendampingi klien dengan pendekatan psikologi berbasis nilai Islam" },
+    { icon: "fa-user", title: "Konsultan Pengembangan Diri", desc: "Membantu individu mengembangkan potensi dan mengatasi masalah pribadi" },
+    { icon: "fa-search", title: "Peneliti Bimbingan Konseling", desc: "Mengkaji isu konseling dan psikologi pendidikan" }
   ]
 
   return (
@@ -211,7 +214,7 @@ const BkpiContent = () => {
               <div className="tab-content-modern fade-in">
                 <div className="content-card">
                   <h3 className="content-title">Tentang Program Studi</h3>
-                  <p className="lead-text">Program Studi Bimbingan Konseling Pendidikan Islam fokus pada pengkajian dan penelitian hadis Nabi Muhammad SAW sebagai sumber kedua ajaran Islam. Program studi ini mempersiapkan mahasiswa untuk menjadi ahli dalam bidang hadis yang mampu memahami, meneliti, dan mengembangkan kajian hadis secara komprehensif.</p>
+                  <p className="lead-text">Program Studi Bimbingan Konseling Pendidikan Islam menyiapkan konselor pendidikan yang kompeten dalam layanan bimbingan dan konseling dengan pendekatan Islam. Program studi ini mempersiapkan mahasiswa untuk menjadi konselor yang mampu memahami, mendampingi, dan mengembangkan layanan bimbingan konseling secara komprehensif.</p>
                   
                   {/* Profil Lulusan Grid */}
                   <h4 className="mt-5 mb-4">Profil Lulusan</h4>
@@ -237,8 +240,8 @@ const BkpiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Penguasaan Bimbingan Konseling Pendidikan Islam</h6>
-                        <p>Mampu memahami dan menganalisis hadis dengan metodologi yang tepat</p>
+                        <h6>Penguasaan Teori Konseling</h6>
+                        <p>Mampu menerapkan pendekatan konseling secara profesional dan etis</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -246,8 +249,8 @@ const BkpiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Kritik Sanad dan Matan</h6>
-                        <p>Menguasai metode kritik hadis baik dari sisi sanad maupun matan</p>
+                        <h6>Asesmen Psikologis</h6>
+                        <p>Menguasai teknik asesmen untuk memahami kebutuhan klien</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -255,8 +258,8 @@ const BkpiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Penelitian Hadis</h6>
-                        <p>Mampu melakukan penelitian ilmiah dalam bidang ilmu hadis</p>
+                        <h6>Penelitian Bimbingan Konseling</h6>
+                        <p>Mampu melakukan penelitian ilmiah dalam bidang bimbingan konseling</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -264,8 +267,8 @@ const BkpiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Bahasa Arab</h6>
-                        <p>Menguasai bahasa Arab untuk memahami teks-teks hadis original</p>
+                        <h6>Konseling Berbasis Nilai Islam</h6>
+                        <p>Menguasai integrasi pendekatan psikologi dengan nilai-nilai keislaman</p>
                       </div>
                     </div>
                   </div>
@@ -278,7 +281,7 @@ const BkpiContent = () => {
               <div className="tab-content-modern fade-in">
                 <div className="content-card">
                   <h3 className="content-title">Struktur Kurikulum</h3>
-                  <p className="mb-4">Kurikulum dirancang untuk menghasilkan lulusan yang kompeten dalam bidang ilmu hadis dengan total 144 SKS.</p>
+                  <p className="mb-4">Kurikulum dirancang untuk menghasilkan lulusan yang kompeten dalam bidang bimbingan konseling pendidikan Islam dengan total 144 SKS.</p>
                   
                   <div className="kurikulum-timeline">
                     {kurikulumSingkat.map((sem, idx) => (
@@ -353,51 +356,51 @@ const BkpiContent = () => {
                       <div className="sector-icon">
                         <i className="fa fa-university"></i>
                       </div>
-                      <h5>Akademisi & Pendidikan</h5>
+                      <h5>Pendidikan Formal</h5>
                       <ul>
-                        <li>Dosen Bimbingan Konseling Pendidikan Islam</li>
-                        <li>Guru PAI</li>
-                        <li>Peneliti Hadis</li>
-                        <li>Asisten Riset</li>
+                        <li>Guru BK/Konselor Sekolah</li>
+                        <li>Konselor Madrasah</li>
+                        <li>Wali Kelas Pendamping</li>
+                        <li>Koordinator BK</li>
                       </ul>
                     </div>
-                    
+
                     <div className="sector-card">
                       <div className="sector-icon">
-                        <i className="fa fa-mosque"></i>
+                        <i className="fa fa-heart"></i>
                       </div>
-                      <h5>Lembaga Keagamaan</h5>
+                      <h5>Klinis & Layanan Masyarakat</h5>
                       <ul>
-                        <li>Mubaligh & Da&apos;i</li>
-                        <li>Konsultan Syariah</li>
-                        <li>Pengurus Masjid</li>
-                        <li>Lembaga Dakwah</li>
+                        <li>Konselor di Puskesmas/Klinik</li>
+                        <li>Konselor Pusat Rehabilitasi</li>
+                        <li>Konselor Lembaga Sosial</li>
+                        <li>Pendamping Psikososial</li>
                       </ul>
                     </div>
-                    
+
+                    <div className="sector-card">
+                      <div className="sector-icon">
+                        <i className="fa fa-building"></i>
+                      </div>
+                      <h5>Korporasi & Organisasi</h5>
+                      <ul>
+                        <li>HR Development</li>
+                        <li>Konsultan SDM</li>
+                        <li>Trainer Pengembangan Diri</li>
+                        <li>Employee Assistance Counselor</li>
+                      </ul>
+                    </div>
+
                     <div className="sector-card">
                       <div className="sector-icon">
                         <i className="fa fa-university"></i>
                       </div>
-                      <h5>Pemerintahan</h5>
+                      <h5>Pemerintahan & Lembaga Keagamaan</h5>
                       <ul>
                         <li>Kementerian Agama</li>
-                        <li>MUI (Majelis Ulama)</li>
-                        <li>BAZNAS</li>
-                        <li>Kantor Urusan Agama</li>
-                      </ul>
-                    </div>
-                    
-                    <div className="sector-card">
-                      <div className="sector-icon">
-                        <i className="fa fa-book"></i>
-                      </div>
-                      <h5>Media & Publikasi</h5>
-                      <ul>
-                        <li>Penulis Buku Islam</li>
-                        <li>Editor Jurnal</li>
-                        <li>Content Creator</li>
-                        <li>Jurnalis Islami</li>
+                        <li>Kementerian Sosial</li>
+                        <li>Lembaga Dakwah</li>
+                        <li>Konselor Pranikah KUA</li>
                       </ul>
                     </div>
                   </div>

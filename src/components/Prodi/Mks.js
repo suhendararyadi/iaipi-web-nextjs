@@ -1,6 +1,9 @@
 'use client'
 import { useState } from 'react'
 
+// DRAFT: kurikulum/fasilitas/kompetensi/karir di bawah ini bersifat generik (pola umum
+// prodi Manajemen Keuangan Syariah PTAI), BUKAN data resmi kampus. Wajib direview & diganti
+// dengan data kurikulum asli sebelum publish.
 const MksContent = () => {
   const [activeTab, setActiveTab] = useState('profil')
 
@@ -8,7 +11,7 @@ const MksContent = () => {
     {
       semester: "Semester 1",
       totalSKS: 19,
-      fokus: "Dasar Keilmuan Islam & Bahasa Arab",
+      fokus: "Dasar Keilmuan Islam & Manajemen",
       matkul: [
         { nama: "Pancasila dan Kewarganegaraan", sks: 3 },
         { nama: "Bahasa Indonesia", sks: 2 },
@@ -16,9 +19,9 @@ const MksContent = () => {
         { nama: "Fiqih Ibadah", sks: 2 },
         { nama: "Ulumul Quran", sks: 2 },
         { nama: "Pengantar Manajemen Keuangan Syariah", sks: 2 },
-        { nama: "Ilmu Nahwu", sks: 2 },
-        { nama: "Hadis Ilmu", sks: 2 },
-        { nama: "Hadis Thaharah", sks: 2 }
+        { nama: "Pengantar Akuntansi", sks: 2 },
+        { nama: "Matematika Keuangan", sks: 2 },
+        { nama: "Bahasa Arab", sks: 2 }
       ]
     },
     {
@@ -26,34 +29,34 @@ const MksContent = () => {
       totalSKS: 24,
       fokus: "Pendalaman Manajemen Keuangan Syariah & Metodologi",
       matkul: [
-        { nama: "Ulumul Hadits 3", sks: 2 },
-        { nama: "Takhrij Hadits 1", sks: 2 },
-        { nama: "Ilmu Ma'ajim", sks: 2 },
-        { nama: "Tadwin Sunnah 1", sks: 2 },
-        { nama: "Hadits 3", sks: 2 },
-        { nama: "Ushul Tafsir", sks: 2 },
-        { nama: "Tafsir 3", sks: 2 },
+        { nama: "Manajemen Keuangan Syariah 1", sks: 2 },
+        { nama: "Fiqih Muamalah", sks: 2 },
+        { nama: "Akuntansi Keuangan Syariah", sks: 2 },
+        { nama: "Perbankan Syariah", sks: 2 },
+        { nama: "Statistik Keuangan", sks: 2 },
         { nama: "Ushul Fiqih", sks: 2 },
-        { nama: "Hadits Ahkam 3", sks: 2 },
-        { nama: "Fiqih 3", sks: 2 },
-        { nama: "Kepersisan", sks: 2 }
+        { nama: "Manajemen Investasi Syariah", sks: 2 },
+        { nama: "Kepersisan", sks: 2 },
+        { nama: "Hukum Perbankan Syariah", sks: 2 },
+        { nama: "Bahasa Inggris Bisnis", sks: 2 },
+        { nama: "Ekonomi Moneter Islam", sks: 2 }
       ]
     },
     {
       semester: "Semester 5",
       totalSKS: 24,
-      fokus: "Spesialisasi & Penelitian Hadis",
+      fokus: "Spesialisasi & Penelitian Keuangan Syariah",
       matkul: [
-        { nama: "Sejarah dan Perkembangan Hadits di Indonesia", sks: 2 },
-        { nama: "Digitalisasi Hadits", sks: 2 },
-        { nama: "Model-Model Penelitian Hadits", sks: 2 },
-        { nama: "Inkar Sunnah", sks: 2 },
-        { nama: "Hadits dan Isu-isu Kontemporer", sks: 2 },
-        { nama: "Hermeneutika dan Al-Quran", sks: 2 },
-        { nama: "Ilmu Jarh Ta'dil 1", sks: 2 },
-        { nama: "Hadits Ahkam 5", sks: 2 },
-        { nama: "Metode Kritik Matan", sks: 2 },
-        { nama: "Hadits 5", sks: 2 }
+        { nama: "Manajemen Risiko Keuangan Syariah", sks: 2 },
+        { nama: "Analisis Kredit Syariah", sks: 2 },
+        { nama: "Treasury & Cash Management Syariah", sks: 2 },
+        { nama: "Pasar Modal Syariah", sks: 2 },
+        { nama: "Manajemen Investasi Lanjutan", sks: 2 },
+        { nama: "Audit Keuangan Syariah", sks: 2 },
+        { nama: "Metodologi Penelitian Keuangan", sks: 2 },
+        { nama: "Fintech Syariah", sks: 2 },
+        { nama: "Perencanaan Keuangan Syariah", sks: 2 },
+        { nama: "Etika Bisnis Islam", sks: 2 }
       ]
     },
     {
@@ -71,31 +74,31 @@ const MksContent = () => {
   const fasilitasData = [
     {
       icon: "fa-desktop",
-      title: "Lab Digital Hadis",
-      items: ["Software Maktabah Syamilah", "Akses Database Hadis Online", "Komputer & Internet"]
+      title: "Lab Simulasi Perbankan",
+      items: ["Software Core Banking Simulasi", "Praktik Teller & Customer Service", "Komputer & Internet"]
     },
     {
       icon: "fa-book",
       title: "Perpustakaan Khusus",
-      items: ["Koleksi 500+ Kitab Hadis", "Jurnal Nasional & Internasional", "E-Library 24/7"]
+      items: ["Koleksi Buku Manajemen Keuangan Islam", "Jurnal Nasional & Internasional", "E-Library 24/7"]
     },
     {
       icon: "fa-flask",
       title: "Lab Penelitian",
-      items: ["Ruang Diskusi Kelompok", "Software Analisis Data", "Bimbingan Penelitian"]
+      items: ["Ruang Diskusi Kelompok", "Software Analisis Keuangan", "Bimbingan Penelitian"]
     },
     {
-      icon: "fa-language",
-      title: "Lab Bahasa Arab",
-      items: ["Multimedia Learning", "Native Speaker", "Conversation Practice"]
+      icon: "fa-line-chart",
+      title: "Trading Room Syariah",
+      items: ["Simulasi Pasar Modal Syariah", "Data Pasar Real-time", "Praktik Analisis Investasi"]
     }
   ]
 
   const profilLulusan = [
-    { icon: "fa-search", title: "Peneliti Hadis", desc: "Ahli dalam riset dan kajian hadis" },
-    { icon: "fa-graduation-cap", title: "Akademisi", desc: "Dosen dan pengajar ilmu hadis" },
-    { icon: "fa-mosque", title: "Da&apos;i & Mubaligh", desc: "Penyebar ajaran Islam berbasis hadis" },
-    { icon: "fa-user", title: "Konsultan Syariah", desc: "Ahli konsultasi hukum Islam" }
+    { icon: "fa-money", title: "Manajer Keuangan Syariah", desc: "Mengelola arus kas dan investasi berbasis syariah" },
+    { icon: "fa-line-chart", title: "Analis Investasi Syariah", desc: "Menilai kelayakan produk investasi syariah" },
+    { icon: "fa-university", title: "Praktisi Perbankan Syariah", desc: "Ahli operasional bank dan lembaga keuangan syariah" },
+    { icon: "fa-user", title: "Konsultan Keuangan Syariah", desc: "Memberi layanan konsultasi pengelolaan keuangan Islami" }
   ]
 
   return (
@@ -185,7 +188,7 @@ const MksContent = () => {
               <div className="tab-content-modern fade-in">
                 <div className="content-card">
                   <h3 className="content-title">Tentang Program Studi</h3>
-                  <p className="lead-text">Program Studi Manajemen Keuangan Syariah fokus pada pengkajian dan penelitian hadis Nabi Muhammad SAW sebagai sumber kedua ajaran Islam. Program studi ini mempersiapkan mahasiswa untuk menjadi ahli dalam bidang hadis yang mampu memahami, meneliti, dan mengembangkan kajian hadis secara komprehensif.</p>
+                  <p className="lead-text">Program Studi Manajemen Keuangan Syariah fokus pada pengembangan kompetensi dalam pengelolaan keuangan berbasis syariah, perbankan syariah, dan lembaga keuangan syariah. Program studi ini mempersiapkan mahasiswa untuk menjadi ahli dalam bidang manajemen keuangan syariah yang mampu memahami, mengelola, dan mengembangkan praktik keuangan Islam secara komprehensif.</p>
                   
                   {/* Profil Lulusan Grid */}
                   <h4 className="mt-5 mb-4">Profil Lulusan</h4>
@@ -212,7 +215,7 @@ const MksContent = () => {
                       </div>
                       <div className="kompetensi-content">
                         <h6>Penguasaan Manajemen Keuangan Syariah</h6>
-                        <p>Mampu memahami dan menganalisis hadis dengan metodologi yang tepat</p>
+                        <p>Mampu mengelola keuangan sesuai prinsip syariah secara profesional</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -220,8 +223,8 @@ const MksContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Kritik Sanad dan Matan</h6>
-                        <p>Menguasai metode kritik hadis baik dari sisi sanad maupun matan</p>
+                        <h6>Analisis Investasi Syariah</h6>
+                        <p>Menguasai penilaian risiko dan kelayakan investasi syariah</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -229,8 +232,8 @@ const MksContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Penelitian Hadis</h6>
-                        <p>Mampu melakukan penelitian ilmiah dalam bidang ilmu hadis</p>
+                        <h6>Penelitian Keuangan</h6>
+                        <p>Mampu melakukan penelitian ilmiah dalam bidang keuangan syariah</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -238,8 +241,8 @@ const MksContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Bahasa Arab</h6>
-                        <p>Menguasai bahasa Arab untuk memahami teks-teks hadis original</p>
+                        <h6>Manajemen Risiko Syariah</h6>
+                        <p>Menguasai identifikasi dan mitigasi risiko keuangan syariah</p>
                       </div>
                     </div>
                   </div>
@@ -252,7 +255,7 @@ const MksContent = () => {
               <div className="tab-content-modern fade-in">
                 <div className="content-card">
                   <h3 className="content-title">Struktur Kurikulum</h3>
-                  <p className="mb-4">Kurikulum dirancang untuk menghasilkan lulusan yang kompeten dalam bidang ilmu hadis dengan total 144 SKS.</p>
+                  <p className="mb-4">Kurikulum dirancang untuk menghasilkan lulusan yang kompeten dalam bidang manajemen keuangan syariah dengan total 144 SKS.</p>
                   
                   <div className="kurikulum-timeline">
                     {kurikulumSingkat.map((sem, idx) => (
@@ -327,51 +330,51 @@ const MksContent = () => {
                       <div className="sector-icon">
                         <i className="fa fa-university"></i>
                       </div>
-                      <h5>Akademisi & Pendidikan</h5>
+                      <h5>Perbankan & Lembaga Keuangan</h5>
                       <ul>
-                        <li>Dosen Manajemen Keuangan Syariah</li>
-                        <li>Guru PAI</li>
-                        <li>Peneliti Hadis</li>
-                        <li>Asisten Riset</li>
+                        <li>Staf Manajemen Keuangan Bank Syariah</li>
+                        <li>Analis Kredit</li>
+                        <li>Treasury Officer</li>
+                        <li>Relationship Manager</li>
                       </ul>
                     </div>
-                    
+
                     <div className="sector-card">
                       <div className="sector-icon">
-                        <i className="fa fa-mosque"></i>
+                        <i className="fa fa-line-chart"></i>
                       </div>
-                      <h5>Lembaga Keagamaan</h5>
+                      <h5>Investasi & Pasar Modal</h5>
                       <ul>
-                        <li>Mubaligh & Da&apos;i</li>
-                        <li>Konsultan Syariah</li>
-                        <li>Pengurus Masjid</li>
-                        <li>Lembaga Dakwah</li>
+                        <li>Analis Investasi Syariah</li>
+                        <li>Manajer Portofolio Syariah</li>
+                        <li>Konsultan Reksa Dana Syariah</li>
+                        <li>Staf Sekuritas Syariah</li>
                       </ul>
                     </div>
-                    
+
+                    <div className="sector-card">
+                      <div className="sector-icon">
+                        <i className="fa fa-building"></i>
+                      </div>
+                      <h5>Korporasi & Industri</h5>
+                      <ul>
+                        <li>Financial Planner</li>
+                        <li>Internal Auditor Syariah</li>
+                        <li>Staf Keuangan Perusahaan</li>
+                        <li>Manajer Treasury</li>
+                      </ul>
+                    </div>
+
                     <div className="sector-card">
                       <div className="sector-icon">
                         <i className="fa fa-university"></i>
                       </div>
-                      <h5>Pemerintahan</h5>
+                      <h5>Pemerintahan & Regulator</h5>
                       <ul>
-                        <li>Kementerian Agama</li>
-                        <li>MUI (Majelis Ulama)</li>
+                        <li>Otoritas Jasa Keuangan (OJK)</li>
+                        <li>Kementerian Keuangan</li>
                         <li>BAZNAS</li>
-                        <li>Kantor Urusan Agama</li>
-                      </ul>
-                    </div>
-                    
-                    <div className="sector-card">
-                      <div className="sector-icon">
-                        <i className="fa fa-book"></i>
-                      </div>
-                      <h5>Media & Publikasi</h5>
-                      <ul>
-                        <li>Penulis Buku Islam</li>
-                        <li>Editor Jurnal</li>
-                        <li>Content Creator</li>
-                        <li>Jurnalis Islami</li>
+                        <li>Dinas Koperasi & UKM</li>
                       </ul>
                     </div>
                   </div>

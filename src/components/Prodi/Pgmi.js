@@ -1,6 +1,9 @@
 'use client'
 import { useState } from 'react'
 
+// DRAFT: kurikulum/fasilitas/kompetensi/karir di bawah ini bersifat generik (pola umum
+// prodi PGMI PTAI), BUKAN data resmi kampus. Wajib direview & diganti dengan data
+// kurikulum asli sebelum publish.
 const PgmiContent = () => {
   const [activeTab, setActiveTab] = useState('profil')
 
@@ -8,52 +11,52 @@ const PgmiContent = () => {
     {
       semester: "Semester 1",
       totalSKS: 19,
-      fokus: "Dasar Keilmuan Islam & Bahasa Arab",
+      fokus: "Dasar Keilmuan Islam & Pendidikan",
       matkul: [
         { nama: "Pancasila dan Kewarganegaraan", sks: 3 },
         { nama: "Bahasa Indonesia", sks: 2 },
         { nama: "Ilmu Tauhid", sks: 2 },
         { nama: "Fiqih Ibadah", sks: 2 },
         { nama: "Ulumul Quran", sks: 2 },
-        { nama: "Pengantar Pendidikan Guru Madrasah Ibtidaiyah", sks: 2 },
-        { nama: "Ilmu Nahwu", sks: 2 },
-        { nama: "Hadis Ilmu", sks: 2 },
-        { nama: "Hadis Thaharah", sks: 2 }
+        { nama: "Pengantar Pendidikan MI", sks: 2 },
+        { nama: "Psikologi Perkembangan Anak", sks: 2 },
+        { nama: "Konsep Dasar IPA MI", sks: 2 },
+        { nama: "Bahasa Arab", sks: 2 }
       ]
     },
     {
       semester: "Semester 3",
       totalSKS: 24,
-      fokus: "Pendalaman Pendidikan Guru Madrasah Ibtidaiyah & Metodologi",
+      fokus: "Pendalaman Pembelajaran MI & Metodologi",
       matkul: [
-        { nama: "Ulumul Hadits 3", sks: 2 },
-        { nama: "Takhrij Hadits 1", sks: 2 },
-        { nama: "Ilmu Ma'ajim", sks: 2 },
-        { nama: "Tadwin Sunnah 1", sks: 2 },
-        { nama: "Hadits 3", sks: 2 },
-        { nama: "Ushul Tafsir", sks: 2 },
-        { nama: "Tafsir 3", sks: 2 },
+        { nama: "Perencanaan Pembelajaran MI", sks: 2 },
+        { nama: "Fiqih Muamalah", sks: 2 },
+        { nama: "Strategi Pembelajaran Tematik", sks: 2 },
+        { nama: "Konsep Dasar Matematika MI", sks: 2 },
+        { nama: "Media Pembelajaran MI", sks: 2 },
         { nama: "Ushul Fiqih", sks: 2 },
-        { nama: "Hadits Ahkam 3", sks: 2 },
-        { nama: "Fiqih 3", sks: 2 },
-        { nama: "Kepersisan", sks: 2 }
+        { nama: "Pembelajaran Bahasa Indonesia MI", sks: 2 },
+        { nama: "Kepersisan", sks: 2 },
+        { nama: "Konsep Dasar IPS MI", sks: 2 },
+        { nama: "Bahasa Inggris Pendidikan", sks: 2 },
+        { nama: "Psikologi Pendidikan", sks: 2 }
       ]
     },
     {
       semester: "Semester 5",
       totalSKS: 24,
-      fokus: "Spesialisasi & Penelitian Hadis",
+      fokus: "Spesialisasi & Penelitian Pendidikan Dasar",
       matkul: [
-        { nama: "Sejarah dan Perkembangan Hadits di Indonesia", sks: 2 },
-        { nama: "Digitalisasi Hadits", sks: 2 },
-        { nama: "Model-Model Penelitian Hadits", sks: 2 },
-        { nama: "Inkar Sunnah", sks: 2 },
-        { nama: "Hadits dan Isu-isu Kontemporer", sks: 2 },
-        { nama: "Hermeneutika dan Al-Quran", sks: 2 },
-        { nama: "Ilmu Jarh Ta'dil 1", sks: 2 },
-        { nama: "Hadits Ahkam 5", sks: 2 },
-        { nama: "Metode Kritik Matan", sks: 2 },
-        { nama: "Hadits 5", sks: 2 }
+        { nama: "Evaluasi Pembelajaran MI", sks: 2 },
+        { nama: "Pembelajaran PAI di MI", sks: 2 },
+        { nama: "Metodologi Penelitian Pendidikan", sks: 2 },
+        { nama: "Bimbingan Konseling Anak MI", sks: 2 },
+        { nama: "Manajemen Kelas MI", sks: 2 },
+        { nama: "Pengembangan Kurikulum MI", sks: 2 },
+        { nama: "Statistik Pendidikan", sks: 2 },
+        { nama: "Pendidikan Inklusif", sks: 2 },
+        { nama: "Literasi & Numerasi MI", sks: 2 },
+        { nama: "Teknologi Pendidikan", sks: 2 }
       ]
     },
     {
@@ -71,13 +74,13 @@ const PgmiContent = () => {
   const fasilitasData = [
     {
       icon: "fa-desktop",
-      title: "Lab Digital Hadis",
-      items: ["Software Maktabah Syamilah", "Akses Database Hadis Online", "Komputer & Internet"]
+      title: "Lab Microteaching",
+      items: ["Ruang Simulasi Mengajar", "Kamera & Perekam Pembelajaran", "Alat Peraga Pendidikan"]
     },
     {
       icon: "fa-book",
       title: "Perpustakaan Khusus",
-      items: ["Koleksi 500+ Kitab Hadis", "Jurnal Nasional & Internasional", "E-Library 24/7"]
+      items: ["Koleksi Buku Pendidikan & Psikologi Anak", "Jurnal Nasional & Internasional", "E-Library 24/7"]
     },
     {
       icon: "fa-flask",
@@ -85,17 +88,17 @@ const PgmiContent = () => {
       items: ["Ruang Diskusi Kelompok", "Software Analisis Data", "Bimbingan Penelitian"]
     },
     {
-      icon: "fa-language",
-      title: "Lab Bahasa Arab",
-      items: ["Multimedia Learning", "Native Speaker", "Conversation Practice"]
+      icon: "fa-puzzle-piece",
+      title: "Lab Media Pembelajaran",
+      items: ["Alat Peraga Edukatif", "Media Digital & Multimedia", "Perpustakaan Media Ajar"]
     }
   ]
 
   const profilLulusan = [
-    { icon: "fa-search", title: "Peneliti Hadis", desc: "Ahli dalam riset dan kajian hadis" },
-    { icon: "fa-graduation-cap", title: "Akademisi", desc: "Dosen dan pengajar ilmu hadis" },
-    { icon: "fa-mosque", title: "Da&apos;i & Mubaligh", desc: "Penyebar ajaran Islam berbasis hadis" },
-    { icon: "fa-user", title: "Konsultan Syariah", desc: "Ahli konsultasi hukum Islam" }
+    { icon: "fa-graduation-cap", title: "Guru Kelas MI/SD", desc: "Mendidik dan mengajar di tingkat madrasah ibtidaiyah" },
+    { icon: "fa-book", title: "Pengembang Kurikulum", desc: "Merancang materi dan strategi pembelajaran MI" },
+    { icon: "fa-child", title: "Konsultan Pendidikan Anak", desc: "Memberi pendampingan tumbuh kembang dan belajar anak" },
+    { icon: "fa-search", title: "Peneliti Pendidikan Dasar", desc: "Mengkaji isu pembelajaran di tingkat dasar" }
   ]
 
   return (
@@ -185,7 +188,7 @@ const PgmiContent = () => {
               <div className="tab-content-modern fade-in">
                 <div className="content-card">
                   <h3 className="content-title">Tentang Program Studi</h3>
-                  <p className="lead-text">Program Studi Pendidikan Guru Madrasah Ibtidaiyah fokus pada pengkajian dan penelitian hadis Nabi Muhammad SAW sebagai sumber kedua ajaran Islam. Program studi ini mempersiapkan mahasiswa untuk menjadi ahli dalam bidang hadis yang mampu memahami, meneliti, dan mengembangkan kajian hadis secara komprehensif.</p>
+                  <p className="lead-text">Program Studi Pendidikan Guru Madrasah Ibtidaiyah fokus pada penyiapan guru profesional untuk tingkat MI/SD dengan kompetensi pembelajaran terpadu berbasis nilai-nilai Islam. Program studi ini mempersiapkan mahasiswa untuk menjadi pendidik yang mampu memahami, merancang, dan mengembangkan pembelajaran di tingkat madrasah ibtidaiyah secara komprehensif.</p>
                   
                   {/* Profil Lulusan Grid */}
                   <h4 className="mt-5 mb-4">Profil Lulusan</h4>
@@ -211,8 +214,8 @@ const PgmiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Penguasaan Pendidikan Guru Madrasah Ibtidaiyah</h6>
-                        <p>Mampu memahami dan menganalisis hadis dengan metodologi yang tepat</p>
+                        <h6>Penguasaan Pedagogi MI</h6>
+                        <p>Mampu merancang dan melaksanakan pembelajaran tematik terpadu</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -220,8 +223,8 @@ const PgmiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Kritik Sanad dan Matan</h6>
-                        <p>Menguasai metode kritik hadis baik dari sisi sanad maupun matan</p>
+                        <h6>Psikologi Perkembangan Anak</h6>
+                        <p>Menguasai karakteristik dan kebutuhan belajar anak usia MI/SD</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -229,8 +232,8 @@ const PgmiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Penelitian Hadis</h6>
-                        <p>Mampu melakukan penelitian ilmiah dalam bidang ilmu hadis</p>
+                        <h6>Penelitian Pendidikan</h6>
+                        <p>Mampu melakukan penelitian ilmiah dalam bidang pendidikan dasar</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -238,8 +241,8 @@ const PgmiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Bahasa Arab</h6>
-                        <p>Menguasai bahasa Arab untuk memahami teks-teks hadis original</p>
+                        <h6>Manajemen Kelas</h6>
+                        <p>Menguasai pengelolaan kelas dan lingkungan belajar yang efektif</p>
                       </div>
                     </div>
                   </div>
@@ -252,7 +255,7 @@ const PgmiContent = () => {
               <div className="tab-content-modern fade-in">
                 <div className="content-card">
                   <h3 className="content-title">Struktur Kurikulum</h3>
-                  <p className="mb-4">Kurikulum dirancang untuk menghasilkan lulusan yang kompeten dalam bidang ilmu hadis dengan total 144 SKS.</p>
+                  <p className="mb-4">Kurikulum dirancang untuk menghasilkan lulusan yang kompeten sebagai guru madrasah ibtidaiyah dengan total 144 SKS.</p>
                   
                   <div className="kurikulum-timeline">
                     {kurikulumSingkat.map((sem, idx) => (
@@ -327,51 +330,51 @@ const PgmiContent = () => {
                       <div className="sector-icon">
                         <i className="fa fa-university"></i>
                       </div>
-                      <h5>Akademisi & Pendidikan</h5>
+                      <h5>Pendidikan Formal</h5>
                       <ul>
-                        <li>Dosen Pendidikan Guru Madrasah Ibtidaiyah</li>
-                        <li>Guru PAI</li>
-                        <li>Peneliti Hadis</li>
-                        <li>Asisten Riset</li>
+                        <li>Guru Kelas MI</li>
+                        <li>Guru Madrasah Ibtidaiyah</li>
+                        <li>Guru SD Islam Terpadu</li>
+                        <li>Wali Kelas</li>
                       </ul>
                     </div>
-                    
+
                     <div className="sector-card">
                       <div className="sector-icon">
-                        <i className="fa fa-mosque"></i>
+                        <i className="fa fa-lightbulb-o"></i>
                       </div>
-                      <h5>Lembaga Keagamaan</h5>
+                      <h5>Pengembangan & Konsultasi</h5>
                       <ul>
-                        <li>Mubaligh & Da&apos;i</li>
-                        <li>Konsultan Syariah</li>
-                        <li>Pengurus Masjid</li>
-                        <li>Lembaga Dakwah</li>
+                        <li>Pengembang Kurikulum MI</li>
+                        <li>Penulis Buku Ajar</li>
+                        <li>Konsultan Pendidikan Anak</li>
+                        <li>Trainer Guru</li>
                       </ul>
                     </div>
-                    
+
+                    <div className="sector-card">
+                      <div className="sector-icon">
+                        <i className="fa fa-child"></i>
+                      </div>
+                      <h5>Lembaga Pendidikan Non-formal</h5>
+                      <ul>
+                        <li>Pengelola PAUD/TPQ</li>
+                        <li>Tutor Bimbingan Belajar</li>
+                        <li>Pendamping Homeschooling</li>
+                        <li>Instruktur Literasi</li>
+                      </ul>
+                    </div>
+
                     <div className="sector-card">
                       <div className="sector-icon">
                         <i className="fa fa-university"></i>
                       </div>
-                      <h5>Pemerintahan</h5>
+                      <h5>Pemerintahan & Organisasi</h5>
                       <ul>
                         <li>Kementerian Agama</li>
-                        <li>MUI (Majelis Ulama)</li>
-                        <li>BAZNAS</li>
-                        <li>Kantor Urusan Agama</li>
-                      </ul>
-                    </div>
-                    
-                    <div className="sector-card">
-                      <div className="sector-icon">
-                        <i className="fa fa-book"></i>
-                      </div>
-                      <h5>Media & Publikasi</h5>
-                      <ul>
-                        <li>Penulis Buku Islam</li>
-                        <li>Editor Jurnal</li>
-                        <li>Content Creator</li>
-                        <li>Jurnalis Islami</li>
+                        <li>Dinas Pendidikan</li>
+                        <li>Pengawas Madrasah</li>
+                        <li>Lembaga Pendidikan Persis</li>
                       </ul>
                     </div>
                   </div>
