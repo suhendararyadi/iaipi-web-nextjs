@@ -1,36 +1,66 @@
 'use client'
 import { useState } from 'react'
 
+// Profil, visi, SK pendirian, status akreditasi, dan kerangka kurikulum di bawah ini
+// disampaikan langsung oleh pengelola prodi (bukan hasil ekstraksi dokumen PDF seperti
+// PGMI). Rincian fasilitas belum tercantum spesifik di sumbernya dan masih berupa
+// kerangka umum — perlu disesuaikan/diverifikasi dengan data sarana FTK sebelum publish.
 const PaiContent = () => {
   const [activeTab, setActiveTab] = useState('profil')
 
   const profilLulusan = [
-    { icon: "fa-graduation-cap", title: "Guru PAI", desc: "Pendidik PAI di sekolah/madrasah" },
-    { icon: "fa-user", title: "Tenaga Kependidikan", desc: "Staff akademik dan administrasi" },
-    { icon: "fa-institution", title: "Penyuluh Agama", desc: "Da&apos;i dan mubaligh profesional" },
-    { icon: "fa-book", title: "Peneliti Pendidikan", desc: "Ahli penelitian pendidikan Islam" }
+    { icon: "fa-graduation-cap", title: "Pendidik PAI Profesional", desc: "Mengajar Pendidikan Agama Islam di sekolah, madrasah, dan lembaga pendidikan Islam" },
+    { icon: "fa-lightbulb-o", title: "Pengembang Pendidikan Islam", desc: "Mengembangkan kurikulum, media, dan program pendidikan Islam yang inovatif" },
+    { icon: "fa-search", title: "Peneliti Pemula Pendidikan Islam", desc: "Melakukan penelitian awal dalam bidang pendidikan agama Islam" },
+    { icon: "fa-institution", title: "Penggerak Dakwah & Pemberdayaan", desc: "Menggerakkan dakwah dan pemberdayaan masyarakat berbasis nilai Islam" },
+    { icon: "fa-rocket", title: "Edupreneur Pendidikan Islam", desc: "Merintis lembaga pendidikan, pelatihan, atau konten dakwah digital" }
+  ]
+
+  const kurikulumHighlight = [
+    { label: "Beban Studi", value: "144 SKS", icon: "fa-list-alt" },
+    { label: "Masa Studi", value: "8 Semester", icon: "fa-calendar" },
+    { label: "Pendekatan", value: "OBE (Outcome-Based Education)", icon: "fa-bullseye" },
+    { label: "Acuan", value: "KKNI, SN-Dikti & MBKM", icon: "fa-balance-scale" }
+  ]
+
+  const strukturKurikulum = [
+    { icon: "fa-institution", title: "Penguatan Keislaman & Turats", desc: "Pendalaman Al-Qur'an, Hadis, Fiqih, Akidah Akhlak, SKI, dan khazanah turats Islam" },
+    { icon: "fa-child", title: "Ilmu Kependidikan & Pedagogik PAI", desc: "Teori pendidikan, psikologi belajar, dan metodologi pembelajaran PAI" },
+    { icon: "fa-laptop", title: "Metodologi Pembelajaran & Teknologi Pendidikan", desc: "Strategi pembelajaran aktif serta pemanfaatan teknologi dalam pengajaran PAI" },
+    { icon: "fa-flask", title: "Penelitian Pendidikan", desc: "Metodologi penelitian dan penulisan karya ilmiah bidang pendidikan Islam" },
+    { icon: "fa-users", title: "Dakwah & Pemberdayaan Masyarakat", desc: "Praktik dakwah, pengabdian, dan pemberdayaan masyarakat berbasis nilai Islam" }
   ]
 
   const fasilitasData = [
     {
       icon: "fa-laptop",
-      title: "Lab Micro Teaching",
+      title: "Lab Micro Teaching & Keagamaan",
       items: ["Simulasi Pembelajaran", "Recording System", "Smart Classroom"]
     },
     {
       icon: "fa-book",
       title: "Perpustakaan PAI",
-      items: ["Koleksi Buku PAI", "Jurnal Pendidikan", "Digital Library"]
+      items: ["Koleksi Turats & Buku PAI", "Jurnal Pendidikan", "Digital Library"]
     },
     {
       icon: "fa-desktop",
-      title: "Lab Komputer",
+      title: "Sarana Teknologi Pembelajaran",
       items: ["ICT Learning", "E-Learning Tools", "Internet 24/7"]
+    },
+    {
+      icon: "fa-institution",
+      title: "Masjid/Mushola sebagai Lab Keagamaan",
+      items: ["Praktik Ibadah & Khutbah", "Kajian Keislaman", "Pembinaan Dakwah"]
     },
     {
       icon: "fa-flask",
       title: "Ruang PPL",
       items: ["Praktek Mengajar", "Lesson Study", "Peer Teaching"]
+    },
+    {
+      icon: "fa-handshake-o",
+      title: "Jejaring Mitra Praktik",
+      items: ["Sekolah & Madrasah Mitra", "Pesantren Mitra", "Lembaga Pengabdian Masyarakat"]
     }
   ]
 
@@ -53,7 +83,7 @@ const PaiContent = () => {
                     <i className="fa fa-certificate"></i>
                     <div>
                       <span className="label">Akreditasi</span>
-                      <strong>B (Baik)</strong>
+                      <strong>Baik Sekali</strong>
                     </div>
                   </div>
                   <div className="info-box">
@@ -86,7 +116,14 @@ const PaiContent = () => {
                 <i className="fa fa-user"></i>
                 <span>Profil</span>
               </button>
-              <button 
+              <button
+                className={`tab-btn-modern ${activeTab === 'kurikulum' ? 'active' : ''}`}
+                onClick={() => setActiveTab('kurikulum')}
+              >
+                <i className="fa fa-book"></i>
+                <span>Kurikulum</span>
+              </button>
+              <button
                 className={`tab-btn-modern ${activeTab === 'fasilitas' ? 'active' : ''}`}
                 onClick={() => setActiveTab('fasilitas')}
               >
@@ -110,12 +147,18 @@ const PaiContent = () => {
               <div className="tab-content-modern fade-in">
                 <div className="content-card">
                   <h3 className="content-title">Tentang Program Studi</h3>
-                  <p className="lead-text">Program Studi Pendidikan Agama Islam menyiapkan tenaga pendidik profesional dalam bidang PAI yang memiliki kompetensi pedagogik, kepribadian, sosial, dan profesional dengan basis keislaman yang kuat.</p>
-                  
+                  <p className="lead-text">Program Studi Pendidikan Agama Islam (PAI) adalah program sarjana (S1) di bawah Fakultas Tarbiyah dan Keguruan IAI Persis Garut yang menghasilkan pendidik Pendidikan Agama Islam yang profesional, religius, berakhlakul karimah, memiliki kemampuan dakwah, dan adaptif terhadap teknologi.</p>
+                  <p>Program studi ini berdiri berdasarkan Keputusan Dirjen Kelembagaan Agama Islam No. Dj.II/77/03 tanggal 1 Mei 2003.</p>
+
+                  <div className="alumni-note mt-4 mb-4">
+                    <i className="fa fa-eye"></i>
+                    <p><strong>Visi:</strong> &ldquo;Menjadi Program Studi Pendidikan Agama Islam yang unggul dalam pengembangan pendidikan Islam berbasis turats, teknologi pembelajaran, dan nilai-nilai Persatuan Islam untuk menghasilkan pendidik profesional, religius, dan berdaya saing pada tahun 2028.&rdquo;</p>
+                  </div>
+
                   <h4 className="mt-5 mb-4">Profil Lulusan</h4>
                   <div className="row">
                     {profilLulusan.map((profil, idx) => (
-                      <div key={idx} className="col-lg-3 col-md-6 mb-4">
+                      <div key={idx} className="col-lg-4 col-md-6 mb-4">
                         <div className="profil-lulusan-card">
                           <div className="profil-icon">
                             <i className={`fa ${profil.icon}`}></i>
@@ -143,8 +186,8 @@ const PaiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Penguasaan Materi PAI</h6>
-                        <p>Memahami materi Al-Quran, Hadis, Fiqih, Akidah Akhlak, dan SKI</p>
+                        <h6>Kompetensi Profesional</h6>
+                        <p>Memahami materi Al-Quran, Hadis, Fiqih, Akidah Akhlak, SKI, dan mengintegrasikan teknologi dalam pembelajaran PAI</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -152,8 +195,8 @@ const PaiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Teknologi Pembelajaran</h6>
-                        <p>Mampu mengintegrasikan ICT dalam pembelajaran PAI</p>
+                        <h6>Kompetensi Sosial</h6>
+                        <p>Mampu berdakwah, berkomunikasi, dan memberdayakan masyarakat berbasis nilai Islam</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -161,10 +204,52 @@ const PaiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Kepribadian Guru</h6>
+                        <h6>Kompetensi Kepribadian</h6>
                         <p>Memiliki akhlak mulia dan menjadi teladan bagi peserta didik</p>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'kurikulum' && (
+              <div className="tab-content-modern fade-in">
+                <div className="content-card">
+                  <h3 className="content-title">Struktur Kurikulum</h3>
+                  <p className="mb-4">Kurikulum PAI 2024 dikembangkan dengan paradigma integratif — memadukan ilmu pendidikan Islam, penguatan turats, dan ilmu pengetahuan modern — berbasis Outcome-Based Education (OBE) dan mengacu pada KKNI, SN-Dikti, serta kebijakan Merdeka Belajar Kampus Merdeka (MBKM).</p>
+
+                  <div className="row">
+                    {kurikulumHighlight.map((item, idx) => (
+                      <div key={idx} className="col-lg-3 col-md-6 mb-4">
+                        <div className="info-box-small text-center">
+                          <h6><i className={`fa ${item.icon}`}></i> {item.label}</h6>
+                          <p>{item.value}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <h4 className="mt-5 mb-4">Kelompok Mata Kuliah</h4>
+                  <div className="row">
+                    {strukturKurikulum.map((item, idx) => (
+                      <div key={idx} className="col-lg-6 mb-4">
+                        <div className="fasilitas-card-modern">
+                          <div className="fasilitas-icon-modern">
+                            <i className={`fa ${item.icon}`}></i>
+                          </div>
+                          <div className="fasilitas-content-modern">
+                            <h5>{item.title}</h5>
+                            <p>{item.desc}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="alumni-note mt-4">
+                    <i className="fa fa-info-circle"></i>
+                    <p>Setiap mata kuliah diturunkan dari profil lulusan dan Capaian Pembelajaran Lulusan (CPL) yang mencakup sikap, pengetahuan, keterampilan umum, dan keterampilan khusus, sehingga membentuk kompetensi pedagogik, profesional, sosial, dan kepribadian yang seimbang.</p>
                   </div>
                 </div>
               </div>
@@ -217,24 +302,24 @@ const PaiContent = () => {
                       <ul>
                         <li>Guru PAI SMP/SMA/SMK</li>
                         <li>Guru Madrasah Tsanawiyah/Aliyah</li>
+                        <li>Guru PAI Pesantren</li>
                         <li>Kepala Sekolah/Madrasah</li>
-                        <li>Wakil Kepala Sekolah</li>
                       </ul>
                     </div>
-                    
+
                     <div className="sector-card">
                       <div className="sector-icon">
                         <i className="fa fa-institution"></i>
                       </div>
-                      <h5>Lembaga Keagamaan</h5>
+                      <h5>Dakwah & Pemberdayaan Masyarakat</h5>
                       <ul>
                         <li>Penyuluh Agama</li>
                         <li>Da&apos;i dan Mubaligh</li>
-                        <li>Ustadz/Ustadzah</li>
+                        <li>Fasilitator Pemberdayaan Masyarakat</li>
                         <li>Konsultan Pendidikan Islam</li>
                       </ul>
                     </div>
-                    
+
                     <div className="sector-card">
                       <div className="sector-icon">
                         <i className="fa fa-university"></i>
@@ -247,22 +332,40 @@ const PaiContent = () => {
                         <li>Pengawas Sekolah</li>
                       </ul>
                     </div>
-                    
+
                     <div className="sector-card">
                       <div className="sector-icon">
                         <i className="fa fa-book"></i>
                       </div>
-                      <h5>Media & Penelitian</h5>
+                      <h5>Pengembangan & Penelitian</h5>
                       <ul>
-                        <li>Peneliti Pendidikan Islam</li>
+                        <li>Pengembang Kurikulum & Program PAI</li>
+                        <li>Peneliti Pemula Pendidikan Islam</li>
                         <li>Penulis Buku PAI</li>
-                        <li>Content Creator Islami</li>
                         <li>Editor Materi PAI</li>
+                      </ul>
+                    </div>
+
+                    <div className="sector-card">
+                      <div className="sector-icon">
+                        <i className="fa fa-rocket"></i>
+                      </div>
+                      <h5>Edupreneur Pendidikan Islam</h5>
+                      <ul>
+                        <li>Pendiri Lembaga Kursus/TPQ</li>
+                        <li>Trainer Pendidikan Islam</li>
+                        <li>Content Creator Dakwah Digital</li>
+                        <li>Pengelola Bisnis Pendidikan Islam</li>
                       </ul>
                     </div>
                   </div>
 
-                  <div className="alumni-note mt-5">
+                  <div className="alumni-note mt-3">
+                    <i className="fa fa-graduation-cap"></i>
+                    <p><strong>Studi lanjut:</strong> lulusan PAI juga dapat melanjutkan pendidikan Magister (S2) di bidang PAI/pendidikan Islam.</p>
+                  </div>
+
+                  <div className="alumni-note mt-3">
                     <i className="fa fa-info-circle"></i>
                     <p><strong>Alumni kami</strong> telah bekerja di berbagai sekolah, madrasah, dan lembaga pendidikan Islam di seluruh Indonesia.</p>
                   </div>

@@ -260,7 +260,8 @@ const PgmiContent = () => {
               <div className="tab-content-modern fade-in">
                 <div className="content-card">
                   <h3 className="content-title">Tentang Program Studi</h3>
-                  <p className="lead-text">Program Studi Pendidikan Guru Madrasah Ibtidaiyah (PGMI) menjadi program studi unggul dalam menyiapkan guru madrasah ibtidaiyah yang berilmu, religius, dan profesional, dengan landasan turats Islam, penguasaan ilmu kependidikan, serta kemampuan pedagogik yang adaptif terhadap perubahan zaman.</p>
+                  <p className="lead-text">Program Studi Pendidikan Guru Madrasah Ibtidaiyah (PGMI) adalah program sarjana (S1) di bawah Fakultas Tarbiyah dan Keguruan IAI Persis Garut yang menyiapkan calon guru kelas madrasah ibtidaiyah yang profesional, religius, dan adaptif, dengan landasan turats Islam, penguasaan ilmu kependidikan, serta kemampuan pedagogik yang adaptif terhadap perubahan zaman.</p>
+                  <p><strong>Kekhasan:</strong> Integrasi nilai keislaman dan turats Islam dengan kompetensi pedagogik guru MI dan literasi digital.</p>
 
                   {/* Profil Lulusan Grid */}
                   <h4 className="mt-5 mb-4">Profil Lulusan</h4>
@@ -451,7 +452,12 @@ const PgmiContent = () => {
                     </div>
                   </div>
 
-                  <div className="alumni-note mt-5">
+                  <div className="alumni-note mt-3">
+                    <i className="fa fa-graduation-cap"></i>
+                    <p><strong>Studi lanjut:</strong> lulusan PGMI juga dapat melanjutkan pendidikan Magister (S2) di bidang pendidikan dasar/keislaman.</p>
+                  </div>
+
+                  <div className="alumni-note mt-3">
                     <i className="fa fa-info-circle"></i>
                     <p><strong>Alumni kami</strong> telah bekerja di berbagai institusi pendidikan, lembaga penelitian, dan organisasi Islam di seluruh Indonesia.</p>
                   </div>
