@@ -1,9 +1,5 @@
-'use client'
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getHashnodePosts } from '@/utils/hashnodeApi'
-import NewsSkeletonLoader from './NewsSkeletonLoader'
 
 // Fallback static articles
 const fallbackArticles = [
@@ -71,39 +67,10 @@ const formatDate = (date) => {
   })
 }
 
-const News = () => {
-  const [posts, setPosts] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const posts = await getHashnodePosts()
-        if (posts && posts.length > 0) {
-          setPosts(posts)
-        } else {
-          // Use fallback if API returns empty
-          setPosts(fallbackArticles)
-          setError(null)
-        }
-      } catch (error) {
-        console.error('Error fetching posts:', error)
-        // Use fallback on error
-        setPosts(fallbackArticles)
-        setError(null)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    fetchPosts()
-  }, [])
-
-  // Show skeleton loader while loading
-  if (isLoading) {
-    return <NewsSkeletonLoader />
-  }
+const News = ({ posts: propPosts }) => {
+  // Posts are fetched on the server (see src/app/page.js) and passed in as props,
+  // so they are present in the initial HTML — better SEO and no client-side loading flash.
+  const posts = propPosts && propPosts.length > 0 ? propPosts : fallbackArticles
 
   return (
     <section id="news-part" className="section pt-115 pb-110">

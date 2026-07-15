@@ -14,8 +14,15 @@ import News from '@/components/News/News'
 import LembagaHome from '@/components/Lembaga/LembagaHome'
 import Footer from '@/components/Footer/Footer'
 import WhatsAppFloat from '@/components/WhatsAppFloat/WhatsAppFloat'
+import { getHashnodePosts } from '@/utils/hashnodeApi'
 
-export default function Home() {
+// Rebuild the homepage (and refresh Hashnode news) at most once per hour.
+export const revalidate = 3600
+
+export default async function Home() {
+  // Fetch news on the server so it renders in the initial HTML.
+  const newsPosts = await getHashnodePosts()
+
   return (
     <>
       {/* <Header /> */}
@@ -24,7 +31,7 @@ export default function Home() {
       {/* <Category/> */}
       {/* <About/> */}
       <Teachers2/>
-      <News />
+      <News posts={newsPosts} />
       <Course/>
       <Apply/>
       <VideoFeature/>
