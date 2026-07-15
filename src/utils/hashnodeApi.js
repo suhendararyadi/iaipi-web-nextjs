@@ -3,69 +3,108 @@
 const GQL_ENDPOINT = 'https://gql.hashnode.com';
 const PUBLICATION_HOST = 'news.iaipersisgarut.ac.id';
 
-export async function getHashnodePosts() {
-  const query = `
-    query {
-      publication(host: "${PUBLICATION_HOST}") {
-        posts(first: 6) {
-          edges {
-            node {
-              title
-              brief
-              slug
-              publishedAt
+const QUERY = `
+  query {
+    publication(host: "${PUBLICATION_HOST}") {
+      posts(first: 6) {
+        edges {
+          node {
+            title
+            brief
+            slug
+            publishedAt
+            url
+            coverImage {
               url
-              coverImage {
-                url
-              }
-              readTimeInMinutes
-              tags {
-                name
-                slug
-              }
+            }
+            readTimeInMinutes
+            tags {
+              name
+              slug
             }
           }
         }
       }
     }
-  `;
+  }
+`;
 
+function mapPosts(edges) {
+  return edges.map(({ node }) => ({
+    title: node.title,
+    brief: node.brief,
+    slug: node.slug,
+    dateAdded: new Date(node.publishedAt),
+    coverImage: node.coverImage ? node.coverImage.url : null,
+    link: node.url,
+    category: node.tags && node.tags.length > 0 ? node.tags[0].name : 'Berita',
+    readTime: `${node.readTimeInMinutes} min read`,
+  }));
+}
+
+// Returns { posts, debug }. `debug` explains why posts is empty (used by /api/news
+// while diagnosing). Sends a browser-like User-Agent because Hashnode sits behind
+// Cloudflare and can reject requests without one.
+export async function fetchHashnode() {
   try {
     const response = await fetch(GQL_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'User-Agent':
+          'Mozilla/5.0 (compatible; iaipi-web/1.0; +https://iaipersisgarut.ac.id)',
       },
-      body: JSON.stringify({ query }),
-      next: { revalidate: 3600 } // Revalidate every hour
+      body: JSON.stringify({ query: QUERY }),
+      // Bypass fetch cache while diagnosing so we always see the live result.
+      cache: 'no-store',
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    const text = await response.text();
+
+    let json;
+    try {
+      json = JSON.parse(text);
+    } catch {
+      return {
+        posts: [],
+        debug: {
+          stage: 'json-parse-failed',
+          status: response.status,
+          ok: response.ok,
+          snippet: text.slice(0, 300),
+        },
+      };
     }
 
-    const { data } = await response.json();
-
-    if (!data || !data.publication || !data.publication.posts) {
-      console.warn('Invalid Hashnode API response');
-      return [];
+    if (json.errors) {
+      return {
+        posts: [],
+        debug: { stage: 'graphql-errors', status: response.status, errors: json.errors },
+      };
     }
 
-    const posts = data.publication.posts.edges.map(({ node }) => ({
-      title: node.title,
-      brief: node.brief,
-      slug: node.slug,
-      dateAdded: new Date(node.publishedAt),
-      coverImage: node.coverImage ? node.coverImage.url : null,
-      link: node.url,
-      category: node.tags && node.tags.length > 0 ? node.tags[0].name : 'Berita',
-      readTime: `${node.readTimeInMinutes} min read`
-    }));
+    const edges = json?.data?.publication?.posts?.edges;
+    if (!edges) {
+      return {
+        posts: [],
+        debug: {
+          stage: 'no-edges',
+          status: response.status,
+          hasData: !!json.data,
+          hasPublication: !!json?.data?.publication,
+          snippet: text.slice(0, 300),
+        },
+      };
+    }
 
-    return posts;
-
+    return { posts: mapPosts(edges), debug: { stage: 'ok', status: response.status, count: edges.length } };
   } catch (error) {
-    console.error('Error fetching Hashnode posts:', error);
-    return [];
+    return { posts: [], debug: { stage: 'fetch-threw', message: String(error) } };
   }
+}
+
+export async function getHashnodePosts() {
+  const { posts } = await fetchHashnode();
+  return posts;
 }
