@@ -1,9 +1,12 @@
 'use client'
 import { useState } from 'react'
 
-// DRAFT: kurikulum/fasilitas/kompetensi/karir di bawah ini bersifat generik (pola umum
-// prodi PGMI PTAI), BUKAN data resmi kampus. Wajib direview & diganti dengan data
-// kurikulum asli sebelum publish.
+// Sumber: Dokumen Kurikulum Program Studi PGMI FTK IAI Persis Garut Tahun 2024
+// (SK Dekan FTK No. 00253/B.3-E.5/IAIPI-G/2024), 150 SKS/8 semester. Struktur mata
+// kuliah, profil lulusan, dan visi diambil langsung dari dokumen resmi tersebut.
+// Fasilitas fisik tidak dirinci di dokumen kurikulum sehingga masih bersifat perkiraan
+// berdasarkan nama mata kuliah (mis. Micro Teaching, ICT Pendidikan) — perlu dikonfirmasi
+// ke prodi sebelum publish.
 const PgmiContent = () => {
   const [activeTab, setActiveTab] = useState('profil')
 
@@ -11,62 +14,130 @@ const PgmiContent = () => {
     {
       semester: "Semester 1",
       totalSKS: 19,
-      fokus: "Dasar Keilmuan Islam & Pendidikan",
+      fokus: "Penguatan Dasar Kebangsaan, Keislaman & Fondasi Akademik",
       matkul: [
-        { nama: "Pancasila dan Kewarganegaraan", sks: 3 },
+        { nama: "Pendidikan Pancasila dan Kewarganegaraan", sks: 3 },
         { nama: "Bahasa Indonesia", sks: 2 },
-        { nama: "Ilmu Tauhid", sks: 2 },
-        { nama: "Fiqih Ibadah", sks: 2 },
-        { nama: "Ulumul Quran", sks: 2 },
-        { nama: "Pengantar Pendidikan MI", sks: 2 },
-        { nama: "Psikologi Perkembangan Anak", sks: 2 },
-        { nama: "Konsep Dasar IPA MI", sks: 2 },
-        { nama: "Bahasa Arab", sks: 2 }
+        { nama: "Ilmu Tauhid/Aqidah", sks: 2 },
+        { nama: "Fiqh Ibadah", sks: 2 },
+        { nama: "Ulumul Qur'an", sks: 2 },
+        { nama: "Filsafat Umum", sks: 2 },
+        { nama: "Bahasa Arab", sks: 2 },
+        { nama: "Bahasa Inggris", sks: 2 },
+        { nama: "Filsafat dan Landasan Pendidikan", sks: 2 }
+      ]
+    },
+    {
+      semester: "Semester 2",
+      totalSKS: 20,
+      fokus: "Penguatan Dasar Kependidikan & Wawasan Global",
+      matkul: [
+        { nama: "Bahasa dan Budaya Sunda", sks: 2 },
+        { nama: "Ilmu Akhlak dan Adab", sks: 2 },
+        { nama: "Praktik Ibadah dan Baca Tulis Al-Qur'an", sks: 2 },
+        { nama: "Ulumul Hadis", sks: 2 },
+        { nama: "Islamic Worldview", sks: 2 },
+        { nama: "Perkembangan Peserta Didik", sks: 2 },
+        { nama: "Psikologi Pendidikan", sks: 2 },
+        { nama: "Ilmu Sosial Budaya Dasar", sks: 2 },
+        { nama: "Hadits Tarbawi", sks: 2 },
+        { nama: "Tafsir Tarbawi", sks: 2 }
       ]
     },
     {
       semester: "Semester 3",
       totalSKS: 24,
-      fokus: "Pendalaman Pembelajaran MI & Metodologi",
+      fokus: "Pendalaman Keilmuan Inti Program Studi & Materi MI/SD",
       matkul: [
-        { nama: "Perencanaan Pembelajaran MI", sks: 2 },
-        { nama: "Fiqih Muamalah", sks: 2 },
-        { nama: "Strategi Pembelajaran Tematik", sks: 2 },
-        { nama: "Konsep Dasar Matematika MI", sks: 2 },
-        { nama: "Media Pembelajaran MI", sks: 2 },
-        { nama: "Ushul Fiqih", sks: 2 },
-        { nama: "Pembelajaran Bahasa Indonesia MI", sks: 2 },
         { nama: "Kepersisan", sks: 2 },
-        { nama: "Konsep Dasar IPS MI", sks: 2 },
-        { nama: "Bahasa Inggris Pendidikan", sks: 2 },
-        { nama: "Psikologi Pendidikan", sks: 2 }
+        { nama: "Ushul Fiqh", sks: 2 },
+        { nama: "Dunia Islam Kontemporer", sks: 2 },
+        { nama: "Manajemen dan Administrasi Pendidikan", sks: 2 },
+        { nama: "Sosiologi", sks: 2 },
+        { nama: "Konsep Dasar Bahasa dan Sastra Indonesia MI/SD", sks: 2 },
+        { nama: "Konsep Dasar IPS MI/SD", sks: 2 },
+        { nama: "Konsep Dasar PKN", sks: 2 },
+        { nama: "Konsep Dasar IPA MI/SD", sks: 2 },
+        { nama: "Konsep Dasar Matematika", sks: 2 },
+        { nama: "Pendidikan Jasmani, Kesehatan, dan Rekreasi MI/SD", sks: 2 },
+        { nama: "Kepramukaan", sks: 2 }
+      ]
+    },
+    {
+      semester: "Semester 4",
+      totalSKS: 24,
+      fokus: "Penguatan Pembelajaran, Tematik & Pengembangan Profesional Awal",
+      matkul: [
+        { nama: "Ushul ad-Dakwah", sks: 2 },
+        { nama: "Keterampilan Berbahasa dan Kesusastraan Indonesia MI/SD", sks: 2 },
+        { nama: "Materi IPS MI/SD", sks: 2 },
+        { nama: "Materi PKN MI/SD", sks: 2 },
+        { nama: "IPA MI/SD", sks: 2 },
+        { nama: "Matematika MI/SD", sks: 2 },
+        { nama: "Pembelajaran Seni dan Budaya MI/SD", sks: 2 },
+        { nama: "Pembelajaran Pendidikan Jasmani MI/SD", sks: 2 },
+        { nama: "Strategi Pembelajaran MI/SD", sks: 2 },
+        { nama: "Perencanaan Pembelajaran MI/SD", sks: 2 },
+        { nama: "Telaah Kurikulum MI/SD", sks: 2 },
+        { nama: "Komunikasi Pembelajaran MI/SD", sks: 2 }
       ]
     },
     {
       semester: "Semester 5",
       totalSKS: 24,
-      fokus: "Spesialisasi & Penelitian Pendidikan Dasar",
+      fokus: "Pendalaman Inovasi Pembelajaran, Evaluasi & Praktik Pendidikan",
       matkul: [
-        { nama: "Evaluasi Pembelajaran MI", sks: 2 },
-        { nama: "Pembelajaran PAI di MI", sks: 2 },
+        { nama: "Sejarah Kebudayaan Islam", sks: 2 },
+        { nama: "Statistika Pendidikan", sks: 2 },
+        { nama: "Pembelajaran IPS MI/SD", sks: 2 },
+        { nama: "Pembelajaran PKN MI/SD", sks: 2 },
+        { nama: "Pembelajaran IPA MI/SD", sks: 2 },
+        { nama: "Pembelajaran Matematika MI/SD", sks: 2 },
+        { nama: "Pembelajaran Prakarya MI/SD", sks: 2 },
+        { nama: "Kajian Kearifan Lokal", sks: 2 },
+        { nama: "Pengembangan Bahan Ajar MI/SD", sks: 2 },
+        { nama: "Inovasi Pendidikan", sks: 2 },
         { nama: "Metodologi Penelitian Pendidikan", sks: 2 },
-        { nama: "Bimbingan Konseling Anak MI", sks: 2 },
-        { nama: "Manajemen Kelas MI", sks: 2 },
-        { nama: "Pengembangan Kurikulum MI", sks: 2 },
-        { nama: "Statistik Pendidikan", sks: 2 },
-        { nama: "Pendidikan Inklusif", sks: 2 },
-        { nama: "Literasi & Numerasi MI", sks: 2 },
-        { nama: "Teknologi Pendidikan", sks: 2 }
+        { nama: "Pengenalan Lapangan Pendidikan (PLP) 1", sks: 2 }
+      ]
+    },
+    {
+      semester: "Semester 6",
+      totalSKS: 24,
+      fokus: "Penguatan Micro Teaching, PLP, Penelitian & Kesiapan Tugas Akhir",
+      matkul: [
+        { nama: "Edupreneurship", sks: 2 },
+        { nama: "Akhlak dan Etika Profesi Guru", sks: 2 },
+        { nama: "Pembelajaran Tematik", sks: 2 },
+        { nama: "Pendidikan Inklusi", sks: 2 },
+        { nama: "Inovasi Pendidikan Aqidah-Akhlak di MI", sks: 2 },
+        { nama: "Inovasi Pendidikan Qur'an-Hadist di MI", sks: 2 },
+        { nama: "Pengembangan Media dan Sumber Pembelajaran MI/SD", sks: 2 },
+        { nama: "Evaluasi Pembelajaran MI/SD", sks: 2 },
+        { nama: "Micro Teaching", sks: 2 },
+        { nama: "ICT/Teknologi Informasi dan Komunikasi Pendidikan", sks: 2 },
+        { nama: "Edutainment Pembelajaran di MI/SD", sks: 2 },
+        { nama: "Multimedia Pembelajaran di MI/SD", sks: 2 }
       ]
     },
     {
       semester: "Semester 7",
-      totalSKS: 10,
-      fokus: "Ujian Komprehensif & Praktek Profesi",
+      totalSKS: 9,
+      fokus: "Penyelesaian Seminar Proposal, PLP Lanjutan & Persiapan Skripsi",
       matkul: [
-        { nama: "Ujian Komprehensif", sks: 2 },
-        { nama: "Metodologi Penelitian Mahasiswa (MPM)", sks: 4 },
-        { nama: "PPL/Praktek Profesi", sks: 4 }
+        { nama: "Masa Pengabdian pada Masyarakat", sks: 3 },
+        { nama: "Bimbingan Konseling", sks: 2 },
+        { nama: "Pengenalan Lapangan Pendidikan (PLP) 2", sks: 2 },
+        { nama: "Seminar Proposal", sks: 2 }
+      ]
+    },
+    {
+      semester: "Semester 8",
+      totalSKS: 6,
+      fokus: "Tugas Akhir dan Komprehensif",
+      matkul: [
+        { nama: "Tugas Akhir (Skripsi)", sks: 6 },
+        { nama: "Komprehensif", sks: 0 }
       ]
     }
   ]
@@ -88,17 +159,18 @@ const PgmiContent = () => {
       items: ["Ruang Diskusi Kelompok", "Software Analisis Data", "Bimbingan Penelitian"]
     },
     {
-      icon: "fa-puzzle-piece",
-      title: "Lab Media Pembelajaran",
-      items: ["Alat Peraga Edukatif", "Media Digital & Multimedia", "Perpustakaan Media Ajar"]
+      icon: "fa-laptop",
+      title: "Lab ICT & Media Pembelajaran",
+      items: ["Alat Peraga Edukatif", "Media Digital & Multimedia Pembelajaran", "Perangkat Edutainment MI/SD"]
     }
   ]
 
   const profilLulusan = [
-    { icon: "fa-graduation-cap", title: "Guru Kelas MI/SD", desc: "Mendidik dan mengajar di tingkat madrasah ibtidaiyah" },
-    { icon: "fa-book", title: "Pengembang Kurikulum", desc: "Merancang materi dan strategi pembelajaran MI" },
-    { icon: "fa-child", title: "Konsultan Pendidikan Anak", desc: "Memberi pendampingan tumbuh kembang dan belajar anak" },
-    { icon: "fa-search", title: "Peneliti Pendidikan Dasar", desc: "Mengkaji isu pembelajaran di tingkat dasar" }
+    { icon: "fa-graduation-cap", title: "Guru Kelas MI", desc: "Merancang, melaksanakan, dan mengevaluasi pembelajaran tematik-integratif di kelas MI yang bermakna dan kontekstual" },
+    { icon: "fa-mosque", title: "Pendidik Al-Qur'an dan Nilai Keislaman", desc: "Menanamkan nilai-nilai Islam melalui pembelajaran Al-Qur'an, hadis, akidah akhlak, dan pembiasaan ibadah sehari-hari" },
+    { icon: "fa-lightbulb-o", title: "Pengembang Pembelajaran dan Bahan Ajar", desc: "Mengembangkan bahan ajar inovatif berbasis pendekatan ilmiah, literasi, dan pemanfaatan teknologi" },
+    { icon: "fa-book", title: "Penggerak Literasi dan Numerasi", desc: "Menumbuhkan budaya baca, tulis, berpikir kritis, dan numerasi pada peserta didik MI secara kreatif" },
+    { icon: "fa-users", title: "Pengelola/Kepemimpinan Pendidikan Dasar", desc: "Memimpin pembelajaran dengan kapasitas manajerial, kolaboratif, dan kewirausahaan di madrasah" }
   ]
 
   return (
@@ -188,13 +260,13 @@ const PgmiContent = () => {
               <div className="tab-content-modern fade-in">
                 <div className="content-card">
                   <h3 className="content-title">Tentang Program Studi</h3>
-                  <p className="lead-text">Program Studi Pendidikan Guru Madrasah Ibtidaiyah fokus pada penyiapan guru profesional untuk tingkat MI/SD dengan kompetensi pembelajaran terpadu berbasis nilai-nilai Islam. Program studi ini mempersiapkan mahasiswa untuk menjadi pendidik yang mampu memahami, merancang, dan mengembangkan pembelajaran di tingkat madrasah ibtidaiyah secara komprehensif.</p>
-                  
+                  <p className="lead-text">Program Studi Pendidikan Guru Madrasah Ibtidaiyah (PGMI) menjadi program studi unggul dalam menyiapkan guru madrasah ibtidaiyah yang berilmu, religius, dan profesional, dengan landasan turats Islam, penguasaan ilmu kependidikan, serta kemampuan pedagogik yang adaptif terhadap perubahan zaman.</p>
+
                   {/* Profil Lulusan Grid */}
                   <h4 className="mt-5 mb-4">Profil Lulusan</h4>
                   <div className="row">
                     {profilLulusan.map((profil, idx) => (
-                      <div key={idx} className="col-lg-3 col-md-6 mb-4">
+                      <div key={idx} className="col-lg-4 col-md-6 mb-4">
                         <div className="profil-lulusan-card">
                           <div className="profil-icon">
                             <i className={`fa ${profil.icon}`}></i>
@@ -214,8 +286,8 @@ const PgmiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Penguasaan Pedagogi MI</h6>
-                        <p>Mampu merancang dan melaksanakan pembelajaran tematik terpadu</p>
+                        <h6>Sikap dan Tata Nilai</h6>
+                        <p>Beriman, bertakwa, dan berakhlak mulia; menjunjung tinggi adab, integritas, dan tanggung jawab sebagai pendidik</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -223,8 +295,8 @@ const PgmiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Psikologi Perkembangan Anak</h6>
-                        <p>Menguasai karakteristik dan kebutuhan belajar anak usia MI/SD</p>
+                        <h6>Pengetahuan Pedagogik dan Keislaman</h6>
+                        <p>Menguasai konsep dasar pendidikan, psikologi perkembangan anak, kurikulum MI/SD, serta dasar keislaman (Al-Qur'an, Hadis, fikih, akidah akhlak, SKI)</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -232,8 +304,8 @@ const PgmiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Penelitian Pendidikan</h6>
-                        <p>Mampu melakukan penelitian ilmiah dalam bidang pendidikan dasar</p>
+                        <h6>Keterampilan Umum</h6>
+                        <p>Mampu berpikir kritis, berkomunikasi efektif, berkolaborasi, dan belajar mandiri sepanjang hayat</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -241,8 +313,8 @@ const PgmiContent = () => {
                         <i className="fa fa-check-circle"></i>
                       </div>
                       <div className="kompetensi-content">
-                        <h6>Manajemen Kelas</h6>
-                        <p>Menguasai pengelolaan kelas dan lingkungan belajar yang efektif</p>
+                        <h6>Keterampilan Khusus</h6>
+                        <p>Mampu merancang, melaksanakan, dan mengevaluasi pembelajaran tematik-integratif MI/SD secara kreatif dan berbasis teknologi</p>
                       </div>
                     </div>
                   </div>
@@ -255,7 +327,7 @@ const PgmiContent = () => {
               <div className="tab-content-modern fade-in">
                 <div className="content-card">
                   <h3 className="content-title">Struktur Kurikulum</h3>
-                  <p className="mb-4">Kurikulum dirancang untuk menghasilkan lulusan yang kompeten sebagai guru madrasah ibtidaiyah dengan total 144 SKS.</p>
+                  <p className="mb-4">Kurikulum dirancang untuk menghasilkan lulusan yang kompeten sebagai guru madrasah ibtidaiyah dengan total 150 SKS yang tersebar dalam 8 semester (Dokumen Kurikulum PGMI Tahun 2024).</p>
                   
                   <div className="kurikulum-timeline">
                     {kurikulumSingkat.map((sem, idx) => (
@@ -341,27 +413,27 @@ const PgmiContent = () => {
 
                     <div className="sector-card">
                       <div className="sector-icon">
-                        <i className="fa fa-lightbulb-o"></i>
+                        <i className="fa fa-mosque"></i>
                       </div>
-                      <h5>Pengembangan & Konsultasi</h5>
+                      <h5>Pendidikan Keislaman</h5>
                       <ul>
-                        <li>Pengembang Kurikulum MI</li>
-                        <li>Penulis Buku Ajar</li>
-                        <li>Konsultan Pendidikan Anak</li>
-                        <li>Trainer Guru</li>
+                        <li>Pengajar Al-Qur'an</li>
+                        <li>Pembina Keagamaan Madrasah</li>
+                        <li>Fasilitator Pembiasaan Keislaman</li>
+                        <li>Pengelola PAUD/TPQ</li>
                       </ul>
                     </div>
 
                     <div className="sector-card">
                       <div className="sector-icon">
-                        <i className="fa fa-child"></i>
+                        <i className="fa fa-lightbulb-o"></i>
                       </div>
-                      <h5>Lembaga Pendidikan Non-formal</h5>
+                      <h5>Pengembangan Pembelajaran & Literasi</h5>
                       <ul>
-                        <li>Pengelola PAUD/TPQ</li>
-                        <li>Tutor Bimbingan Belajar</li>
-                        <li>Pendamping Homeschooling</li>
-                        <li>Instruktur Literasi</li>
+                        <li>Pengembang Bahan Ajar & Media Digital MI</li>
+                        <li>Koordinator Literasi/Numerasi Sekolah</li>
+                        <li>Pendamping Klub Baca/Tulis</li>
+                        <li>Wirausahawan Pendidikan</li>
                       </ul>
                     </div>
 
