@@ -461,6 +461,62 @@ const PgmiContent = () => {
           </div>
         </div>
 
+        {/* Visi, Misi & Tujuan */}
+        <div className="row mt-5">
+          <div className="col-lg-12">
+            <div className="visi-misi-faculty">
+              <div className="row">
+                <div className="col-lg-4 col-md-6 mb-4">
+                  <div className="vm-card">
+                    <div className="vm-icon">
+                      <i className="fa fa-eye"></i>
+                    </div>
+                    <div className="vm-content">
+                      <h4>Visi</h4>
+                      <p>Menjadi program studi unggul dalam menyiapkan guru madrasah ibtidaiyah yang berilmu, religius, dan profesional, dengan landasan turats Islam, penguasaan ilmu kependidikan, serta kemampuan pedagogik yang adaptif terhadap perubahan zaman.</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-4 col-md-6 mb-4">
+                  <div className="vm-card">
+                    <div className="vm-icon">
+                      <i className="fa fa-bullseye"></i>
+                    </div>
+                    <div className="vm-content">
+                      <h4>Misi</h4>
+                      <ul>
+                        <li>Menyelenggarakan pendidikan dan pembelajaran bermutu berbasis capaian pembelajaran</li>
+                        <li>Mengembangkan penelitian pendidikan dasar Islam yang relevan dan bermanfaat</li>
+                        <li>Melaksanakan pengabdian kepada masyarakat berbasis pendidikan dan dakwah</li>
+                        <li>Memperkuat kerja sama dengan madrasah, lembaga pendidikan, alumni, dan pemangku kepentingan</li>
+                        <li>Mengembangkan sumber daya manusia dosen dan mahasiswa yang kompeten dan berkarakter</li>
+                        <li>Membangun budaya akademik yang religius, ilmiah, dan produktif</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-4 col-md-6 mb-4">
+                  <div className="vm-card">
+                    <div className="vm-icon">
+                      <i className="fa fa-flag"></i>
+                    </div>
+                    <div className="vm-content">
+                      <h4>Tujuan</h4>
+                      <ul>
+                        <li>Menghasilkan lulusan yang mampu menjadi guru madrasah ibtidaiyah profesional</li>
+                        <li>Membentuk lulusan yang berakhlak mulia, beradab, dan berdaya saing</li>
+                        <li>Memastikan lulusan memiliki kompetensi nyata untuk mengajar, membimbing, dan mendidik</li>
+                        <li>Memperkuat mutu proses pendidikan dan pembelajaran di lingkungan prodi</li>
+                        <li>Meningkatkan relevansi kurikulum dengan kebutuhan dunia kerja dan perkembangan ilmu pendidikan</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* CTA Footer */}
         <div className="row mt-5">
           <div className="col-lg-12">
