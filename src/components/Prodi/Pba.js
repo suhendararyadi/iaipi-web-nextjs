@@ -125,7 +125,7 @@ const PbaContent = () => {
                     </div>
                   </div>
                   <div className="info-box">
-                    <i className="fa fa-award"></i>
+                    <i className="fa fa-trophy"></i>
                     <div>
                       <span className="label">Gelar</span>
                       <strong>S.Pd.</strong>
@@ -354,7 +354,7 @@ const PbaContent = () => {
 
                     <div className="sector-card">
                       <div className="sector-icon">
-                        <i className="fa fa-mosque"></i>
+                        <i className="fa fa-institution"></i>
                       </div>
                       <h5>Lembaga Keagamaan & Dakwah</h5>
                       <ul>

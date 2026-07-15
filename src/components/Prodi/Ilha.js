@@ -94,7 +94,7 @@ const IlhaContent = () => {
   const profilLulusan = [
     { icon: "fa-search", title: "Peneliti Hadis", desc: "Ahli dalam riset dan kajian hadis" },
     { icon: "fa-graduation-cap", title: "Akademisi", desc: "Dosen dan pengajar ilmu hadis" },
-    { icon: "fa-mosque", title: "Da&apos;i & Mubaligh", desc: "Penyebar ajaran Islam berbasis hadis" },
+    { icon: "fa-institution", title: "Da&apos;i & Mubaligh", desc: "Penyebar ajaran Islam berbasis hadis" },
     { icon: "fa-user", title: "Konsultan Syariah", desc: "Ahli konsultasi hukum Islam" }
   ]
 
@@ -122,7 +122,7 @@ const IlhaContent = () => {
                     </div>
                   </div>
                   <div className="info-box">
-                    <i className="fa fa-award"></i>
+                    <i className="fa fa-trophy"></i>
                     <div>
                       <span className="label">Gelar</span>
                       <strong>S.Ag.</strong>
@@ -338,7 +338,7 @@ const IlhaContent = () => {
                     
                     <div className="sector-card">
                       <div className="sector-icon">
-                        <i className="fa fa-mosque"></i>
+                        <i className="fa fa-institution"></i>
                       </div>
                       <h5>Lembaga Keagamaan</h5>
                       <ul>

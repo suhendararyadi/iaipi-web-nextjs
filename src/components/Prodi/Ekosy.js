@@ -125,7 +125,7 @@ const EkosyContent = () => {
                     </div>
                   </div>
                   <div className="info-box">
-                    <i className="fa fa-award"></i>
+                    <i className="fa fa-trophy"></i>
                     <div>
                       <span className="label">Gelar</span>
                       <strong>S.E.</strong>

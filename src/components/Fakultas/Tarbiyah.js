@@ -161,14 +161,14 @@ const Tarbiyah = () => {
                   {/* Info Grid */}
                   <div className="prodi-info-grid">
                     <div className="info-item">
-                      <i className="fa fa-award"></i>
+                      <i className="fa fa-trophy"></i>
                       <div>
                         <span className="label">Gelar</span>
                         <span className="value">{prodi.gelar}</span>
                       </div>
                     </div>
                     <div className="info-item">
-                      <i className="fa fa-clock"></i>
+                      <i className="fa fa-clock-o"></i>
                       <div>
                         <span className="label">Durasi</span>
                         <span className="value">{prodi.durasi}</span>

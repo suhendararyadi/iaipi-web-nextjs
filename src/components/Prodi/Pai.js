@@ -7,7 +7,7 @@ const PaiContent = () => {
   const profilLulusan = [
     { icon: "fa-graduation-cap", title: "Guru PAI", desc: "Pendidik PAI di sekolah/madrasah" },
     { icon: "fa-user", title: "Tenaga Kependidikan", desc: "Staff akademik dan administrasi" },
-    { icon: "fa-mosque", title: "Penyuluh Agama", desc: "Da&apos;i dan mubaligh profesional" },
+    { icon: "fa-institution", title: "Penyuluh Agama", desc: "Da&apos;i dan mubaligh profesional" },
     { icon: "fa-book", title: "Peneliti Pendidikan", desc: "Ahli penelitian pendidikan Islam" }
   ]
 
@@ -57,7 +57,7 @@ const PaiContent = () => {
                     </div>
                   </div>
                   <div className="info-box">
-                    <i className="fa fa-award"></i>
+                    <i className="fa fa-trophy"></i>
                     <div>
                       <span className="label">Gelar</span>
                       <strong>S.Pd.</strong>
@@ -224,7 +224,7 @@ const PaiContent = () => {
                     
                     <div className="sector-card">
                       <div className="sector-icon">
-                        <i className="fa fa-mosque"></i>
+                        <i className="fa fa-institution"></i>
                       </div>
                       <h5>Lembaga Keagamaan</h5>
                       <ul>

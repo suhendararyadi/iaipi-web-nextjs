@@ -167,7 +167,7 @@ const PgmiContent = () => {
 
   const profilLulusan = [
     { icon: "fa-graduation-cap", title: "Guru Kelas MI", desc: "Merancang, melaksanakan, dan mengevaluasi pembelajaran tematik-integratif di kelas MI yang bermakna dan kontekstual" },
-    { icon: "fa-mosque", title: "Pendidik Al-Qur'an dan Nilai Keislaman", desc: "Menanamkan nilai-nilai Islam melalui pembelajaran Al-Qur'an, hadis, akidah akhlak, dan pembiasaan ibadah sehari-hari" },
+    { icon: "fa-institution", title: "Pendidik Al-Qur'an dan Nilai Keislaman", desc: "Menanamkan nilai-nilai Islam melalui pembelajaran Al-Qur'an, hadis, akidah akhlak, dan pembiasaan ibadah sehari-hari" },
     { icon: "fa-lightbulb-o", title: "Pengembang Pembelajaran dan Bahan Ajar", desc: "Mengembangkan bahan ajar inovatif berbasis pendekatan ilmiah, literasi, dan pemanfaatan teknologi" },
     { icon: "fa-book", title: "Penggerak Literasi dan Numerasi", desc: "Menumbuhkan budaya baca, tulis, berpikir kritis, dan numerasi pada peserta didik MI secara kreatif" },
     { icon: "fa-users", title: "Pengelola/Kepemimpinan Pendidikan Dasar", desc: "Memimpin pembelajaran dengan kapasitas manajerial, kolaboratif, dan kewirausahaan di madrasah" }
@@ -197,7 +197,7 @@ const PgmiContent = () => {
                     </div>
                   </div>
                   <div className="info-box">
-                    <i className="fa fa-award"></i>
+                    <i className="fa fa-trophy"></i>
                     <div>
                       <span className="label">Gelar</span>
                       <strong>S.Pd.</strong>
@@ -413,7 +413,7 @@ const PgmiContent = () => {
 
                     <div className="sector-card">
                       <div className="sector-icon">
-                        <i className="fa fa-mosque"></i>
+                        <i className="fa fa-institution"></i>
                       </div>
                       <h5>Pendidikan Keislaman</h5>
                       <ul>
