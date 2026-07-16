@@ -94,14 +94,14 @@ export default function RootLayout({ children }) {
               description: 'Institut Agama Islam PERSIS Garut adalah perguruan tinggi Islam yang menyelenggarakan pendidikan akademik dan profesional',
               address: {
                 '@type': 'PostalAddress',
-                streetAddress: 'Jl. Pramuka No.13, Jayawaras',
+                streetAddress: 'Jl. Aruji Kartawinata No. 2, Tarogong Kidul',
                 addressLocality: 'Garut',
                 addressRegion: 'Jawa Barat',
                 postalCode: '44151',
                 addressCountry: 'ID',
               },
-              telephone: '+62-262-232891',
-              email: 'info@iaipersisgarut.ac.id',
+              telephone: '+62-851-2312-3670',
+              email: 'rektorat@iaipersisgarut.ac.id',
               sameAs: [
                 'https://facebook.com/iaipigarut',
                 'https://instagram.com/iaipi_garut',
