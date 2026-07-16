@@ -418,6 +418,32 @@ textarea:focus {
 }
 
 /* =========================
+   KARTU PIMPINAN (Teachers2 / Teachers4)
+   ========================= */
+/* .teachers-2-singel adalah flex container, tapi foto tidak punya ukuran
+   maupun flex-shrink, sehingga terdesak oleh panjang nama di sebelahnya
+   (foto merender 47-64px, berbeda-beda antar kartu). */
+.teachers-2 .teachers-2-singel .thum {
+    flex: 0 0 auto;
+}
+
+.teachers-2 .teachers-2-singel .thum img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 50%;
+    display: block;
+}
+
+@media (max-width: 767px) {
+    .teachers-2 .teachers-2-singel .thum img {
+        width: 72px;
+        height: 72px;
+    }
+}
+
+/* =========================
    CTA ENHANCEMENTS
    ========================= */
 .apply .apply-cont {
@@ -3561,6 +3587,25 @@ a {
     display: block;
     font-size: 16px;
     color: #333;
+}
+
+/* Akreditasi ditonjolkan dari Gelar/Durasi */
+.prodi-header-right .info-box--akreditasi {
+    background: linear-gradient(135deg, #006739 0%, #008749 100%);
+    box-shadow: 0 4px 14px rgba(0, 103, 57, 0.28);
+}
+
+.prodi-header-right .info-box--akreditasi i,
+.prodi-header-right .info-box--akreditasi strong {
+    color: #fff;
+}
+
+.prodi-header-right .info-box--akreditasi strong {
+    font-size: 18px;
+}
+
+.prodi-header-right .info-box--akreditasi .label {
+    color: rgba(255, 255, 255, 0.8);
 }
 
 /* Prodi Tabs Modern */

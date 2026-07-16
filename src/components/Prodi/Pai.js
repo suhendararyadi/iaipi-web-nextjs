@@ -198,7 +198,7 @@ const PaiContent = () => {
               </div>
               <div className="prodi-header-right">
                 <div className="quick-info">
-                  <div className="info-box">
+                  <div className="info-box info-box--akreditasi">
                     <i className="fa fa-certificate"></i>
                     <div>
                       <span className="label">Akreditasi</span>
