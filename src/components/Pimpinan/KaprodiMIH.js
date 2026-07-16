@@ -2,7 +2,7 @@
 
 import React from "react";
 
-const KaprodILHA = () => {
+const KaprodiMIH = () => {
   return (
     <section id="teachers-singel" className="pt-70 pb-120 gray-bg">
       <div className="container">
@@ -15,7 +15,7 @@ const KaprodILHA = () => {
               </div>
               <div className="name">
                 <h6>Azis Asmana, Lc., M.Ag.</h6>
-                <span>Ketua Prodi Ilmu Hadis (ILHA)</span>
+                <span>Ketua Prodi Magister Ilmu Hadis (MIH)</span>
               </div>
               <div className="social">
                 <ul>
@@ -233,4 +233,4 @@ const Course = ({ image, price, title, teacherImage, teacherName, reviewsCount, 
   </div>
 );
 
-export default KaprodILHA;
+export default KaprodiMIH;

@@ -45,24 +45,11 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-4.jpg" alt="Teachers" />
-              </div>
-              <div className="cont">
-                <Link href="/pimpinan/warek3"><h6>Dr. Pepen Irpan Fauzan, M.Hum.</h6></Link>
-                <span>Wakil Rektor 3</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Teacher 4 */}
-          <div className="col-lg-3 col-sm-6">
-            <div className="singel-teachers mt-30 text-center">
-              <div className="image">
                 <img src="/images/dosen/d-5.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/pimpinan/warek4"><h6>Dr. Heri Mohamad Tohari, M.Pd.</h6></Link>
-                <span>Wakil Rektor 4</span>
+                <Link href="/pimpinan/warek3"><h6>Dr. Heri Mohamad Tohari, M.Pd.</h6></Link>
+                <span>Wakil Rektor 3</span>
               </div>
             </div>
           </div>
@@ -126,8 +113,8 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-9.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/pimpinan/kaprodi-ilha"><h6>Azis Asmana, Lc., M.Ag.</h6></Link>
-                <span>Kaprodi Ilmu Hadis (ILHA)</span>
+                <Link href="/pimpinan/kaprodi-mih"><h6>Azis Asmana, Lc., M.Ag.</h6></Link>
+                <span>Kaprodi Magister Ilmu Hadis (MIH)</span>
               </div>
             </div>
           </div>

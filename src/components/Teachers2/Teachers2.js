@@ -89,25 +89,11 @@ const Teachers2 = () => {
                 <div className="col-md-6">
                   <div className="teachers-2-singel mt-30">
                     <div className="thum">
-                      <img src="/images/teachers/teacher-2/warek-3.jpg" alt="Teacher" />
-                    </div>
-                    <div className="cont">
-                      <Link href="/pimpinan/warek3"><h5>Dr. Pepen Irpan Fauzan, M.Hum.</h5></Link>
-                      <p>Wakil Rektor 3</p>
-                      {/* <span><i className="fa fa-book"></i>10 Courses</span> */}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Teacher 4 */}
-                <div className="col-md-6">
-                  <div className="teachers-2-singel mt-30">
-                    <div className="thum">
                       <img src="/images/teachers/teacher-2/warek-4.jpg" alt="Teacher" />
                     </div>
                     <div className="cont">
-                      <Link href="/pimpinan/warek4"><h5>Dr. Heri Mohamad Tohari, M.Pd.</h5></Link>
-                      <p>Wakil Rektor 4</p>
+                      <Link href="/pimpinan/warek3"><h5>Dr. Heri Mohamad Tohari, M.Pd.</h5></Link>
+                      <p>Wakil Rektor 3</p>
                       {/* <span><i className="fa fa-book"></i>05 Courses</span> */}
                     </div>
                   </div>

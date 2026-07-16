@@ -11,11 +11,11 @@ const Warek3 = () => {
           <div className="col-lg-4 col-md-8">
             <div className="teachers-left mt-50">
               <div className="hero">
-                <img src="/images/dosen/d-4.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-5.jpg" alt="Teachers" />
               </div>
               <div className="name">
-                <h6>Dr. Pepen Irpan Fauzan, M.Hum.</h6>
-                <span>Wakil Rektor III Bidang Kemahasiswaan</span>
+                <h6>Dr. Heri Mohamad Tohari, M.Pd.</h6>
+                <span>Wakil Rektor III Bidang Kemahasiswaan, Kerjasama dan Alumni</span>
               </div>
               <div className="social">
                 <ul>
@@ -108,28 +108,31 @@ const Warek3 = () => {
                     <div className="singel-dashboard pt-40">
                       <h5>Tentang</h5>
                       <p>
-                      __________________________________________________________________________
+                      Aktif sebagai pekerja sosial dan bertindak sebagai penggagas Desa Caang dan menakhkodai The Creative Institute.
+ 
+
                       </p>
                       <p>
-                      __________________________________________________________________________
+                      Pernah ikut terlibat dalam pemberdayaan “Living Value Education” dan “Pesantren Ramah Anak”, sebuah program kerjasama UNICEF, Terre des Hommes, dan LSAF. Pernah juga menjadi Staf Ahli di DPR RI. Kini aktif terlibat sebagai Fasilitator Program Sekolah Penggerak Kemendikbud RI.
+
                       </p>
                       <p>
-                      __________________________________________________________________________
+                      Berprofesi sebagai dosen muda, peneliti, dan penulis di berbagai media massa, jurnal nasional dan internasional. Kerap kali langganan diundang menulis dan mengisi forum internasional yang berkaitan community development, seperti: IIGCE, IIGW, dll.
                       </p>
                     </div>
                     <div className="singel-dashboard pt-40">
                       <h5>Pendidikan</h5>
-                      <p>S1 Universitas Padjadjaran		</p>
-                      <p>S2 Universitas Indonesia</p>	
-                      <p>S3 Universitas Universitas Islam Negeri Syarif Hidayatullah</p>
+                      <p>S1 Universitas Gadjah Mada</p>
+                      <p>S2 Universitas Pendidikan Indonesia</p>	
+                      <p>S3 Universitas Padjadjaran	</p>
 
                     </div>
                     <div className="singel-dashboard pt-40">
                         <h5>ID Penelitian</h5>
-                        <p>Sinta ID: 6705489</p>
+                        <p>Sinta ID: 6724739</p>
                         <p>
                             Google Scholar:  
-                            <a href="https://scholar.google.co.id/citations?hl=id&user=oqEGtiAAAAAJ" target="_blank" rel="noopener noreferrer">
+                            <a href="https://scholar.google.co.id/citations?user=f__HAIUAAAAJ&hl=id" target="_blank" rel="noopener noreferrer">
                              Klik di sini
                             </a>
                         </p>
