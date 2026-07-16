@@ -14,7 +14,7 @@ const KaprodiMIH = () => {
                 <img src="/images/dosen/d-9.jpg" alt="Teachers" />
               </div>
               <div className="name">
-                <h6>Azis Asmana, Lc., M.Ag.</h6>
+                <h6>Dr. Azis Asmana, Lc., M.Ag.</h6>
                 <span>Ketua Prodi Magister Ilmu Hadis (MIH)</span>
               </div>
               <div className="social">

@@ -113,8 +113,21 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-9.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/pimpinan/kaprodi-mih"><h6>Azis Asmana, Lc., M.Ag.</h6></Link>
+                <Link href="/pimpinan/kaprodi-mih"><h6>Dr. Azis Asmana, Lc., M.Ag.</h6></Link>
                 <span>Kaprodi Magister Ilmu Hadis (MIH)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Teacher 14 */}
+          <div className="col-lg-3 col-sm-6">
+            <div className="singel-teachers mt-30 text-center">
+              <div className="image">
+                <img src="/images/dosen/d-20.jpeg" alt="Teachers" />
+              </div>
+              <div className="cont">
+                <Link href="/pimpinan/kaprodi-ilha"><h6>Kinkin Syamsudin, M.Ag.</h6></Link>
+                <span>Ketua Prodi Ilmu Hadis (ILHA)</span>
               </div>
             </div>
           </div>

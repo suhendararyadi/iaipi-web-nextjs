@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react'
 import Header2 from '@/components/Header2/Header2'
 import Footer from '@/components/Footer/Footer'
 import PageBanner from '@/components/PageBanner/PageBanner'
-import KaprodiMIH from '@/components/Pimpinan/KaprodiMIH'
+import KaprodiILHA from '@/components/Pimpinan/KaprodiILHA'
 
 
-export default function KaprodiMIHPage() {
+export default function KaprodiILHAPage() {
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
@@ -19,15 +19,15 @@ export default function KaprodiMIHPage() {
     <>
       <Header2 />
       <PageBanner
-        title="Kaprodi Magister Ilmu Hadis - Dr. Azis Asmana, Lc., M.Ag."
+        title="Kaprodi ILHA - Kinkin Syamsudin, M.Ag."
         backgroundImage="/images/page-banner-7.jpg"
         breadcrumbs={[
           { text: 'Home', url: '/' },
           { text: 'Pimpinan', url: '/pimpinan' },
-          { text: 'Kaprodi Magister Ilmu Hadis', url: null }
+          { text: 'Kaprodi ILHA', url: null }
         ]}
       />
-      <KaprodiMIH/>
+      <KaprodiILHA/>
       <Footer />
     </>
   )

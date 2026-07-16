@@ -11,12 +11,6 @@ const nextConfig = {
           destination: '/pimpinan/warek3',
           permanent: true,
         },
-        // Azis Asmana pindah dari Kaprodi S1 Ilmu Hadis ke Kaprodi Magister Ilmu Hadis.
-        {
-          source: '/pimpinan/kaprodi-ilha',
-          destination: '/pimpinan/kaprodi-mih',
-          permanent: true,
-        },
       ]
     },
   };
