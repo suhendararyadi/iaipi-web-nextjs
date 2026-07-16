@@ -9,7 +9,7 @@ const Teachers3 = () => {
         <div className="row">
           <div className="col-lg-5">
             <div className="section-title mt-50 pb-35">
-              <h5>Oragnisasi</h5>
+              <h5>Organisasi</h5>
               <h2>Staf Pimpinan</h2>
             </div>
           </div>
@@ -74,7 +74,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-6.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/pimpinan/dekan1"><h6>Dr. Gun Gun A. Basith</h6></Link>
+                <Link href="/pimpinan/dekan1"><h6>Dr. Gun Gun Abdul Basit, M.Ag.</h6></Link>
                 <span>Dekan Fakultas Ushuluddin</span>
               </div>
             </div>
@@ -109,20 +109,6 @@ const Teachers3 = () => {
           {/* Teacher 6 */}
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
-              {/* <div className="image">
-                <img src="/images/dosen/d-7.jpg" alt="Teachers" />
-              </div> */}
-              {/* <div className="cont">
-                <Link href="/teachers-singel"><h6>Konfimasi</h6></Link>
-                <span>Vice chencelor</span>
-              </div> */}
-            </div>
-          </div>
-
-
-          {/* Teacher 6 */}
-          <div className="col-lg-3 col-sm-6">
-            <div className="singel-teachers mt-30 text-center">
               <div className="image">
                 <img src="/images/dosen/d-7.jpg" alt="Teachers" />
               </div>
@@ -141,7 +127,7 @@ const Teachers3 = () => {
               </div>
               <div className="cont">
                 <Link href="/pimpinan/kaprodi-ilha"><h6>Azis Asmana, Lc., M.Ag.</h6></Link>
-                <span>Kaprodi Iimu Hadis (ILHA)</span>
+                <span>Kaprodi Ilmu Hadis (ILHA)</span>
               </div>
             </div>
           </div>
@@ -155,6 +141,19 @@ const Teachers3 = () => {
               <div className="cont">
                 <Link href="/pimpinan/kaprodi-iat"><h6>Yan Yan Nurdin, S.Ud., M.Ag.</h6></Link>
                 <span>Ketua Prodi Ilmu Alquran dan Tafsir (IAT)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Teacher 12 */}
+          <div className="col-lg-3 col-sm-6">
+            <div className="singel-teachers mt-30 text-center">
+              <div className="image">
+                <img src="/images/dosen/d-19.jpeg" alt="Teachers" />
+              </div>
+              <div className="cont">
+                <Link href="/pimpinan/kaprodi-spi"><h6>Imam Sofyan Abas</h6></Link>
+                <span>Ketua Prodi Sejarah Peradaban Islam (SPI)</span>
               </div>
             </div>
           </div>
@@ -192,7 +191,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-12.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/pimpinan/kaprodi-pgmi"><h6>Nuraini S. Pramukti, S,Pd., M.Pd.</h6></Link>
+                <Link href="/pimpinan/kaprodi-pgmi"><h6>Nuraeni Sugih Pramukti, M.Pd.</h6></Link>
                 <span>Kaprodi Pendidikan Guru Madrasah Ibtidaiyah (PGMI)</span>
               </div>
             </div>
@@ -205,8 +204,21 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-11.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/pimpinan/kaprodi-bkpi"><h6>Yanti Syam Amir, S.Pd., M.Pd.</h6></Link>
+                <Link href="/pimpinan/kaprodi-bkpi"><h6>Yanti Sam Amir, S.Pd., M.Pd.</h6></Link>
                 <span>Kaprodi Bimbingan Konseling Pendidikan Islam (BKPI)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Teacher 13 */}
+          <div className="col-lg-3 col-sm-6">
+            <div className="singel-teachers mt-30 text-center">
+              <div className="image">
+                <img src="/images/dosen/d-18.jpeg" alt="Teachers" />
+              </div>
+              <div className="cont">
+                <Link href="/pimpinan/kaprodi-pba"><h6>Hasan Ansori</h6></Link>
+                <span>Ketua Prodi Pendidikan Bahasa Arab (PBA)</span>
               </div>
             </div>
           </div>
@@ -218,7 +230,7 @@ const Teachers3 = () => {
                 <img src="/images/dosen/d-10.jpg" alt="Teachers" />
               </div>
               <div className="cont">
-                <Link href="/pimpinan/kaprodi-ekosy"><h6>Nurfaedah, S.E, M.E.</h6></Link>
+                <Link href="/pimpinan/kaprodi-ekosy"><h6>Nurfaedah, S.E.I, M.E.</h6></Link>
                 <span>Kaprodi Ekonomi Syariah (EKOSY)</span>
               </div>
             </div>
