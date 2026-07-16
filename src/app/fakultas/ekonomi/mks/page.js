@@ -1,34 +1,18 @@
-'use client'
-import { useEffect, useState } from 'react'
-import Header2 from '@/components/Header2/Header2'
-import Footer from '@/components/Footer/Footer'
-import PageBanner from '@/components/PageBanner/PageBanner'
-import MksContent from '@/components/Prodi/Mks'
+import PageClient from './PageClient'
 
-export default function MksPage() {
-  const [isMounted, setIsMounted] = useState(false)
+export const metadata = {
+  title: 'Program Studi Manajemen Keuangan Syariah',
+  description: 'Program Studi S1 Manajemen Keuangan Syariah IAI PERSIS Garut mencetak manajer keuangan syariah profesional untuk perbankan dan lembaga keuangan Islam.',
+  alternates: {
+    canonical: '/fakultas/ekonomi/mks',
+  },
+  openGraph: {
+    title: 'Program Studi Manajemen Keuangan Syariah | IAI PERSIS Garut',
+    description: 'Program Studi S1 Manajemen Keuangan Syariah IAI PERSIS Garut mencetak manajer keuangan syariah profesional untuk perbankan dan lembaga keuangan Islam.',
+    url: '/fakultas/ekonomi/mks',
+  },
+}
 
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) return null
-
-  return (
-    <>
-      <Header2 />
-      <PageBanner 
-        title="Program Studi Manajemen Keuangan Syariah" 
-        backgroundImage="/images/page-banner-1.jpg"
-        breadcrumbs={[
-          { text: 'Home', url: '/' },
-          { text: 'Fakultas', url: '/fakultas' },
-          { text: 'FEBI', url: '/fakultas/ekonomi' },
-          { text: 'Manajemen Keuangan Syariah', url: null }
-        ]}
-      />
-      <MksContent />
-      <Footer />
-    </>
-  )
+export default function Page() {
+  return <PageClient />
 }

@@ -1,34 +1,18 @@
-'use client'
-import { useEffect, useState } from 'react'
-import Header2 from '@/components/Header2/Header2'
-import Footer from '@/components/Footer/Footer'
-import PageBanner from '@/components/PageBanner/PageBanner'
-import PbaContent from '@/components/Prodi/Pba'
+import PageClient from './PageClient'
 
-export default function PbaPage() {
-  const [isMounted, setIsMounted] = useState(false)
+export const metadata = {
+  title: 'Program Studi Pendidikan Bahasa Arab (PBA)',
+  description: 'Program Studi S1 Pendidikan Bahasa Arab IAI PERSIS Garut mencetak pendidik bahasa Arab profesional dengan kompetensi linguistik dan keislaman.',
+  alternates: {
+    canonical: '/fakultas/tarbiyah/pba',
+  },
+  openGraph: {
+    title: 'Program Studi Pendidikan Bahasa Arab (PBA) | IAI PERSIS Garut',
+    description: 'Program Studi S1 Pendidikan Bahasa Arab IAI PERSIS Garut mencetak pendidik bahasa Arab profesional dengan kompetensi linguistik dan keislaman.',
+    url: '/fakultas/tarbiyah/pba',
+  },
+}
 
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) return null
-
-  return (
-    <>
-      <Header2 />
-      <PageBanner
-        title="Program Studi Pendidikan Bahasa Arab"
-        backgroundImage="/images/page-banner-1.jpg"
-        breadcrumbs={[
-          { text: 'Home', url: '/' },
-          { text: 'Fakultas', url: '/fakultas' },
-          { text: 'Tarbiyah', url: '/fakultas/tarbiyah' },
-          { text: 'Pendidikan Bahasa Arab', url: null }
-        ]}
-      />
-      <PbaContent />
-      <Footer />
-    </>
-  )
+export default function Page() {
+  return <PageClient />
 }

@@ -1,34 +1,18 @@
-'use client'
-import { useEffect, useState } from 'react'
-import Header2 from '@/components/Header2/Header2'
-import Footer from '@/components/Footer/Footer'
-import PageBanner from '@/components/PageBanner/PageBanner'
-import PgmiContent from '@/components/Prodi/Pgmi'
+import PageClient from './PageClient'
 
-export default function PgmiPage() {
-  const [isMounted, setIsMounted] = useState(false)
+export const metadata = {
+  title: 'Program Studi Pendidikan Guru Madrasah Ibtidaiyah (PGMI)',
+  description: 'Program Studi S1 PGMI IAI PERSIS Garut mencetak guru MI/SD profesional dengan kurikulum berbasis dokumen resmi FTK, kompetensi pedagogik dan keislaman.',
+  alternates: {
+    canonical: '/fakultas/tarbiyah/pgmi',
+  },
+  openGraph: {
+    title: 'Program Studi Pendidikan Guru Madrasah Ibtidaiyah (PGMI) | IAI PERSIS Garut',
+    description: 'Program Studi S1 PGMI IAI PERSIS Garut mencetak guru MI/SD profesional dengan kurikulum berbasis dokumen resmi FTK, kompetensi pedagogik dan keislaman.',
+    url: '/fakultas/tarbiyah/pgmi',
+  },
+}
 
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) return null
-
-  return (
-    <>
-      <Header2 />
-      <PageBanner 
-        title="Program Studi Pendidikan Guru Madrasah Ibtidaiyah" 
-        backgroundImage="/images/page-banner-1.jpg"
-        breadcrumbs={[
-          { text: 'Home', url: '/' },
-          { text: 'Fakultas', url: '/fakultas' },
-          { text: 'Tarbiyah', url: '/fakultas/tarbiyah' },
-          { text: 'PGMI', url: null }
-        ]}
-      />
-      <PgmiContent />
-      <Footer />
-    </>
-  )
+export default function Page() {
+  return <PageClient />
 }

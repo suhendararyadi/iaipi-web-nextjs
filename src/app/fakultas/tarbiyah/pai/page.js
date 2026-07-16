@@ -1,34 +1,18 @@
-'use client'
-import { useEffect, useState } from 'react'
-import Header2 from '@/components/Header2/Header2'
-import Footer from '@/components/Footer/Footer'
-import PageBanner from '@/components/PageBanner/PageBanner'
-import PaiContent from '@/components/Prodi/Pai'
+import PageClient from './PageClient'
 
-export default function PaiPage() {
-  const [isMounted, setIsMounted] = useState(false)
+export const metadata = {
+  title: 'Program Studi Pendidikan Agama Islam (PAI)',
+  description: 'Program Studi S1 Pendidikan Agama Islam IAI PERSIS Garut, terakreditasi Baik Sekali BAN-PT. Kurikulum berbasis CPL, kompetensi pendidik profesional, dan prospek karir luas.',
+  alternates: {
+    canonical: '/fakultas/tarbiyah/pai',
+  },
+  openGraph: {
+    title: 'Program Studi Pendidikan Agama Islam (PAI) | IAI PERSIS Garut',
+    description: 'Program Studi S1 Pendidikan Agama Islam IAI PERSIS Garut, terakreditasi Baik Sekali BAN-PT. Kurikulum berbasis CPL, kompetensi pendidik profesional, dan prospek karir luas.',
+    url: '/fakultas/tarbiyah/pai',
+  },
+}
 
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) return null
-
-  return (
-    <>
-      <Header2 />
-      <PageBanner 
-        title="Program Studi Pendidikan Agama Islam" 
-        backgroundImage="/images/page-banner-1.jpg"
-        breadcrumbs={[
-          { text: 'Home', url: '/' },
-          { text: 'Fakultas', url: '/fakultas' },
-          { text: 'Tarbiyah', url: '/fakultas/tarbiyah' },
-          { text: 'Pendidikan Agama Islam', url: null }
-        ]}
-      />
-      <PaiContent />
-      <Footer />
-    </>
-  )
+export default function Page() {
+  return <PageClient />
 }

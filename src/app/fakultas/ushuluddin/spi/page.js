@@ -1,34 +1,18 @@
-'use client'
-import { useEffect, useState } from 'react'
-import Header2 from '@/components/Header2/Header2'
-import Footer from '@/components/Footer/Footer'
-import PageBanner from '@/components/PageBanner/PageBanner'
-import SpiContent from '@/components/Prodi/Spi'
+import PageClient from './PageClient'
 
-export default function SpiPage() {
-  const [isMounted, setIsMounted] = useState(false)
+export const metadata = {
+  title: 'Program Studi Sejarah Peradaban Islam (SPI)',
+  description: 'Program Studi S1 Sejarah Peradaban Islam IAI PERSIS Garut mengkaji sejarah dan peradaban Islam untuk mencetak sejarawan dan peneliti profesional.',
+  alternates: {
+    canonical: '/fakultas/ushuluddin/spi',
+  },
+  openGraph: {
+    title: 'Program Studi Sejarah Peradaban Islam (SPI) | IAI PERSIS Garut',
+    description: 'Program Studi S1 Sejarah Peradaban Islam IAI PERSIS Garut mengkaji sejarah dan peradaban Islam untuk mencetak sejarawan dan peneliti profesional.',
+    url: '/fakultas/ushuluddin/spi',
+  },
+}
 
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) return null
-
-  return (
-    <>
-      <Header2 />
-      <PageBanner
-        title="Program Studi Sejarah Peradaban Islam"
-        backgroundImage="/images/page-banner-1.jpg"
-        breadcrumbs={[
-          { text: 'Home', url: '/' },
-          { text: 'Fakultas', url: '/fakultas' },
-          { text: 'Ushuluddin', url: '/fakultas/ushuluddin' },
-          { text: 'Sejarah Peradaban Islam', url: null }
-        ]}
-      />
-      <SpiContent />
-      <Footer />
-    </>
-  )
+export default function Page() {
+  return <PageClient />
 }

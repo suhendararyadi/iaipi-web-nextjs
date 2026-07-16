@@ -1,34 +1,18 @@
-'use client'
-import { useEffect, useState } from 'react'
-import Header2 from '@/components/Header2/Header2'
-import Footer from '@/components/Footer/Footer'
-import PageBanner from '@/components/PageBanner/PageBanner'
-import BkpiContent from '@/components/Prodi/Bkpi'
+import PageClient from './PageClient'
 
-export default function BkpiPage() {
-  const [isMounted, setIsMounted] = useState(false)
+export const metadata = {
+  title: 'Program Studi Bimbingan Konseling Pendidikan Islam (BKPI)',
+  description: 'Program Studi S1 BKPI IAI PERSIS Garut mencetak konselor pendidikan Islam profesional dengan kompetensi bimbingan konseling berbasis nilai keislaman.',
+  alternates: {
+    canonical: '/fakultas/tarbiyah/bkpi',
+  },
+  openGraph: {
+    title: 'Program Studi Bimbingan Konseling Pendidikan Islam (BKPI) | IAI PERSIS Garut',
+    description: 'Program Studi S1 BKPI IAI PERSIS Garut mencetak konselor pendidikan Islam profesional dengan kompetensi bimbingan konseling berbasis nilai keislaman.',
+    url: '/fakultas/tarbiyah/bkpi',
+  },
+}
 
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) return null
-
-  return (
-    <>
-      <Header2 />
-      <PageBanner 
-        title="Program Studi Bimbingan Konseling Pendidikan Islam" 
-        backgroundImage="/images/page-banner-1.jpg"
-        breadcrumbs={[
-          { text: 'Home', url: '/' },
-          { text: 'Fakultas', url: '/fakultas' },
-          { text: 'Tarbiyah', url: '/fakultas/tarbiyah' },
-          { text: 'BKPI', url: null }
-        ]}
-      />
-      <BkpiContent />
-      <Footer />
-    </>
-  )
+export default function Page() {
+  return <PageClient />
 }

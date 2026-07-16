@@ -1,33 +1,18 @@
-'use client'
-import { useEffect, useState } from 'react'
-import Header2 from '@/components/Header2/Header2'
-import Footer from '@/components/Footer/Footer'
-import PageBanner from '@/components/PageBanner/PageBanner'
-import MihContent from '@/components/Magister/MihContent'
+import PageClient from './PageClient'
 
-export default function MihPage() {
-  const [isMounted, setIsMounted] = useState(false)
+export const metadata = {
+  title: 'Magister Ilmu Hadis (MIH)',
+  description: 'Program Magister Ilmu Hadis IAI PERSIS Garut mencetak peneliti dan akademisi hadis tingkat lanjut dengan kompetensi keilmuan mendalam.',
+  alternates: {
+    canonical: '/magister/mih',
+  },
+  openGraph: {
+    title: 'Magister Ilmu Hadis (MIH) | IAI PERSIS Garut',
+    description: 'Program Magister Ilmu Hadis IAI PERSIS Garut mencetak peneliti dan akademisi hadis tingkat lanjut dengan kompetensi keilmuan mendalam.',
+    url: '/magister/mih',
+  },
+}
 
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) return null
-
-  return (
-    <>
-      <Header2 />
-      <PageBanner
-        title="Magister Ilmu Hadis"
-        backgroundImage="/images/page-banner-1.jpg"
-        breadcrumbs={[
-          { text: 'Home', url: '/' },
-          { text: 'Magister', url: '/magister' },
-          { text: 'Ilmu Hadis', url: null }
-        ]}
-      />
-      <MihContent />
-      <Footer />
-    </>
-  )
+export default function Page() {
+  return <PageClient />
 }

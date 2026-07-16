@@ -1,34 +1,18 @@
-'use client'
-import { useEffect, useState } from 'react'
-import Header2 from '@/components/Header2/Header2'
-import Footer from '@/components/Footer/Footer'
-import PageBanner from '@/components/PageBanner/PageBanner'
-import IlhaContent from '@/components/Prodi/Ilha'
+import PageClient from './PageClient'
 
-export default function IlhaPage() {
-  const [isMounted, setIsMounted] = useState(false)
+export const metadata = {
+  title: 'Program Studi Ilmu Hadis (ILHA)',
+  description: 'Program Studi S1 Ilmu Hadis IAI PERSIS Garut mengkaji sanad dan matan hadis secara mendalam untuk mencetak ahli hadis dan peneliti keislaman.',
+  alternates: {
+    canonical: '/fakultas/ushuluddin/ilha',
+  },
+  openGraph: {
+    title: 'Program Studi Ilmu Hadis (ILHA) | IAI PERSIS Garut',
+    description: 'Program Studi S1 Ilmu Hadis IAI PERSIS Garut mengkaji sanad dan matan hadis secara mendalam untuk mencetak ahli hadis dan peneliti keislaman.',
+    url: '/fakultas/ushuluddin/ilha',
+  },
+}
 
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) return null
-
-  return (
-    <>
-      <Header2 />
-      <PageBanner 
-        title="Program Studi Ilmu Hadis" 
-        backgroundImage="/images/page-banner-1.jpg"
-        breadcrumbs={[
-          { text: 'Home', url: '/' },
-          { text: 'Fakultas', url: '/fakultas' },
-          { text: 'Ushuluddin', url: '/fakultas/ushuluddin' },
-          { text: 'Ilmu Hadis', url: null }
-        ]}
-      />
-      <IlhaContent />
-      <Footer />
-    </>
-  )
+export default function Page() {
+  return <PageClient />
 }

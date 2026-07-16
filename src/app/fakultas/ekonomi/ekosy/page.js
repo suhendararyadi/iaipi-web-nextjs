@@ -1,34 +1,18 @@
-'use client'
-import { useEffect, useState } from 'react'
-import Header2 from '@/components/Header2/Header2'
-import Footer from '@/components/Footer/Footer'
-import PageBanner from '@/components/PageBanner/PageBanner'
-import EkosyContent from '@/components/Prodi/Ekosy'
+import PageClient from './PageClient'
 
-export default function EkosyPage() {
-  const [isMounted, setIsMounted] = useState(false)
+export const metadata = {
+  title: 'Program Studi Ekonomi Syariah',
+  description: 'Program Studi S1 Ekonomi Syariah IAI PERSIS Garut mencetak praktisi dan analis ekonomi syariah yang kompeten untuk industri keuangan Islam.',
+  alternates: {
+    canonical: '/fakultas/ekonomi/ekosy',
+  },
+  openGraph: {
+    title: 'Program Studi Ekonomi Syariah | IAI PERSIS Garut',
+    description: 'Program Studi S1 Ekonomi Syariah IAI PERSIS Garut mencetak praktisi dan analis ekonomi syariah yang kompeten untuk industri keuangan Islam.',
+    url: '/fakultas/ekonomi/ekosy',
+  },
+}
 
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) return null
-
-  return (
-    <>
-      <Header2 />
-      <PageBanner 
-        title="Program Studi Ekonomi Syariah" 
-        backgroundImage="/images/page-banner-1.jpg"
-        breadcrumbs={[
-          { text: 'Home', url: '/' },
-          { text: 'Fakultas', url: '/fakultas' },
-          { text: 'FEBI', url: '/fakultas/ekonomi' },
-          { text: 'Ekonomi Syariah', url: null }
-        ]}
-      />
-      <EkosyContent />
-      <Footer />
-    </>
-  )
+export default function Page() {
+  return <PageClient />
 }
