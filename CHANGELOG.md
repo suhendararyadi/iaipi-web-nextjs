@@ -7,6 +7,109 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.0.0] - 2026-07-16
+
+### 🎉 Major Release - Data Integrity, Program Baru & Restrukturisasi Pimpinan
+
+Version 3.0 berfokus pada akurasi data institusional: memperbaiki konten yang salah tempel, menyinkronkan halaman prodi dengan dokumen kurikulum resmi, menambah program studi yang sebelumnya belum punya halaman, dan menerapkan perubahan struktur kepemimpinan.
+
+### ✨ Added
+
+**Program Studi Baru**
+- **Pendidikan Bahasa Arab (PBA)** — S1, Fakultas Tarbiyah — `/fakultas/tarbiyah/pba`
+- **Sejarah Peradaban Islam (SPI)** — S1, Fakultas Ushuluddin — `/fakultas/ushuluddin/spi`
+- **Magister Ilmu Hadis (MIH)** — S2 — `/magister/mih`, serta halaman `MagisterContent` diubah dari kartu tunggal menjadi daftar (mendukung MPAI + MIH)
+
+**Halaman Kaprodi Baru**
+- Kaprodi PBA (Hasan Ansori), Kaprodi SPI (Imam Sofyan Abas), Kaprodi ILHA (Kinkin Syamsudin, M.Ag.) — melengkapi kursi yang sebelumnya kosong di struktur pimpinan
+
+**Highlight Akreditasi**
+- Kotak "Akreditasi" di seluruh 11 halaman prodi/magister kini ditonjolkan (gradient hijau, teks putih) agar berbeda dari kotak Gelar/Durasi. Nilai akreditasi PAI ("Baik Sekali", SK BAN-PT No. 10528/SK/BAN-PT/Ak-PPJ/S/VIII/2021) diverifikasi langsung terhadap dokumen kurikulum resminya
+
+**Redirect**
+- `/pimpinan/warek4` → `/pimpinan/warek3` (permanent) ditambahkan di `next.config.mjs` setelah jabatan Wakil Rektor IV dihapus dari struktur
+
+### 🔄 Changed
+
+**Konten Prodi Disinkronkan dengan Dokumen Resmi**
+- **PGMI**: kurikulum 8 semester (150 SKS), profil lulusan, Visi/Misi/Tujuan, dan kompetensi (CPL) ditulis ulang mengikuti *Dokumen Kurikulum Prodi PGMI FTK Tahun 2024* (SK Dekan FTK No. 00253/B.3-E.5/IAIPI-G/2024)
+- **PAI**: kurikulum 8 semester (150 SKS — mengoreksi angka 144 SKS yang sempat salah dipakai), profil lulusan A–E, CPL, dan Visi/Misi/Tujuan ditulis ulang mengikuti *Dokumen Kurikulum Prodi PAI FTK Tahun 2024* (SK Dekan FTK No. 00255/B.3-E.5/IAIPI-G/2024); akreditasi diperbarui ke "Baik Sekali" sesuai SK BAN-PT
+- Konten kurikulum/fasilitas/karir prodi yang belum berdokumen resmi (Ekosy, MKS, BKPI, IAT, ILHA, SPI, PBA, MPAI, MIH) ditandai `DRAFT` langsung di source code, generik berbasis pola umum PTAI — perlu direview dengan data resmi sebelum publish
+
+**Restrukturisasi Kepemimpinan**
+- Dr. Pepen Irpan Fauzan (mantan Wakil Rektor III) dihapus dari seluruh halaman
+- Dr. Heri Mohamad Tohari pindah dari Wakil Rektor IV → **Wakil Rektor III** (Bidang Kemahasiswaan, Kerjasama dan Alumni)
+- Dr. Azis Asmana, Lc., M.Ag. pindah dari Kaprodi S1 Ilmu Hadis → **Kaprodi Magister Ilmu Hadis**; gelar dikoreksi menjadi "Dr. Azis Asmana, Lc., M.Ag."
+- 4 foto pimpinan diganti dengan foto formal beserta bertoga (Riyan Nuryadin, Aip Zaenal Mutaqin, Leni Layinah, Mumad Nurjaman)
+
+**Halaman PMB & Homepage**
+- Halaman `/pmb` diperbarui ke data Tahun Akademik 2026/2027 (poster resmi, jadwal Gelombang 5, biaya kuliah)
+- Section "Pendaftaran Mahasiswa Baru" di homepage disinkronkan dengan `/pmb`: tahun akademik, target countdown, dan teks tenggat pendaftaran reguler/beasiswa
+
+**Sumber Berita**
+- `hashnodeApi.js` dipindah dari GraphQL API Hashnode (kini berbayar) ke feed RSS publik blog, dengan bentuk data yang identik agar komponen News tidak perlu diubah
+
+### 🔧 Fixed
+
+**Bug Konten**
+- 5 halaman prodi (Ekosy, MKS, PGMI, BKPI, IAT) sebelumnya menampilkan seluruh isi (kurikulum, kompetensi, prospek karir) hasil salin-tempel dari halaman Ilmu Hadis tanpa diedit — sehingga misalnya halaman Ekonomi Syariah menyatakan lulusannya akan menjadi "ahli hadis". Paragraf utama diperbaiki menggunakan deskripsi yang sudah benar di halaman overview fakultas
+
+**Ikon Rusak**
+- `fa-mosque`, `fa-award`, dan `fa-clock` (ikon FontAwesome 5+) tidak memiliki definisi di FontAwesome 4.7 yang dipakai situs ini, sehingga tampil sebagai bulatan kosong tanpa simbol di *setiap* kartu info Gelar/Durasi pada halaman prodi. Diganti dengan `fa-trophy`, `fa-clock-o`, dan `fa-institution` yang valid di FA 4.7
+
+**Konsistensi Ukuran Avatar**
+- 3 foto Wakil Rektor di homepage & grid pimpinan (`Teachers2`/`Teachers4`) sebelumnya berupa file 80×80px tanpa `width`/`height`/`flex-shrink` di CSS, sehingga ukurannya berbeda-beda (47–64px) tergantung panjang nama di sebelahnya. Diganti dengan crop avatar 320×320 fokus wajah dan CSS ukuran tetap (90×90 desktop, 72×72 mobile)
+
+**Tata Letak**
+- Dua kartu di section "Pendaftaran Mahasiswa Baru" (PMB & Beasiswa) kini disamakan tinggi (`height: 100%` + `flex-column`) — sebelumnya kartu PMB lebih tinggi karena ada countdown timer
+- Kartu kosong bekas placeholder "Konfimasi / Vice chencelor" (wrapper `<div>` tanpa isi) dibuang dari grid pimpinan, menghilangkan lubang di grid
+- Beberapa ketidaksesuaian nama antara kartu grid dan halaman detail dirapikan (mis. "Oragnisasi" → "Organisasi", "Iimu Hadis" → "Ilmu Hadis", serta beberapa gelar akademik yang tidak konsisten)
+
+---
+
+## [2.2.0] - 2026-02-15
+
+### 🎉 Navigasi & Slider Modern
+
+#### 1. **Modern Hybrid Slider**
+- Slider hero diimplementasikan ulang dengan navigasi progress-bar bergaya teks, menggantikan panah kustom yang sebelumnya bermasalah visibilitasnya di berbagai breakpoint
+- Beberapa iterasi perbaikan warna (hijau IAIPI untuk nav, kuning untuk progress bar), tinggi slider, dan z-index
+
+#### 2. **Mobile Bottom Navigation**
+- Navigasi bawah (bottom nav) baru untuk perangkat mobile dengan branding tersentralisasi
+- Menu "Berita" pada bottom nav diganti menjadi "Fakultas"
+
+#### 3. **Reorganisasi Lembaga & Layanan**
+- Tautan Repository dan Press dipindah dari section Lembaga ke halaman Layanan; Perpustakaan tetap di Lembaga karena berstatus badan institusional
+- IAIPI Press ditambahkan ke data Lembaga
+
+#### 4. **Lainnya**
+- Pembaruan keamanan dependensi, penyesuaian teks Visi/Misi, dan pembaruan feed berita
+
+---
+
+## [2.1.0] - 2025-10-14 s/d 2025-11-05
+
+### 🎉 Penyegaran Branding & Penyempurnaan Konten
+
+#### 1. **Identitas Visual**
+- Logo IAIPI baru dipasang di seluruh situs (favicon, header, footer)
+- Header akademik bernuansa Islami diimplementasikan (3 opsi desain dieksplorasi, dipilih dan disempurnakan dengan ornamen geometris)
+- Tombol "Daftar Sekarang" didesain ulang beberapa kali (bentuk pill, kombinasi warna hijau/kuning, ukuran ringkas satu baris) hingga versi final
+
+#### 2. **Halaman Baru & Konten**
+- Halaman Kontak (`/kontak`) ditambahkan beserta pembaruan informasi kontak di seluruh situs
+- Prodi BKPI ditambahkan ke data Lembaga dengan tautan resminya
+- Halaman Lembaga & Departemen diperbarui (integrasi LPM)
+
+#### 3. **Perbaikan**
+- Foto testimonial diganti avatar placeholder berbentuk bulat
+- Tenggat pendaftaran PMB dan jumlah penerima beasiswa diperbarui
+- Footer diterjemahkan sepenuhnya ke Bahasa Indonesia
+- Ikon Program Studi Ilmu Al-Quran dan Tafsir disesuaikan
+
+---
+
 ## [2.0.0] - 2024-12-XX
 
 ### 🎉 Major Release - Complete UI/UX Redesign
@@ -391,25 +494,20 @@ Version 2.0 merupakan redesign komprehensif dari website IAI PERSIS Garut dengan
 
 ---
 
-## 🔮 Future Enhancements (Planned)
+## 🔮 Belum Dikerjakan (Belum Ada Target Rilis)
 
-### **v2.1.0** (Q1 2025)
+Catatan: rencana versi Q1–Q3 2025 pada dokumen sebelumnya sudah usang (nomor versinya kini terpakai untuk rilis nyata di atas). Item di bawah ini masih relevan tapi belum dijadwalkan ke versi tertentu:
+
 - [ ] E-Learning system integration
 - [ ] Portal Perpustakaan online
 - [ ] Repository institutional
 - [ ] Tracer Study system
-
-### **v2.2.0** (Q2 2025)
 - [ ] SIKEU integration
 - [ ] Portal Beasiswa
 - [ ] SPMI system
 - [ ] Portal Alumni
-
-### **v3.0.0** (Q3 2025)
-- [ ] Student portal dashboard
-- [ ] Faculty portal
-- [ ] Mobile app integration
-- [ ] Real-time notifications
+- [ ] Data kurikulum resmi untuk prodi yang masih berstatus DRAFT (Ekosy, MKS, BKPI, IAT, ILHA, SPI, PBA, MPAI, MIH)
+- [ ] Data akademik (pendidikan, Sinta ID, Google Scholar) untuk kaprodi yang baru ditambahkan (Hasan Ansori, Imam Sofyan Abas, Kinkin Syamsudin)
 
 ---
 
@@ -424,4 +522,7 @@ For issues, questions, or contributions:
 
 **Built with ❤️ by IAI PERSIS Garut IT Team**
 
+[3.0.0]: https://github.com/suhendararyadi/iaipi-web-nextjs/releases/tag/v3.0.0
+[2.2.0]: https://github.com/suhendararyadi/iaipi-web-nextjs/releases/tag/v2.2.0
+[2.1.0]: https://github.com/suhendararyadi/iaipi-web-nextjs/releases/tag/v2.1.0
 [2.0.0]: https://github.com/suhendararyadi/iaipi-web-nextjs/releases/tag/v2.0.0
