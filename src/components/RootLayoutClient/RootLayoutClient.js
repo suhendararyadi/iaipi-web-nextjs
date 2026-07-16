@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import Script from 'next/script'
 import BottomNav from '@/components/Navigation/BottomNav'
+import WhatsAppFloat from '@/components/WhatsAppFloat/WhatsAppFloat'
 import { Analytics } from "@vercel/analytics/react"
 
 // Google Analytics ID
@@ -53,6 +54,8 @@ export default function RootLayoutClient({ children }) {
       <a href="#" className="back-to-top">
         <i className="fa fa-angle-up"></i>
       </a>
+
+      <WhatsAppFloat />
 
       {/* Vendor Scripts - Modernizr disabled to prevent hydration errors */}
       {/* <Script

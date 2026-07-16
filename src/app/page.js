@@ -13,7 +13,6 @@ import Testimonial from '@/components/Testimonial/Testimonial'
 import News from '@/components/News/News'
 import LembagaHome from '@/components/Lembaga/LembagaHome'
 import Footer from '@/components/Footer/Footer'
-import WhatsAppFloat from '@/components/WhatsAppFloat/WhatsAppFloat'
 import { getHashnodePosts } from '@/utils/hashnodeApi'
 
 // Rebuild the homepage (and refresh Hashnode news) at most once per hour.
@@ -39,7 +38,6 @@ export default async function Home() {
       <Testimonial />
       <LembagaHome />
       <Footer/>
-      <WhatsAppFloat />
     </>
   )
 }
