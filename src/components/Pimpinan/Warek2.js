@@ -11,7 +11,7 @@ const Warek2 = () => {
           <div className="col-lg-4 col-md-8">
             <div className="teachers-left mt-50">
               <div className="hero">
-                <img src="/images/dosen/d-3.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-3.jpg" alt="Dr. Nurul Irfan, M.Ag." />
               </div>
               <div className="name">
                 <h6>Dr. Nurul Irfan, M.Ag.</h6>

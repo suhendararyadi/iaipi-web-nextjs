@@ -11,7 +11,7 @@ const KaprodiEkoSy = () => {
           <div className="col-lg-4 col-md-8">
             <div className="teachers-left mt-50">
               <div className="hero">
-                <img src="/images/dosen/d-10.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-10.jpg" alt="Nurfaedah, S.E.I, M.E." />
               </div>
               <div className="name">
                 <h6>Nurfaedah, S.E.I, M.E.</h6>

@@ -61,7 +61,7 @@ const Teachers2 = () => {
                 <div className="col-md-6">
                   <div className="teachers-2-singel mt-30">
                     <div className="thum">
-                      <img src="/images/dosen/avatar/d-2-avatar.jpg" alt="Teacher" />
+                      <img src="/images/dosen/avatar/d-2-avatar.jpg" alt="Dr. Daris Tamin, M.Pd." />
                     </div>
                     <div className="cont">
                       <Link href="/pimpinan/warek1"><h5>Dr. Daris Tamin, M.Pd.</h5></Link>
@@ -75,7 +75,7 @@ const Teachers2 = () => {
                 <div className="col-md-6">
                   <div className="teachers-2-singel mt-30">
                     <div className="thum">
-                      <img src="/images/dosen/avatar/d-3-avatar.jpg" alt="Teacher" />
+                      <img src="/images/dosen/avatar/d-3-avatar.jpg" alt="Dr. Nurul Irfan, M.Ag." />
                     </div>
                     <div className="cont">
                       <Link href="/pimpinan/warek2"><h5>Dr. Nurul Irfan, M.Ag.</h5></Link>
@@ -89,7 +89,7 @@ const Teachers2 = () => {
                 <div className="col-md-6">
                   <div className="teachers-2-singel mt-30">
                     <div className="thum">
-                      <img src="/images/dosen/avatar/d-5-avatar.jpg" alt="Teacher" />
+                      <img src="/images/dosen/avatar/d-5-avatar.jpg" alt="Dr. Heri Mohamad Tohari, M.Pd." />
                     </div>
                     <div className="cont">
                       <Link href="/pimpinan/warek3"><h5>Dr. Heri Mohamad Tohari, M.Pd.</h5></Link>

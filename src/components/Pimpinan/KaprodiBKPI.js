@@ -11,7 +11,7 @@ const KaprodiBKPI = () => {
           <div className="col-lg-4 col-md-8">
             <div className="teachers-left mt-50">
               <div className="hero">
-                <img src="/images/dosen/d-11.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-11.jpg" alt="Yanti Sam Amir, S.Pd., M.Pd." />
               </div>
               <div className="name">
                 <h6>Yanti Sam Amir, S.Pd., M.Pd.</h6>

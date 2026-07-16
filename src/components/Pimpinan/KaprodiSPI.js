@@ -15,7 +15,7 @@ const KaprodiSPI = () => {
           <div className="col-lg-4 col-md-8">
             <div className="teachers-left mt-50">
               <div className="hero">
-                <img src="/images/dosen/d-19.jpeg" alt="Teachers" />
+                <img src="/images/dosen/d-19.jpeg" alt="Imam Sofyan Abas" />
               </div>
               <div className="name">
                 <h6>Imam Sofyan Abas</h6>

@@ -14,7 +14,7 @@ const KaprodiILHA = () => {
           <div className="col-lg-4 col-md-8">
             <div className="teachers-left mt-50">
               <div className="hero">
-                <img src="/images/dosen/d-20.jpeg" alt="Teachers" />
+                <img src="/images/dosen/d-20.jpeg" alt="Kinkin Syamsudin, M.Ag." />
               </div>
               <div className="name">
                 <h6>Kinkin Syamsudin, M.Ag.</h6>

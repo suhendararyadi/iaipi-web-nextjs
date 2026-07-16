@@ -11,7 +11,7 @@ const Dekan1 = () => {
           <div className="col-lg-4 col-md-8">
             <div className="teachers-left mt-50">
               <div className="hero">
-                <img src="/images/dosen/d-6.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-6.jpg" alt="Dr. Gun Gun Abdul Basit, M.Ag." />
               </div>
               <div className="name">
                 <h6>Dr. Gun Gun Abdul Basit, M.Ag.</h6>

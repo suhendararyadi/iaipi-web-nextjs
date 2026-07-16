@@ -19,7 +19,7 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-2.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-2.jpg" alt="Dr. Daris Tamin, M.Pd." />
               </div>
               <div className="cont">
                 <Link href="/pimpinan/warek1"><h6>Dr. Daris Tamin, M.Pd.</h6></Link>
@@ -32,7 +32,7 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-3.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-3.jpg" alt="Dr. Nurul Irfan, M.Ag." />
               </div>
               <div className="cont">
                 <Link href="/pimpinan/warek2"><h6>Dr. Nurul Irfan, M.Ag.</h6></Link>
@@ -45,7 +45,7 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-5.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-5.jpg" alt="Dr. Heri Mohamad Tohari, M.Pd." />
               </div>
               <div className="cont">
                 <Link href="/pimpinan/warek3"><h6>Dr. Heri Mohamad Tohari, M.Pd.</h6></Link>
@@ -58,7 +58,7 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-6.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-6.jpg" alt="Dr. Gun Gun Abdul Basit, M.Ag." />
               </div>
               <div className="cont">
                 <Link href="/pimpinan/dekan1"><h6>Dr. Gun Gun Abdul Basit, M.Ag.</h6></Link>
@@ -71,7 +71,7 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-13.jpeg" alt="Teachers" />
+                <img src="/images/dosen/d-13.jpeg" alt="Riyan Nuryadin, S.HI., M.Pd.I." />
               </div>
               <div className="cont">
                 <Link href="/pimpinan/dekan2"><h6>Riyan Nuryadin, S.HI., M.Pd.I.</h6></Link>
@@ -84,7 +84,7 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-14.jpeg" alt="Teachers" />
+                <img src="/images/dosen/d-14.jpeg" alt="Aip Zaenal Mutaqin, S.E., M.E." />
               </div>
               <div className="cont">
                 <Link href="/pimpinan/dekan3"><h6>Aip Zaenal Mutaqin, S.E., M.E.</h6></Link>
@@ -97,7 +97,7 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-7.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-7.jpg" alt="Dr. Yusup Tajri, M.Pd." />
               </div>
               <div className="cont">
                 <Link href="/pimpinan/kaprodi-mpai"><h6>Dr. Yusup Tajri, M.Pd.</h6></Link>
@@ -110,7 +110,7 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-9.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-9.jpg" alt="Dr. Azis Asmana, Lc., M.Ag." />
               </div>
               <div className="cont">
                 <Link href="/pimpinan/kaprodi-mih"><h6>Dr. Azis Asmana, Lc., M.Ag.</h6></Link>
@@ -123,7 +123,7 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-20.jpeg" alt="Teachers" />
+                <img src="/images/dosen/d-20.jpeg" alt="Kinkin Syamsudin, M.Ag." />
               </div>
               <div className="cont">
                 <Link href="/pimpinan/kaprodi-ilha"><h6>Kinkin Syamsudin, M.Ag.</h6></Link>
@@ -136,7 +136,7 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-16.jpeg" alt="Teachers" />
+                <img src="/images/dosen/d-16.jpeg" alt="Yan Yan Nurdin, S.Ud., M.Ag." />
               </div>
               <div className="cont">
                 <Link href="/pimpinan/kaprodi-iat"><h6>Yan Yan Nurdin, S.Ud., M.Ag.</h6></Link>
@@ -149,7 +149,7 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-19.jpeg" alt="Teachers" />
+                <img src="/images/dosen/d-19.jpeg" alt="Imam Sofyan Abas" />
               </div>
               <div className="cont">
                 <Link href="/pimpinan/kaprodi-spi"><h6>Imam Sofyan Abas</h6></Link>
@@ -162,7 +162,7 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-17.jpeg" alt="Teachers" />
+                <img src="/images/dosen/d-17.jpeg" alt="Mumad Nurjaman, S.Sy., M.H." />
               </div>
               <div className="cont">
                 <Link href="/pimpinan/kaprodi-mks"><h6>Mumad Nurjaman, S.Sy., M.H.</h6></Link>
@@ -175,7 +175,7 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-15.jpeg" alt="Teachers" />
+                <img src="/images/dosen/d-15.jpeg" alt="Leni Layinah, S.Pd.I., M.Pd." />
               </div>
               <div className="cont">
                 <Link href="/pimpinan/kaprodi-pai"><h6>Leni Layinah, S.Pd.I., M.Pd.</h6></Link>
@@ -188,7 +188,7 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-12.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-12.jpg" alt="Nuraeni Sugih Pramukti, M.Pd." />
               </div>
               <div className="cont">
                 <Link href="/pimpinan/kaprodi-pgmi"><h6>Nuraeni Sugih Pramukti, M.Pd.</h6></Link>
@@ -201,7 +201,7 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-11.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-11.jpg" alt="Yanti Sam Amir, S.Pd., M.Pd." />
               </div>
               <div className="cont">
                 <Link href="/pimpinan/kaprodi-bkpi"><h6>Yanti Sam Amir, S.Pd., M.Pd.</h6></Link>
@@ -214,7 +214,7 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-18.jpeg" alt="Teachers" />
+                <img src="/images/dosen/d-18.jpeg" alt="Hasan Ansori" />
               </div>
               <div className="cont">
                 <Link href="/pimpinan/kaprodi-pba"><h6>Hasan Ansori</h6></Link>
@@ -227,7 +227,7 @@ const Teachers3 = () => {
           <div className="col-lg-3 col-sm-6">
             <div className="singel-teachers mt-30 text-center">
               <div className="image">
-                <img src="/images/dosen/d-10.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-10.jpg" alt="Nurfaedah, S.E.I, M.E." />
               </div>
               <div className="cont">
                 <Link href="/pimpinan/kaprodi-ekosy"><h6>Nurfaedah, S.E.I, M.E.</h6></Link>

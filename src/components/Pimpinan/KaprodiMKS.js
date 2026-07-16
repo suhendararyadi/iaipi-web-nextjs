@@ -11,7 +11,7 @@ const KaprodiMKS = () => {
           <div className="col-lg-4 col-md-8">
             <div className="teachers-left mt-50">
               <div className="hero">
-                <img src="/images/dosen/d-17.jpeg" alt="Teachers" />
+                <img src="/images/dosen/d-17.jpeg" alt="Mumad Nurjaman, S.Sy., M.H." />
               </div>
               <div className="name">
                 <h6>Mumad Nurjaman, S.Sy., M.H.</h6>

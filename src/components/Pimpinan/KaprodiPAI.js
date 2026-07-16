@@ -11,7 +11,7 @@ const KaprodiPAI = () => {
           <div className="col-lg-4 col-md-8">
             <div className="teachers-left mt-50">
               <div className="hero">
-                <img src="/images/dosen/d-15.jpeg" alt="Teachers" />
+                <img src="/images/dosen/d-15.jpeg" alt="Leni Layinah, S.Pd.I., M.Pd." />
               </div>
               <div className="name">
                 <h6>Leni Layinah, S.Pd.I., M.Pd.</h6>

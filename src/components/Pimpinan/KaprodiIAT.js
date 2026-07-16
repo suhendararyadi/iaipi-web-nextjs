@@ -11,7 +11,7 @@ const KaprodiIAT = () => {
           <div className="col-lg-4 col-md-8">
             <div className="teachers-left mt-50">
               <div className="hero">
-                <img src="/images/dosen/d-16.jpeg" alt="Teachers" />
+                <img src="/images/dosen/d-16.jpeg" alt="Yan Yan Nurdin, S.Ud., M.Ag." />
               </div>
               <div className="name">
                 <h6>Yan Yan Nurdin, S.Ud., M.Ag.</h6>

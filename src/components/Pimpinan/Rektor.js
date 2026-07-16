@@ -11,7 +11,7 @@ const Rektor = () => {
           <div className="col-lg-4 col-md-8">
             <div className="teachers-left mt-50">
               <div className="hero">
-                <img src="/images/dosen/d-1.jpg" alt="Teachers" />
+                <img src="/images/dosen/d-1.jpg" alt="Dr. Tiar Anwar Bachtiar, M.Hum." />
               </div>
               <div className="name">
                 <h6>Dr. Tiar Anwar Bachtiar, M.Hum.</h6>
