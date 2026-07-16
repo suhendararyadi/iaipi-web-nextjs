@@ -306,7 +306,7 @@ const PaiContent = () => {
                       </div>
                       <div className="kompetensi-content">
                         <h6>Pengetahuan Keislaman & Kependidikan</h6>
-                        <p>Menguasai konsep dasar pendidikan Islam, kajian Al-Qur'an, Hadis, Fikih, Akhlak, SKI, turats Islam, serta teknologi pembelajaran</p>
+                        <p>Menguasai konsep dasar pendidikan Islam, kajian Al-Qur&apos;an, Hadis, Fikih, Akhlak, SKI, turats Islam, serta teknologi pembelajaran</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">

@@ -297,7 +297,7 @@ const PgmiContent = () => {
                       </div>
                       <div className="kompetensi-content">
                         <h6>Pengetahuan Pedagogik dan Keislaman</h6>
-                        <p>Menguasai konsep dasar pendidikan, psikologi perkembangan anak, kurikulum MI/SD, serta dasar keislaman (Al-Qur'an, Hadis, fikih, akidah akhlak, SKI)</p>
+                        <p>Menguasai konsep dasar pendidikan, psikologi perkembangan anak, kurikulum MI/SD, serta dasar keislaman (Al-Qur&apos;an, Hadis, fikih, akidah akhlak, SKI)</p>
                       </div>
                     </div>
                     <div className="kompetensi-item">
@@ -418,7 +418,7 @@ const PgmiContent = () => {
                       </div>
                       <h5>Pendidikan Keislaman</h5>
                       <ul>
-                        <li>Pengajar Al-Qur'an</li>
+                        <li>Pengajar Al-Qur&apos;an</li>
                         <li>Pembina Keagamaan Madrasah</li>
                         <li>Fasilitator Pembiasaan Keislaman</li>
                         <li>Pengelola PAUD/TPQ</li>

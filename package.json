@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@vercel/analytics": "^1.4.1",
@@ -18,6 +18,6 @@
   },
   "devDependencies": {
     "eslint": "^8",
-    "eslint-config-next": "15.0.4"
+    "eslint-config-next": "^15.5.20"
   }
 }
