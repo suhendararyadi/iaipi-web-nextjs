@@ -45,9 +45,8 @@ const Fakultas = () => {
             <div className="section-title text-center pb-50">
               <h5>Pendidikan Sarjana</h5>
               <h2>Fakultas di IAI PERSIS Garut</h2>
-              {/* DRAFT: total prodi naik 8->10 dgn tambahan PBA & SPI; status akreditasi
-                  keduanya belum diverifikasi, cek ulang sebelum publish */}
-              <p className="mt-3">3 Fakultas dengan 10 Program Studi Terakreditasi BAN-PT</p>
+              {/* DRAFT: status akreditasi PBA & SPI belum diverifikasi, cek ulang sebelum publish */}
+              <p className="mt-3">3 Fakultas dengan 9 Program Studi Terakreditasi BAN-PT</p>
             </div>
           </div>
         </div>
@@ -128,7 +127,7 @@ const Fakultas = () => {
                   <i className="fa fa-graduation-cap"></i>
                 </div>
                 <div className="stat-content">
-                  <h4>10</h4>
+                  <h4>9</h4>
                   <p>Program Studi</p>
                 </div>
               </div>

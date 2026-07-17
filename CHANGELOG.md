@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.1.0] - 2026-07-16
+
+### 🔒 Keamanan, SEO & Perbaikan Teknis
+
+Rilis kecil berisi rekomendasi polish UI/UX, keamanan, SEO, dan best practice yang dikerjakan secara bertahap setelah audit menyeluruh terhadap kode yang ada.
+
+### ✨ Added
+
+- **`robots.txt` dan `sitemap.xml`** (`src/app/robots.js`, `src/app/sitemap.js`) — sebelumnya tidak ada sama sekali; sekarang mencakup 39 route statis dengan prioritas/frekuensi crawl yang wajar
+- **Security headers** di `next.config.mjs`: `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`
+
+### 🔄 Changed
+
+- **Root layout dipecah** (`src/app/layout.js`) menjadi server component (Next.js Metadata API) + `RootLayoutClient` untuk logic client-only (preloader, script, GA) — sebelumnya seluruh layout adalah client component sehingga metadata tidak bisa di-override per halaman
+- **Ke-11 halaman prodi/magister** (9 S1 + MPAI + MIH) kini punya `title`, `description`, dan `canonical` sendiri-sendiri — sebelumnya semuanya mewarisi metadata homepage yang sama persis, termasuk canonical URL yang selalu mengarah ke `/` (berpotensi membuat Google menganggap semua halaman prodi duplikat dari homepage)
+- `<html lang="en">` dikoreksi menjadi `lang="id"` sesuai konten situs yang berbahasa Indonesia
+- Tombol chat WhatsApp mengambang (`WhatsAppFloat`) dipindah dari homepage-only ke `RootLayoutClient` sehingga tampil di **semua halaman**, bukan cuma beranda
+- JSON-LD `EducationalOrganization` di `layout.js` dikoreksi agar sesuai data kontak yang benar (alamat, telepon, email) yang sudah dipakai di Footer/`/kontak` — sebelumnya JSON-LD ini (yang dibaca Google untuk hasil pencarian) memuat data lama yang salah
+- Alt text 23 foto pimpinan (18 halaman detail + grid `/pimpinan` + 2 carousel homepage/pimpinan) diganti dari generik `"Teachers"`/`"Teacher"` menjadi nama masing-masing orang
+- Next.js dibump 16.1.1 → 16.2.10 (menutup seluruh advisory *high-severity* yang tercatat di `npm audit`)
+- `eslint-config-next` dibump 15.0.4 → 15.5.20; script `npm run lint` diperbaiki (memanggil `eslint .` langsung) karena `next lint` sudah dihapus total dari CLI Next.js 16
+- `package.json` `"name"` diganti dari sisa template `edubin-nextjs` menjadi `iaipi-web-nextjs`
+
+### 🐛 Fixed
+
+- 3 error ESLint `react/no-unescaped-entities` (apostrof mentah pada "Al-Qur'an" di `Pai.js` dan `Pgmi.js`)
+- **Bug hitung "10 Program Studi"** di halaman `/fakultas` (2 tempat di `Fakultas.js`) dan homepage counter di `/tentang` (`Counter.js`) — jumlah prodi S1 yang sebenarnya cuma 9 (3 Ushuluddin + 4 Tarbiyah + 2 Ekonomi), bukan 10; dikoreksi di kode dan di README
+
+### ⚠️ Belum Dikerjakan (butuh keputusan/effort lebih besar)
+
+- `swiper` masih v11.x dengan advisory *critical* (prototype pollution); fix-nya breaking (v14) dan butuh pengujian visual di semua slider
+- Belum ada Content-Security-Policy — perlu rollout bertahap (Report-Only) karena banyak inline script
+- `GA_MEASUREMENT_ID` masih placeholder `G-XXXXXXXXXX` — butuh ID Google Analytics asli dari pemilik situs
+
+---
+
 ## [3.0.0] - 2026-07-16
 
 ### 🎉 Major Release - Data Integrity, Program Baru & Restrukturisasi Pimpinan
@@ -522,6 +558,7 @@ For issues, questions, or contributions:
 
 **Built with ❤️ by IAI PERSIS Garut IT Team**
 
+[3.1.0]: https://github.com/suhendararyadi/iaipi-web-nextjs/releases/tag/v3.1.0
 [3.0.0]: https://github.com/suhendararyadi/iaipi-web-nextjs/releases/tag/v3.0.0
 [2.2.0]: https://github.com/suhendararyadi/iaipi-web-nextjs/releases/tag/v2.2.0
 [2.1.0]: https://github.com/suhendararyadi/iaipi-web-nextjs/releases/tag/v2.1.0

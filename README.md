@@ -1,6 +1,6 @@
 # 🎓 Website Institut Agama Islam PERSIS Garut
 
-![Version](https://img.shields.io/badge/version-3.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-3.1.0-blue.svg)
 ![Next.js](https://img.shields.io/badge/Next.js-16.1.1-black.svg)
 ![React](https://img.shields.io/badge/React-19.2.3-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
@@ -10,7 +10,7 @@ Website resmi Institut Agama Islam PERSIS Garut yang dibangun dengan Next.js 16 
 ## 🌟 Fitur Utama
 
 ### 📚 **Program Pendidikan**
-- **Fakultas Sarjana (S1)**: 3 Fakultas dengan 10 Program Studi
+- **Fakultas Sarjana (S1)**: 3 Fakultas dengan 9 Program Studi
   - Fakultas Ushuluddin (Ilmu Hadis/ILHA, Ilmu Al-Qur'an dan Tafsir/IAT, Sejarah Peradaban Islam/SPI)
   - Fakultas Tarbiyah (PAI, PGMI, BKPI, Pendidikan Bahasa Arab/PBA)
   - Fakultas Ekonomi & Bisnis Islam (Ekonomi Syariah/Ekosy, Manajemen Keuangan Syariah/MKS)
@@ -157,7 +157,7 @@ Orange:          #e67e22
 | Kontak | `/kontak` | Contact information |
 | Fakultas | `/fakultas` | 3 Faculties overview |
 | Fakultas Detail | `/fakultas/{slug}` | Faculty detail (3 pages) |
-| Prodi Detail | `/fakultas/{faculty}/{prodi}` | Study program detail (10 pages) |
+| Prodi Detail | `/fakultas/{faculty}/{prodi}` | Study program detail (9 pages) |
 | Magister | `/magister` | Master programs overview (list, not single card) |
 | Magister Detail | `/magister/{mpai\|mih}` | MPAI & MIH program detail (2 pages) |
 | Layanan | `/layanan` | Services & Information Systems |
@@ -226,18 +226,26 @@ Orange:          #e67e22
 - Build warnings about `<img>` tags (non-critical, consider migrating to Next.js Image) — image optimization juga dimatikan total via `images.unoptimized: true`
 - Beberapa halaman prodi (Ekosy, MKS, BKPI, IAT, ILHA, SPI, PBA, MPAI, MIH) masih berisi konten kurikulum/fasilitas/karir generik yang ditandai `DRAFT` di source code — bukan data resmi kampus
 - Kaprodi yang baru ditambahkan (Hasan Ansori/PBA, Imam Sofyan Abas/SPI, Kinkin Syamsudin/ILHA) belum punya data pendidikan, Sinta ID, atau Google Scholar
-- **Data kontak tidak konsisten antar sumber**: alamat & telepon di JSON-LD (`src/app/layout.js`) berbeda dari yang ditampilkan di Footer/`/kontak` — perlu diverifikasi mana yang benar dan disatukan, karena JSON-LD ini yang dibaca Google untuk hasil pencarian
 - Sejumlah komponen (`Header`, `Header3`, `Category`, `About`, `Teachers` tunggal, `PatnarLogo`) sudah tidak dirender di halaman manapun tapi filenya masih ada di `src/components/`
-- `package.json` masih bernama `edubin-nextjs` (sisa nama template awal proyek sebelum jadi situs IAIPI Garut); `version` di dalamnya baru mulai disinkronkan dengan README mulai rilis 3.0.0 — sebelumnya kedua angka versi tidak pernah cocok
 - Beberapa halaman detail pimpinan lama masih memuat placeholder teks garis bawah (`______`) di bagian "Tentang" yang belum pernah diisi
+- `GA_MEASUREMENT_ID` di `src/components/RootLayoutClient/RootLayoutClient.js` masih placeholder (`G-XXXXXXXXXX`) — script GA4 termuat di setiap halaman tapi tidak pernah benar-benar mengirim data; perlu ID Google Analytics asli atau dihapus
+- `swiper` masih di versi 11.x yang punya advisory `critical` (prototype pollution, GHSA-hmx5-qpq5-p643); fix-nya perlu upgrade ke v14 yang breaking, jadi butuh pengujian visual di semua slider (Slider, Testimonial, Course, Publication, PatnarLogo, Teachers2) sebelum di-apply
+- Belum ada Content-Security-Policy header — situs memuat jQuery, Bootstrap, GA, dan beberapa inline `<Script>`, jadi CSP perlu rollout bertahap (Report-Only dulu) alih-alih langsung enforced
 
 ## 🔄 Version History
 
 See [CHANGELOG.md](./CHANGELOG.md) for detailed version history.
 
-### Current Version: 3.0.0
+### Current Version: 3.1.0
+- Metadata SEO per halaman untuk 11 halaman prodi/magister (title, description, canonical unik — sebelumnya semua mewarisi metadata homepage)
+- `robots.txt` dan `sitemap.xml` baru, security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`)
+- Next.js dibump ke 16.2.10 (menutup advisory *high-severity*); `npm run lint` diperbaiki setelah `next lint` dihapus dari CLI Next.js 16
+- Tombol WhatsApp mengambang kini tampil di semua halaman; alt text 23 foto pimpinan diganti dari generik ke nama asli
+- JSON-LD kontak dikoreksi; bug hitung "10 Program Studi" (seharusnya 9) di halaman Fakultas dan Tentang diperbaiki
+
+### Version 3.0.0
 - Konten prodi PGMI & PAI disinkronkan penuh dengan dokumen kurikulum resmi FTK 2024 (kurikulum per semester, CPL, Visi/Misi/Tujuan)
-- 3 program studi baru: PBA (S1), SPI (S1), Magister Ilmu Hadis (S2) — total 10 prodi S1 + 2 Magister
+- 3 program studi baru: PBA (S1), SPI (S1), Magister Ilmu Hadis (S2) — total 9 prodi S1 + 2 Magister
 - Restrukturisasi kepemimpinan (Warek III/IV, Kaprodi ILHA/MIH) beserta redirect URL lama
 - Highlight visual untuk kotak akreditasi di seluruh halaman prodi, diverifikasi terhadap dokumen resmi
 - Perbaikan bug konten salin-tempel di 5 halaman prodi, ikon FontAwesome yang tidak tampil, dan ukuran avatar pimpinan yang tidak konsisten
@@ -280,4 +288,4 @@ Sumber: Footer & halaman `/kontak` (lihat catatan ketidaksesuaian dengan JSON-LD
 
 ---
 
-**Built with ❤️ by IAI PERSIS Garut** | **Version 3.0.0** | **Juli 2026**
+**Built with ❤️ by IAI PERSIS Garut** | **Version 3.1.0** | **Juli 2026**

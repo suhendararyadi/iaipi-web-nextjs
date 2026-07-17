@@ -197,9 +197,8 @@ const Akreditasi = () => {
                     <i className="fa fa-graduation-cap"></i>
                   </div>
                   <div className="stat-content">
-                    {/* DRAFT: naik 8->10 dgn tambahan PBA & SPI; status akreditasi
-                        keduanya belum diverifikasi, cek ulang sebelum publish */}
-                    <h4>10</h4>
+                    {/* DRAFT: status akreditasi PBA & SPI belum diverifikasi, cek ulang sebelum publish */}
+                    <h4>9</h4>
                     <p>Program Studi Terakreditasi</p>
                   </div>
                 </div>
