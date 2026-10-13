@@ -5,18 +5,22 @@ import { d1, r2 } from "@emdash-cms/cloudflare";
 import { defineConfig } from "astro/config";
 import emdash from "emdash/astro";
 
-// Halaman publik di-cache di edge Cloudflare (Workers Cache) sehingga sebagian
-// besar kunjungan tidak menjalankan Worker sama sekali. EmDash otomatis
-// mem-purge cache halaman terkait saat konten diterbitkan/diubah lewat admin.
+// Cache edge Cloudflare (Workers Cache) untuk halaman publik: kunjungan berikutnya
+// dilayani dari cache tanpa menjalankan Worker, dan EmDash otomatis mem-purge
+// halaman terkait saat konten diterbitkan/diubah lewat admin.
+//
+// DEFAULT MATI. Saat Workers Cache aktif, request ke aset statis (CSS, JS, gambar
+// di public/) ikut dihitung sebagai request Worker. Di paket Workers Free (kuota
+// 100.000 request/hari) itu bisa cepat habis. Aktifkan dengan EDGE_CACHE=1 saat
+// build (mis. variabel build di Workers Builds) setelah upgrade ke Workers Paid.
+const EDGE_CACHE = process.env.EDGE_CACHE === "1";
 const publicPage = { maxAge: 300, swr: 86400 };
 
 export default defineConfig({
 	site: "https://iaipersisgarut.ac.id",
 	output: "server",
 	adapter: cloudflare(),
-	cache: {
-		provider: cacheCloudflare(),
-	},
+	...(EDGE_CACHE ? { cache: { provider: cacheCloudflare() } } : {}),
 	routeRules: {
 		"/": publicPage,
 		"/tentang": publicPage,
