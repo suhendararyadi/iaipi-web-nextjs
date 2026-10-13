@@ -1,0 +1,49 @@
+---
+// Halaman Layanan & Sistem Informasi (sementara: HTML polos, desain menyusul). Data: koleksi layanan + info_kampus.
+import Base from "@/layouts/Base.astro";
+import { getInfoKampus, useCacheHint, waHref } from "@/lib/cms";
+import { getLayanan, KATEGORI_LAYANAN } from "@/lib/profil";
+
+const [{ entries, cacheHint }, { info, cacheHint: infoHint }] = await Promise.all([getLayanan(), getInfoKampus()]);
+useCacheHint(Astro, cacheHint, infoHint);
+
+const kelompok = KATEGORI_LAYANAN.filter((k) => k.id !== "all")
+	.map((k) => ({ ...k, items: entries.filter((e) => e.data.kategori === k.id) }))
+	.filter((k) => k.items.length > 0);
+---
+
+<Base title="Layanan dan Sistem Informasi" description="Akses berbagai layanan dan sistem informasi untuk mendukung aktivitas akademik, penelitian, dan administrasi.">
+	<article>
+		<h1>Layanan dan Sistem Informasi</h1>
+		<p>Akses berbagai layanan dan sistem informasi untuk mendukung aktivitas akademik, penelitian, dan administrasi.</p>
+
+		{entries.length === 0 && <p>Belum ada data layanan.</p>}
+		{
+			kelompok.map((k) => (
+				<section>
+					<h2>{k.nama}</h2>
+					<ul>
+						{k.items.map(({ data: l }) => (
+							<li>
+								<strong>{l.nama_singkat}</strong> — {l.nama}. {l.deskripsi}{" "}
+								{l.ketersediaan === "aktif" && l.url ? (
+									<a href={l.url} target="_blank" rel="noopener noreferrer">Akses Sistem</a>
+								) : (
+									<em>Segera Hadir</em>
+								)}
+							</li>
+						))}
+					</ul>
+				</section>
+			))
+		}
+
+		<section>
+			<h2>Butuh Bantuan?</h2>
+			<p>
+				Jika mengalami kesulitan dalam mengakses sistem atau memerlukan bantuan teknis, silakan hubungi <strong>Help Desk TI</strong> melalui WhatsApp di{" "}
+				<a href={waHref(info)} target="_blank" rel="noopener noreferrer">{info.telepon}</a> atau email ke <a href={`mailto:${info.email}`}>{info.email}</a>
+			</p>
+		</section>
+	</article>
+</Base>

@@ -1,0 +1,141 @@
+---
+// Halaman Tentang (sementara: HTML polos, desain menyusul). Data: koleksi profil_institusi.
+import Base from "@/layouts/Base.astro";
+import { mediaAlt, mediaSrc, paragraphs, rows, useCacheHint } from "@/lib/cms";
+import { getProfil, tebal, type ItemIkon, type Sertifikat, type Statistik } from "@/lib/profil";
+
+const { profil: p, cacheHint } = await getProfil();
+useCacheHint(Astro, cacheHint);
+
+const poin = rows<ItemIkon>(p?.poin_utama);
+const keunggulan = rows<ItemIkon>(p?.keunggulan);
+const misi = rows<ItemIkon>(p?.misi);
+const tujuan = rows<ItemIkon>(p?.tujuan);
+const nilai = rows<ItemIkon>(p?.nilai);
+const statistik = rows<Statistik>(p?.statistik);
+const sertifikat = rows<Sertifikat>(p?.akreditasi_sertifikat);
+const statAkreditasi = rows<{ angka: string; label: string }>(p?.akreditasi_statistik);
+---
+
+<Base title="Tentang IAI Persis Garut" description={p?.paragraf_pembuka}>
+	<article>
+		<h1>Tentang IAI Persis Garut</h1>
+		{
+			!p ? (
+				<p>Profil institusi belum diisi.</p>
+			) : (
+				<>
+					<section>
+						<h2>{p.nama}</h2>
+						{p.paragraf_pembuka && <p><strong>{p.paragraf_pembuka}</strong></p>}
+						{paragraphs(p.tentang).map((para) => <p>{para}</p>)}
+						{p.gambar_tentang && <img src={mediaSrc(p.gambar_tentang)} alt={mediaAlt(p.gambar_tentang, p.nama)} loading="lazy" />}
+						{(p.lencana_judul || p.lencana_subjudul) && <p>{p.lencana_judul} — {p.lencana_subjudul}</p>}
+						{poin.length > 0 && (
+							<ul>
+								{poin.map((x) => (
+									<li><strong>{x.judul}</strong>: {x.deskripsi}</li>
+								))}
+							</ul>
+						)}
+					</section>
+
+					{keunggulan.length > 0 && (
+						<section>
+							<h2>Mengapa Memilih IAI PERSIS Garut?</h2>
+							<ul>
+								{keunggulan.map((x) => (
+									<li><strong>{x.judul}</strong>: {x.deskripsi}</li>
+								))}
+							</ul>
+						</section>
+					)}
+
+					<section>
+						<h2>Visi, Misi, dan Tujuan</h2>
+						{p.visi && (
+							<>
+								<h3>Visi</h3>
+								<blockquote>“{p.visi}”</blockquote>
+							</>
+						)}
+						{misi.length > 0 && (
+							<>
+								<h3>Misi</h3>
+								<ol>{misi.map((x) => <li>{x.teks}</li>)}</ol>
+							</>
+						)}
+						{tujuan.length > 0 && (
+							<>
+								<h3>Tujuan</h3>
+								<ol>{tujuan.map((x) => <li>{x.teks}</li>)}</ol>
+							</>
+						)}
+						{p.moto && (
+							<>
+								<h3>Moto</h3>
+								<p>{p.moto}</p>
+							</>
+						)}
+						{nilai.length > 0 && (
+							<>
+								<h3>Nilai-Nilai</h3>
+								<ul>{nilai.map((x) => <li>{x.teks}</li>)}</ul>
+							</>
+						)}
+					</section>
+
+					{statistik.length > 0 && (
+						<section>
+							<h2>Dalam Angka</h2>
+							<ul>
+								{statistik.map((s) => (
+									<li>{s.angka}{s.akhiran} {s.label}</li>
+								))}
+							</ul>
+						</section>
+					)}
+
+					<section>
+						<h2>Akreditasi BAN-PT</h2>
+						{p.akreditasi_peringkat && <p>Terakreditasi <strong>{p.akreditasi_peringkat}</strong> dari Badan Akreditasi Nasional Perguruan Tinggi</p>}
+						{p.akreditasi_keterangan && <p set:html={tebal(p.akreditasi_keterangan)} />}
+						{sertifikat.length > 0 && (
+							<ul>
+								{sertifikat.map((s) => (
+									<li>
+										<strong>{s.judul} — {s.program}</strong>: {s.peringkat} ({s.label_peringkat}), {s.masa_berlaku}, SK: {s.nomor_sk}
+										{s.tautan && (
+											<>
+												{" "}
+												<a href={s.tautan} target="_blank" rel="noopener noreferrer">Lihat sertifikat</a>
+											</>
+										)}
+										{s.gambar && (
+											<div>
+												<img src={mediaSrc(s.gambar)} alt={mediaAlt(s.gambar, `Sertifikat ${s.program}`)} loading="lazy" width="300" />
+											</div>
+										)}
+									</li>
+								))}
+							</ul>
+						)}
+						{statAkreditasi.length > 0 && (
+							<ul>{statAkreditasi.map((s) => <li>{s.angka} {s.label}</li>)}</ul>
+						)}
+						{p.akreditasi_informasi && (
+							<p>
+								{p.akreditasi_informasi}
+								{p.akreditasi_email && (
+									<>
+										{" "}Untuk informasi lebih lanjut, hubungi <a href={`mailto:${p.akreditasi_email}`}>{p.akreditasi_email}</a>
+									</>
+								)}
+							</p>
+						)}
+					</section>
+				</>
+			)
+		}
+	</article>
+</Base>
