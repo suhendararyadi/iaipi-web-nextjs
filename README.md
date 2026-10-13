@@ -1,291 +1,99 @@
 # 🎓 Website Institut Agama Islam PERSIS Garut
 
-![Version](https://img.shields.io/badge/version-3.1.0-blue.svg)
-![Next.js](https://img.shields.io/badge/Next.js-16.1.1-black.svg)
-![React](https://img.shields.io/badge/React-19.2.3-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)
+![Astro](https://img.shields.io/badge/Astro-7-orange.svg)
+![EmDash](https://img.shields.io/badge/EmDash_CMS-1.2-black.svg)
+![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-f38020.svg)
 
-Website resmi Institut Agama Islam PERSIS Garut yang dibangun dengan Next.js 16 (App Router) dan React 19. Website ini menampilkan informasi lengkap tentang institusi, program studi, layanan akademik, dan sistem informasi.
+Website resmi Institut Agama Islam PERSIS Garut. Sejak versi 4.0 situs ini memakai
+**[EmDash CMS](https://emdashcms.com)** di atas **Astro**, dan di-hosting di **Cloudflare Workers**
+(database D1, media R2). Semua konten bisa diubah oleh staf lewat panel admin tanpa menyentuh kode.
 
-## 🌟 Fitur Utama
+## ✨ Apa yang bisa diedit di CMS
 
-### 📚 **Program Pendidikan**
-- **Fakultas Sarjana (S1)**: 3 Fakultas dengan 9 Program Studi
-  - Fakultas Ushuluddin (Ilmu Hadis/ILHA, Ilmu Al-Qur'an dan Tafsir/IAT, Sejarah Peradaban Islam/SPI)
-  - Fakultas Tarbiyah (PAI, PGMI, BKPI, Pendidikan Bahasa Arab/PBA)
-  - Fakultas Ekonomi & Bisnis Islam (Ekonomi Syariah/Ekosy, Manajemen Keuangan Syariah/MKS)
-- **Program Magister (S2)**: 2 Program
-  - MPAI (Magister Pendidikan Agama Islam)
-  - MIH (Magister Ilmu Hadis)
+Panel admin: `https://<domain>/_emdash/admin`
 
-> ⚠️ Kurikulum, fasilitas, dan prospek karir untuk PGMI dan PAI bersumber dari dokumen kurikulum resmi FTK Tahun 2024. Prodi lain masih berisi konten generik yang ditandai `DRAFT` di source code dan perlu direview dengan data resmi sebelum diperlakukan sebagai final — lihat [CHANGELOG.md](./CHANGELOG.md) bagian [3.0.0].
+| Menu admin | Isi |
+| --- | --- |
+| **Berita** | Berita, agenda, pengumuman (draf, jadwal terbit, kategori, SEO) |
+| **Halaman** | Halaman teks bebas, alamat `/halaman/<slug>` |
+| **Program Studi & Fakultas** | Profil, visi-misi, kurikulum per semester, fasilitas, prospek karir, akreditasi |
+| **Pimpinan** | Rektor, wakil rektor, dekan, kaprodi: foto, jabatan, pendidikan, Sinta/Scholar |
+| **Beranda** | Slider, video, jurnal, testimoni |
+| **Profil Institusi, Layanan, Lembaga, PMB** | Konten halaman Tentang, Layanan & SI, Lembaga, Penerimaan Mahasiswa Baru |
+| **Info Kampus** | Alamat, telepon, WhatsApp, email, media sosial, link pendaftaran, Google Analytics |
+| **Menus** | Menu utama header & menu footer |
+| **Media** | Semua gambar/berkas unggahan (tersimpan di R2) |
 
-### 🎨 **UI/UX Modern**
-- Design responsive untuk semua device
-- Animasi smooth dan interactive
-- Color-coded cards per fakultas/prodi
-- Tab-based content organization
-- Hover effects dan micro-interactions
-
-### 🟡 **Tombol Pendaftaran Khusus**
-- Yellow gradient button di navigation
-- Pulse animation
-- Prominent positioning
-- Mobile responsive
-
-### 🏛️ **Lembaga & Layanan**
-- Section Lembaga di homepage
-- Halaman Layanan & Sistem Informasi
-- 12 sistem informasi (4 aktif, 8 coming soon)
-- Category filter untuk kemudahan akses
-
-### 📄 **Halaman Informasi**
-- Tentang Institut (dengan Visi/Misi tabbed interface)
-- Struktur Organisasi & Pimpinan
-- Akreditasi (interactive certificate display)
-- Berita & Agenda
-- PMB (Penerimaan Mahasiswa Baru)
+Admin mendukung Bahasa Indonesia, banyak pengguna dengan peran (Administrator/Editor/Author/
+Contributor), login passkey, riwayat revisi, dan pratinjau draf.
 
 ## 🚀 Tech Stack
 
-- **Framework**: Next.js 16.1.1 (App Router)
-- **UI Library**: React 19.2.3
-- **Styling**: CSS Custom + Bootstrap Grid
-- **Icons**: FontAwesome 4.7 — **hanya gunakan ikon yang ada di versi 4.7** (cek [fontawesome.com/v4.7/icons](https://fontawesome.com/v4.7/icons/)); ikon FA5+ seperti `fa-mosque`/`fa-award`/`fa-clock` tidak akan tampil sama sekali karena tidak ada definisi `:before`-nya
-- **Berita**: RSS feed publik Hashnode (`src/utils/hashnodeApi.js`) — API GraphQL Hashnode kini berbayar, dimigrasikan ke RSS pada Mei 2026
-- **Image Optimization**: dimatikan (`images.unoptimized: true` di `next.config.mjs`); banyak komponen masih memakai `<img>` mentah, bukan `next/image`
-- **Deployment**: Vercel
+- **Framework**: Astro 7 (server-rendered), halaman `.astro` tanpa React di sisi publik
+- **CMS**: EmDash 1.2 (admin + REST API + MCP server, skema konten disimpan di database)
+- **Hosting**: Cloudflare Workers + D1 + R2 + KV (sesi) + Images
+- **Tampilan**: CSS & jQuery tema lama dipertahankan (`public/css`, `public/js`) agar tampilan sama
+  dengan versi Next.js; slider beranda memakai Swiper 14
+- **Ikon**: FontAwesome 4.7 — hanya ikon versi 4.7 yang tampil
 
-## 📦 Installation
+## 💻 Pengembangan Lokal
 
 ```bash
-# Clone repository
-git clone https://github.com/suhendararyadi/iaipi-web-nextjs.git
-
-# Masuk ke direktori
-cd iaipi-web-nextjs
-
-# Install dependencies
 npm install
-
-# Jalankan development server
 npm run dev
-
-# Build untuk production
-npm run build
-
-# Jalankan production server
-npm start
 ```
 
-## 🌐 Environment Variables
+- Situs: <http://localhost:4321>
+- Setup cepat + impor seluruh konten awal:
+  <http://localhost:4321/_emdash/api/setup/dev-bypass?redirect=/>
+- Admin: <http://localhost:4321/_emdash/admin>
 
-Tidak ada environment variables yang required untuk development. Untuk production, pastikan mengupdate:
+Database lokal tersimpan di `.wrangler/state`; hapus folder itu untuk mengulang dari nol.
 
-- Google Analytics ID di `/src/app/layout.js`
-- Contact information di `/src/components/Footer/Footer.js`
-- Social media links
+## ☁️ Deploy
+
+Lihat **[docs/DEPLOY-CLOUDFLARE.md](./docs/DEPLOY-CLOUDFLARE.md)** — langkah lengkap: deploy
+pertama, wizard setup admin (pilih **Konten sampel** untuk mengimpor konten lama), deploy
+otomatis dari GitHub, pemindahan domain, dan batasan paket Workers Free.
+
+Ringkasnya:
+
+```bash
+npx wrangler login
+npm run deploy
+```
 
 ## 📁 Struktur Proyek
 
 ```
-iaipi-web-nextjs/
-├── public/
-│   ├── css/
-│   │   └── custom.css          # Custom styles (~6,000+ lines)
-│   ├── images/
-│   │   └── dosen/
-│   │       └── avatar/         # Crop wajah 320x320 untuk kartu pimpinan
-│   └── js/                      # JavaScript libraries (jQuery, Slick, dll.)
-├── src/
-│   ├── app/                     # Next.js App Router (43 route)
-│   │   ├── fakultas/           # Fakultas & prodi detail pages
-│   │   ├── magister/           # Magister overview + mpai/mih detail
-│   │   ├── pimpinan/           # Leadership grid + ~19 halaman detail per orang
-│   │   ├── layanan/            # Layanan page
-│   │   ├── lembaga-departemen/ # Lembaga page
-│   │   ├── tentang/            # About page
-│   │   ├── kontak/             # Contact page
-│   │   ├── pmb/                # PMB page
-│   │   ├── api/news/           # Route handler (proxy ke RSS Hashnode)
-│   │   └── layout.js           # Root layout
-│   ├── components/             # React components
-│   │   ├── Fakultas/           # Faculty overview components
-│   │   ├── Prodi/              # 10 komponen detail prodi S1
-│   │   ├── Magister/           # MpaiContent, MihContent, MagisterContent
-│   │   ├── Pimpinan/           # Rektor/Warek/Dekan/Kaprodi (per orang)
-│   │   ├── Teachers2/3/4/      # Grid pimpinan (homepage & /pimpinan)
-│   │   ├── Lembaga/            # Institution components
-│   │   ├── Layanan/            # Services components
-│   │   ├── Header2/            # Navigation aktif (Header/Header3 tidak dipakai)
-│   │   └── ...
-│   ├── data/                    # Data files (lembagaData, jurnalData)
-│   └── utils/
-│       └── hashnodeApi.js       # Fetch & parse RSS feed berita
-└── CHANGELOG.md                 # Version history
+├── astro.config.mjs        # Astro + adapter Cloudflare + integrasi EmDash
+├── wrangler.jsonc          # Binding Cloudflare (D1, R2), cron, domain
+├── seed/parts/*.json       # Skema koleksi + konten awal (hasil migrasi situs lama)
+├── scripts/build-seed.mjs  # Menggabungkan seed/parts → seed/seed.json
+├── public/                 # CSS, JS, font, dan gambar tema
+└── src/
+    ├── layouts/Base.astro  # Kerangka HTML, header, footer, skrip tema
+    ├── components/         # Komponen per area (layout, beranda, akademik, pimpinan, ...)
+    ├── lib/                # Helper query CMS
+    ├── pages/              # Rute situs (file-based routing Astro)
+    ├── middleware.ts       # Header keamanan
+    └── worker.ts           # Entry Worker (fetch + cron EmDash)
 ```
 
-## 🎨 Design System
-
-### Colors
-```css
-Primary Green:   #006739
-Light Green:     #008749
-Yellow Accent:   #ffc600
-Blue:            #3498db
-Purple:          #9b59b6
-Orange:          #e67e22
-```
-
-### Typography
-- Headings: Poppins/System Font
-- Body: 15-16px, line-height 1.6-1.8
-- Section Titles: 32px bold
-- Card Titles: 20-24px bold
-
-### Spacing
-- Section Padding: 70px top/bottom
-- Card Padding: 25-50px
-- Border Radius: 10-16px
-
-## 📄 Halaman Utama
-
-| Page | Route | Description |
-|------|-------|-------------|
-| Homepage | `/` | Landing page with all sections |
-| Tentang | `/tentang` | About, Vision/Mission, Accreditation |
-| Kontak | `/kontak` | Contact information |
-| Fakultas | `/fakultas` | 3 Faculties overview |
-| Fakultas Detail | `/fakultas/{slug}` | Faculty detail (3 pages) |
-| Prodi Detail | `/fakultas/{faculty}/{prodi}` | Study program detail (9 pages) |
-| Magister | `/magister` | Master programs overview (list, not single card) |
-| Magister Detail | `/magister/{mpai\|mih}` | MPAI & MIH program detail (2 pages) |
-| Layanan | `/layanan` | Services & Information Systems |
-| Lembaga | `/lembaga-departemen` | Institutions & Departments |
-| PMB | `/pmb` | Student Registration (TA 2026/2027) |
-| Pimpinan | `/pimpinan` | Leadership Structure (grid) + detail per orang (~19 pages) |
-
-**Total: 43 routes** (termasuk `/api/news` dan halaman `not-found`; lihat output `npm run build` untuk daftar lengkap dan terkini)
-
-## 🔧 Development Guidelines
-
-### Adding New Study Program
-
-1. Buat komponen prodi di `/src/components/Prodi/`, contoh paling lengkap: `Pgmi.js`/`Pai.js` (bersumber dokumen resmi) — pola tab: Profil, Kurikulum, Fasilitas, Prospek Karir
-2. Beri class `info-box--akreditasi` pada kotak Akreditasi di header agar ikut ter-highlight (CSS di `public/css/custom.css`)
-3. Kalau belum ada data kurikulum resmi, isi konten generik tapi **wajib** tandai dengan komentar `// DRAFT: ... BUKAN data resmi kampus` di baris atas file
-4. Buat halaman di `/src/app/fakultas/{faculty}/{prodi}/page.js`
-5. Tambahkan entri prodi ke komponen overview fakultas terkait (`/src/components/Fakultas/{Faculty}.js`) dan ke `Fakultas.js` (halaman `/fakultas`)
-6. Update angka statistik total prodi di `Fakultas.js` dan `Akreditasi.js` jika berubah
-7. Jalankan `npm run build` dan verifikasi tidak ada ikon FA5+ yang lolos (lihat Icon Guidelines)
-
-### Adding New Service
-
-1. Edit `/src/components/Layanan/LayananContent.js`
-2. Add to `layananData` array:
-```javascript
-{
-  id: 13,
-  name: "Service Name",
-  shortName: "SHORT",
-  category: "akademik", // or penelitian, publikasi, etc.
-  description: "Brief description",
-  url: "https://...",
-  icon: "fa-icon-name",
-  color: "#hexcolor",
-  status: "active" // or "coming"
-}
-```
-
-### Icon Guidelines
-
-- **Always use FontAwesome 4.7 icons** — validasi dulu di https://fontawesome.com/v4.7/icons/ sebelum dipakai
-- Format: `<i className="fa fa-icon-name"></i>`
-- Ikon FA5+ (mis. `fa-mosque`, `fa-award`, `fa-clock`, `fa-lightbulb-o` yang salah eja) tidak error saat build, tapi tampil sebagai elemen kosong tanpa simbol — bug ini pernah lolos ke produksi di beberapa halaman prodi (lihat CHANGELOG [3.0.0])
-- Verifikasi cepat: `grep -o 'fa-[a-z-]*' <file> | sort -u`, lalu cek tiap nama muncul sebagai `.fa-xxx:before` di `public/css/font-awesome.min.css`
-
-## 🎯 Performance
-
-- **Build Time**: ~45 seconds
-- **Pages Generated**: 39 pages
-- **First Load JS**: ~100-122 kB
-- **Lighthouse Score**: 
-  - Performance: 85+
-  - Accessibility: 90+
-  - Best Practices: 90+
-  - SEO: 95+
-
-## 📱 Responsive Breakpoints
-
-- **Desktop**: >992px (full layouts)
-- **Tablet**: 768-991px (2-column grids)
-- **Mobile**: <768px (stacked layouts)
-
-## 🐛 Known Issues
-
-- Build warnings about `<img>` tags (non-critical, consider migrating to Next.js Image) — image optimization juga dimatikan total via `images.unoptimized: true`
-- Beberapa halaman prodi (Ekosy, MKS, BKPI, IAT, ILHA, SPI, PBA, MPAI, MIH) masih berisi konten kurikulum/fasilitas/karir generik yang ditandai `DRAFT` di source code — bukan data resmi kampus
-- Kaprodi yang baru ditambahkan (Hasan Ansori/PBA, Imam Sofyan Abas/SPI, Kinkin Syamsudin/ILHA) belum punya data pendidikan, Sinta ID, atau Google Scholar
-- Sejumlah komponen (`Header`, `Header3`, `Category`, `About`, `Teachers` tunggal, `PatnarLogo`) sudah tidak dirender di halaman manapun tapi filenya masih ada di `src/components/`
-- Beberapa halaman detail pimpinan lama masih memuat placeholder teks garis bawah (`______`) di bagian "Tentang" yang belum pernah diisi
-- `GA_MEASUREMENT_ID` di `src/components/RootLayoutClient/RootLayoutClient.js` masih placeholder (`G-XXXXXXXXXX`) — script GA4 termuat di setiap halaman tapi tidak pernah benar-benar mengirim data; perlu ID Google Analytics asli atau dihapus
-- `swiper` masih di versi 11.x yang punya advisory `critical` (prototype pollution, GHSA-hmx5-qpq5-p643); fix-nya perlu upgrade ke v14 yang breaking, jadi butuh pengujian visual di semua slider (Slider, Testimonial, Course, Publication, PatnarLogo, Teachers2) sebelum di-apply
-- Belum ada Content-Security-Policy header — situs memuat jQuery, Bootstrap, GA, dan beberapa inline `<Script>`, jadi CSP perlu rollout bertahap (Report-Only dulu) alih-alih langsung enforced
+Konvensi kode untuk kontributor/AI agent ada di [CLAUDE.md](./CLAUDE.md).
 
 ## 🔄 Version History
 
-See [CHANGELOG.md](./CHANGELOG.md) for detailed version history.
+Lihat [CHANGELOG.md](./CHANGELOG.md).
 
-### Current Version: 3.1.0
-- Metadata SEO per halaman untuk 11 halaman prodi/magister (title, description, canonical unik — sebelumnya semua mewarisi metadata homepage)
-- `robots.txt` dan `sitemap.xml` baru, security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`)
-- Next.js dibump ke 16.2.10 (menutup advisory *high-severity*); `npm run lint` diperbaiki setelah `next lint` dihapus dari CLI Next.js 16
-- Tombol WhatsApp mengambang kini tampil di semua halaman; alt text 23 foto pimpinan diganti dari generik ke nama asli
-- JSON-LD kontak dikoreksi; bug hitung "10 Program Studi" (seharusnya 9) di halaman Fakultas dan Tentang diperbaiki
-
-### Version 3.0.0
-- Konten prodi PGMI & PAI disinkronkan penuh dengan dokumen kurikulum resmi FTK 2024 (kurikulum per semester, CPL, Visi/Misi/Tujuan)
-- 3 program studi baru: PBA (S1), SPI (S1), Magister Ilmu Hadis (S2) — total 9 prodi S1 + 2 Magister
-- Restrukturisasi kepemimpinan (Warek III/IV, Kaprodi ILHA/MIH) beserta redirect URL lama
-- Highlight visual untuk kotak akreditasi di seluruh halaman prodi, diverifikasi terhadap dokumen resmi
-- Perbaikan bug konten salin-tempel di 5 halaman prodi, ikon FontAwesome yang tidak tampil, dan ukuran avatar pimpinan yang tidak konsisten
-- Migrasi sumber berita dari GraphQL Hashnode (berbayar) ke RSS feed publik
-
-Lihat [CHANGELOG.md](./CHANGELOG.md) untuk rincian versi 2.1.0 dan 2.2.0 (branding, slider modern, bottom navigation) yang dirilis di antara 2.0.0 dan 3.0.0.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License.
-
-## 👥 Team
-
-- **Development**: Institut Agama Islam PERSIS Garut
-- **Maintained by**: IT Team IAIPI Garut
-
-## 📞 Contact
-
-Sumber: Footer & halaman `/kontak` (lihat catatan ketidaksesuaian dengan JSON-LD di Known Issues).
+## 📞 Kontak
 
 - **Website**: https://iaipersisgarut.ac.id
 - **Email**: rektorat@iaipersisgarut.ac.id
 - **Phone / WhatsApp**: +62 851 2312 3670
-- **Address**: Jl. Aruji Kartawinata No. 2, Tarogong Kidul, Kabupaten Garut, Jawa Barat 44151
-
-## 🙏 Acknowledgments
-
-- Next.js Team for the amazing framework
-- React Team for the UI library
-- FontAwesome for the icons
-- All contributors and maintainers
+- **Alamat**: Jl. Aruji Kartawinata No. 2, Tarogong Kidul, Kabupaten Garut, Jawa Barat 44151
 
 ---
 
-**Built with ❤️ by IAI PERSIS Garut** | **Version 3.1.0** | **Juli 2026**
+**Built with ❤️ by IAI PERSIS Garut** | Dikelola oleh Direktorat IT IAIPI
