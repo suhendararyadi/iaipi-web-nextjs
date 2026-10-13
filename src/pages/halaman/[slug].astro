@@ -1,9 +1,10 @@
 ---
+// Halaman umum dari koleksi `halaman`: banner + isi Portable Text dalam .prosa.
 import { decodeSlug, getEmDashEntry } from "emdash";
 import { PortableText } from "emdash/ui";
 import Base from "@/layouts/Base.astro";
 import PageBanner from "@/components/layout/PageBanner.astro";
-import { mediaSrc, useCacheHint, type MediaField } from "@/lib/cms";
+import { mediaAlt, mediaSrc, useCacheHint, type MediaField } from "@/lib/cms";
 
 const slug = decodeSlug(Astro.params.slug);
 if (!slug) return Astro.rewrite("/404");
@@ -14,23 +15,46 @@ useCacheHint(Astro, cacheHint);
 
 const page = entry.data as { id: string; title: string; ringkasan?: string; gambar_banner?: MediaField; content?: unknown[] };
 const edit = entry.edit as Record<string, Record<string, string>>;
+const banner = mediaSrc(page.gambar_banner, "/images/slider/slider-iaipi-1.jpg");
 ---
 
-<Base title={page.title} description={page.ringkasan} content={{ collection: "halaman", id: page.id, slug }}>
+<Base
+	title={page.title}
+	description={page.ringkasan}
+	image={page.gambar_banner ? new URL(banner, Astro.url).href : null}
+	content={{ collection: "halaman", id: page.id, slug }}
+>
 	<PageBanner
 		title={page.title}
-		backgroundImage={mediaSrc(page.gambar_banner, "/images/page-banner-1.jpg")}
-		breadcrumbs={[{ text: "Home", url: "/" }, { text: page.title }]}
+		image={banner}
+		imageAlt={mediaAlt(page.gambar_banner, "")}
+		breadcrumbs={[{ text: "Beranda", url: "/" }, { text: page.title }]}
+		summary={page.ringkasan}
 	/>
-	<section class="pt-70 pb-120">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-9">
-					<article class="cms-prose" {...edit.content}>
-						{page.content && page.content.length > 0 ? <PortableText value={page.content} /> : <p class="cms-empty">Konten halaman ini belum diisi.</p>}
-					</article>
-				</div>
-			</div>
+	<section class="section">
+		<div class="wadah">
+			<article class="prosa halaman-isi" {...edit.content}>
+				{page.content && page.content.length > 0 ? <PortableText value={page.content} /> : <p class="kosong">Konten halaman ini belum diisi.</p>}
+			</article>
 		</div>
 	</section>
 </Base>
+
+<style>
+	.halaman-isi {
+		margin-inline: auto;
+		overflow-wrap: break-word;
+	}
+	.halaman-isi :global(table) {
+		width: 100%;
+		border-collapse: collapse;
+		display: block;
+		overflow-x: auto;
+	}
+	.halaman-isi :global(th),
+	.halaman-isi :global(td) {
+		padding: 10px 12px;
+		border: 1px solid var(--garis);
+		text-align: left;
+	}
+</style>

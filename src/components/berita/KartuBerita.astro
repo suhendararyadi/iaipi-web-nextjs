@@ -1,0 +1,105 @@
+---
+// Kartu berita bergaya "IAIP Hari Ini": foto penuh + gradasi gelap, judul putih, meta kuning.
+// Berita tanpa gambar utama tampil sebagai kartu hijau bergradasi (tetap berjudul putih).
+import { mediaAlt, mediaSrc } from "@/lib/cms";
+import { kategoriBerita, tanggalAngka, tanggalBerita, waktuBaca, type BeritaEntry } from "@/lib/berita";
+
+interface Props {
+	entry: BeritaEntry;
+	/** "besar" = kartu sorotan (judul 32px), "kecil" = kartu grid (judul 20px). */
+	ukuran?: "besar" | "kecil";
+	as?: "h2" | "h3";
+	/** Tampilkan label kategori di atas judul. */
+	tampilKategori?: boolean;
+	eager?: boolean;
+	class?: string;
+}
+
+const { entry, ukuran = "kecil", as: Judul = "h3", tampilKategori = false, eager = false, class: className } = Astro.props;
+const b = entry.data;
+const src = mediaSrc(b.featured_image);
+// Judul sudah menjadi teks tautan; alt yang hanya mengulang judul dikosongkan agar tidak dibaca dua kali.
+const altAsli = mediaAlt(b.featured_image, "");
+const alt = altAsli.trim() === b.title.trim() ? "" : altAsli;
+const tanggal = tanggalBerita(entry);
+const kategori = kategoriBerita(entry)[0];
+const judulId = `berita-${entry.id}`.slice(0, 80);
+---
+
+<a
+	href={`/berita/${entry.id}`}
+	class:list={["kartu-foto", "kartu-berita", ukuran, { "tanpa-foto": !src }, className]}
+	aria-labelledby={judulId}
+>
+	{src && <img src={src} alt={alt} loading={eager ? "eager" : "lazy"} decoding="async" fetchpriority={eager ? "high" : undefined} />}
+	<div class="kartu-foto-isi">
+		{tampilKategori && kategori && <span class="lencana">{kategori.label}</span>}
+		<Judul id={judulId} class="kartu-foto-judul">{b.title}</Judul>
+		<span class="meta">
+			{tanggal && <time datetime={tanggal.toISOString()}>{tanggalAngka(tanggal)}</time>}
+			<span>{waktuBaca(b.content)} menit baca</span>
+		</span>
+	</div>
+</a>
+
+<style>
+	.kartu-berita {
+		--tinggi: 300px;
+		height: 100%;
+	}
+	.kartu-berita::after {
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 24%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.85) 68%, #000 88%);
+	}
+	.kartu-berita.besar {
+		--tinggi: 538px;
+	}
+	.kartu-berita.besar::after {
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 42%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.85) 78%, #000 94%);
+	}
+	.kartu-berita .kartu-foto-isi {
+		padding: 20px 20px 22px;
+		gap: 12px;
+	}
+	.kartu-berita.besar .kartu-foto-isi {
+		padding: 24px 40px 33px 20px;
+	}
+	.kartu-berita .kartu-foto-judul {
+		font-size: 20px;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+	.kartu-berita.besar .kartu-foto-judul {
+		font-size: clamp(22px, 2.23vw, 32px);
+	}
+	.kartu-berita .meta {
+		flex-wrap: wrap;
+		gap: 4px 20px;
+		letter-spacing: 0.4px;
+	}
+	.kartu-berita:focus-visible {
+		outline-offset: 3px;
+	}
+
+	/* Berita tanpa gambar utama: kartu hijau dengan ornamen lingkaran. */
+	.tanpa-foto {
+		background:
+			radial-gradient(circle at 88% 12%, rgba(255, 198, 0, 0.22) 0 70px, transparent 71px),
+			radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.07) 0 190px, transparent 191px),
+			linear-gradient(140deg, var(--hijau) 0%, var(--hijau-tua) 100%);
+	}
+	.tanpa-foto::after {
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.35) 100%);
+	}
+
+	@media (max-width: 600px) {
+		.kartu-berita.besar {
+			--tinggi: 420px;
+		}
+		.kartu-berita.besar .kartu-foto-isi {
+			padding: 20px 20px 24px;
+		}
+	}
+</style>

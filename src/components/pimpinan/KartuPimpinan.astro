@@ -1,0 +1,115 @@
+---
+// Kartu potret pimpinan (gaya kartu foto Unpad): foto potret, gradasi gelap, nama putih, jabatan kuning.
+// Tanpa foto → kartu hijau dengan inisial nama.
+import { mediaAlt, mediaSrc } from "@/lib/cms";
+import { inisialNama, jabatanRingkas, type PimpinanEntry } from "@/lib/pimpinan";
+
+interface Props {
+	entry: PimpinanEntry;
+	as?: "h2" | "h3" | "h4";
+	/** Teks jabatan pengganti (default: field `jabatan`). */
+	jabatan?: string;
+}
+
+const { entry, as: Judul = "h3", jabatan } = Astro.props;
+const p = entry.data;
+const src = mediaSrc(p.foto) || mediaSrc(p.foto_avatar);
+const teksJabatan = jabatan || p.jabatan;
+// Di layar sempit kartu kecil: tampilkan jabatan_singkat bila ada (mis. "Wakil Rektor I").
+const ringkas = jabatanRingkas(p);
+const adaRingkas = !jabatan && ringkas !== teksJabatan;
+// Nama sudah tertulis di kartu; alt yang hanya berisi nama dikosongkan agar tidak dibaca dua kali.
+const altAsli = mediaAlt(p.foto, "");
+const alt = altAsli.trim() === p.nama.trim() ? "" : altAsli;
+---
+
+<a href={`/pimpinan/${entry.id}`} class:list={["kartu-foto", "kartu-pimpinan", { "tanpa-foto": !src }]}>
+	{src ? <img src={src} alt={alt} loading="lazy" decoding="async" /> : <span class="inisial" aria-hidden="true">{inisialNama(p.nama)}</span>}
+	<div class="kartu-foto-isi">
+		<Judul class="nama">{p.nama}</Judul>
+		<p class="jabatan">
+			<span class:list={{ "j-lengkap": adaRingkas }}>{teksJabatan}</span>
+			{adaRingkas && <span class="j-ringkas">{ringkas}</span>}
+		</p>
+	</div>
+</a>
+
+<style>
+	.kartu-pimpinan {
+		--tinggi: 0;
+		aspect-ratio: 540 / 616;
+		height: auto;
+	}
+	.kartu-pimpinan > img {
+		object-position: center top;
+	}
+	.kartu-pimpinan::after {
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 48%, rgba(0, 0, 0, 0.55) 66%, rgba(0, 0, 0, 0.86) 84%, #000 100%);
+	}
+	.kartu-foto-isi {
+		gap: 6px;
+		padding: 18px 18px 20px;
+	}
+	.nama {
+		color: var(--putih);
+		font-family: var(--font-isi);
+		font-weight: 800;
+		font-size: 19px;
+		line-height: 1.25;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+	}
+	.jabatan {
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 14px;
+		line-height: 1.35;
+		color: var(--kuning);
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+	}
+	.j-ringkas {
+		display: none;
+	}
+	.tanpa-foto {
+		background:
+			radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.08) 0 160px, transparent 161px),
+			linear-gradient(150deg, var(--hijau) 0%, var(--hijau-tua) 100%);
+	}
+	.inisial {
+		position: absolute;
+		inset: 0 0 30% 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-family: var(--font-isi);
+		font-weight: 900;
+		font-size: 64px;
+		color: rgba(255, 255, 255, 0.85);
+		z-index: -2;
+	}
+	@media (max-width: 600px) {
+		.kartu-pimpinan {
+			aspect-ratio: 3 / 4.3;
+		}
+		.j-lengkap {
+			display: none;
+		}
+		.j-ringkas {
+			display: inline;
+		}
+		.kartu-foto-isi {
+			padding: 12px 12px 14px;
+			gap: 4px;
+		}
+		.nama {
+			font-size: 14px;
+		}
+		.jabatan {
+			font-size: 12px;
+			display: -webkit-box;
+			-webkit-line-clamp: 3;
+			line-clamp: 3;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
+	}
+</style>

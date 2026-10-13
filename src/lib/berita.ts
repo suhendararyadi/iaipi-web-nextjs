@@ -86,3 +86,36 @@ export async function getKategoriBerita() {
 	const { data, cacheHint } = await getTaxonomyTermsWithCacheHint(TAKSONOMI_KATEGORI, { includeCounts: false });
 	return { kategori: (data ?? []) as unknown as KategoriBerita[], cacheHint };
 }
+
+/** Tanggal ringkas berangka untuk meta kartu, mis. 10/10/2026 (zona Asia/Jakarta). */
+export function tanggalAngka(date: Date | null | undefined): string {
+	if (!date || Number.isNaN(date.getTime())) return "";
+	return date.toLocaleDateString("id-ID", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "Asia/Jakarta" });
+}
+
+/**
+ * Berita terkait: berita lain dari kategori pertama, dilengkapi berita terbaru bila kurang.
+ * Mengembalikan semua cache hint yang dipakai agar halaman ikut ter-purge.
+ */
+export async function getBeritaTerkait(entry: BeritaEntry, limit = 3) {
+	const kategori = kategoriBerita(entry)[0]?.slug;
+	const hasil: BeritaEntry[] = [];
+	const cacheHints: unknown[] = [];
+	const tambah = (list: BeritaEntry[]) => {
+		for (const b of list) {
+			if (hasil.length >= limit) break;
+			if (b.id !== entry.id && !hasil.some((h) => h.id === b.id)) hasil.push(b);
+		}
+	};
+	if (kategori) {
+		const r = await getDaftarBerita({ kategori, limit: limit + 1 });
+		cacheHints.push(r.cacheHint);
+		tambah(r.entries);
+	}
+	if (hasil.length < limit) {
+		const r = await getBeritaTerbaru(limit + 1);
+		cacheHints.push(r.cacheHint);
+		tambah(r.entries);
+	}
+	return { entries: hasil, cacheHints };
+}
