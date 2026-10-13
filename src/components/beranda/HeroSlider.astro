@@ -1,0 +1,219 @@
+---
+// Hero beranda: slider gambar full-bleed dari koleksi `slider` (field aktif, urutan, tautan),
+// dengan panah dan titik (interaksi di src/scripts/ui.ts, atribut data-slider).
+// Bila tidak ada slide aktif, tampilkan banner komposisi cadangan.
+import HeroCadangan from "./HeroCadangan.astro";
+import { linkAttrs, mediaAlt, mediaSrc } from "@/lib/cms";
+import type { Entri, Slide } from "@/lib/beranda";
+
+interface Props {
+	slides: Entri<Slide>[];
+	logo: string;
+}
+
+const { slides: semua, logo } = Astro.props;
+const slides = semua
+	.map((s) => ({ ...s.data, src: mediaSrc(s.data.gambar) }))
+	.filter((s) => s.src);
+const banyak = slides.length > 1;
+---
+
+{
+	slides.length === 0 ? (
+		<HeroCadangan logo={logo} />
+	) : (
+		<section class="hero" aria-roledescription="carousel" aria-label="Sorotan IAI PERSIS Garut" data-slider>
+			<div class="hero-jalur">
+				{slides.map((s, i) => {
+					const alt = s.teks_alt || mediaAlt(s.gambar, s.judul);
+					const img = (
+						<img
+							src={s.src}
+							alt={alt}
+							loading={i === 0 ? "eager" : "lazy"}
+							fetchpriority={i === 0 ? "high" : "auto"}
+							decoding="async"
+						/>
+					);
+					return (
+						<div
+							class="hero-slide"
+							data-slide
+							data-active={i === 0 ? "true" : "false"}
+							role="group"
+							aria-roledescription="slide"
+							aria-label={`${i + 1} dari ${slides.length}: ${s.judul}`}
+							aria-hidden={i === 0 ? "false" : "true"}
+						>
+							{s.tautan ? (
+								<a href={s.tautan} tabindex={i === 0 ? undefined : -1} {...linkAttrs(s.tautan)}>
+									{img}
+								</a>
+							) : (
+								img
+							)}
+						</div>
+					);
+				})}
+			</div>
+			{banyak && (
+				<>
+					<button type="button" class="hero-panah kiri" aria-label="Slide sebelumnya" data-prev>
+						<span>
+							<svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M15 5l-7 7 7 7" />
+							</svg>
+						</span>
+					</button>
+					<button type="button" class="hero-panah kanan" aria-label="Slide berikutnya" data-next>
+						<span>
+							<svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M9 5l7 7-7 7" />
+							</svg>
+						</span>
+					</button>
+					<div class="hero-titik">
+						{slides.map((s, i) => (
+							<button type="button" data-dot aria-label={`Tampilkan slide ${i + 1}: ${s.judul}`} aria-current={i === 0 ? "true" : "false"}>
+								<span />
+							</button>
+						))}
+					</div>
+				</>
+			)}
+		</section>
+	)
+}
+
+<style>
+	.hero {
+		position: relative;
+		background: var(--abu);
+	}
+	.hero-jalur {
+		position: relative;
+		height: clamp(220px, 44vw, 630px);
+		overflow: hidden;
+	}
+	.hero-slide {
+		position: absolute;
+		inset: 0;
+		opacity: 0;
+		visibility: hidden;
+		transition:
+			opacity 0.6s ease,
+			visibility 0.6s ease;
+	}
+	.hero-slide[data-active="true"] {
+		opacity: 1;
+		visibility: visible;
+	}
+	.hero-slide a {
+		display: block;
+		height: 100%;
+	}
+	.hero-slide img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+	}
+	.hero-panah {
+		position: absolute;
+		z-index: 2;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 44px;
+		height: 44px;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		color: var(--judul);
+	}
+	.hero-panah.kiri {
+		left: 20px;
+	}
+	.hero-panah.kanan {
+		right: 20px;
+	}
+	.hero-panah span {
+		width: 32px;
+		height: 32px;
+		background: var(--putih);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+		transition: background-color 0.15s ease;
+	}
+	.hero-panah:hover span {
+		background: var(--kuning);
+	}
+	.hero-titik {
+		position: absolute;
+		z-index: 2;
+		left: 50%;
+		bottom: 11px;
+		transform: translateX(-50%);
+		display: flex;
+		align-items: center;
+	}
+	.hero-titik button {
+		height: 44px;
+		width: 24px;
+		padding: 0 5px;
+		border: 0;
+		background: transparent;
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		transition: width 0.3s ease;
+	}
+	.hero-titik span {
+		display: block;
+		width: 14px;
+		height: 14px;
+		border-radius: 999px;
+		background: #9a9a9a;
+		box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6);
+		transition:
+			width 0.3s ease,
+			background-color 0.3s ease;
+	}
+	.hero-titik button[aria-current="true"] {
+		width: 86px;
+	}
+	.hero-titik button[aria-current="true"] span {
+		width: 76px;
+		background: var(--kuning);
+	}
+	@media (max-width: 600px) {
+		.hero-panah.kiri {
+			left: 4px;
+		}
+		.hero-panah.kanan {
+			right: 4px;
+		}
+		.hero-titik {
+			bottom: 0;
+		}
+		.hero-titik button {
+			width: 20px;
+			padding: 0 4px;
+		}
+		.hero-titik span {
+			width: 10px;
+			height: 10px;
+		}
+		.hero-titik button[aria-current="true"] {
+			width: 48px;
+		}
+		.hero-titik button[aria-current="true"] span {
+			width: 40px;
+		}
+	}
+</style>

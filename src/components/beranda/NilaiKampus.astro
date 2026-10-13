@@ -1,0 +1,228 @@
+---
+// "IAI PERSIS Garut menjunjung nilai Islam…": kepala section + tab + grid kartu berlatar foto
+// dengan lapisan hijau tua (beranda.nilai_*). Kartu tanpa foto tampil hijau polos.
+// Pola baris: 2 kartu (lebar 466:664) lalu 3 kartu sama lebar.
+import KepalaSection from "@/components/ui/KepalaSection.astro";
+import { mediaSrc } from "@/lib/cms";
+import { pecahBaris, type KartuNilai } from "@/lib/beranda";
+
+interface Props {
+	judul?: string;
+	teks?: string;
+	tab1?: string;
+	tab2?: string;
+	items: KartuNilai[];
+}
+
+const { judul, teks, tab1, tab2 } = Astro.props;
+const kartu = Astro.props.items.filter((k) => k.judul);
+const tabs = [
+	{ no: "1", nama: tab1 || "Keunggulan", items: kartu.filter((k) => (k.tab ?? "1") === "1") },
+	{ no: "2", nama: tab2 || "Lainnya", items: kartu.filter((k) => k.tab === "2") },
+].filter((t) => t.items.length > 0);
+const pakaiTab = tabs.length > 1;
+
+/** Jumlah kartu per baris: utamakan baris 3; sisa 2 → baris pertama 2; sisa 1 → dua baris 2. */
+const pola = (sisa: number, indeks: number) => {
+	if (sisa <= 3) return sisa;
+	if (indeks === 0 && sisa % 3 === 2) return 2;
+	if (sisa % 3 === 1) return 2;
+	return 3;
+};
+---
+
+{
+	tabs.length > 0 && (
+		<section id="nilai" class="nilai" aria-labelledby="nilai-judul">
+			<div class="wadah" data-tabs>
+				<KepalaSection judul={judul || "Nilai Kampus"} teks={teks} ukuran="sedang" id="nilai-judul" />
+				{pakaiTab && (
+					<div class="tab-grup" role="tablist" aria-labelledby="nilai-judul">
+						{tabs.map((t, i) => (
+							<button
+								type="button"
+								class="tab"
+								role="tab"
+								id={`nilai-tab-${t.no}`}
+								aria-controls={`nilai-panel-${t.no}`}
+								aria-selected={i === 0 ? "true" : "false"}
+								tabindex={i === 0 ? 0 : -1}
+							>
+								{t.nama}
+							</button>
+						))}
+					</div>
+				)}
+				{tabs.map((t, i) => (
+					<div
+						class="panel"
+						id={`nilai-panel-${t.no}`}
+						role={pakaiTab ? "tabpanel" : undefined}
+						aria-labelledby={pakaiTab ? `nilai-tab-${t.no}` : undefined}
+						tabindex={pakaiTab ? 0 : undefined}
+						hidden={i > 0}
+					>
+						{pecahBaris(t.items, pola).map((baris, b) => (
+							<ul class:list={["baris", `isi-${baris.length}`]} role="list">
+								{baris.map((k, j) => {
+									const src = mediaSrc(k.gambar);
+									const lebar = baris.length === 2 && (b % 2 === 0 ? j === 1 : j === 0);
+									return (
+										<li class:list={["sel", { lebar, polos: !src }]}>
+											{src && <img src={src} alt="" loading="lazy" decoding="async" />}
+											<div class="teks">
+												<h3>{k.judul}</h3>
+												{k.deskripsi && <p>{k.deskripsi}</p>}
+											</div>
+										</li>
+									);
+								})}
+							</ul>
+						))}
+					</div>
+				))}
+			</div>
+		</section>
+	)
+}
+
+<style>
+	.nilai {
+		padding: 54px 0 62px;
+	}
+	.nilai :global(.kepala-section) {
+		margin-bottom: 46px;
+	}
+	.tab-grup {
+		margin-bottom: 60px;
+	}
+	.tab {
+		font-family: var(--font-ui);
+		font-weight: 700;
+		line-height: 1;
+		transition: background-color 0.15s ease;
+	}
+	.tab[aria-selected="true"] {
+		font-weight: 900;
+	}
+	.tab:hover {
+		background: var(--kuning);
+	}
+	.panel {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+	}
+	.panel[hidden] {
+		display: none;
+	}
+	.baris {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 30px;
+	}
+	.sel {
+		position: relative;
+		flex: 1 1 0px;
+		min-width: 260px;
+		height: clamp(280px, 29.2vw, 353px);
+		border-radius: var(--radius-xl);
+		overflow: hidden;
+		background: var(--hijau-tua);
+		color: var(--putih);
+		isolation: isolate;
+	}
+	.isi-2 .sel {
+		flex: 466 1 0px;
+		min-width: 280px;
+		height: clamp(300px, 32.6vw, 394px);
+	}
+	.isi-2 .sel.lebar {
+		flex: 664 1 0px;
+		min-width: 300px;
+	}
+	.sel img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: -2;
+	}
+	.sel::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background: rgba(3, 51, 29, 0.7);
+	}
+	/* Kartu tanpa foto: hijau dengan lingkaran dekoratif, lebih pendek. */
+	.sel.polos,
+	.isi-2 .sel.polos {
+		height: auto;
+		min-height: 220px;
+		background: var(--hijau);
+	}
+	.sel.polos::after {
+		inset: auto -60px -90px auto;
+		width: 220px;
+		height: 220px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.07);
+	}
+	.teks {
+		position: absolute;
+		left: 28px;
+		right: 28px;
+		bottom: 28px;
+	}
+	h3 {
+		font-weight: 800;
+		font-size: 22px;
+		line-height: 1.2;
+		color: var(--putih);
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+	}
+	.teks p {
+		margin-top: 10px;
+		max-width: 480px;
+		font-size: 15px;
+		line-height: 1.5;
+		letter-spacing: 0.3px;
+		color: #e6f1ea;
+	}
+	@media (max-width: 600px) {
+		.nilai {
+			padding: 40px 0;
+		}
+		.tab-grup {
+			gap: 8px;
+			margin-bottom: 32px;
+		}
+		.tab {
+			padding: 0 14px;
+			font-size: 14px;
+		}
+		.panel,
+		.baris {
+			gap: 20px;
+		}
+		.sel,
+		.isi-2 .sel,
+		.isi-2 .sel.lebar {
+			min-width: 100%;
+			height: 260px;
+		}
+		.sel.polos {
+			min-height: 180px;
+		}
+		.teks {
+			left: 22px;
+			right: 22px;
+			bottom: 22px;
+		}
+	}
+</style>

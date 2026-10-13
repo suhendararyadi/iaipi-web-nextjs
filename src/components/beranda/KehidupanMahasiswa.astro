@@ -1,0 +1,93 @@
+---
+// "Kehidupan Mahasiswa IAIP": kepala section + foto lebar + baris angka (beranda.kehidupan_*).
+import KepalaSection from "@/components/ui/KepalaSection.astro";
+import { mediaAlt, mediaSrc } from "@/lib/cms";
+import type { AngkaSederhana } from "@/lib/beranda";
+import type { MediaField } from "@/lib/cms";
+
+interface Props {
+	judul?: string;
+	teks?: string;
+	gambar?: MediaField;
+	angka: AngkaSederhana[];
+}
+
+const { judul, teks, gambar } = Astro.props;
+const angka = Astro.props.angka.filter((a) => a.nilai || a.label);
+const src = mediaSrc(gambar);
+---
+
+{
+	(judul || src || angka.length > 0) && (
+		<section id="kehidupan-mahasiswa" class="kehidupan" aria-labelledby="kehidupan-judul">
+			<div class="wadah">
+				<KepalaSection judul={judul} teks={teks} id="kehidupan-judul" />
+				{src && <img class="foto" src={src} alt={mediaAlt(gambar, "Kegiatan mahasiswa IAI PERSIS Garut")} loading="lazy" decoding="async" />}
+				{angka.length > 0 && (
+					<dl class="angka">
+						{angka.map((a) => (
+							<div>
+								<dt class="label">{a.label}</dt>
+								<dd class="nilai">{a.nilai}</dd>
+							</div>
+						))}
+					</dl>
+				)}
+			</div>
+		</section>
+	)
+}
+
+<style>
+	.kehidupan {
+		padding: 88px 0 60px;
+	}
+	.kehidupan :global(.kepala-section) {
+		margin-bottom: 44px;
+	}
+	.kehidupan :global(.pemisah) {
+		margin-bottom: 14px;
+	}
+	.foto {
+		width: 100%;
+		height: clamp(240px, 37vw, 523px);
+		object-fit: cover;
+		object-position: center 45%;
+		border-radius: var(--radius-l);
+	}
+	.angka {
+		margin: 60px 0 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 24px 30px;
+		text-align: center;
+	}
+	.angka > div {
+		display: flex;
+		flex-direction: column-reverse;
+	}
+	.nilai {
+		margin: 0;
+		font-weight: 800;
+		font-size: 40px;
+		line-height: 1.2;
+		color: var(--judul);
+	}
+	.label {
+		font-size: 18px;
+		line-height: 24px;
+		letter-spacing: 0.3px;
+		color: var(--teks);
+	}
+	@media (max-width: 600px) {
+		.kehidupan {
+			padding: 40px 0 40px;
+		}
+		.kehidupan :global(.kepala-section) {
+			margin-bottom: 32px;
+		}
+		.angka {
+			margin-top: 36px;
+		}
+	}
+</style>
