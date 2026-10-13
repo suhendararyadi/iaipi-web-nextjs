@@ -1,5 +1,8 @@
 ---
-// Section ajakan berlatar hijau tua + foto kampus samar (penutup halaman akademik).
+// Section ajakan berlatar hijau tua + foto kampus samar + pola bintang delapan di tepi
+// (penutup halaman akademik).
+import Ornamen from "@/components/ui/Ornamen.astro";
+
 interface Tombol {
 	teks: string;
 	href: string;
@@ -21,6 +24,7 @@ const { judul, teks, tombol, gambar = "/images/slider/slider-iaipi-1.jpg", editJ
 
 <section class="ajakan-hijau" aria-labelledby={id}>
 	<img class="latar" src={gambar} alt="" loading="lazy" />
+	<Ornamen jenis="pola" pudar="tengah" />
 	<div class="wadah">
 		<h2 id={id} {...editJudul}>{judul}</h2>
 		{teks && <p {...editTeks}>{teks}</p>}
@@ -37,6 +41,10 @@ const { judul, teks, tombol, gambar = "/images/slider/slider-iaipi-1.jpg", editJ
 </section>
 
 <style>
+	/* Pola di atas foto latar dibuat lebih samar. */
+	.ajakan-hijau :global(.ornamen) {
+		color: rgba(255, 255, 255, 0.07);
+	}
 	.ajakan-hijau {
 		position: relative;
 		overflow: hidden;
@@ -57,8 +65,8 @@ const { judul, teks, tombol, gambar = "/images/slider/slider-iaipi-1.jpg", editJ
 	}
 	h2 {
 		color: var(--putih);
-		font-family: var(--font-isi);
-		font-weight: 900;
+		font-family: var(--font-judul);
+		font-weight: 700;
 		font-size: clamp(32px, 4.4vw, 60px);
 		line-height: 1.15;
 		letter-spacing: -0.5px;

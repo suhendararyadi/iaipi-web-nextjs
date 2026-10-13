@@ -1,7 +1,8 @@
 ---
-// "Jurnal Ilmiah IAIP": kepala section + section hijau berlingkaran dekoratif dengan carousel
+// "Jurnal Ilmiah IAIP": kepala section + section hijau beroset geometri Islam dengan carousel
 // kartu jurnal (koleksi `jurnal`; interaksi data-carousel di src/scripts/ui.ts).
 import JudulSorot from "@/components/ui/JudulSorot.astro";
+import Ornamen from "@/components/ui/Ornamen.astro";
 import { linkAttrs, mediaAlt, mediaSrc } from "@/lib/cms";
 import type { Entri, Jurnal } from "@/lib/beranda";
 
@@ -23,10 +24,8 @@ const banyak = entries.length > 1;
 				{teks && <p class="lead">{teks}</p>}
 			</div>
 			<div class="panggung">
-				<span class="bulat b1" aria-hidden="true" />
-				<span class="bulat b2" aria-hidden="true" />
-				<span class="bulat b3" aria-hidden="true" />
-				<span class="bulat b4" aria-hidden="true" />
+				<Ornamen jenis="roset" class="roset-kanan" />
+				<Ornamen jenis="roset" class="roset-kiri" />
 				<div class="wadah">
 					<div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Daftar jurnal ilmiah">
 						<ul class="carousel-jalur jalur" role="list">
@@ -79,41 +78,21 @@ const banyak = entries.length > 1;
 	.panggung {
 		position: relative;
 		overflow: hidden;
+		isolation: isolate;
 		background: var(--hijau);
 		padding: 131px 0;
 	}
-	.bulat {
-		position: absolute;
-		border-radius: 50%;
-		pointer-events: none;
+	.panggung :global(.roset-kanan) {
+		--ukuran: 620px;
+		left: calc(50% + 250px);
+		top: -250px;
+		color: rgba(255, 255, 255, 0.1);
 	}
-	.b1 {
-		left: calc(50% + 208px);
-		top: -264px;
-		width: 644px;
-		height: 644px;
-		border: 70px solid rgba(255, 255, 255, 0.07);
-	}
-	.b2 {
-		left: calc(50% + 330px);
-		top: -142px;
-		width: 400px;
-		height: 400px;
-		background: rgba(255, 255, 255, 0.07);
-	}
-	.b3 {
-		left: calc(50% - 749px);
-		bottom: -261px;
-		width: 542px;
-		height: 542px;
-		border: 48px solid rgba(255, 255, 255, 0.07);
-	}
-	.b4 {
-		left: calc(50% - 655px);
-		bottom: -167px;
-		width: 354px;
-		height: 354px;
-		background: rgba(255, 255, 255, 0.07);
+	.panggung :global(.roset-kiri) {
+		--ukuran: 520px;
+		left: calc(50% - 780px);
+		bottom: -240px;
+		color: rgba(255, 255, 255, 0.1);
 	}
 	.carousel {
 		position: relative;
@@ -199,6 +178,19 @@ const banyak = entries.length > 1;
 	@media (max-width: 900px) {
 		.jalur {
 			--kolom: calc((100% - 31px) / 2);
+		}
+	}
+	@media (max-width: 700px) {
+		.panggung :global(.roset-kanan) {
+			--ukuran: 420px;
+			left: auto;
+			right: -230px;
+			top: -200px;
+		}
+		.panggung :global(.roset-kiri) {
+			--ukuran: 380px;
+			left: -230px;
+			bottom: -200px;
 		}
 	}
 	@media (max-width: 600px) {

@@ -1,6 +1,7 @@
 ---
 // Footer hijau (padanan footer unpad.ac.id): logo + media sosial, tiga kolom menu dari
-// CMS (footer_sumber, footer_layanan, footer_profil), kontak, dan ornamen lengkung.
+// CMS (footer_sumber, footer_layanan, footer_profil), kontak, pola bintang delapan, dan ornamen lengkung.
+import Ornamen from "@/components/ui/Ornamen.astro";
 import { linkAttrs, telHref, waHref, withYear, type InfoKampus } from "@/lib/cms";
 
 interface MenuItem {
@@ -28,6 +29,7 @@ const sosial = [
 ---
 
 <footer class="footer">
+	<Ornamen jenis="pola" pudar="kiri" />
 	<div class="wadah">
 		<div class="footer-atas">
 			<a href="/" class="footer-merek">
@@ -104,6 +106,7 @@ const sosial = [
 		color: var(--putih);
 		position: relative;
 		overflow: hidden;
+		isolation: isolate;
 		padding-top: 60px;
 	}
 	.footer a {
@@ -120,7 +123,8 @@ const sosial = [
 		display: flex;
 		align-items: center;
 		gap: 14px;
-		font-family: Georgia, "Times New Roman", serif;
+		font-family: var(--font-judul);
+		font-weight: 700;
 		font-size: 22px;
 		line-height: 1.15;
 		letter-spacing: 0.5px;

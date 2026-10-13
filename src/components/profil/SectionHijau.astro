@@ -1,6 +1,8 @@
 ---
-// Section hijau full-bleed dengan lingkaran dekoratif (padanan section "Pusat Unggulan" Unpad).
+// Section hijau full-bleed dengan roset geometri Islam (padanan section "Pusat Unggulan" Unpad).
 // `tua` memakai hijau tua #03331D (padanan section biru tua Unpad).
+import Ornamen from "@/components/ui/Ornamen.astro";
+
 interface Props {
 	tua?: boolean;
 	id?: string;
@@ -18,10 +20,8 @@ const { tua = false, id, label, labelledby, class: className } = Astro.props;
 	aria-labelledby={labelledby}
 	class:list={["section-hijau", tua ? "bg-hijau-tua" : "bg-hijau", className]}
 >
-	<span class="lingkaran l1" aria-hidden="true"></span>
-	<span class="lingkaran l2" aria-hidden="true"></span>
-	<span class="lingkaran l3" aria-hidden="true"></span>
-	<span class="lingkaran l4" aria-hidden="true"></span>
+	<Ornamen jenis="roset" class="roset-kanan" />
+	<Ornamen jenis="roset" class="roset-kiri" />
 	<div class="wadah isi">
 		<slot />
 	</div>
@@ -31,61 +31,38 @@ const { tua = false, id, label, labelledby, class: className } = Astro.props;
 	.section-hijau {
 		position: relative;
 		overflow: hidden;
+		isolation: isolate;
 		padding-block: clamp(72px, 9vw, 131px);
 	}
 	.isi {
 		position: relative;
 	}
-	.lingkaran {
-		position: absolute;
-		border-radius: 50%;
-		pointer-events: none;
+	.section-hijau :global(.roset-kanan) {
+		--ukuran: 620px;
+		left: calc(50% + 250px);
+		top: -250px;
+		color: rgba(255, 255, 255, 0.1);
 	}
-	.l1 {
-		left: calc(50% + 208px);
-		top: -264px;
-		width: 644px;
-		height: 644px;
-		border: 70px solid rgba(255, 255, 255, 0.07);
+	.section-hijau :global(.roset-kiri) {
+		--ukuran: 520px;
+		left: calc(50% - 780px);
+		bottom: -240px;
+		color: rgba(255, 255, 255, 0.1);
 	}
-	.l2 {
-		left: calc(50% + 330px);
-		top: -142px;
-		width: 400px;
-		height: 400px;
-		background: rgba(255, 255, 255, 0.07);
-	}
-	.l3 {
-		left: calc(50% - 749px);
-		bottom: -261px;
-		width: 542px;
-		height: 542px;
-		border: 48px solid rgba(255, 255, 255, 0.07);
-	}
-	.l4 {
-		left: calc(50% - 655px);
-		bottom: -167px;
-		width: 354px;
-		height: 354px;
-		background: rgba(255, 255, 255, 0.07);
-	}
-	.bg-hijau-tua .lingkaran {
-		opacity: 0.7;
+	.bg-hijau-tua :global(.ornamen) {
+		color: rgba(255, 255, 255, 0.07);
 	}
 	@media (max-width: 700px) {
-		.l1 {
+		.section-hijau :global(.roset-kanan) {
+			--ukuran: 420px;
 			left: auto;
-			right: -320px;
+			right: -230px;
+			top: -200px;
 		}
-		.l2 {
-			left: auto;
-			right: -220px;
-		}
-		.l3 {
-			left: -360px;
-		}
-		.l4 {
-			left: -260px;
+		.section-hijau :global(.roset-kiri) {
+			--ukuran: 380px;
+			left: -230px;
+			bottom: -200px;
 		}
 	}
 </style>

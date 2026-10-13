@@ -1,0 +1,16 @@
+---
+// Ornamen geometri Islam dekoratif (lihat bagian "Ornamen" di src/styles/global.css).
+// jenis "pola": bintang delapan berulang memenuhi blok; "roset": satu roset bundar besar.
+// Atur posisi/ukuran roset lewat `class` (gaya scoped di komponen induk) atau `style`.
+interface Props {
+	jenis: "pola" | "roset";
+	/** Pola saja: "tengah" = bersih di tengah, "kiri" = memudar ke kiri. */
+	pudar?: "tengah" | "kiri";
+	class?: string;
+	style?: string;
+}
+
+const { jenis, pudar, class: className, style } = Astro.props;
+---
+
+<span class:list={["ornamen", `ornamen-${jenis}`, pudar && `pudar-${pudar}`, className]} style={style} aria-hidden="true"></span>

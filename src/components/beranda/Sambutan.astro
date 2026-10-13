@@ -1,7 +1,8 @@
 ---
 // "Belajar di Garut Bersama IAI PERSIS": sambutan pimpinan ber-`kutipan` (rektor lebih dulu)
-// di atas section hijau tua berlatar foto samar. Lebih dari satu → carousel (data-carousel).
+// di atas section hijau tua berlatar foto samar + pola bintang delapan di tepi. Lebih dari satu → carousel (data-carousel).
 import JudulSorot from "@/components/ui/JudulSorot.astro";
+import Ornamen from "@/components/ui/Ornamen.astro";
 import { mediaAlt, mediaSrc, paragraphs } from "@/lib/cms";
 import type { MediaField } from "@/lib/cms";
 import type { PimpinanEntry } from "@/lib/pimpinan";
@@ -45,6 +46,7 @@ function jabatanLengkap(jabatan: string): string {
 			)}
 			<div class="panggung">
 				{latarSrc && <img class="latar" src={latarSrc} alt="" loading="lazy" decoding="async" />}
+				<Ornamen jenis="pola" pudar="tengah" />
 				<div class="wadah">
 					<div class="carousel" data-carousel aria-roledescription={banyak ? "carousel" : undefined} aria-label={judul ? undefined : "Sambutan pimpinan"}>
 						{!judul && <h2 id="sambutan-judul" class="sr-only">Sambutan pimpinan</h2>}
@@ -101,6 +103,10 @@ function jabatanLengkap(jabatan: string): string {
 }
 
 <style>
+	/* Pola di atas foto latar dibuat lebih samar. */
+	.panggung :global(.ornamen) {
+		color: rgba(255, 255, 255, 0.07);
+	}
 	.kepala {
 		padding-block: 58px 76px;
 	}
@@ -181,7 +187,8 @@ function jabatanLengkap(jabatan: string): string {
 	}
 	.ucapan h3 {
 		text-align: center;
-		font-weight: 800;
+		font-family: var(--font-judul);
+		font-weight: 700;
 		font-style: italic;
 		font-size: 32px;
 		line-height: 1.2;
