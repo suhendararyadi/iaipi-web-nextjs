@@ -483,6 +483,7 @@ const jelajahi = [
 	.panel-peringkat {
 		position: relative;
 		overflow: hidden;
+		isolation: isolate;
 		padding: 30px clamp(24px, 4vw, 44px);
 		border-radius: var(--radius-xl);
 		background: var(--hijau);
@@ -496,14 +497,17 @@ const jelajahi = [
 	.panel-peringkat > :not(.cincin) {
 		position: relative;
 	}
+	/* Roset geometri Islam samar di pojok panel. */
 	.cincin {
 		position: absolute;
-		right: -90px;
-		bottom: -110px;
-		width: 260px;
-		height: 260px;
-		border-radius: 50%;
-		border: 40px solid rgba(255, 255, 255, 0.07);
+		z-index: -1;
+		right: -80px;
+		bottom: -120px;
+		width: 300px;
+		height: 300px;
+		background: rgba(255, 255, 255, 0.1);
+		-webkit-mask: url("/images/ornamen/roset.svg") center / contain no-repeat;
+		mask: url("/images/ornamen/roset.svg") center / contain no-repeat;
 	}
 	.peringkat-utama {
 		display: flex;

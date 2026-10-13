@@ -13,7 +13,7 @@ menambah koleksi atau query).
   menjadi `seed/seed.json` (file hasil, di-gitignore) setiap `npm run dev`/`npm run build`.
   Seed hanya dipakai saat setup pertama (database kosong). Setelah situs live, skema diubah lewat
   admin (Content Types) dan konten lewat editor — bukan lewat seed.
-- `src/layouts/Base.astro` — HTML dasar: font (Work Sans + Lato), `src/styles/global.css`, header,
+- `src/layouts/Base.astro` — HTML dasar: font (Source Serif 4 untuk judul + Plus Jakarta Sans untuk isi/UI), `src/styles/global.css`, header,
   footer, tombol WhatsApp, `src/scripts/ui.ts` (menu mobile, tab, carousel, slider; tanpa jQuery).
 - `src/styles/global.css` — sistem desain (tata letak mengikuti unpad.ac.id, warna IAIP): token warna,
   `.wadah`, `.section`, `.judul-besar`/`.judul-sedang`/`.sorot`, `.btn-kuning`, `.tab`, `.kartu`,
@@ -50,6 +50,11 @@ menambah koleksi atau query).
 - Data yang belum resmi/masih generik diberi penanda di konten (mis. field `catatan_internal`) —
   jangan mengarang data institusi.
 - Ikon: inline `<svg>` sederhana dengan `aria-hidden="true"` (FontAwesome tidak lagi dimuat).
+- Tipografi: judul halaman/section (h1, h2, `.judul-besar`, `.judul-sedang`, angka statistik) serif
+  `var(--font-judul)`; judul kartu (h3 ke bawah), isi, dan UI sans `var(--font-isi)`/`var(--font-ui)`.
+- Ornamen: pakai `<Ornamen jenis="pola|roset" />` (`src/components/ui/Ornamen.astro`) di blok berwarna
+  yang `position: relative; isolation: isolate; overflow: hidden`. Jaga samar (putih 6–10%), jangan
+  di belakang teks panjang (pakai `pudar="tengah"`), dan hanya di blok berwarna — bukan latar putih.
 
 ## Perintah
 

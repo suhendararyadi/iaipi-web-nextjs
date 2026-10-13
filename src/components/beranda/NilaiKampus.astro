@@ -1,6 +1,6 @@
 ---
 // "IAI PERSIS Garut menjunjung nilai Islam…": kepala section + tab + grid kartu berlatar foto
-// dengan lapisan hijau tua (beranda.nilai_*). Kartu tanpa foto tampil hijau polos.
+// dengan lapisan hijau tua (beranda.nilai_*). Kartu tanpa foto tampil hijau dengan roset geometri.
 // Pola baris: 2 kartu (lebar 466:664) lalu 3 kartu sama lebar.
 import KepalaSection from "@/components/ui/KepalaSection.astro";
 import { mediaSrc } from "@/lib/cms";
@@ -159,7 +159,7 @@ const pola = (sisa: number, indeks: number) => {
 		z-index: -1;
 		background: rgba(3, 51, 29, 0.7);
 	}
-	/* Kartu tanpa foto: hijau dengan lingkaran dekoratif, lebih pendek. */
+	/* Kartu tanpa foto: hijau dengan roset geometri Islam di pojok, lebih pendek. */
 	.sel.polos,
 	.isi-2 .sel.polos {
 		height: auto;
@@ -167,11 +167,12 @@ const pola = (sisa: number, indeks: number) => {
 		background: var(--hijau);
 	}
 	.sel.polos::after {
-		inset: auto -60px -90px auto;
-		width: 220px;
-		height: 220px;
-		border-radius: 50%;
-		background: rgba(255, 255, 255, 0.07);
+		inset: auto -70px -90px auto;
+		width: 250px;
+		height: 250px;
+		background: rgba(255, 255, 255, 0.12);
+		-webkit-mask: url("/images/ornamen/roset.svg") center / contain no-repeat;
+		mask: url("/images/ornamen/roset.svg") center / contain no-repeat;
 	}
 	.teks {
 		position: absolute;

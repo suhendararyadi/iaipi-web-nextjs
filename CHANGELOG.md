@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.1.0] - 2026-10-13
+
+### 🎨 Tipografi akademik & ornamen geometri Islam
+
+- **Font baru:** judul memakai serif **Source Serif 4** (kesan akademik, mudah dibaca di ukuran besar);
+  isi dan elemen UI memakai **Plus Jakarta Sans** (karya tipografer Indonesia). Menggantikan
+  Work Sans + Lato. Token baru `--font-judul` di `src/styles/global.css`.
+- **Ornamen geometri Islam** (bintang delapan/khatam & roset garis tipis, samar) di blok berwarna:
+  pita statistik, section Jurnal, sambutan pimpinan, section hijau halaman profil (Visi & Misi),
+  panel akreditasi, blok Ketua Prodi, ajakan hijau, kartu nilai tanpa foto, dan footer.
+  SVG di `public/images/ornamen/` dibuat oleh `scripts/buat-ornamen.mjs`; dipasang lewat
+  komponen `src/components/ui/Ornamen.astro`.
+
+---
+
 ## [4.0.0] - 2026-10-13
 
 ### 🚀 Migrasi ke Astro + EmDash CMS di Cloudflare, desain baru bergaya unpad.ac.id

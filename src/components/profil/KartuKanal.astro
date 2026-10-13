@@ -1,5 +1,5 @@
 ---
-// Kartu hijau kanal kontak (padanan kartu Agenda/Pengumuman Unpad): judul Work Sans 900 di atas,
+// Kartu hijau kanal kontak (padanan kartu Agenda/Pengumuman Unpad): judul serif di atas,
 // kartu tautan hijau berisi ikon bulat putih, label kecil, nilai tebal, keterangan, pil kuning.
 import { linkAttrs } from "@/lib/cms";
 import { segmenPatah } from "@/lib/profil";
@@ -56,8 +56,8 @@ const attrs = href ? { href, ...linkAttrs(href) } : {};
 	}
 	.judul-kanal {
 		margin: 0 0 19px;
-		font-family: var(--font-isi);
-		font-weight: 900;
+		font-family: var(--font-judul);
+		font-weight: 700;
 		font-size: clamp(28px, 3vw, 34px);
 		line-height: 1.2;
 		letter-spacing: -0.3px;
@@ -108,7 +108,7 @@ const attrs = href ? { href, ...linkAttrs(href) } : {};
 		color: var(--hijau-muda);
 	}
 	.nilai {
-		font-family: var(--font-isi);
+		font-family: var(--font-judul);
 		font-weight: 800;
 		font-size: 21px;
 		line-height: 1.3;

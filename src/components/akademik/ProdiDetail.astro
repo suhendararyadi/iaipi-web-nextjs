@@ -7,6 +7,7 @@ import type { HTMLAttributes } from "astro/types";
 import PageBanner from "@/components/layout/PageBanner.astro";
 import JudulSorot from "@/components/ui/JudulSorot.astro";
 import KepalaSection from "@/components/ui/KepalaSection.astro";
+import Ornamen from "@/components/ui/Ornamen.astro";
 import Ikon from "@/components/akademik/Ikon.astro";
 import PitaStatistik, { type ItemStatistik } from "@/components/akademik/PitaStatistik.astro";
 import { lines, mediaAlt, mediaSrc, paragraphs } from "@/lib/cms";
@@ -381,6 +382,7 @@ const ringkasProdi = p.deskripsi_singkat || deskripsi[0] || "";
 			</div>
 			<div class="kaprodi-latar">
 				<img class="kaprodi-bg" src="/images/slider/slider-iaipi-1.jpg" alt="" loading="lazy" />
+				<Ornamen jenis="pola" pudar="tengah" />
 				<div class="wadah">
 					<div class="kaprodi-kotak">
 						<figure class="kaprodi-foto">
@@ -443,6 +445,10 @@ const ringkasProdi = p.deskripsi_singkat || deskripsi[0] || "";
 </section>
 
 <style>
+	/* Pola di atas foto latar dibuat lebih samar. */
+	.kaprodi-latar :global(.ornamen) {
+		color: rgba(255, 255, 255, 0.07);
+	}
 	/* ---------- Tentang + tab ---------- */
 	.tentang {
 		padding-block: 80px 62px;
@@ -854,8 +860,8 @@ const ringkasProdi = p.deskripsi_singkat || deskripsi[0] || "";
 	.kaprodi-teks h3 {
 		align-self: stretch;
 		text-align: center;
-		font-family: var(--font-isi);
-		font-weight: 800;
+		font-family: var(--font-judul);
+		font-weight: 700;
 		font-style: italic;
 		font-size: clamp(26px, 3vw, 32px);
 		line-height: 1.2;
