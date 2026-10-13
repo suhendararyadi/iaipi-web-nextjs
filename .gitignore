@@ -24,3 +24,6 @@ seed/seed.json
 # misc
 .DS_Store
 npm-debug.log*
+
+# worktree agen Claude Code
+.claude/worktrees/
