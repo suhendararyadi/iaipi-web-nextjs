@@ -1,0 +1,150 @@
+---
+// Halaman PMB (sementara: HTML polos, desain menyusul). Data: koleksi pmb + info_kampus (link pendaftaran).
+import Base from "@/layouts/Base.astro";
+import { formatTanggal, getInfoKampus, lines, mediaAlt, mediaSrc, rows, useCacheHint } from "@/lib/cms";
+import { getPmb, keTanggal, waLink, type ItemIkon, type Pmb } from "@/lib/profil";
+
+const [{ pmb: p, cacheHint }, { info, cacheHint: infoHint }] = await Promise.all([getPmb(), getInfoKampus()]);
+useCacheHint(Astro, cacheHint, infoHint);
+
+const judul = p?.judul || "Penerimaan Mahasiswa Baru";
+const tutup = keTanggal(p?.tanggal_tutup);
+const tutupBeasiswa = keTanggal(p?.tanggal_tutup_beasiswa);
+const waAdmin = waLink(p?.whatsapp_admin, p?.pesan_whatsapp_admin);
+const daftar = info.link_pendaftaran || "#";
+
+const keunggulan = rows<ItemIkon>(p?.keunggulan);
+const prodi = rows<NonNullable<Pmb["program_studi"]>[number]>(p?.program_studi);
+const ukm = rows<NonNullable<Pmb["ukm"]>[number]>(p?.ukm);
+const biayaS1 = rows<{ komponen: string; nominal: string }>(p?.biaya_s1);
+const biayaS2 = rows<{ komponen: string; nominal: string }>(p?.biaya_s2);
+const alur = rows<{ judul: string; deskripsi?: string }>(p?.alur_pendaftaran);
+const jadwal = rows<{ jalur: string; periode: string }>(p?.jadwal);
+const poster = rows<NonNullable<Pmb["poster"]>[number]>(p?.poster);
+const kanal = rows<NonNullable<Pmb["kanal_bantuan"]>[number]>(p?.kanal_bantuan);
+---
+
+<Base title={judul} description={p?.intro_deskripsi}>
+	<article>
+		<h1>{judul}</h1>
+		{
+			!p ? (
+				<p>Informasi PMB belum diisi.</p>
+			) : (
+				<>
+					<section>
+						<h2>{p.intro_judul}</h2>
+						<p>{p.intro_deskripsi}</p>
+						<ul>
+							{p.jumlah_prodi && <li><strong>{p.jumlah_prodi}</strong> {p.label_jumlah_prodi}</li>}
+							{p.gelombang_aktif && <li><strong>Gel. {p.gelombang_aktif}</strong> Gelombang Pendaftaran Aktif</li>}
+							{p.biaya_minimum_s1 && <li><strong>{p.biaya_minimum_s1}</strong> Biaya Minimum Langsung Kuliah</li>}
+						</ul>
+						<p>
+							<a href={daftar} target="_blank" rel="noopener noreferrer">Daftar Online Sekarang</a> ·{" "}
+							<a href={waAdmin} target="_blank" rel="noopener noreferrer">Konsultasi dengan Admin PMB</a>
+						</p>
+					</section>
+
+					<section>
+						<h2>Jadwal Pendaftaran Gelombang {p.gelombang_aktif}</h2>
+						<ul>{jadwal.map((j) => <li>{j.jalur}: {j.periode}</li>)}</ul>
+						{tutup && <p>Pendaftaran reguler ditutup: {formatTanggal(tutup)}</p>}
+						{tutupBeasiswa && <p>Pendaftaran beasiswa ditutup: {formatTanggal(tutupBeasiswa)}</p>}
+						{p.catatan_jadwal && <p>{p.catatan_jadwal}</p>}
+					</section>
+
+					{keunggulan.length > 0 && (
+						<section>
+							<h2>Kenapa Daftar di IAI Persis Garut?</h2>
+							<ul>{keunggulan.map((k) => <li><strong>{k.judul}</strong>: {k.deskripsi}</li>)}</ul>
+						</section>
+					)}
+
+					{prodi.length > 0 && (
+						<section>
+							<h2>Pilihan Program Studi S1 dan S2</h2>
+							{prodi.map((f) => (
+								<>
+									<h3>{f.fakultas}</h3>
+									<ul>{lines(f.prodi).map((x) => <li>{x}</li>)}</ul>
+								</>
+							))}
+						</section>
+					)}
+
+					{ukm.length > 0 && (
+						<section>
+							<h2>Unit Kegiatan Mahasiswa</h2>
+							<ul>{ukm.map((u) => <li><strong>{u.nama}</strong>: {u.bidang}</li>)}</ul>
+						</section>
+					)}
+
+					<section>
+						<h2>Rincian Biaya Program S1 dan S2</h2>
+						{p.catatan_biaya && <p>{p.catatan_biaya}</p>}
+						{[
+							{ judul: "S1 – Program Sarjana", baris: biayaS1, minimum: p.biaya_minimum_s1 },
+							{ judul: "S2 – Program Magister", baris: biayaS2, minimum: p.biaya_minimum_s2 },
+						]
+							.filter((t) => t.baris.length > 0)
+							.map((t) => (
+								<>
+									<h3>{t.judul}</h3>
+									<table>
+										<tbody>
+											{t.baris.map((b) => (
+												<tr>
+													<td>{b.komponen}</td>
+													<td>{b.nominal}</td>
+												</tr>
+											))}
+										</tbody>
+									</table>
+									{t.minimum && <p>Biaya Minimum {t.minimum} Bisa Langsung Kuliah</p>}
+								</>
+							))}
+					</section>
+
+					<section>
+						<h2>{p.langkah_judul || "Langkah Pendaftaran"}</h2>
+						{p.langkah_deskripsi && <p>{p.langkah_deskripsi}</p>}
+						<ol>{alur.map((a) => <li><strong>{a.judul}</strong>: {a.deskripsi}</li>)}</ol>
+						<h3>Persyaratan Umum</h3>
+						<ul>{lines(p.persyaratan).map((x) => <li>{x}</li>)}</ul>
+					</section>
+
+					{poster.length > 0 && (
+						<section>
+							<h2>Poster Penerimaan Mahasiswa Baru TA {p.tahun_akademik}</h2>
+							{p.poster_lengkap && (
+								<p>
+									<a href={mediaSrc(p.poster_lengkap)} target="_blank" rel="noopener noreferrer">Unduh poster lengkap</a>
+								</p>
+							)}
+							{poster.map((x) => (
+								<figure>
+									<img src={mediaSrc(x.gambar)} alt={mediaAlt(x.gambar, x.keterangan ?? "Poster PMB")} loading="lazy" width="300" />
+									<figcaption>{x.keterangan}</figcaption>
+								</figure>
+							))}
+						</section>
+					)}
+
+					{kanal.length > 0 && (
+						<section>
+							<h2>Butuh Bantuan? Tim PMB Siap Membantu</h2>
+							<ul>
+								{kanal.map((k) => (
+									<li>
+										<a href={k.url} target="_blank" rel="noopener noreferrer">{k.label}</a> — {k.keterangan}
+									</li>
+								))}
+							</ul>
+						</section>
+					)}
+				</>
+			)
+		}
+	</article>
+</Base>

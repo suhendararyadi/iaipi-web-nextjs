@@ -1,0 +1,84 @@
+---
+// Halaman Kontak (sementara: HTML polos, desain menyusul).
+// Alamat/telepon/email/peta/sosmed dari info_kampus; jam operasional & kontak unit dari info_kontak.
+import Base from "@/layouts/Base.astro";
+import { getInfoKampus, lines, rows, telHref, useCacheHint, waHref } from "@/lib/cms";
+import { alamatBaris, getInfoKontak, PETA_EMBED_LAMA, telIndo, type UnitKontak } from "@/lib/profil";
+
+const [{ info, cacheHint: infoHint }, { kontak, cacheHint }] = await Promise.all([getInfoKampus(), getInfoKontak()]);
+useCacheHint(Astro, infoHint, cacheHint);
+
+const unit = rows<UnitKontak>(kontak?.unit);
+const jam = lines(kontak?.jam_operasional);
+const peta = info.peta_embed || PETA_EMBED_LAMA;
+const sosmed = [
+	{ nama: "Facebook", url: info.facebook },
+	{ nama: "Instagram", url: info.instagram },
+	{ nama: "YouTube", url: info.youtube },
+	{ nama: "WhatsApp", url: info.whatsapp ? waHref({ whatsapp: info.whatsapp }) : "" },
+].filter((s) => s.url);
+---
+
+<Base title="Hubungi Kami" description={`Alamat, telepon, email, dan media sosial ${info.nama}.`}>
+	<article>
+		<h1>Hubungi Kami</h1>
+
+		<section>
+			<h2>Informasi Kontak</h2>
+			<h3>Alamat Kampus</h3>
+			<address>{alamatBaris(info.alamat).map((baris) => <div>{baris}</div>)}</address>
+
+			<h3>Telepon &amp; WhatsApp</h3>
+			<p><strong>Telepon:</strong> <a href={telHref(info.telepon)}>{info.telepon}</a></p>
+			<p><strong>WhatsApp:</strong> <a href={waHref(info)} target="_blank" rel="noopener noreferrer">{info.telepon}</a></p>
+
+			<h3>Email</h3>
+			{info.email && <p><strong>Rektorat:</strong> <a href={`mailto:${info.email}`}>{info.email}</a></p>}
+			{info.email_pmb && <p><strong>PMB:</strong> <a href={`mailto:${info.email_pmb}`}>{info.email_pmb}</a></p>}
+
+			{
+				jam.length > 0 && (
+					<>
+						<h3>Jam Operasional</h3>
+						{jam.map((baris) => <p>{baris}</p>)}
+					</>
+				)
+			}
+		</section>
+
+		{
+			unit.length > 0 && (
+				<section>
+					<h2>Kontak Departemen</h2>
+					<ul>
+						{unit.map((u) => (
+							<li>
+								<strong>{u.nama}</strong> — {u.deskripsi}
+								{u.email && <> · <a href={`mailto:${u.email}`}>{u.email}</a></>}
+								{u.telepon && <> · <a href={telIndo(u.telepon)}>{u.telepon}</a></>}
+							</li>
+						))}
+					</ul>
+				</section>
+			)
+		}
+
+		<section>
+			<h2>Lokasi</h2>
+			<iframe src={peta} width="100%" height="450" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title={`Lokasi ${info.nama}`} allowfullscreen></iframe>
+		</section>
+
+		{
+			sosmed.length > 0 && (
+				<section>
+					<h2>Ikuti Kami</h2>
+					<ul>
+						{sosmed.map((s) => (
+							<li><a href={s.url} target="_blank" rel="noopener noreferrer">{s.nama}</a></li>
+						))}
+					</ul>
+				</section>
+			)
+		}
+	</article>
+</Base>

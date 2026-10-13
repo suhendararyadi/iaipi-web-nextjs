@@ -1,0 +1,53 @@
+---
+// Halaman Lembaga & Departemen (sementara: HTML polos, desain menyusul). Data: koleksi lembaga + info_kampus.
+import Base from "@/layouts/Base.astro";
+import { getInfoKampus, linkAttrs, telHref, useCacheHint } from "@/lib/cms";
+import { getLembaga, KATEGORI_LEMBAGA, urutkanLembaga } from "@/lib/profil";
+
+const [{ entries, cacheHint }, { info, cacheHint: infoHint }] = await Promise.all([getLembaga(), getInfoKampus()]);
+useCacheHint(Astro, cacheHint, infoHint);
+
+const tampil = urutkanLembaga(entries.filter((e) => e.data.tampil_di_halaman !== false));
+const jumlah = (k: string) => tampil.filter((e) => e.data.kategori === k).length;
+---
+
+<Base
+	title="Lembaga dan Departemen"
+	description="Struktur organisasi lembaga dan departemen IAIPI Garut yang mendukung Tri Dharma Perguruan Tinggi: LPM, LPPM, Perpustakaan, Ma'had, Pusat Studi Islam, dan unit pendukung lainnya."
+>
+	<article>
+		<h1>Lembaga, Departemen &amp; Program Studi</h1>
+		<p>
+			Berbagai lembaga, unit, dan program studi yang mendukung operasional Institut Agama Islam PERSIS Garut dalam menjalankan Tri Dharma
+			Perguruan Tinggi
+		</p>
+		<p>
+			{jumlah("lembaga")} Lembaga · {jumlah("pusat")} Pusat Studi · {jumlah("unit")} Unit · {jumlah("prodi")} Program Studi
+		</p>
+
+		{tampil.length === 0 && <p>Belum ada data lembaga.</p>}
+		<ul>
+			{
+				tampil.map(({ data: l }) => (
+					<li>
+						<strong>{l.nama}</strong> ({KATEGORI_LEMBAGA[l.kategori] ?? l.kategori}) — {l.nama_lengkap}
+						{l.fakultas && <> · Fakultas {l.fakultas}</>}. {l.deskripsi}{" "}
+						{l.url ? (
+							<a href={l.url} {...linkAttrs(l.url)}>{l.kategori === "prodi" ? "Lihat Detail Prodi" : "Kunjungi Website"}</a>
+						) : (
+							<em>{l.ketersediaan === "segera_hadir" ? "Coming Soon — Website Segera Hadir" : ""}</em>
+						)}
+					</li>
+				))
+			}
+		</ul>
+
+		<section>
+			<h2>Informasi Kontak</h2>
+			<p>
+				Untuk informasi lebih lanjut mengenai lembaga dan departemen, silakan hubungi Bagian Administrasi Umum Institut Agama Islam PERSIS Garut
+				melalui email: <a href={`mailto:${info.email}`}>{info.email}</a> atau telepon: <a href={telHref(info.telepon)}>{info.telepon}</a>
+			</p>
+		</section>
+	</article>
+</Base>
