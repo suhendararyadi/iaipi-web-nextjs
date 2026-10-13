@@ -35,6 +35,23 @@ const { info } = Astro.props;
 		font-weight: 700;
 		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 	}
+	@media (max-width: 600px) {
+		.wa-float {
+			right: 14px;
+			bottom: 14px;
+			width: 52px;
+			height: 52px;
+			padding: 0;
+			justify-content: center;
+		}
+		.wa-float span {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+			clip: rect(0, 0, 0, 0);
+		}
+	}
 	.wa-float:hover {
 		background: var(--hijau-tua);
 		color: var(--putih);

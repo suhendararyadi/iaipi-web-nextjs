@@ -311,11 +311,12 @@ a.tab {
 	gap: 6px;
 	padding: 6px 14px;
 	border-radius: 999px;
-	background: var(--kuning);
+	background: var(--krem);
+	border: 1px solid var(--kuning);
 	color: var(--judul);
 	font-family: var(--font-ui);
-	font-weight: 900;
-	font-size: 13px;
+	font-weight: 500;
+	font-size: 14px;
 }
 
 .panah-bulat {
@@ -516,7 +517,7 @@ a.tab {
 .banner h1 {
 	color: var(--putih);
 	font-weight: 900;
-	font-size: clamp(36px, 5vw, 64px);
+	font-size: clamp(36px, 5vw, 72px);
 	line-height: 1.1;
 	letter-spacing: -0.5px;
 	max-width: 900px;

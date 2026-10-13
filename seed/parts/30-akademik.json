@@ -525,8 +525,8 @@
 						"alt": "Fakultas Ushuluddin"
 					},
 					"gambar_banner": {
-						"$asset": "/images/page-banner-1.jpg",
-						"alt": "Fakultas Ushuluddin"
+						"$asset": "/images/slider/slider-iaipi-3.jpg",
+						"alt": "Gedung perkuliahan IAI PERSIS Garut"
 					},
 					"jumlah_mahasiswa": "300+",
 					"jumlah_dosen": "15+",
@@ -555,8 +555,8 @@
 						"alt": "Fakultas Tarbiyah"
 					},
 					"gambar_banner": {
-						"$asset": "/images/page-banner-2.jpg",
-						"alt": "Fakultas Tarbiyah"
+						"$asset": "/images/slider/slider-iaipi-2.jpg",
+						"alt": "Mahasiswi di perpustakaan kampus"
 					},
 					"jumlah_mahasiswa": "400+",
 					"jumlah_dosen": "20+",
@@ -584,8 +584,8 @@
 						"alt": "Fakultas Ekonomi dan Bisnis Islam"
 					},
 					"gambar_banner": {
-						"$asset": "/images/page-banner-1.jpg",
-						"alt": "Fakultas Ekonomi dan Bisnis Islam"
+						"$asset": "/images/slider/slider-iaipi-1.jpg",
+						"alt": "Gedung kampus IAI PERSIS Garut"
 					},
 					"jumlah_mahasiswa": "300+",
 					"jumlah_dosen": "12+",
@@ -609,8 +609,8 @@
 					"deskripsi": "Program Magister IAI PERSIS Garut merupakan jenjang pendidikan lanjutan yang dirancang untuk mengembangkan kompetensi dan keahlian profesional dalam bidang pendidikan Islam. Program ini menawarkan pendidikan berkualitas dengan kurikulum yang komprehensif dan relevan dengan kebutuhan pendidikan modern.",
 					"ikon": "fa-graduation-cap",
 					"gambar_banner": {
-						"$asset": "/images/page-banner-7.jpg",
-						"alt": "Program Pascasarjana"
+						"$asset": "/images/slider/slider-iaipi-3.jpg",
+						"alt": "Gedung perkuliahan IAI PERSIS Garut"
 					},
 					"jumlah_mahasiswa": "100+",
 					"jumlah_dosen": "10+",
@@ -636,7 +636,7 @@
 					"gelar": "S.Pd.",
 					"lama_studi": 8,
 					"akreditasi": "Baik Sekali",
-					"akreditasi_kartu": "B",
+					"akreditasi_kartu": "Baik Sekali",
 					"gambar": {
 						"$asset": "/images/prodi/ilha.jpg",
 						"alt": "Pendidikan Agama Islam"
@@ -1356,7 +1356,7 @@
 						},
 						{
 							"ikon": "fa-institution",
-							"judul": "Da&apos;i & Mubaligh",
+							"judul": "Da'i & Mubaligh",
 							"deskripsi": "Penyebar ajaran Islam berbasis hadis"
 						},
 						{
@@ -1489,10 +1489,6 @@
 						"$asset": "/images/prodi/iat.jpg",
 						"alt": "Ilmu Al-Quran dan Tafsir"
 					},
-					"gambar_banner": {
-						"$asset": "/images/page-banner-2.jpg",
-						"alt": "Ilmu Al-Quran dan Tafsir"
-					},
 					"warna": "#3498db",
 					"deskripsi_singkat": "Berfokus pada pengkajian dan penelitian Al-Quran sebagai sumber utama ajaran Islam.",
 					"sorotan": "Kajian Tafsir Kontemporer\nMetode Tahfidz\nQira'at Sab'ah",
@@ -1510,7 +1506,7 @@
 						},
 						{
 							"ikon": "fa-institution",
-							"judul": "Da&apos;i & Mubaligh",
+							"judul": "Da'i & Mubaligh",
 							"deskripsi": "Penyebar ajaran Islam berbasis Al-Quran"
 						},
 						{

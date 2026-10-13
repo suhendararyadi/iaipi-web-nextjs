@@ -30,7 +30,7 @@ function initMenu() {
 
 /**
  * Tab: <div data-tabs> berisi tombol [role=tab][aria-controls=ID] dan panel [role=tabpanel][id=ID].
- * Mendukung panah kiri/kanan sesuai pola WAI-ARIA.
+ * Mendukung panah kiri/kanan serta Home/End sesuai pola WAI-ARIA.
  */
 function initTabs() {
 	document.querySelectorAll<HTMLElement>("[data-tabs]").forEach((group) => {
@@ -47,10 +47,14 @@ function initTabs() {
 		tabs.forEach((tab, i) => {
 			tab.addEventListener("click", () => select(tab));
 			tab.addEventListener("keydown", (event) => {
-				const step = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
-				if (!step) return;
+				let target = -1;
+				if (event.key === "ArrowRight") target = (i + 1) % tabs.length;
+				else if (event.key === "ArrowLeft") target = (i - 1 + tabs.length) % tabs.length;
+				else if (event.key === "Home") target = 0;
+				else if (event.key === "End") target = tabs.length - 1;
+				if (target < 0) return;
 				event.preventDefault();
-				const next = tabs[(i + step + tabs.length) % tabs.length];
+				const next = tabs[target];
 				next.focus();
 				select(next);
 			});
