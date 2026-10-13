@@ -1,0 +1,57 @@
+---
+// Detail berita. Tampilan sementara/polos (akan didesain ulang).
+import { decodeSlug } from "emdash";
+import { PortableText } from "emdash/ui";
+import Base from "@/layouts/Base.astro";
+import { formatTanggal, mediaAlt, mediaSrc, useCacheHint } from "@/lib/cms";
+import { getBerita, kategoriBerita, tanggalBerita, waktuBaca } from "@/lib/berita";
+
+const slug = decodeSlug(Astro.params.slug);
+if (!slug) return Astro.rewrite("/404");
+
+const { entry, cacheHint } = await getBerita(slug);
+if (!entry) return Astro.rewrite("/404");
+useCacheHint(Astro, cacheHint);
+
+const b = entry.data;
+const edit = entry.edit;
+const sampul = mediaSrc(b.featured_image);
+const tanggal = tanggalBerita(entry);
+const kategori = kategoriBerita(entry);
+---
+
+<Base
+	title={b.title}
+	description={b.excerpt}
+	image={sampul ? new URL(sampul, Astro.url).href : null}
+	content={{ collection: "berita", id: b.id, slug }}
+	pageType="article"
+>
+	<article class="container pt-70 pb-120">
+		<p><a href="/berita">← Semua berita</a></p>
+		<h1 {...edit.title}>{b.title}</h1>
+		<p>
+			<time datetime={tanggal?.toISOString()}>{formatTanggal(tanggal)}</time>
+			{b.byline && <> · {b.byline.displayName}</>}
+			{" · "}{waktuBaca(b.content)} menit baca
+			{
+				kategori.map((k) => (
+					<>
+						{" · "}
+						<a href={`/berita/kategori/${k.slug}`}>{k.label}</a>
+					</>
+				))
+			}
+		</p>
+		{
+			sampul && (
+				<figure {...edit.featured_image}>
+					<img src={sampul} alt={mediaAlt(b.featured_image, b.title)} style="max-width:100%;height:auto" />
+				</figure>
+			)
+		}
+		<div class="cms-prose" {...edit.content}>
+			{b.content && b.content.length > 0 ? <PortableText value={b.content} /> : <p class="cms-empty">Isi berita belum diisi.</p>}
+		</div>
+	</article>
+</Base>

@@ -1,0 +1,22 @@
+---
+// Daftar semua berita (paginasi cursor: ?cursor=...). Tampilan sementara/polos.
+import Base from "@/layouts/Base.astro";
+import DaftarBerita from "@/components/beranda/DaftarBerita.astro";
+import { useCacheHint } from "@/lib/cms";
+import { getDaftarBerita, getKategoriBerita } from "@/lib/berita";
+
+const cursor = Astro.url.searchParams.get("cursor") ?? undefined;
+const [{ entries, nextCursor, cacheHint }, kategoriResult] = await Promise.all([
+	getDaftarBerita({ cursor }),
+	getKategoriBerita(),
+]);
+useCacheHint(Astro, cacheHint, kategoriResult.cacheHint);
+---
+
+<Base title="Berita" description="Berita, agenda, dan pengumuman terbaru Institut Agama Islam PERSIS Garut.">
+	<section class="container pt-70 pb-120">
+		<h1>Berita</h1>
+		<p><a href="/rss.xml">RSS</a></p>
+		<DaftarBerita entries={entries} kategori={kategoriResult.kategori} nextCursor={nextCursor} />
+	</section>
+</Base>
