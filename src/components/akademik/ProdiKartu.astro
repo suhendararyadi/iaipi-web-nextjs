@@ -1,7 +1,8 @@
 ---
-// Kartu ringkas satu program studi (dipakai di halaman fakultas & /magister).
-import { lines, mediaSrc } from "@/lib/cms";
-import { durasiSemester, prodiUrl, type ProdiEntry } from "@/lib/akademik";
+// Kartu ringkas satu program studi (halaman fakultas & /magister), gaya kartu "Lokasi Kampus".
+import KartuGambar from "@/components/akademik/KartuGambar.astro";
+import { lines, mediaAlt, mediaSrc } from "@/lib/cms";
+import { durasiSemester, judulProdi, prodiUrl, type ProdiEntry } from "@/lib/akademik";
 
 interface Props {
 	prodi: ProdiEntry;
@@ -16,31 +17,129 @@ const gambar = mediaSrc(p.gambar);
 const durasi = durasiSemester(p.lama_studi);
 ---
 
-<article class="prodi-kartu" data-warna={p.warna}>
-	{gambar && <img src={gambar} alt={p.nama} width="500" height="350" loading="lazy" />}
-	<h3><a href={prodiUrl(prodi)}>{p.nama}</a> ({p.singkatan})</h3>
-	{p.akreditasi_kartu && <p>Akreditasi: {p.akreditasi_kartu}</p>}
+<KartuGambar judul={p.nama} href={prodiUrl(prodi)} gambar={gambar} alt={mediaAlt(p.gambar, p.nama)} labelTautan={`Selengkapnya tentang ${judulProdi(p)}`}>
+	<div class="pil-baris" slot="atas">
+		<span class="pil pil-hijau">{p.singkatan}</span>
+		{p.akreditasi_kartu && <span class="pil pil-krem">Akreditasi {p.akreditasi_kartu}</span>}
+	</div>
 	{p.deskripsi_singkat && <p>{p.deskripsi_singkat}</p>}
-	<dl>
-		{p.gelar && (<><dt>Gelar</dt><dd>{p.gelar}</dd></>)}
-		{durasi && (<><dt>Durasi</dt><dd>{durasi}</dd></>)}
-	</dl>
-	{sorotan.length > 0 && <ul>{sorotan.map((s) => <li>{s}</li>)}</ul>}
+	{
+		(p.gelar || durasi) && (
+			<dl class="meta-prodi">
+				{p.gelar && (
+					<div>
+						<dt>Gelar</dt>
+						<dd>{p.gelar}</dd>
+					</div>
+				)}
+				{durasi && (
+					<div>
+						<dt>Masa studi</dt>
+						<dd>{durasi}</dd>
+					</div>
+				)}
+			</dl>
+		)
+	}
+	{
+		sorotan.length > 0 && (
+			<ul class="daftar-pil" aria-label="Sorotan program">
+				{sorotan.map((s) => (
+					<li>{s}</li>
+				))}
+			</ul>
+		)
+	}
 	{
 		ringkasanKarir.length > 0 && (
-			<>
-				<h4>Prospek Karir:</h4>
-				<ul>{ringkasanKarir.map((s) => <li>{s}</li>)}</ul>
-			</>
+			<p class="ringkasan">
+				<strong>Prospek karir:</strong> {ringkasanKarir.join(" · ")}
+			</p>
 		)
 	}
 	{
 		ringkasanKeunggulan.length > 0 && (
-			<>
-				<h4>Keunggulan:</h4>
-				<ul>{ringkasanKeunggulan.map((s) => <li>{s}</li>)}</ul>
-			</>
+			<p class="ringkasan">
+				<strong>Keunggulan:</strong> {ringkasanKeunggulan.join(" · ")}
+			</p>
 		)
 	}
-	<p><a href={prodiUrl(prodi)}>Lihat Detail Program</a></p>
-</article>
+</KartuGambar>
+
+<style>
+	.pil-baris {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-bottom: 14px;
+	}
+	.pil {
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 12px;
+		line-height: 1.4;
+		letter-spacing: 1px;
+		border-radius: 999px;
+		padding: 3px 10px;
+	}
+	.pil-hijau {
+		color: var(--hijau);
+		background: var(--abu);
+	}
+	.pil-krem {
+		color: var(--judul);
+		background: var(--krem);
+		border: 1px solid var(--kuning);
+		letter-spacing: 0.3px;
+		font-weight: 700;
+	}
+	.meta-prodi {
+		margin: 16px 0 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px 24px;
+		padding-top: 14px;
+		border-top: 1px solid var(--garis);
+	}
+	.meta-prodi dt {
+		font-family: var(--font-ui);
+		font-size: 12px;
+		letter-spacing: 0.6px;
+		text-transform: uppercase;
+		color: var(--redup);
+	}
+	.meta-prodi dd {
+		margin: 2px 0 0;
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 16px;
+		color: var(--hijau);
+	}
+	.daftar-pil {
+		list-style: none;
+		margin: 16px 0 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+	.daftar-pil li {
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 13px;
+		line-height: 1.4;
+		letter-spacing: 0.3px;
+		color: var(--hijau);
+		background: var(--abu);
+		border-radius: 999px;
+		padding: 5px 12px;
+	}
+	:global(.isi) p.ringkasan {
+		font-size: 14px;
+		line-height: 1.5;
+		color: var(--redup);
+	}
+	.ringkasan strong {
+		color: var(--judul);
+	}
+</style>

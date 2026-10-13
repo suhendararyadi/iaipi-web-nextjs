@@ -1,0 +1,54 @@
+---
+// Ikon garis (SVG inline) untuk field `ikon` koleksi prodi/fakultas. Editor tetap menulis
+// nama FontAwesome 4.7 (mis. "fa-book"); nama yang tidak dikenal memakai ikon umum.
+interface Props {
+	nama?: string | null;
+	ukuran?: number;
+}
+
+const { nama, ukuran = 24 } = Astro.props;
+
+const PATH: Record<string, string> = {
+	book: "M12 6.5C9.5 5 6.5 4.5 3 5.5v13c3.5-1 6.5-.5 9 1 2.5-1.5 5.5-2 9-1v-13c-3.5-1-6.5-.5-9 1z M12 6.5v13",
+	archive: "M3 4h18v4H3z M5 8v12h14V8 M10 12h4",
+	laptop: "M4 5h16v10H4z M2 19h20",
+	desktop: "M3 4h18v12H3z M8 20h8 M12 16v4",
+	university: "M3 10l9-6 9 6 M5 10v8 M9.5 10v8 M14.5 10v8 M19 10v8 M3 21h18",
+	institution: "M3 10l9-6 9 6 M5 10v8 M9.5 10v8 M14.5 10v8 M19 10v8 M3 21h18",
+	building: "M5 21V4h10v17 M15 9h4v12 M8 8h1 M11 8h1 M8 12h1 M11 12h1 M8 16h1 M11 16h1 M3 21h18",
+	flask: "M9 3h6 M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3 M7.5 14h9",
+	"graduation-cap": "M2 9l10-5 10 5-10 5z M6 11v5c3 2 9 2 12 0v-5 M22 9v6",
+	"lightbulb-o": "M9 18h6 M10 21h4 M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z",
+	search: "M10.5 4a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13z M15.5 15.5L20 20",
+	rocket: "M5 15c-1 1-1.5 3.5-1.5 5.5 2 0 4.5-.5 5.5-1.5 M9 15l-3-3c1-4 5-8 13-9-1 8-5 12-9 13z M14.5 9.5h.01",
+	user: "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M4 21a8 8 0 0 1 16 0",
+	users: "M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M2 21a7 7 0 0 1 14 0 M16 3.5a4 4 0 0 1 0 7.5 M22 21a7 7 0 0 0-4-6.3",
+	briefcase: "M3 7h18v13H3z M8 7V4h8v3 M3 13h18",
+	"info-circle": "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 11v6 M12 7.5v.5",
+	eye: "M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z",
+	"handshake-o":
+		"M14.5 5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z M7.5 18a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z M21.5 18a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z M10.8 7.2l-4.6 8.6 M13.2 7.2l4.6 8.6 M7.5 18h9",
+	exchange: "M4 8h14 M14 4l4 4-4 4 M20 16H6 M10 12l-4 4 4 4",
+	heart: "M12 20s-7-4.5-9-9a4.5 4.5 0 0 1 9-3 4.5 4.5 0 0 1 9 3c-2 4.5-9 9-9 9z",
+	language: "M3 5h10 M8 3v2 M5 5c1 4 4 7 7 8 M11 5c-1 4-4 7-7 8 M13 21l4-10 4 10 M14.5 17.5h5",
+	"line-chart": "M3 3v18h18 M7 15l4-5 3 3 5-7",
+	map: "M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z M9 3v15 M15 6v15",
+	money: "M2 6h20v12H2z M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z M6 9v.01 M18 15v.01",
+};
+const UMUM = "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M8 12l3 3 5-6";
+
+const kunci = (nama ?? "").trim().replace(/^fa\s+/, "").replace(/^fa-/, "");
+const d = PATH[kunci] ?? UMUM;
+---
+
+<svg
+	aria-hidden="true"
+	viewBox="0 0 24 24"
+	width={ukuran}
+	height={ukuran}
+	fill="none"
+	stroke="currentColor"
+	stroke-width="2"
+	stroke-linecap="round"
+	stroke-linejoin="round"><path d={d}></path></svg
+>

@@ -1,6 +1,6 @@
 // Helper area akademik: koleksi `fakultas` dan `prodi` (S1 & S2).
 import { getEmDashCollection, getEmDashEntry } from "emdash";
-import { lines, rows, type MediaField } from "@/lib/cms";
+import { lines, mediaAlt, mediaSrc, rows, type MediaField } from "@/lib/cms";
 
 export type Jenjang = "S1" | "S2";
 
@@ -262,6 +262,100 @@ export function kalimatPertama(text: string | undefined): string {
 	if (!text) return "";
 	const m = text.match(/^.*?[.!?](\s|$)/);
 	return (m ? m[0] : text).trim();
+}
+
+// ---------- Tambahan untuk desain baru halaman akademik ----------
+
+export interface KaprodiProfil {
+	nama: string;
+	url: string;
+	jabatan?: string;
+	foto: string;
+	fotoAlt: string;
+	kutipan?: string;
+	tentang?: string;
+	pendidikan: string[];
+}
+
+/** Profil Ketua Prodi untuk section "Ketua Program Studi" (nama, jabatan, foto, kutipan, pendidikan). */
+export async function getKaprodiProfil(slug: string | undefined) {
+	if (!slug) return { kaprodi: null, cacheHint: undefined };
+	const { entry, cacheHint } = await getEmDashEntry("pimpinan", slug);
+	const d = (entry?.data ?? {}) as {
+		nama?: string;
+		jabatan?: string;
+		foto?: MediaField;
+		foto_sambutan?: MediaField;
+		kutipan?: string;
+		tentang?: string;
+		pendidikan?: string;
+	};
+	if (!entry || !d.nama) return { kaprodi: null, cacheHint };
+	const kaprodi: KaprodiProfil = {
+		nama: d.nama,
+		url: `/pimpinan/${entry.id}`,
+		jabatan: d.jabatan,
+		foto: mediaSrc(d.foto_sambutan) || mediaSrc(d.foto),
+		fotoAlt: mediaAlt(d.foto_sambutan) || mediaAlt(d.foto, d.nama),
+		kutipan: d.kutipan?.trim() || undefined,
+		tentang: d.tentang?.trim() || undefined,
+		pendidikan: lines(d.pendidikan),
+	};
+	return { kaprodi, cacheHint };
+}
+
+const GELAR: Record<string, string> = {
+	"S.Pd.": "Sarjana Pendidikan",
+	"S.Ag.": "Sarjana Agama",
+	"S.Hum.": "Sarjana Humaniora",
+	"S.E.": "Sarjana Ekonomi",
+	"S.H.": "Sarjana Hukum",
+	"S.Sos.": "Sarjana Sosial",
+	"M.Pd.": "Magister Pendidikan",
+	"M.Ag.": "Magister Agama",
+	"M.E.": "Magister Ekonomi",
+	"M.H.": "Magister Hukum",
+};
+
+/** Kepanjangan gelar akademik, mis. "S.Pd." -> "Sarjana Pendidikan" ("" bila tidak dikenal). */
+export function kepanjanganGelar(gelar: string | undefined): string {
+	if (!gelar) return "";
+	const key = gelar.trim().replace(/\s+/g, "");
+	return GELAR[key] ?? GELAR[`${key}.`] ?? "";
+}
+
+/** Ubah entitas HTML sisa migrasi (mis. "Da&apos;i") menjadi karakter biasa. */
+export function tanpaEntitas(text: string | null | undefined): string {
+	return (text ?? "")
+		.replace(/&apos;|&#0*39;/g, "'")
+		.replace(/&quot;|&#0*34;/g, '"')
+		.replace(/&nbsp;/g, " ")
+		.replace(/&amp;/g, "&");
+}
+
+/** Semester kurikulum yang valid (punya nama semester). */
+export function daftarSemester(value: unknown): Semester[] {
+	return rows<Semester>(value).filter((s) => !!s?.semester);
+}
+
+/** Catatan yang valid (punya teks). */
+export function daftarCatatan(value: unknown): Catatan[] {
+	return rows<Catatan>(value).filter((c) => !!c?.teks);
+}
+
+/**
+ * Total SKS seluruh kurikulum — hanya bila semua semester (sesuai lama studi)
+ * tercantum, agar angka tidak menyesatkan saat kurikulum baru diisi sebagian.
+ */
+export function totalSksKurikulum(kurikulum: Semester[], lamaStudi: number | null | undefined): number | null {
+	if (!lamaStudi || kurikulum.length < lamaStudi) return null;
+	let total = 0;
+	for (const s of kurikulum) {
+		const n = totalSks(s);
+		if (n === null) return null;
+		total += n;
+	}
+	return total;
 }
 
 export { lines };
