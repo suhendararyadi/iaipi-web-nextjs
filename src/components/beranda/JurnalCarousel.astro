@@ -31,7 +31,7 @@ const banyak = entries.length > 1;
 					<div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Daftar jurnal ilmiah">
 						<ul class="carousel-jalur jalur" role="list">
 							{entries.map((j) => {
-								const sampul = mediaSrc(j.data.sampul);
+								const sampul = mediaSrc(j.data.sampul, "", 500);
 								return (
 									<li class="kj">
 										<div class="sampul">{sampul && <img src={sampul} alt={mediaAlt(j.data.sampul, `Sampul jurnal ${j.data.nama}`)} loading="lazy" decoding="async" />}</div>

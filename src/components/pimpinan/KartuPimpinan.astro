@@ -13,7 +13,7 @@ interface Props {
 
 const { entry, as: Judul = "h3", jabatan } = Astro.props;
 const p = entry.data;
-const src = mediaSrc(p.foto) || mediaSrc(p.foto_avatar);
+const src = mediaSrc(p.foto, "", 700) || mediaSrc(p.foto_avatar, "", 700);
 const teksJabatan = jabatan || p.jabatan;
 // Di layar sempit kartu kecil: tampilkan jabatan_singkat bila ada (mis. "Wakil Rektor I").
 const ringkas = jabatanRingkas(p);

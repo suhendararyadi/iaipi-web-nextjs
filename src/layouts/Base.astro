@@ -54,7 +54,7 @@ const info = infoResult.info;
 const siteTitle = settingsResult.data?.title || info.nama;
 const fullTitle = title ? `${title} | ${info.nama_singkat || siteTitle}` : `${siteTitle} | ${settingsResult.data?.tagline ?? ""}`.replace(/ \| $/, "");
 const pageDescription = description || info.deskripsi || settingsResult.data?.tagline || null;
-const logo = mediaSrc(info.logo, "/images/logo.jpeg");
+const logo = mediaSrc(info.logo, "/images/logo.jpeg", 240);
 const ogImage = image || new URL(logo, Astro.url).href;
 const canonicalUrl = new URL(canonical ?? Astro.url.pathname, Astro.site ?? Astro.url).href;
 

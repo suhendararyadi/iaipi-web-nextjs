@@ -43,7 +43,7 @@ useCacheHint(Astro, cacheHint, infoHint, fakultasRes.cacheHint, prodiRes.cacheHi
 
 const judul = p?.judul || "Penerimaan Mahasiswa Baru";
 const tahun = p?.tahun_akademik;
-const logo = mediaSrc(info.logo, "/images/logo.jpeg");
+const logo = mediaSrc(info.logo, "/images/logo.jpeg", 240);
 const daftar = info.link_pendaftaran || "#bantuan";
 const waAdmin = p?.whatsapp_admin ? waLink(p.whatsapp_admin, p.pesan_whatsapp_admin) : "#bantuan";
 const gelombang = p?.gelombang_aktif?.trim();

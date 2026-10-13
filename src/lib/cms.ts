@@ -18,8 +18,30 @@ export type MediaField =
 			meta?: { storageKey?: string } & Record<string, unknown>;
 	  };
 
-/** URL gambar dari field `image` EmDash. Mengembalikan `fallback` bila kosong. */
-export function mediaSrc(image: MediaField, fallback = ""): string {
+/**
+ * Gambar media library diubah ukurannya lewat endpoint gambar Astro/EmDash (`/_image`):
+ * file dibaca langsung dari R2 lalu di-resize & dikonversi ke WebP oleh binding Cloudflare
+ * Images (gratis 5.000 transformasi unik/bulan; tiap kombinasi gambar+lebar dihitung sekali
+ * per bulan). Lebar default 1600px cukup untuk foto lebar layar penuh.
+ */
+export const LEBAR_GAMBAR_DEFAULT = 1600;
+const TANPA_TRANSFORMASI = /\.(svg|gif)$/i;
+
+function transformMedia(url: string, lebar: number): string {
+	if (!url.startsWith(INTERNAL_MEDIA_PREFIX) || TANPA_TRANSFORMASI.test(url) || lebar <= 0) return url;
+	return `/_image?href=${encodeURIComponent(url)}&w=${Math.round(lebar)}&f=webp&q=80`;
+}
+
+/**
+ * URL gambar dari field `image` EmDash. Mengembalikan `fallback` bila kosong.
+ * Gambar media library otomatis di-resize ke `lebar` (px); isi 0 untuk file asli.
+ */
+export function mediaSrc(image: MediaField, fallback = "", lebar = LEBAR_GAMBAR_DEFAULT): string {
+	return transformMedia(mediaSrcAsli(image, fallback), lebar);
+}
+
+/** URL file asli (tanpa resize) dari field `image` EmDash. */
+export function mediaSrcAsli(image: MediaField, fallback = ""): string {
 	if (!image) return fallback;
 	if (typeof image === "string") return image;
 	if (image.src) return image.src;

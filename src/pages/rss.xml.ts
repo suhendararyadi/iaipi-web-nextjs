@@ -1,6 +1,6 @@
 // Feed RSS 2.0 berita terbaru (pengganti news.iaipersisgarut.ac.id/rss.xml).
 import type { APIRoute } from "astro";
-import { getInfoKampus, mediaSrc, useCacheHint } from "@/lib/cms";
+import { getInfoKampus, mediaSrcAsli, useCacheHint } from "@/lib/cms";
 import { getDaftarBerita, kategoriBerita } from "@/lib/berita";
 
 function escapeXml(s: string): string {
@@ -22,7 +22,7 @@ export const GET: APIRoute = async (context) => {
 		.filter((b) => b.data.publishedAt)
 		.map((b) => {
 			const url = `${siteUrl}/berita/${b.id}`;
-			const sampul = mediaSrc(b.data.featured_image);
+			const sampul = mediaSrcAsli(b.data.featured_image);
 			const kategori = kategoriBerita(b)
 				.map((k) => `      <category>${escapeXml(k.label)}</category>`)
 				.join("\n");

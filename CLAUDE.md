@@ -37,7 +37,9 @@ menambah koleksi atau query).
 - Setiap halaman yang membaca CMS wajib memanggil `useCacheHint(Astro, cacheHint, ...)` untuk
   semua hasil query, supaya cache edge ter-purge otomatis saat konten diubah. Tambahkan route
   publik baru ke `routeRules` di `astro.config.mjs`.
-- Field `image` EmDash berupa objek — selalu render lewat `mediaSrc(field, fallback)`.
+- Field `image` EmDash berupa objek — selalu render lewat `mediaSrc(field, fallback, lebar?)`. Gambar
+  media library otomatis di-resize ke WebP lewat `/_image` (default 1600px; isi `lebar` lebih kecil
+  untuk thumbnail/logo). `mediaSrcAsli()` untuk URL file asli (mis. RSS).
 - Daftar sederhana disimpan sebagai field `text` "satu baris per item" (dibaca dengan `lines()`),
   karena repeater EmDash tidak bisa bersarang. Contoh: daftar mata kuliah per semester ditulis
   `Nama Mata Kuliah | 2` per baris.

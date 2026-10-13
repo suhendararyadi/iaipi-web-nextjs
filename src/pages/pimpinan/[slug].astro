@@ -27,7 +27,7 @@ const pendidikan = lines(p.pendidikan).map((baris) => {
 });
 const scholar = isExternal(p.google_scholar) ? p.google_scholar : undefined;
 const adaRiset = Boolean(p.sinta_id || scholar);
-const foto = mediaSrc(p.foto) || mediaSrc(p.foto_avatar);
+const foto = mediaSrc(p.foto, "", 900) || mediaSrc(p.foto_avatar, "", 900);
 const fotoOg = foto || "/images/logo.jpeg";
 
 // Pimpinan lain: utamakan kelompok yang sama, lengkapi dengan urutan umum.
