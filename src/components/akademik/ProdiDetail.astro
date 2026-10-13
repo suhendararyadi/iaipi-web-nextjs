@@ -1,0 +1,193 @@
+---
+// Detail program studi (S1 & S2) — HTML semantik polos yang menampilkan semua
+// field koleksi `prodi`. Tampilan akhir akan dibuat ulang terpisah.
+import { lines, paragraphs } from "@/lib/cms";
+import {
+	blokTeks,
+	daftar,
+	durasiTahun,
+	judulProdi,
+	mataKuliah,
+	tebal,
+	totalSks,
+	type Catatan,
+	type FakultasEntry,
+	type JudulDeskripsi,
+	type KartuDaftar,
+	type ProdiEntry,
+	type ProfilLulusan,
+	type Semester,
+} from "@/lib/akademik";
+
+interface Props {
+	prodi: ProdiEntry;
+	fakultas?: FakultasEntry | null;
+	kaprodi?: { nama: string; url: string } | null;
+}
+
+const { prodi, fakultas, kaprodi } = Astro.props;
+const p = prodi.data;
+const edit = prodi.edit ?? {};
+
+const deskripsi = paragraphs(p.deskripsi);
+const misi = lines(p.misi);
+const tujuan = blokTeks(p.tujuan);
+const profilLulusan = daftar<ProfilLulusan>(p.profil_lulusan);
+const kompetensi = daftar<JudulDeskripsi>(p.kompetensi);
+const keunggulan = daftar<JudulDeskripsi>(p.keunggulan);
+const kurikulum = (Array.isArray(p.kurikulum) ? p.kurikulum : []).filter((s): s is Semester => !!s?.semester);
+const fasilitas = daftar<KartuDaftar>(p.fasilitas);
+const karir = daftar<KartuDaftar>(p.karir);
+const catatan = (Array.isArray(p.catatan) ? p.catatan : []).filter((c): c is Catatan => !!c?.teks);
+const catatanProfil = catatan.filter((c) => c.letak !== "karir");
+const catatanKarir = catatan.filter((c) => c.letak === "karir");
+const durasi = durasiTahun(p.lama_studi);
+---
+
+<article class="prodi-detail">
+	<header>
+		<p {...edit.singkatan}>{p.singkatan}</p>
+		<h1 {...edit.nama}>{judulProdi(p)}</h1>
+		{fakultas && <p>{fakultas.data.nama}</p>}
+		{kaprodi && <p>Ketua Program Studi: <a href={kaprodi.url}>{kaprodi.nama}</a></p>}
+		<dl>
+			{p.akreditasi && (<><dt>Akreditasi</dt><dd {...edit.akreditasi}>{p.akreditasi}</dd></>)}
+			{p.gelar && (<><dt>Gelar</dt><dd {...edit.gelar}>{p.gelar}</dd></>)}
+			{durasi && (<><dt>Durasi</dt><dd {...edit.lama_studi}>{durasi}</dd></>)}
+		</dl>
+		{
+			p.website && (
+				<p>
+					Website resmi Program Studi {p.singkatan}:{" "}
+					<a href={p.website} target="_blank" rel="noopener noreferrer">{p.website}</a>
+				</p>
+			)
+		}
+	</header>
+
+	{
+		(deskripsi.length > 0 || catatanProfil.length > 0 || profilLulusan.length > 0 || kompetensi.length > 0 || keunggulan.length > 0) && (
+			<section id="profil">
+				<h2>Tentang Program Studi</h2>
+				<div {...edit.deskripsi}>{deskripsi.map((para) => <p set:html={tebal(para)} />)}</div>
+				{catatanProfil.map((c) => (
+					<aside data-ikon={c.ikon}>
+						<p>{c.judul && <strong>{c.judul}</strong>} {c.teks}</p>
+					</aside>
+				))}
+				{profilLulusan.length > 0 && (
+					<>
+						<h3>Profil Lulusan</h3>
+						<ul {...edit.profil_lulusan}>
+							{profilLulusan.map((x) => (
+								<li data-ikon={x.ikon}><strong>{x.judul}</strong>{x.deskripsi && <> — {x.deskripsi}</>}</li>
+							))}
+						</ul>
+					</>
+				)}
+				{kompetensi.length > 0 && (
+					<>
+						<h3>Kompetensi Lulusan</h3>
+						<ul {...edit.kompetensi}>
+							{kompetensi.map((x) => <li><strong>{x.judul}</strong>{x.deskripsi && <> — {x.deskripsi}</>}</li>)}
+						</ul>
+					</>
+				)}
+				{keunggulan.length > 0 && (
+					<>
+						<h3>Keunggulan Program</h3>
+						<ul {...edit.keunggulan}>
+							{keunggulan.map((x) => <li><strong>{x.judul}</strong>{x.deskripsi && <> — {x.deskripsi}</>}</li>)}
+						</ul>
+					</>
+				)}
+			</section>
+		)
+	}
+
+	{
+		kurikulum.length > 0 && (
+			<section id="kurikulum">
+				<h2>Struktur Kurikulum</h2>
+				{p.kurikulum_pengantar && <p {...edit.kurikulum_pengantar}>{p.kurikulum_pengantar}</p>}
+				<ol {...edit.kurikulum}>
+					{kurikulum.map((s) => {
+						const sks = totalSks(s);
+						return (
+							<li>
+								<h3>{s.semester}</h3>
+								<p>
+									{sks !== null && <span>{sks} SKS</span>}
+									{s.fokus && <> · <span>{s.fokus}</span></>}
+								</p>
+								<ul>
+									{mataKuliah(s.mata_kuliah).map((mk) => (
+										<li>{mk.nama}{mk.sks !== null && <> ({mk.sks} SKS)</>}</li>
+									))}
+								</ul>
+							</li>
+						);
+					})}
+				</ol>
+			</section>
+		)
+	}
+
+	{
+		fasilitas.length > 0 && (
+			<section id="fasilitas">
+				<h2>Fasilitas Program Studi</h2>
+				{p.fasilitas_pengantar && <p {...edit.fasilitas_pengantar}>{p.fasilitas_pengantar}</p>}
+				{fasilitas.map((f) => (
+					<div data-ikon={f.ikon}>
+						<h3>{f.judul}</h3>
+						<ul>{lines(f.item).map((i) => <li>{i}</li>)}</ul>
+					</div>
+				))}
+			</section>
+		)
+	}
+
+	{
+		(karir.length > 0 || catatanKarir.length > 0) && (
+			<section id="karir">
+				<h2>Prospek Karir</h2>
+				{p.karir_pengantar && <p {...edit.karir_pengantar}>{p.karir_pengantar}</p>}
+				{karir.map((k) => (
+					<div data-ikon={k.ikon}>
+						<h3>{k.judul}</h3>
+						<ul>{lines(k.item).map((i) => <li>{i}</li>)}</ul>
+					</div>
+				))}
+				{catatanKarir.map((c) => (
+					<aside data-ikon={c.ikon}>
+						<p>{c.judul && <strong>{c.judul}</strong>} {c.teks}</p>
+					</aside>
+				))}
+			</section>
+		)
+	}
+
+	{
+		(p.visi || misi.length > 0 || tujuan.length > 0) && (
+			<section id="visi-misi">
+				{p.visi && (<><h2>Visi</h2><p {...edit.visi}>{p.visi}</p></>)}
+				{misi.length > 0 && (<><h2>Misi</h2><ul {...edit.misi}>{misi.map((m) => <li>{m}</li>)}</ul></>)}
+				{tujuan.length > 0 && (
+					<>
+						<h2>Tujuan</h2>
+						<div {...edit.tujuan}>
+							{tujuan.map((b) => (b.type === "p" ? <p>{b.text}</p> : <ul>{b.items.map((i) => <li>{i}</li>)}</ul>))}
+						</div>
+					</>
+				)}
+			</section>
+		)
+	}
+
+	<footer>
+		<h2>Tertarik Bergabung?</h2>
+		{p.cta_teks && <p {...edit.cta_teks}>{p.cta_teks}</p>}
+		<p><a href="/pmb">Daftar Sekarang</a> · <a href="/kontak">Info Lebih Lanjut</a></p>
+	</footer>
+</article>

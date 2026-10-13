@@ -1,0 +1,46 @@
+---
+// Kartu ringkas satu program studi (dipakai di halaman fakultas & /magister).
+import { lines, mediaSrc } from "@/lib/cms";
+import { durasiSemester, prodiUrl, type ProdiEntry } from "@/lib/akademik";
+
+interface Props {
+	prodi: ProdiEntry;
+}
+
+const { prodi } = Astro.props;
+const p = prodi.data;
+const sorotan = lines(p.sorotan);
+const ringkasanKarir = lines(p.ringkasan_karir);
+const ringkasanKeunggulan = lines(p.ringkasan_keunggulan);
+const gambar = mediaSrc(p.gambar);
+const durasi = durasiSemester(p.lama_studi);
+---
+
+<article class="prodi-kartu" data-warna={p.warna}>
+	{gambar && <img src={gambar} alt={p.nama} width="500" height="350" loading="lazy" />}
+	<h3><a href={prodiUrl(prodi)}>{p.nama}</a> ({p.singkatan})</h3>
+	{p.akreditasi_kartu && <p>Akreditasi: {p.akreditasi_kartu}</p>}
+	{p.deskripsi_singkat && <p>{p.deskripsi_singkat}</p>}
+	<dl>
+		{p.gelar && (<><dt>Gelar</dt><dd>{p.gelar}</dd></>)}
+		{durasi && (<><dt>Durasi</dt><dd>{durasi}</dd></>)}
+	</dl>
+	{sorotan.length > 0 && <ul>{sorotan.map((s) => <li>{s}</li>)}</ul>}
+	{
+		ringkasanKarir.length > 0 && (
+			<>
+				<h4>Prospek Karir:</h4>
+				<ul>{ringkasanKarir.map((s) => <li>{s}</li>)}</ul>
+			</>
+		)
+	}
+	{
+		ringkasanKeunggulan.length > 0 && (
+			<>
+				<h4>Keunggulan:</h4>
+				<ul>{ringkasanKeunggulan.map((s) => <li>{s}</li>)}</ul>
+			</>
+		)
+	}
+	<p><a href={prodiUrl(prodi)}>Lihat Detail Program</a></p>
+</article>

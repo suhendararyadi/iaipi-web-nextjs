@@ -1,0 +1,2365 @@
+{
+	"collections": [
+		{
+			"slug": "fakultas",
+			"label": "Fakultas",
+			"labelSingular": "Fakultas",
+			"description": "Fakultas sarjana (S1) dan Program Pascasarjana (S2). Slug entri menjadi alamat halaman: /fakultas/<slug> untuk S1; entri jenjang S2 (slug: pascasarjana) mengisi halaman /magister.",
+			"group": "Akademik",
+			"sortOrder": 30,
+			"supports": [
+				"drafts",
+				"revisions",
+				"search"
+			],
+			"urlPattern": "/fakultas/{slug}",
+			"titleField": "nama",
+			"admin": {
+				"listColumns": [
+					"nama_singkat",
+					"jenjang",
+					"urutan"
+				]
+			},
+			"fields": [
+				{
+					"slug": "nama",
+					"label": "Nama fakultas (mis. Fakultas Tarbiyah)",
+					"type": "string",
+					"required": true,
+					"searchable": true
+				},
+				{
+					"slug": "nama_singkat",
+					"label": "Nama singkat (untuk breadcrumb, mis. Tarbiyah / FEBI)",
+					"type": "string"
+				},
+				{
+					"slug": "jenjang",
+					"label": "Jenjang (S1 = tampil di /fakultas; S2 = isi halaman /magister)",
+					"type": "select",
+					"required": true,
+					"defaultValue": "S1",
+					"validation": {
+						"options": [
+							"S1",
+							"S2"
+						]
+					},
+					"indexed": true
+				},
+				{
+					"slug": "urutan",
+					"label": "Urutan tampil (kecil = lebih dulu)",
+					"type": "integer",
+					"defaultValue": 100,
+					"indexed": true
+				},
+				{
+					"slug": "judul_ringkasan",
+					"label": "Judul kotak ringkasan (kosongkan = pakai Nama)",
+					"type": "string"
+				},
+				{
+					"slug": "deskripsi_singkat",
+					"label": "Deskripsi singkat (kartu di halaman /fakultas & deskripsi SEO)",
+					"type": "text",
+					"searchable": true
+				},
+				{
+					"slug": "deskripsi",
+					"label": "Deskripsi (paragraf pembuka di halaman fakultas)",
+					"type": "text",
+					"searchable": true
+				},
+				{
+					"slug": "ikon",
+					"label": "Ikon (FontAwesome 4.7, mis. fa-book)",
+					"type": "string"
+				},
+				{
+					"slug": "warna",
+					"label": "Warna aksen (kode hex, mis. #006739)",
+					"type": "string"
+				},
+				{
+					"slug": "gambar",
+					"label": "Gambar kartu",
+					"type": "image"
+				},
+				{
+					"slug": "gambar_banner",
+					"label": "Gambar banner halaman (kosongkan = banner bawaan)",
+					"type": "image"
+				},
+				{
+					"slug": "jumlah_mahasiswa",
+					"label": "Jumlah mahasiswa (teks, mis. 400+)",
+					"type": "string"
+				},
+				{
+					"slug": "jumlah_dosen",
+					"label": "Jumlah dosen (teks, mis. 20+)",
+					"type": "string"
+				},
+				{
+					"slug": "visi",
+					"label": "Visi",
+					"type": "text"
+				},
+				{
+					"slug": "misi",
+					"label": "Misi (satu butir per baris)",
+					"type": "text"
+				},
+				{
+					"slug": "cta_judul",
+					"label": "Judul ajakan di bawah halaman (mis. Siap Bergabung dengan Fakultas Tarbiyah?)",
+					"type": "string"
+				},
+				{
+					"slug": "cta_teks",
+					"label": "Teks ajakan di bawah halaman",
+					"type": "text"
+				},
+				{
+					"slug": "catatan_internal",
+					"label": "Catatan internal (tidak tampil di situs; tandai data yang masih DRAFT/belum diverifikasi)",
+					"type": "text"
+				}
+			]
+		},
+		{
+			"slug": "prodi",
+			"label": "Program Studi",
+			"labelSingular": "Program Studi",
+			"description": "Program studi S1 dan S2. Prodi S1 tampil di /fakultas/<fakultas>/<slug>, prodi S2 di /magister/<slug>. Daftar sederhana ditulis satu butir per baris; mata kuliah ditulis \"Nama Mata Kuliah | SKS\" per baris.",
+			"group": "Akademik",
+			"sortOrder": 31,
+			"supports": [
+				"drafts",
+				"revisions",
+				"search"
+			],
+			"titleField": "nama",
+			"admin": {
+				"listColumns": [
+					"singkatan",
+					"fakultas",
+					"jenjang",
+					"urutan"
+				]
+			},
+			"fields": [
+				{
+					"slug": "nama",
+					"label": "Nama program studi (tanpa \"Program Studi\", mis. Pendidikan Agama Islam / Magister Ilmu Hadis)",
+					"type": "string",
+					"required": true,
+					"searchable": true
+				},
+				{
+					"slug": "singkatan",
+					"label": "Singkatan (lencana, mis. PAI)",
+					"type": "string",
+					"required": true
+				},
+				{
+					"slug": "jenjang",
+					"label": "Jenjang",
+					"type": "select",
+					"required": true,
+					"defaultValue": "S1",
+					"validation": {
+						"options": [
+							"S1",
+							"S2"
+						]
+					},
+					"indexed": true
+				},
+				{
+					"slug": "fakultas",
+					"label": "Fakultas (slug entri koleksi Fakultas; prodi S2 = pascasarjana)",
+					"type": "select",
+					"required": true,
+					"validation": {
+						"options": [
+							"tarbiyah",
+							"ushuluddin",
+							"ekonomi",
+							"pascasarjana"
+						]
+					},
+					"indexed": true
+				},
+				{
+					"slug": "urutan",
+					"label": "Urutan tampil (kecil = lebih dulu)",
+					"type": "integer",
+					"defaultValue": 100,
+					"indexed": true
+				},
+				{
+					"slug": "gelar",
+					"label": "Gelar lulusan (mis. S.Pd.)",
+					"type": "string"
+				},
+				{
+					"slug": "lama_studi",
+					"label": "Lama studi (jumlah semester, mis. 8)",
+					"type": "integer"
+				},
+				{
+					"slug": "akreditasi",
+					"label": "Akreditasi di halaman prodi (mis. Baik Sekali, B (Baik))",
+					"type": "string"
+				},
+				{
+					"slug": "akreditasi_kartu",
+					"label": "Akreditasi singkat di lencana kartu (mis. B)",
+					"type": "string"
+				},
+				{
+					"slug": "gambar",
+					"label": "Gambar kartu",
+					"type": "image"
+				},
+				{
+					"slug": "gambar_banner",
+					"label": "Gambar banner halaman (kosongkan = banner bawaan)",
+					"type": "image"
+				},
+				{
+					"slug": "warna",
+					"label": "Warna aksen kartu (kode hex, mis. #3498db)",
+					"type": "string"
+				},
+				{
+					"slug": "deskripsi_singkat",
+					"label": "Deskripsi singkat (kartu di halaman fakultas/magister)",
+					"type": "text",
+					"searchable": true
+				},
+				{
+					"slug": "sorotan",
+					"label": "Sorotan di kartu (satu per baris)",
+					"type": "text"
+				},
+				{
+					"slug": "ringkasan_karir",
+					"label": "Ringkasan prospek karir di kartu (satu per baris; kosongkan bila tidak perlu)",
+					"type": "text"
+				},
+				{
+					"slug": "ringkasan_keunggulan",
+					"label": "Ringkasan keunggulan di kartu (satu per baris; kosongkan bila tidak perlu)",
+					"type": "text"
+				},
+				{
+					"slug": "deskripsi",
+					"label": "Tentang program studi (pisahkan paragraf dengan baris kosong; **teks** = huruf tebal)",
+					"type": "text",
+					"searchable": true
+				},
+				{
+					"slug": "visi",
+					"label": "Visi",
+					"type": "text"
+				},
+				{
+					"slug": "misi",
+					"label": "Misi (satu butir per baris)",
+					"type": "text"
+				},
+				{
+					"slug": "tujuan",
+					"label": "Tujuan (baris berawalan \"- \" menjadi butir daftar)",
+					"type": "text"
+				},
+				{
+					"slug": "profil_lulusan",
+					"label": "Profil lulusan",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "ikon",
+								"label": "Ikon (FontAwesome 4.7, mis. fa-book)",
+								"type": "string"
+							},
+							{
+								"slug": "judul",
+								"label": "Judul",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "deskripsi",
+								"label": "Deskripsi",
+								"type": "text"
+							}
+						]
+					}
+				},
+				{
+					"slug": "kompetensi",
+					"label": "Kompetensi lulusan",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "judul",
+								"label": "Judul",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "deskripsi",
+								"label": "Deskripsi",
+								"type": "text"
+							}
+						]
+					}
+				},
+				{
+					"slug": "keunggulan",
+					"label": "Keunggulan program (tab Profil)",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "judul",
+								"label": "Judul",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "deskripsi",
+								"label": "Deskripsi",
+								"type": "text"
+							}
+						]
+					}
+				},
+				{
+					"slug": "kurikulum_pengantar",
+					"label": "Pengantar tab Kurikulum",
+					"type": "text"
+				},
+				{
+					"slug": "kurikulum",
+					"label": "Kurikulum per semester",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "semester",
+								"label": "Semester (mis. Semester 1)",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "total_sks",
+								"label": "Total SKS (kosongkan = dijumlah otomatis)",
+								"type": "integer"
+							},
+							{
+								"slug": "fokus",
+								"label": "Fokus semester",
+								"type": "string"
+							},
+							{
+								"slug": "mata_kuliah",
+								"label": "Mata kuliah (satu per baris: Nama Mata Kuliah | SKS)",
+								"type": "text"
+							}
+						]
+					}
+				},
+				{
+					"slug": "fasilitas_pengantar",
+					"label": "Pengantar tab Fasilitas",
+					"type": "text"
+				},
+				{
+					"slug": "fasilitas",
+					"label": "Fasilitas",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "ikon",
+								"label": "Ikon (FontAwesome 4.7, mis. fa-book)",
+								"type": "string"
+							},
+							{
+								"slug": "judul",
+								"label": "Judul",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "item",
+								"label": "Rincian (satu per baris)",
+								"type": "text"
+							}
+						]
+					}
+				},
+				{
+					"slug": "karir_pengantar",
+					"label": "Pengantar tab Prospek Karir",
+					"type": "text"
+				},
+				{
+					"slug": "karir",
+					"label": "Prospek karir per sektor",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "ikon",
+								"label": "Ikon (FontAwesome 4.7, mis. fa-book)",
+								"type": "string"
+							},
+							{
+								"slug": "judul",
+								"label": "Sektor",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "item",
+								"label": "Profesi (satu per baris)",
+								"type": "text"
+							}
+						]
+					}
+				},
+				{
+					"slug": "catatan",
+					"label": "Kotak catatan (mis. \"Alumni kami ...\", \"Studi lanjut: ...\")",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "ikon",
+								"label": "Ikon (FontAwesome 4.7, mis. fa-book)",
+								"type": "string"
+							},
+							{
+								"slug": "judul",
+								"label": "Teks tebal di awal (opsional)",
+								"type": "string"
+							},
+							{
+								"slug": "teks",
+								"label": "Teks",
+								"type": "text",
+								"required": true
+							},
+							{
+								"slug": "letak",
+								"label": "Letak",
+								"type": "select",
+								"required": true,
+								"options": [
+									"profil",
+									"karir"
+								]
+							}
+						]
+					}
+				},
+				{
+					"slug": "website",
+					"label": "Website resmi prodi (opsional)",
+					"type": "url"
+				},
+				{
+					"slug": "kaprodi_slug",
+					"label": "Slug Ketua Prodi di koleksi Pimpinan (mis. kaprodi-pai → /pimpinan/kaprodi-pai)",
+					"type": "string"
+				},
+				{
+					"slug": "cta_teks",
+					"label": "Teks ajakan di bawah halaman (mis. Daftar sekarang dan jadilah ...)",
+					"type": "string"
+				},
+				{
+					"slug": "judul_seo",
+					"label": "Judul halaman/SEO (kosongkan = otomatis)",
+					"type": "string"
+				},
+				{
+					"slug": "deskripsi_seo",
+					"label": "Deskripsi SEO",
+					"type": "text"
+				},
+				{
+					"slug": "catatan_internal",
+					"label": "Catatan internal (tidak tampil di situs; tandai data yang masih DRAFT/generik)",
+					"type": "text"
+				}
+			]
+		}
+	],
+	"content": {
+		"fakultas": [
+			{
+				"id": "fakultas-ushuluddin",
+				"slug": "ushuluddin",
+				"status": "published",
+				"data": {
+					"nama": "Fakultas Ushuluddin",
+					"nama_singkat": "Ushuluddin",
+					"jenjang": "S1",
+					"urutan": 10,
+					"deskripsi_singkat": "Fakultas yang fokus pada studi keislaman fundamental dalam bidang Ilmu Hadis dan Ilmu Al-Quran Tafsir.",
+					"deskripsi": "Fakultas Ushuluddin merupakan fakultas yang fokus pada studi keislaman fundamental, khususnya dalam bidang Ilmu Hadis dan Ilmu Al-Quran Tafsir. Fakultas ini bertujuan menghasilkan sarjana muslim yang kompeten dalam bidang kajian sumber utama agama Islam.",
+					"ikon": "fa-book",
+					"warna": "#006739",
+					"gambar": {
+						"$asset": "/images/course/fak-1.jpg",
+						"alt": "Fakultas Ushuluddin"
+					},
+					"gambar_banner": {
+						"$asset": "/images/page-banner-1.jpg",
+						"alt": "Fakultas Ushuluddin"
+					},
+					"jumlah_mahasiswa": "300+",
+					"jumlah_dosen": "15+",
+					"visi": "Menjadi pusat pengembangan ilmu-ilmu keislaman yang unggul dan terpercaya dalam bidang hadis dan Al-Quran pada tahun 2028.",
+					"misi": "Menyelenggarakan pendidikan berkualitas dalam bidang ilmu hadis dan Al-Quran\nMelakukan penelitian untuk pengembangan ilmu-ilmu keislaman\nMelaksanakan pengabdian kepada masyarakat berbasis keilmuan\nMengembangkan kerjasama dengan institusi dalam dan luar negeri",
+					"cta_judul": "Siap Bergabung dengan Fakultas Ushuluddin?",
+					"cta_teks": "Daftarkan diri Anda sekarang dan jadilah bagian dari generasi cendekiawan Muslim yang unggul!",
+					"catatan_internal": "Deskripsi masih menyebut hanya Ilmu Hadis dan Ilmu Al-Quran Tafsir, padahal fakultas ini juga menaungi prodi SPI — perlu diperbarui."
+				}
+			},
+			{
+				"id": "fakultas-tarbiyah",
+				"slug": "tarbiyah",
+				"status": "published",
+				"data": {
+					"nama": "Fakultas Tarbiyah",
+					"nama_singkat": "Tarbiyah",
+					"jenjang": "S1",
+					"urutan": 20,
+					"deskripsi_singkat": "Fakultas pendidikan Islam yang mencetak guru dan pendidik profesional dengan kompetensi pedagogik dan keilmuan yang solid.",
+					"deskripsi": "Fakultas Tarbiyah merupakan fakultas yang berfokus pada pengembangan pendidikan Islam dan pembentukan tenaga pendidik profesional yang memiliki basis keislaman yang kuat. Fakultas ini berkomitmen menghasilkan pendidik yang kompeten, berkarakter, dan siap berkontribusi dalam dunia pendidikan.",
+					"ikon": "fa-graduation-cap",
+					"warna": "#3498db",
+					"gambar": {
+						"$asset": "/images/course/fak-2.jpg",
+						"alt": "Fakultas Tarbiyah"
+					},
+					"gambar_banner": {
+						"$asset": "/images/page-banner-2.jpg",
+						"alt": "Fakultas Tarbiyah"
+					},
+					"jumlah_mahasiswa": "400+",
+					"jumlah_dosen": "20+",
+					"visi": "Menjadi Fakultas terkemuka dalam menghasilkan tenaga pendidik yang profesional dan berkarakter Islami pada tahun 2028.",
+					"misi": "Menyelenggarakan pendidikan dan pembelajaran berbasis nilai-nilai Islam\nMengembangkan penelitian dalam bidang pendidikan Islam\nMelaksanakan pengabdian kepada masyarakat dalam bidang pendidikan\nMenjalin kerjasama dengan berbagai lembaga pendidikan",
+					"cta_judul": "Siap Bergabung dengan Fakultas Tarbiyah?",
+					"cta_teks": "Daftarkan diri Anda sekarang dan jadilah pendidik profesional yang berkarakter Islami!"
+				}
+			},
+			{
+				"id": "fakultas-ekonomi",
+				"slug": "ekonomi",
+				"status": "published",
+				"data": {
+					"nama": "Fakultas Ekonomi dan Bisnis Islam",
+					"nama_singkat": "FEBI",
+					"jenjang": "S1",
+					"urutan": 30,
+					"deskripsi_singkat": "Fakultas yang menggabungkan ilmu ekonomi modern dengan prinsip-prinsip syariah Islam.",
+					"deskripsi": "Fakultas Ekonomi dan Bisnis Islam merupakan fakultas yang fokus pada pengembangan ilmu ekonomi dan bisnis yang berlandaskan nilai-nilai Islam. Fakultas ini berkomitmen untuk menghasilkan lulusan yang kompeten dalam bidang ekonomi syariah dan keuangan Islam.",
+					"ikon": "fa-briefcase",
+					"warna": "#e67e22",
+					"gambar": {
+						"$asset": "/images/course/fak-3.jpg",
+						"alt": "Fakultas Ekonomi dan Bisnis Islam"
+					},
+					"gambar_banner": {
+						"$asset": "/images/page-banner-1.jpg",
+						"alt": "Fakultas Ekonomi dan Bisnis Islam"
+					},
+					"jumlah_mahasiswa": "300+",
+					"jumlah_dosen": "12+",
+					"visi": "Menjadi Fakultas terkemuka dalam pengembangan ilmu ekonomi dan bisnis berbasis nilai-nilai Islam yang unggul dan berdaya saing global pada tahun 2028.",
+					"misi": "Menyelenggarakan pendidikan ekonomi dan bisnis berbasis syariah\nMengembangkan riset dalam bidang ekonomi dan keuangan syariah\nMelaksanakan pengabdian masyarakat melalui pemberdayaan ekonomi\nMenjalin kerjasama dengan lembaga keuangan syariah",
+					"cta_judul": "Siap Bergabung dengan Fakultas Ekonomi & Bisnis Islam?",
+					"cta_teks": "Daftarkan diri Anda sekarang dan jadilah profesional ekonomi syariah yang kompeten!",
+					"catatan_internal": "Situs lama menulis nama fakultas ini tidak konsisten: \"Fakultas Ekonomi & Bisnis Islam\" (kartu /fakultas & subjudul prodi) dan \"Fakultas Ekonomi dan Bisnis Islam\" (halaman fakultas). Di CMS dipakai yang kedua."
+				}
+			},
+			{
+				"id": "fakultas-pascasarjana",
+				"slug": "pascasarjana",
+				"status": "published",
+				"data": {
+					"nama": "Program Pascasarjana",
+					"nama_singkat": "Magister",
+					"jenjang": "S2",
+					"urutan": 40,
+					"judul_ringkasan": "Program Pascasarjana - Magister (S2)",
+					"deskripsi": "Program Magister IAI PERSIS Garut merupakan jenjang pendidikan lanjutan yang dirancang untuk mengembangkan kompetensi dan keahlian profesional dalam bidang pendidikan Islam. Program ini menawarkan pendidikan berkualitas dengan kurikulum yang komprehensif dan relevan dengan kebutuhan pendidikan modern.",
+					"ikon": "fa-graduation-cap",
+					"gambar_banner": {
+						"$asset": "/images/page-banner-7.jpg",
+						"alt": "Program Pascasarjana"
+					},
+					"jumlah_mahasiswa": "100+",
+					"jumlah_dosen": "10+",
+					"visi": "Menjadi Prodi Magister Pendidikan Agama Islam (MPAI) yang unggul berbasis turats Islam di Jawa Barat pada Tahun 2033.",
+					"misi": "Menyelenggarakan perkuliahan dengan acuan turats Islam.\nMelakukan riset dengan referensi utama turats Islam.\nMenyelenggarakan pengabdian kepada masyarakat berbasis turats Islam.\nMelakukan publikasi kepada masyarakat berbasis turats Islam.",
+					"cta_judul": "Siap Melanjutkan Studi ke Jenjang Magister?",
+					"cta_teks": "Daftarkan diri Anda sekarang dan raih gelar Magister sesuai program pilihan Anda!",
+					"catatan_internal": "Visi & misi di halaman /magister (situs lama) adalah visi-misi Prodi MPAI, bukan visi-misi Program Pascasarjana secara umum — perlu dikonfirmasi."
+				}
+			}
+		],
+		"prodi": [
+			{
+				"id": "prodi-pai",
+				"slug": "pai",
+				"status": "published",
+				"data": {
+					"nama": "Pendidikan Agama Islam",
+					"singkatan": "PAI",
+					"jenjang": "S1",
+					"fakultas": "tarbiyah",
+					"urutan": 10,
+					"gelar": "S.Pd.",
+					"lama_studi": 8,
+					"akreditasi": "Baik Sekali",
+					"akreditasi_kartu": "B",
+					"gambar": {
+						"$asset": "/images/prodi/ilha.jpg",
+						"alt": "Pendidikan Agama Islam"
+					},
+					"warna": "#3498db",
+					"deskripsi_singkat": "Menyiapkan tenaga pendidik profesional dalam bidang Pendidikan Agama Islam dengan kompetensi pedagogik dan keislaman yang mumpuni.",
+					"sorotan": "Metodologi Pembelajaran\nKurikulum PAI\nPPL Terintegrasi",
+					"deskripsi": "Program Studi Pendidikan Agama Islam (PAI) adalah program sarjana (S1) di bawah Fakultas Tarbiyah dan Keguruan IAI Persis Garut yang menghasilkan pendidik Pendidikan Agama Islam yang profesional, religius, berakhlakul karimah, memiliki kemampuan dakwah, dan adaptif terhadap teknologi.\n\nProgram studi ini berdiri berdasarkan Keputusan Dirjen Kelembagaan Agama Islam No. Dj.II/77/03 tanggal 1 Mei 2003.",
+					"visi": "Menjadi Program Studi Pendidikan Agama Islam yang unggul dalam pengembangan pendidikan Islam berbasis turats, teknologi pembelajaran, dan nilai-nilai Persatuan Islam untuk menghasilkan pendidik profesional, religius, dan berdaya saing pada tahun 2028.",
+					"misi": "Menyelenggarakan pendidikan dan pembelajaran PAI yang unggul dan berbasis turats\nMengembangkan penelitian dalam bidang pendidikan agama Islam\nMelaksanakan pengabdian kepada masyarakat\nMengembangkan budaya akademik Islami\nMengembangkan kerja sama strategis dengan sekolah, madrasah, pesantren, dan lembaga dakwah",
+					"tujuan": "Menghasilkan sarjana Pendidikan Agama Islam yang:\n- Unggul dalam bidang pendidikan Islam\n- Profesional dalam pembelajaran\n- Menguasai turats Islam\n- Berakhlakul karimah\n- Adaptif terhadap perkembangan teknologi\n- Memiliki kemampuan dakwah serta kepemimpinan sosial",
+					"profil_lulusan": [
+						{
+							"ikon": "fa-graduation-cap",
+							"judul": "Pendidik PAI Profesional",
+							"deskripsi": "Mengajar Pendidikan Agama Islam di sekolah, madrasah, pesantren, dan lembaga pendidikan Islam"
+						},
+						{
+							"ikon": "fa-lightbulb-o",
+							"judul": "Pengembang Pendidikan Islam",
+							"deskripsi": "Mengembangkan kurikulum, media, dan program pendidikan Islam yang inovatif"
+						},
+						{
+							"ikon": "fa-search",
+							"judul": "Peneliti Pendidikan Islam",
+							"deskripsi": "Melakukan penelitian dalam bidang pendidikan agama Islam, pembelajaran, dan kajian keislaman"
+						},
+						{
+							"ikon": "fa-institution",
+							"judul": "Penggerak Dakwah & Pemberdayaan",
+							"deskripsi": "Membina masyarakat, menggerakkan dakwah, dan mengembangkan literasi keislaman"
+						},
+						{
+							"ikon": "fa-rocket",
+							"judul": "Edupreneur Pendidikan Islam",
+							"deskripsi": "Mengembangkan lembaga, media, pelatihan, dan usaha kreatif berbasis pendidikan Islam"
+						}
+					],
+					"kompetensi": [
+						{
+							"judul": "Sikap dan Tata Nilai",
+							"deskripsi": "Bertakwa kepada Allah Swt., menjunjung tinggi akhlakul karimah, integritas, dan mengembangkan semangat dakwah serta kepedulian sosial"
+						},
+						{
+							"judul": "Pengetahuan Keislaman & Kependidikan",
+							"deskripsi": "Menguasai konsep dasar pendidikan Islam, kajian Al-Qur'an, Hadis, Fikih, Akhlak, SKI, turats Islam, serta teknologi pembelajaran"
+						},
+						{
+							"judul": "Keterampilan Umum",
+							"deskripsi": "Mampu berpikir kritis, menyusun karya ilmiah, berkomunikasi efektif, dan memanfaatkan teknologi informasi"
+						},
+						{
+							"judul": "Keterampilan Khusus",
+							"deskripsi": "Mampu merancang, melaksanakan, dan mengevaluasi pembelajaran PAI berbasis OBE dan teknologi, serta mengintegrasikan turats Islam dalam pembelajaran"
+						}
+					],
+					"kurikulum_pengantar": "Kurikulum PAI 2024 dikembangkan dengan paradigma integratif — memadukan ilmu pendidikan Islam, penguatan turats, dan ilmu pengetahuan modern — berbasis Outcome-Based Education (OBE) dan mengacu pada KKNI, SN-Dikti, serta kebijakan Merdeka Belajar Kampus Merdeka (MBKM), dengan total 150 SKS.",
+					"kurikulum": [
+						{
+							"semester": "Semester 1",
+							"total_sks": 19,
+							"fokus": "Penguatan Dasar Keislaman, Akademik & Literasi",
+							"mata_kuliah": "Pancasila dan Kewarganegaraan | 3\nBahasa Indonesia | 2\nIlmu Tauhid | 2\nFiqh Ibadah | 2\nUlumul Qur'an | 2\nFilsafat Umum | 2\nBahasa Arab | 2\nBahasa Inggris | 2\nFilsafat dan Landasan Pendidikan Islam | 2"
+						},
+						{
+							"semester": "Semester 2",
+							"total_sks": 20,
+							"fokus": "Penguatan Dasar Keislaman, Akademik & Literasi",
+							"mata_kuliah": "Bahasa dan Budaya Sunda | 2\nIlmu Akhlak dan Adab | 2\nPraktik Ibadah dan Baca Tulis Al-Qur'an | 2\nUlumul Hadis | 2\nPanduan Hidup Islam | 2\nPsikologi Pendidikan | 2\nFiqih Muamalah dan Jinayah | 2\nTafsir Tarbawi | 2\nHadis Tarbawi | 2\nIlmu Alamiah Sosial Budaya Dasar (IASBD) | 2"
+						},
+						{
+							"semester": "Semester 3",
+							"total_sks": 24,
+							"fokus": "Penguatan Pedagogik & Penguasaan Materi PAI",
+							"mata_kuliah": "Kepersisan | 2\nUshul Fiqh | 2\nDunia Islam Kontemporer | 2\nPerkembangan Peserta Didik | 2\nManajemen dan Administrasi Pendidikan | 2\nIlmu Nahwu dan Sharaf | 2\nEnglish for Academic Purposes | 2\nIlmu Pendidikan Islam | 2\nBelajar dan Pembelajaran PAI | 2\nBimbingan Konseling | 2\nSosiologi Pendidikan | 2\nFiqih Munakahat dan Mawarits | 2"
+						},
+						{
+							"semester": "Semester 4",
+							"total_sks": 24,
+							"fokus": "Penguatan Pedagogik & Penguasaan Materi PAI",
+							"mata_kuliah": "Ushul ad-Dakwah | 2\nKomunikasi Pembelajaran | 2\nPenelitian Tindakan Kelas | 2\nKapita Selekta dan Perbandingan Pendidikan | 2\nPengembangan Kurikulum Pendidikan | 2\nModel dan Metode Pembelajaran PAI | 2\nPendidikan Karakter dan Nilai (Pilihan) | 2\nMateri Pembelajaran SKI MTs/SMP | 2\nMateri Pembelajaran Akidah Akhlak MTs/SMP | 2\nMateri Pembelajaran Fikih MTs/SMP | 2\nMateri Pembelajaran Al-Qur'an Hadis MTs/SMP | 2\nTeknik Penulisan Karya Ilmiah | 2"
+						},
+						{
+							"semester": "Semester 5",
+							"total_sks": 24,
+							"fokus": "Penguatan Teknologi Pembelajaran & Penelitian",
+							"mata_kuliah": "Sejarah Peradaban Islam | 2\nStatistika Pendidikan | 2\nPerencanaan Pembelajaran PAI | 2\nInovasi Pendidikan | 2\nMetodologi Penelitian Pendidikan | 2\nMedia dan Strategi Pembelajaran PAI | 2\nMateri Pembelajaran SKI MA/SMA | 2\nMateri Pembelajaran Akidah Akhlak MA/SMA | 2\nMateri Pembelajaran Fikih MA/SMA | 2\nMateri Pembelajaran Al-Qur'an Hadis MA/SMA | 2\nPembelajaran Bahasa Arab di Madrasah/Sekolah | 2\nManajemen Lembaga Pendidikan Madrasah dan Pesantren | 2"
+						},
+						{
+							"semester": "Semester 6",
+							"total_sks": 23,
+							"fokus": "Penguatan Teknologi Pembelajaran & Penelitian",
+							"mata_kuliah": "Evaluasi Pembelajaran | 2\nPembelajaran PAI Anak Berkebutuhan Khusus (ABK) | 2\nEdupreneurship | 2\nStudi Naskah Arab | 2\nPendidikan Agama Islam Luar Sekolah | 2\nComputational Thinking | 2\nPengelolaan Kelas | 2\nMicroteaching | 2\nAkhlak dan Etika Profesi Guru | 2\nE-Learning PAI | 2\nMasa Pengabdian pada Masyarakat | 3"
+						},
+						{
+							"semester": "Semester 7",
+							"total_sks": 10,
+							"fokus": "Praktik Lapangan & Implementasi Pembelajaran",
+							"mata_kuliah": "Telaah Pendidikan dan Pembelajaran Pesantren | 2\nArtificial Intelligence (AI) for Islamic Education | 2\nSeminar PAI | 2\nPraktik Pengalaman Lapangan (PPL) | 4\nUjian Komprehensif | 0\nSidang Proposal | 0"
+						},
+						{
+							"semester": "Semester 8",
+							"total_sks": 6,
+							"fokus": "Penelitian & Penyelesaian Tugas Akhir",
+							"mata_kuliah": "Tugas Akhir (Skripsi) | 6"
+						}
+					],
+					"fasilitas_pengantar": "Didukung oleh fasilitas modern untuk menunjang pembelajaran dan praktek mengajar mahasiswa.",
+					"fasilitas": [
+						{
+							"ikon": "fa-laptop",
+							"judul": "Lab Micro Teaching & Keagamaan",
+							"item": "Simulasi Pembelajaran\nRecording System\nSmart Classroom"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Perpustakaan PAI",
+							"item": "Koleksi Turats & Buku PAI\nJurnal Pendidikan\nDigital Library"
+						},
+						{
+							"ikon": "fa-desktop",
+							"judul": "Sarana Teknologi Pembelajaran",
+							"item": "ICT Learning\nE-Learning Tools\nInternet 24/7"
+						},
+						{
+							"ikon": "fa-institution",
+							"judul": "Masjid/Mushola sebagai Lab Keagamaan",
+							"item": "Praktik Ibadah & Khutbah\nKajian Keislaman\nPembinaan Dakwah"
+						},
+						{
+							"ikon": "fa-flask",
+							"judul": "Ruang PPL",
+							"item": "Praktek Mengajar\nLesson Study\nPeer Teaching"
+						},
+						{
+							"ikon": "fa-handshake-o",
+							"judul": "Jejaring Mitra Praktik",
+							"item": "Sekolah & Madrasah Mitra\nPesantren Mitra\nLembaga Pengabdian Masyarakat"
+						}
+					],
+					"karir_pengantar": "Lulusan PAI memiliki peluang karir yang luas di berbagai sektor pendidikan dan keagamaan.",
+					"karir": [
+						{
+							"ikon": "fa-university",
+							"judul": "Lembaga Pendidikan",
+							"item": "Guru PAI SMP/SMA/SMK\nGuru Madrasah Tsanawiyah/Aliyah\nGuru PAI Pesantren\nKepala Sekolah/Madrasah"
+						},
+						{
+							"ikon": "fa-institution",
+							"judul": "Dakwah & Pemberdayaan Masyarakat",
+							"item": "Penyuluh Agama\nDa'i dan Mubaligh\nFasilitator Pemberdayaan Masyarakat\nKonsultan Pendidikan Islam"
+						},
+						{
+							"ikon": "fa-university",
+							"judul": "Instansi Pemerintah",
+							"item": "PNS Kementerian Agama\nDinas Pendidikan\nKantor Urusan Agama\nPengawas Sekolah"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Pengembangan & Penelitian",
+							"item": "Pengembang Kurikulum & Program PAI\nPeneliti Pemula Pendidikan Islam\nPenulis Buku PAI\nEditor Materi PAI"
+						},
+						{
+							"ikon": "fa-rocket",
+							"judul": "Edupreneur Pendidikan Islam",
+							"item": "Pendiri Lembaga Kursus/TPQ\nTrainer Pendidikan Islam\nContent Creator Dakwah Digital\nPengelola Bisnis Pendidikan Islam"
+						}
+					],
+					"catatan": [
+						{
+							"ikon": "fa-eye",
+							"judul": "Visi:",
+							"teks": "“Menjadi Program Studi Pendidikan Agama Islam yang unggul dalam pengembangan pendidikan Islam berbasis turats, teknologi pembelajaran, dan nilai-nilai Persatuan Islam untuk menghasilkan pendidik profesional, religius, dan berdaya saing pada tahun 2028.”",
+							"letak": "profil"
+						},
+						{
+							"ikon": "fa-graduation-cap",
+							"judul": "Studi lanjut:",
+							"teks": "lulusan PAI juga dapat melanjutkan pendidikan Magister (S2) di bidang PAI/pendidikan Islam.",
+							"letak": "karir"
+						},
+						{
+							"ikon": "fa-info-circle",
+							"judul": "Alumni kami",
+							"teks": "telah bekerja di berbagai sekolah, madrasah, dan lembaga pendidikan Islam di seluruh Indonesia.",
+							"letak": "karir"
+						}
+					],
+					"kaprodi_slug": "kaprodi-pai",
+					"cta_teks": "Daftar sekarang dan jadilah pendidik PAI yang profesional",
+					"judul_seo": "Program Studi Pendidikan Agama Islam (PAI)",
+					"deskripsi_seo": "Program Studi S1 Pendidikan Agama Islam IAI PERSIS Garut, terakreditasi Baik Sekali BAN-PT. Kurikulum berbasis CPL, kompetensi pendidik profesional, dan prospek karir luas.",
+					"catatan_internal": "Sumber: Dokumen Kurikulum Program Studi PAI FTK IAI Persis Garut Tahun 2024 (SK Dekan FTK No. 00255/B.3-E.5/IAIPI-G/2024), 150 SKS/8 semester. Identitas, visi, misi, tujuan, profil lulusan, CPL, dan struktur mata kuliah diambil langsung dari dokumen resmi tersebut (Bagian II & VII). Fasilitas fisik tidak dirinci di dokumen kurikulum sehingga masih bersifat perkiraan berdasarkan nama mata kuliah — perlu dikonfirmasi ke prodi sebelum publish.\n\nLencana kartu di halaman fakultas (situs lama) menulis akreditasi \"B\", sedangkan halaman prodi menulis \"Baik Sekali\" (terverifikasi) — samakan."
+				}
+			},
+			{
+				"id": "prodi-pgmi",
+				"slug": "pgmi",
+				"status": "published",
+				"data": {
+					"nama": "Pendidikan Guru Madrasah Ibtidaiyah",
+					"singkatan": "PGMI",
+					"jenjang": "S1",
+					"fakultas": "tarbiyah",
+					"urutan": 20,
+					"gelar": "S.Pd.",
+					"lama_studi": 8,
+					"akreditasi": "B (Baik)",
+					"akreditasi_kartu": "B",
+					"gambar": {
+						"$asset": "/images/prodi/fak-2.jpg",
+						"alt": "Pendidikan Guru Madrasah Ibtidaiyah"
+					},
+					"warna": "#27ae60",
+					"deskripsi_singkat": "Fokus pada penyiapan guru profesional untuk tingkat MI/SD dengan kompetensi pembelajaran terpadu berbasis nilai-nilai Islam.",
+					"sorotan": "Pembelajaran Terpadu\nMedia Pembelajaran\nMicro Teaching",
+					"deskripsi": "Program Studi Pendidikan Guru Madrasah Ibtidaiyah (PGMI) adalah program sarjana (S1) di bawah Fakultas Tarbiyah dan Keguruan IAI Persis Garut yang menyiapkan calon guru kelas madrasah ibtidaiyah yang profesional, religius, dan adaptif, dengan landasan turats Islam, penguasaan ilmu kependidikan, serta kemampuan pedagogik yang adaptif terhadap perubahan zaman.\n\n**Kekhasan:** Integrasi nilai keislaman dan turats Islam dengan kompetensi pedagogik guru MI dan literasi digital.",
+					"visi": "Menjadi program studi unggul dalam menyiapkan guru madrasah ibtidaiyah yang berilmu, religius, dan profesional, dengan landasan turats Islam, penguasaan ilmu kependidikan, serta kemampuan pedagogik yang adaptif terhadap perubahan zaman.",
+					"misi": "Menyelenggarakan pendidikan dan pembelajaran bermutu berbasis capaian pembelajaran\nMengembangkan penelitian pendidikan dasar Islam yang relevan dan bermanfaat\nMelaksanakan pengabdian kepada masyarakat berbasis pendidikan dan dakwah\nMemperkuat kerja sama dengan madrasah, lembaga pendidikan, alumni, dan pemangku kepentingan\nMengembangkan sumber daya manusia dosen dan mahasiswa yang kompeten dan berkarakter\nMembangun budaya akademik yang religius, ilmiah, dan produktif",
+					"tujuan": "- Menghasilkan lulusan yang mampu menjadi guru madrasah ibtidaiyah profesional\n- Membentuk lulusan yang berakhlak mulia, beradab, dan berdaya saing\n- Memastikan lulusan memiliki kompetensi nyata untuk mengajar, membimbing, dan mendidik\n- Memperkuat mutu proses pendidikan dan pembelajaran di lingkungan prodi\n- Meningkatkan relevansi kurikulum dengan kebutuhan dunia kerja dan perkembangan ilmu pendidikan",
+					"profil_lulusan": [
+						{
+							"ikon": "fa-graduation-cap",
+							"judul": "Guru Kelas MI",
+							"deskripsi": "Merancang, melaksanakan, dan mengevaluasi pembelajaran tematik-integratif di kelas MI yang bermakna dan kontekstual"
+						},
+						{
+							"ikon": "fa-institution",
+							"judul": "Pendidik Al-Qur'an dan Nilai Keislaman",
+							"deskripsi": "Menanamkan nilai-nilai Islam melalui pembelajaran Al-Qur'an, hadis, akidah akhlak, dan pembiasaan ibadah sehari-hari"
+						},
+						{
+							"ikon": "fa-lightbulb-o",
+							"judul": "Pengembang Pembelajaran dan Bahan Ajar",
+							"deskripsi": "Mengembangkan bahan ajar inovatif berbasis pendekatan ilmiah, literasi, dan pemanfaatan teknologi"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Penggerak Literasi dan Numerasi",
+							"deskripsi": "Menumbuhkan budaya baca, tulis, berpikir kritis, dan numerasi pada peserta didik MI secara kreatif"
+						},
+						{
+							"ikon": "fa-users",
+							"judul": "Pengelola/Kepemimpinan Pendidikan Dasar",
+							"deskripsi": "Memimpin pembelajaran dengan kapasitas manajerial, kolaboratif, dan kewirausahaan di madrasah"
+						}
+					],
+					"kompetensi": [
+						{
+							"judul": "Sikap dan Tata Nilai",
+							"deskripsi": "Beriman, bertakwa, dan berakhlak mulia; menjunjung tinggi adab, integritas, dan tanggung jawab sebagai pendidik"
+						},
+						{
+							"judul": "Pengetahuan Pedagogik dan Keislaman",
+							"deskripsi": "Menguasai konsep dasar pendidikan, psikologi perkembangan anak, kurikulum MI/SD, serta dasar keislaman (Al-Qur'an, Hadis, fikih, akidah akhlak, SKI)"
+						},
+						{
+							"judul": "Keterampilan Umum",
+							"deskripsi": "Mampu berpikir kritis, berkomunikasi efektif, berkolaborasi, dan belajar mandiri sepanjang hayat"
+						},
+						{
+							"judul": "Keterampilan Khusus",
+							"deskripsi": "Mampu merancang, melaksanakan, dan mengevaluasi pembelajaran tematik-integratif MI/SD secara kreatif dan berbasis teknologi"
+						}
+					],
+					"kurikulum_pengantar": "Kurikulum dirancang untuk menghasilkan lulusan yang kompeten sebagai guru madrasah ibtidaiyah dengan total 150 SKS yang tersebar dalam 8 semester (Dokumen Kurikulum PGMI Tahun 2024).",
+					"kurikulum": [
+						{
+							"semester": "Semester 1",
+							"total_sks": 19,
+							"fokus": "Penguatan Dasar Kebangsaan, Keislaman & Fondasi Akademik",
+							"mata_kuliah": "Pendidikan Pancasila dan Kewarganegaraan | 3\nBahasa Indonesia | 2\nIlmu Tauhid/Aqidah | 2\nFiqh Ibadah | 2\nUlumul Qur'an | 2\nFilsafat Umum | 2\nBahasa Arab | 2\nBahasa Inggris | 2\nFilsafat dan Landasan Pendidikan | 2"
+						},
+						{
+							"semester": "Semester 2",
+							"total_sks": 20,
+							"fokus": "Penguatan Dasar Kependidikan & Wawasan Global",
+							"mata_kuliah": "Bahasa dan Budaya Sunda | 2\nIlmu Akhlak dan Adab | 2\nPraktik Ibadah dan Baca Tulis Al-Qur'an | 2\nUlumul Hadis | 2\nIslamic Worldview | 2\nPerkembangan Peserta Didik | 2\nPsikologi Pendidikan | 2\nIlmu Sosial Budaya Dasar | 2\nHadits Tarbawi | 2\nTafsir Tarbawi | 2"
+						},
+						{
+							"semester": "Semester 3",
+							"total_sks": 24,
+							"fokus": "Pendalaman Keilmuan Inti Program Studi & Materi MI/SD",
+							"mata_kuliah": "Kepersisan | 2\nUshul Fiqh | 2\nDunia Islam Kontemporer | 2\nManajemen dan Administrasi Pendidikan | 2\nSosiologi | 2\nKonsep Dasar Bahasa dan Sastra Indonesia MI/SD | 2\nKonsep Dasar IPS MI/SD | 2\nKonsep Dasar PKN | 2\nKonsep Dasar IPA MI/SD | 2\nKonsep Dasar Matematika | 2\nPendidikan Jasmani, Kesehatan, dan Rekreasi MI/SD | 2\nKepramukaan | 2"
+						},
+						{
+							"semester": "Semester 4",
+							"total_sks": 24,
+							"fokus": "Penguatan Pembelajaran, Tematik & Pengembangan Profesional Awal",
+							"mata_kuliah": "Ushul ad-Dakwah | 2\nKeterampilan Berbahasa dan Kesusastraan Indonesia MI/SD | 2\nMateri IPS MI/SD | 2\nMateri PKN MI/SD | 2\nIPA MI/SD | 2\nMatematika MI/SD | 2\nPembelajaran Seni dan Budaya MI/SD | 2\nPembelajaran Pendidikan Jasmani MI/SD | 2\nStrategi Pembelajaran MI/SD | 2\nPerencanaan Pembelajaran MI/SD | 2\nTelaah Kurikulum MI/SD | 2\nKomunikasi Pembelajaran MI/SD | 2"
+						},
+						{
+							"semester": "Semester 5",
+							"total_sks": 24,
+							"fokus": "Pendalaman Inovasi Pembelajaran, Evaluasi & Praktik Pendidikan",
+							"mata_kuliah": "Sejarah Kebudayaan Islam | 2\nStatistika Pendidikan | 2\nPembelajaran IPS MI/SD | 2\nPembelajaran PKN MI/SD | 2\nPembelajaran IPA MI/SD | 2\nPembelajaran Matematika MI/SD | 2\nPembelajaran Prakarya MI/SD | 2\nKajian Kearifan Lokal | 2\nPengembangan Bahan Ajar MI/SD | 2\nInovasi Pendidikan | 2\nMetodologi Penelitian Pendidikan | 2\nPengenalan Lapangan Pendidikan (PLP) 1 | 2"
+						},
+						{
+							"semester": "Semester 6",
+							"total_sks": 24,
+							"fokus": "Penguatan Micro Teaching, PLP, Penelitian & Kesiapan Tugas Akhir",
+							"mata_kuliah": "Edupreneurship | 2\nAkhlak dan Etika Profesi Guru | 2\nPembelajaran Tematik | 2\nPendidikan Inklusi | 2\nInovasi Pendidikan Aqidah-Akhlak di MI | 2\nInovasi Pendidikan Qur'an-Hadist di MI | 2\nPengembangan Media dan Sumber Pembelajaran MI/SD | 2\nEvaluasi Pembelajaran MI/SD | 2\nMicro Teaching | 2\nICT/Teknologi Informasi dan Komunikasi Pendidikan | 2\nEdutainment Pembelajaran di MI/SD | 2\nMultimedia Pembelajaran di MI/SD | 2"
+						},
+						{
+							"semester": "Semester 7",
+							"total_sks": 9,
+							"fokus": "Penyelesaian Seminar Proposal, PLP Lanjutan & Persiapan Skripsi",
+							"mata_kuliah": "Masa Pengabdian pada Masyarakat | 3\nBimbingan Konseling | 2\nPengenalan Lapangan Pendidikan (PLP) 2 | 2\nSeminar Proposal | 2"
+						},
+						{
+							"semester": "Semester 8",
+							"total_sks": 6,
+							"fokus": "Tugas Akhir dan Komprehensif",
+							"mata_kuliah": "Tugas Akhir (Skripsi) | 6\nKomprehensif | 0"
+						}
+					],
+					"fasilitas_pengantar": "Didukung oleh fasilitas modern untuk menunjang pembelajaran dan penelitian mahasiswa.",
+					"fasilitas": [
+						{
+							"ikon": "fa-desktop",
+							"judul": "Lab Microteaching",
+							"item": "Ruang Simulasi Mengajar\nKamera & Perekam Pembelajaran\nAlat Peraga Pendidikan"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Perpustakaan Khusus",
+							"item": "Koleksi Buku Pendidikan & Psikologi Anak\nJurnal Nasional & Internasional\nE-Library 24/7"
+						},
+						{
+							"ikon": "fa-flask",
+							"judul": "Lab Penelitian",
+							"item": "Ruang Diskusi Kelompok\nSoftware Analisis Data\nBimbingan Penelitian"
+						},
+						{
+							"ikon": "fa-laptop",
+							"judul": "Lab ICT & Media Pembelajaran",
+							"item": "Alat Peraga Edukatif\nMedia Digital & Multimedia Pembelajaran\nPerangkat Edutainment MI/SD"
+						}
+					],
+					"karir_pengantar": "Lulusan Program Studi Pendidikan Guru Madrasah Ibtidaiyah memiliki peluang karir yang luas di berbagai sektor.",
+					"karir": [
+						{
+							"ikon": "fa-university",
+							"judul": "Pendidikan Formal",
+							"item": "Guru Kelas MI\nGuru Madrasah Ibtidaiyah\nGuru SD Islam Terpadu\nWali Kelas"
+						},
+						{
+							"ikon": "fa-institution",
+							"judul": "Pendidikan Keislaman",
+							"item": "Pengajar Al-Qur'an\nPembina Keagamaan Madrasah\nFasilitator Pembiasaan Keislaman\nPengelola PAUD/TPQ"
+						},
+						{
+							"ikon": "fa-lightbulb-o",
+							"judul": "Pengembangan Pembelajaran & Literasi",
+							"item": "Pengembang Bahan Ajar & Media Digital MI\nKoordinator Literasi/Numerasi Sekolah\nPendamping Klub Baca/Tulis\nWirausahawan Pendidikan"
+						},
+						{
+							"ikon": "fa-university",
+							"judul": "Pemerintahan & Organisasi",
+							"item": "Kementerian Agama\nDinas Pendidikan\nPengawas Madrasah\nLembaga Pendidikan Persis"
+						}
+					],
+					"catatan": [
+						{
+							"ikon": "fa-graduation-cap",
+							"judul": "Studi lanjut:",
+							"teks": "lulusan PGMI juga dapat melanjutkan pendidikan Magister (S2) di bidang pendidikan dasar/keislaman.",
+							"letak": "karir"
+						},
+						{
+							"ikon": "fa-info-circle",
+							"judul": "Alumni kami",
+							"teks": "telah bekerja di berbagai institusi pendidikan, lembaga penelitian, dan organisasi Islam di seluruh Indonesia.",
+							"letak": "karir"
+						}
+					],
+					"kaprodi_slug": "kaprodi-pgmi",
+					"cta_teks": "Daftar sekarang dan jadilah ahli dalam bidang Pendidikan Guru Madrasah Ibtidaiyah",
+					"judul_seo": "Program Studi Pendidikan Guru Madrasah Ibtidaiyah (PGMI)",
+					"deskripsi_seo": "Program Studi S1 PGMI IAI PERSIS Garut mencetak guru MI/SD profesional dengan kurikulum berbasis dokumen resmi FTK, kompetensi pedagogik dan keislaman.",
+					"catatan_internal": "Sumber: Dokumen Kurikulum Program Studi PGMI FTK IAI Persis Garut Tahun 2024 (SK Dekan FTK No. 00253/B.3-E.5/IAIPI-G/2024), 150 SKS/8 semester. Struktur mata kuliah, profil lulusan, dan visi diambil langsung dari dokumen resmi tersebut. Fasilitas fisik tidak dirinci di dokumen kurikulum sehingga masih bersifat perkiraan berdasarkan nama mata kuliah (mis. Micro Teaching, ICT Pendidikan) — perlu dikonfirmasi ke prodi sebelum publish."
+				}
+			},
+			{
+				"id": "prodi-bkpi",
+				"slug": "bkpi",
+				"status": "published",
+				"data": {
+					"nama": "Bimbingan Konseling Pendidikan Islam",
+					"singkatan": "BKPI",
+					"jenjang": "S1",
+					"fakultas": "tarbiyah",
+					"urutan": 30,
+					"gelar": "S.Pd.",
+					"lama_studi": 8,
+					"akreditasi": "B (Baik)",
+					"akreditasi_kartu": "B",
+					"gambar": {
+						"$asset": "/images/prodi/iat.jpg",
+						"alt": "Bimbingan Konseling Pendidikan Islam"
+					},
+					"warna": "#9b59b6",
+					"deskripsi_singkat": "Menyiapkan konselor pendidikan kompeten dalam layanan bimbingan dan konseling dengan pendekatan Islam.",
+					"sorotan": "Psikologi Pendidikan\nTeknik Konseling\nKonseling Islami",
+					"deskripsi": "Program Studi Bimbingan Konseling Pendidikan Islam menyiapkan konselor pendidikan yang kompeten dalam layanan bimbingan dan konseling dengan pendekatan Islam. Program studi ini mempersiapkan mahasiswa untuk menjadi konselor yang mampu memahami, mendampingi, dan mengembangkan layanan bimbingan konseling secara komprehensif.",
+					"profil_lulusan": [
+						{
+							"ikon": "fa-graduation-cap",
+							"judul": "Konselor Sekolah",
+							"deskripsi": "Memberi layanan bimbingan konseling di satuan pendidikan"
+						},
+						{
+							"ikon": "fa-heart",
+							"judul": "Konselor Islami",
+							"deskripsi": "Mendampingi klien dengan pendekatan psikologi berbasis nilai Islam"
+						},
+						{
+							"ikon": "fa-user",
+							"judul": "Konsultan Pengembangan Diri",
+							"deskripsi": "Membantu individu mengembangkan potensi dan mengatasi masalah pribadi"
+						},
+						{
+							"ikon": "fa-search",
+							"judul": "Peneliti Bimbingan Konseling",
+							"deskripsi": "Mengkaji isu konseling dan psikologi pendidikan"
+						}
+					],
+					"kompetensi": [
+						{
+							"judul": "Penguasaan Teori Konseling",
+							"deskripsi": "Mampu menerapkan pendekatan konseling secara profesional dan etis"
+						},
+						{
+							"judul": "Asesmen Psikologis",
+							"deskripsi": "Menguasai teknik asesmen untuk memahami kebutuhan klien"
+						},
+						{
+							"judul": "Penelitian Bimbingan Konseling",
+							"deskripsi": "Mampu melakukan penelitian ilmiah dalam bidang bimbingan konseling"
+						},
+						{
+							"judul": "Konseling Berbasis Nilai Islam",
+							"deskripsi": "Menguasai integrasi pendekatan psikologi dengan nilai-nilai keislaman"
+						}
+					],
+					"kurikulum_pengantar": "Kurikulum dirancang untuk menghasilkan lulusan yang kompeten dalam bidang bimbingan konseling pendidikan Islam dengan total 144 SKS.",
+					"kurikulum": [
+						{
+							"semester": "Semester 1",
+							"total_sks": 19,
+							"fokus": "Dasar Keilmuan Islam & Psikologi",
+							"mata_kuliah": "Pancasila dan Kewarganegaraan | 3\nBahasa Indonesia | 2\nIlmu Tauhid | 2\nFiqih Ibadah | 2\nUlumul Quran | 2\nPengantar Bimbingan Konseling | 2\nPsikologi Umum | 2\nPsikologi Perkembangan | 2\nBahasa Arab | 2"
+						},
+						{
+							"semester": "Semester 3",
+							"total_sks": 24,
+							"fokus": "Pendalaman Konseling & Metodologi",
+							"mata_kuliah": "Teori Konseling | 2\nFiqih Muamalah | 2\nPsikologi Kepribadian | 2\nTeknik Bimbingan Kelompok | 2\nAsesmen Psikologis | 2\nUshul Fiqih | 2\nBimbingan Konseling Islami | 2\nKepersisan | 2\nPsikologi Sosial | 2\nBahasa Inggris Konseling | 2\nEtika Profesi Konseling | 2"
+						},
+						{
+							"semester": "Semester 5",
+							"total_sks": 24,
+							"fokus": "Spesialisasi & Penelitian Bimbingan Konseling",
+							"mata_kuliah": "Konseling Individual | 2\nKonseling Krisis & Trauma | 2\nMetodologi Penelitian Konseling | 2\nBimbingan Karir | 2\nKonseling Keluarga Islami | 2\nPsikoterapi Islam | 2\nStatistik Konseling | 2\nManajemen BK di Sekolah | 2\nKonseling Anak Berkebutuhan Khusus | 2\nSupervisi Konseling | 2"
+						},
+						{
+							"semester": "Semester 7",
+							"total_sks": 10,
+							"fokus": "Ujian Komprehensif & Praktek Profesi",
+							"mata_kuliah": "Ujian Komprehensif | 2\nMetodologi Penelitian Mahasiswa (MPM) | 4\nPPL/Praktek Profesi | 4"
+						}
+					],
+					"fasilitas_pengantar": "Didukung oleh fasilitas modern untuk menunjang pembelajaran dan penelitian mahasiswa.",
+					"fasilitas": [
+						{
+							"ikon": "fa-desktop",
+							"judul": "Lab Konseling",
+							"item": "Ruang Konseling Individual & Kelompok\nKamera Observasi & Perekam Sesi\nAlat Tes Psikologi"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Perpustakaan Khusus",
+							"item": "Koleksi Buku Konseling & Psikologi Islam\nJurnal Nasional & Internasional\nE-Library 24/7"
+						},
+						{
+							"ikon": "fa-flask",
+							"judul": "Lab Penelitian",
+							"item": "Ruang Diskusi Kelompok\nSoftware Analisis Data\nBimbingan Penelitian"
+						},
+						{
+							"ikon": "fa-heart",
+							"judul": "Klinik Konseling Mahasiswa",
+							"item": "Layanan Konseling Praktik Mahasiswa\nPendampingan Kasus Nyata\nSupervisi Dosen Pembimbing"
+						}
+					],
+					"karir_pengantar": "Lulusan Program Studi Bimbingan Konseling Pendidikan Islam memiliki peluang karir yang luas di berbagai sektor.",
+					"karir": [
+						{
+							"ikon": "fa-university",
+							"judul": "Pendidikan Formal",
+							"item": "Guru BK/Konselor Sekolah\nKonselor Madrasah\nWali Kelas Pendamping\nKoordinator BK"
+						},
+						{
+							"ikon": "fa-heart",
+							"judul": "Klinis & Layanan Masyarakat",
+							"item": "Konselor di Puskesmas/Klinik\nKonselor Pusat Rehabilitasi\nKonselor Lembaga Sosial\nPendamping Psikososial"
+						},
+						{
+							"ikon": "fa-building",
+							"judul": "Korporasi & Organisasi",
+							"item": "HR Development\nKonsultan SDM\nTrainer Pengembangan Diri\nEmployee Assistance Counselor"
+						},
+						{
+							"ikon": "fa-university",
+							"judul": "Pemerintahan & Lembaga Keagamaan",
+							"item": "Kementerian Agama\nKementerian Sosial\nLembaga Dakwah\nKonselor Pranikah KUA"
+						}
+					],
+					"catatan": [
+						{
+							"ikon": "fa-info-circle",
+							"judul": "Alumni kami",
+							"teks": "telah bekerja di berbagai institusi pendidikan, lembaga penelitian, dan organisasi Islam di seluruh Indonesia.",
+							"letak": "karir"
+						}
+					],
+					"website": "https://bkpi.iaipersisgarut.ac.id/",
+					"kaprodi_slug": "kaprodi-bkpi",
+					"cta_teks": "Daftar sekarang dan jadilah ahli dalam bidang Bimbingan Konseling Pendidikan Islam",
+					"judul_seo": "Program Studi Bimbingan Konseling Pendidikan Islam (BKPI)",
+					"deskripsi_seo": "Program Studi S1 BKPI IAI PERSIS Garut mencetak konselor pendidikan Islam profesional dengan kompetensi bimbingan konseling berbasis nilai keislaman.",
+					"catatan_internal": "DRAFT: kurikulum/fasilitas/kompetensi/karir di bawah ini bersifat generik (pola umum prodi BKPI PTAI), BUKAN data resmi kampus. Data resmi kemungkinan tersedia di bkpi.iaipersisgarut.ac.id — wajib direview & disamakan sebelum publish.\n\nTotal SKS tidak sama dengan jumlah SKS mata kuliah yang tercantum pada: Semester 3 (tertulis 24, jumlah 22), Semester 5 (tertulis 24, jumlah 20). Daftar mata kuliah situs lama hanya memuat semester ganjil."
+				}
+			},
+			{
+				"id": "prodi-pba",
+				"slug": "pba",
+				"status": "published",
+				"data": {
+					"nama": "Pendidikan Bahasa Arab",
+					"singkatan": "PBA",
+					"jenjang": "S1",
+					"fakultas": "tarbiyah",
+					"urutan": 40,
+					"gelar": "S.Pd.",
+					"lama_studi": 8,
+					"akreditasi": "B (Baik)",
+					"akreditasi_kartu": "B",
+					"gambar": {
+						"$asset": "/images/prodi/iat.jpg",
+						"alt": "Pendidikan Bahasa Arab"
+					},
+					"warna": "#e74c3c",
+					"deskripsi_singkat": "Menyiapkan guru profesional yang mampu mengajar Bahasa Arab dengan pendekatan pedagogik modern berbasis nilai-nilai Islam.",
+					"sorotan": "Lab Bahasa Arab\nProgram Native Speaker\nPenerjemahan",
+					"deskripsi": "Program Studi Pendidikan Bahasa Arab menyiapkan guru profesional yang mampu mengajar Bahasa Arab dengan pendekatan pedagogik modern berbasis nilai-nilai Islam. Program studi ini mempersiapkan mahasiswa untuk menjadi pendidik yang mampu memahami, mengajarkan, dan mengembangkan pembelajaran Bahasa Arab secara komprehensif.",
+					"profil_lulusan": [
+						{
+							"ikon": "fa-graduation-cap",
+							"judul": "Guru Bahasa Arab",
+							"deskripsi": "Mendidik dan mengajar Bahasa Arab di sekolah/madrasah"
+						},
+						{
+							"ikon": "fa-exchange",
+							"judul": "Penerjemah Bahasa Arab",
+							"deskripsi": "Menerjemahkan teks Arab-Indonesia secara profesional"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Pengembang Materi Ajar",
+							"deskripsi": "Merancang materi dan media pembelajaran Bahasa Arab"
+						},
+						{
+							"ikon": "fa-search",
+							"judul": "Peneliti Kebahasaan",
+							"deskripsi": "Mengkaji linguistik dan pembelajaran Bahasa Arab"
+						}
+					],
+					"kompetensi": [
+						{
+							"judul": "Penguasaan Bahasa Arab",
+							"deskripsi": "Mampu berkomunikasi aktif dan pasif dalam Bahasa Arab"
+						},
+						{
+							"judul": "Pedagogi Bahasa Arab",
+							"deskripsi": "Menguasai metode dan strategi pengajaran Bahasa Arab"
+						},
+						{
+							"judul": "Penelitian Kebahasaan",
+							"deskripsi": "Mampu melakukan penelitian ilmiah dalam bidang pembelajaran bahasa"
+						},
+						{
+							"judul": "Penerjemahan",
+							"deskripsi": "Menguasai teknik penerjemahan teks Arab-Indonesia dan sebaliknya"
+						}
+					],
+					"kurikulum_pengantar": "Kurikulum dirancang untuk menghasilkan lulusan yang kompeten sebagai guru Bahasa Arab dengan total 144 SKS.",
+					"kurikulum": [
+						{
+							"semester": "Semester 1",
+							"total_sks": 19,
+							"fokus": "Dasar Keilmuan Islam & Bahasa Arab",
+							"mata_kuliah": "Pancasila dan Kewarganegaraan | 3\nBahasa Indonesia | 2\nIlmu Tauhid | 2\nFiqih Ibadah | 2\nUlumul Quran | 2\nPengantar Pendidikan Bahasa Arab | 2\nNahwu Dasar | 2\nSharaf Dasar | 2\nMuhadatsah 1 (Percakapan) | 2"
+						},
+						{
+							"semester": "Semester 3",
+							"total_sks": 24,
+							"fokus": "Pendalaman Bahasa Arab & Metodologi",
+							"mata_kuliah": "Nahwu Lanjutan | 2\nSharaf Lanjutan | 2\nBalaghah | 2\nMuhadatsah 2 | 2\nQawaid Bahasa Arab | 2\nUshul Fiqih | 2\nMetodologi Pembelajaran Bahasa Arab | 2\nKepersisan | 2\nTarjamah (Terjemahan) | 2\nBahasa Inggris | 2\nPsikologi Pendidikan | 2"
+						},
+						{
+							"semester": "Semester 5",
+							"total_sks": 24,
+							"fokus": "Spesialisasi & Penelitian Bahasa Arab",
+							"mata_kuliah": "Perencanaan Pembelajaran Bahasa Arab | 2\nMedia Pembelajaran Bahasa Arab | 2\nEvaluasi Pembelajaran Bahasa Arab | 2\nIlmu Lughah (Linguistik Arab) | 2\nAdab Arabi (Sastra Arab) | 2\nMetodologi Penelitian Bahasa | 2\nMuhadatsah 3 (Lanjutan) | 2\nTarjamah Lanjutan | 2\nManajemen Kelas Bahasa Arab | 2\nKaligrafi Arab | 2"
+						},
+						{
+							"semester": "Semester 7",
+							"total_sks": 10,
+							"fokus": "Ujian Komprehensif & Praktek Profesi",
+							"mata_kuliah": "Ujian Komprehensif | 2\nMetodologi Penelitian Mahasiswa (MPM) | 4\nPPL/Praktek Profesi | 4"
+						}
+					],
+					"fasilitas_pengantar": "Didukung oleh fasilitas modern untuk menunjang pembelajaran dan penelitian mahasiswa.",
+					"fasilitas": [
+						{
+							"ikon": "fa-language",
+							"judul": "Lab Bahasa Arab",
+							"item": "Multimedia Learning\nProgram Native Speaker\nLanguage Lab Digital"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Perpustakaan Khusus",
+							"item": "Koleksi Buku & Kamus Bahasa Arab\nJurnal Nasional & Internasional\nE-Library 24/7"
+						},
+						{
+							"ikon": "fa-desktop",
+							"judul": "Lab Microteaching",
+							"item": "Ruang Simulasi Mengajar\nKamera & Perekam Pembelajaran\nAlat Peraga Bahasa"
+						},
+						{
+							"ikon": "fa-flask",
+							"judul": "Lab Penelitian",
+							"item": "Ruang Diskusi Kelompok\nSoftware Analisis Data\nBimbingan Penelitian"
+						}
+					],
+					"karir_pengantar": "Lulusan Program Studi Pendidikan Bahasa Arab memiliki peluang karir yang luas di berbagai sektor.",
+					"karir": [
+						{
+							"ikon": "fa-university",
+							"judul": "Pendidikan Formal",
+							"item": "Guru Bahasa Arab MI/MTs/MA\nGuru Bahasa Arab Pesantren\nDosen Bahasa Arab\nInstruktur Bahasa Arab"
+						},
+						{
+							"ikon": "fa-exchange",
+							"judul": "Penerjemahan & Bahasa",
+							"item": "Penerjemah Dokumen Arab\nInterpreter\nEditor Naskah Arab\nContent Writer Bahasa Arab"
+						},
+						{
+							"ikon": "fa-institution",
+							"judul": "Lembaga Keagamaan & Dakwah",
+							"item": "Pembimbing Haji & Umrah\nStaf Kedutaan/Konsuler\nLembaga Dakwah\nPengurus Pesantren"
+						},
+						{
+							"ikon": "fa-university",
+							"judul": "Pemerintahan & Organisasi",
+							"item": "Kementerian Agama\nLembaga Bahasa\nPusat Studi Timur Tengah\nLembaga Pendidikan Persis"
+						}
+					],
+					"catatan": [
+						{
+							"ikon": "fa-info-circle",
+							"judul": "Alumni kami",
+							"teks": "telah bekerja di berbagai institusi pendidikan, lembaga penelitian, dan organisasi Islam di seluruh Indonesia.",
+							"letak": "karir"
+						}
+					],
+					"kaprodi_slug": "kaprodi-pba",
+					"cta_teks": "Daftar sekarang dan jadilah ahli dalam bidang Bahasa Arab",
+					"judul_seo": "Program Studi Pendidikan Bahasa Arab (PBA)",
+					"deskripsi_seo": "Program Studi S1 Pendidikan Bahasa Arab IAI PERSIS Garut mencetak pendidik bahasa Arab profesional dengan kompetensi linguistik dan keislaman.",
+					"catatan_internal": "DRAFT: seluruh konten di bawah ini (kurikulum, fasilitas, kompetensi, karir, gelar) bersifat generik (pola umum prodi Pendidikan Bahasa Arab PTAI), BUKAN data resmi kampus. Wajib direview & diganti dengan data asli sebelum publish.\n\nDRAFT (halaman /fakultas situs lama): status akreditasi PBA & SPI belum diverifikasi, cek ulang sebelum publish.\n\nTotal SKS tidak sama dengan jumlah SKS mata kuliah yang tercantum pada: Semester 3 (tertulis 24, jumlah 22), Semester 5 (tertulis 24, jumlah 20). Daftar mata kuliah situs lama hanya memuat semester ganjil."
+				}
+			},
+			{
+				"id": "prodi-ilha",
+				"slug": "ilha",
+				"status": "published",
+				"data": {
+					"nama": "Ilmu Hadis",
+					"singkatan": "ILHA",
+					"jenjang": "S1",
+					"fakultas": "ushuluddin",
+					"urutan": 50,
+					"gelar": "S.Ag.",
+					"lama_studi": 8,
+					"akreditasi": "B (Baik)",
+					"akreditasi_kartu": "B",
+					"gambar": {
+						"$asset": "/images/prodi/ilha.jpg",
+						"alt": "Ilmu Hadis"
+					},
+					"warna": "#006739",
+					"deskripsi_singkat": "Fokus pada pengkajian dan penelitian hadis Nabi Muhammad SAW sebagai sumber kedua ajaran Islam.",
+					"sorotan": "Lab Digital Hadis\nPerpustakaan Khusus Hadis\nRiset & Publikasi",
+					"deskripsi": "Program Studi Ilmu Hadis fokus pada pengkajian dan penelitian hadis Nabi Muhammad SAW sebagai sumber kedua ajaran Islam. Program studi ini mempersiapkan mahasiswa untuk menjadi ahli dalam bidang hadis yang mampu memahami, meneliti, dan mengembangkan kajian hadis secara komprehensif.",
+					"profil_lulusan": [
+						{
+							"ikon": "fa-search",
+							"judul": "Peneliti Hadis",
+							"deskripsi": "Ahli dalam riset dan kajian hadis"
+						},
+						{
+							"ikon": "fa-graduation-cap",
+							"judul": "Akademisi",
+							"deskripsi": "Dosen dan pengajar ilmu hadis"
+						},
+						{
+							"ikon": "fa-institution",
+							"judul": "Da&apos;i & Mubaligh",
+							"deskripsi": "Penyebar ajaran Islam berbasis hadis"
+						},
+						{
+							"ikon": "fa-user",
+							"judul": "Konsultan Syariah",
+							"deskripsi": "Ahli konsultasi hukum Islam"
+						}
+					],
+					"kompetensi": [
+						{
+							"judul": "Penguasaan Ilmu Hadis",
+							"deskripsi": "Mampu memahami dan menganalisis hadis dengan metodologi yang tepat"
+						},
+						{
+							"judul": "Kritik Sanad dan Matan",
+							"deskripsi": "Menguasai metode kritik hadis baik dari sisi sanad maupun matan"
+						},
+						{
+							"judul": "Penelitian Hadis",
+							"deskripsi": "Mampu melakukan penelitian ilmiah dalam bidang ilmu hadis"
+						},
+						{
+							"judul": "Bahasa Arab",
+							"deskripsi": "Menguasai bahasa Arab untuk memahami teks-teks hadis original"
+						}
+					],
+					"kurikulum_pengantar": "Kurikulum dirancang untuk menghasilkan lulusan yang kompeten dalam bidang ilmu hadis dengan total 144 SKS.",
+					"kurikulum": [
+						{
+							"semester": "Semester 1",
+							"total_sks": 19,
+							"fokus": "Dasar Keilmuan Islam & Bahasa Arab",
+							"mata_kuliah": "Pancasila dan Kewarganegaraan | 3\nBahasa Indonesia | 2\nIlmu Tauhid | 2\nFiqih Ibadah | 2\nUlumul Quran | 2\nPengantar Ilmu Hadis | 2\nIlmu Nahwu | 2\nHadis Ilmu | 2\nHadis Thaharah | 2"
+						},
+						{
+							"semester": "Semester 3",
+							"total_sks": 24,
+							"fokus": "Pendalaman Ilmu Hadis & Metodologi",
+							"mata_kuliah": "Ulumul Hadits 3 | 2\nTakhrij Hadits 1 | 2\nIlmu Ma'ajim | 2\nTadwin Sunnah 1 | 2\nHadits 3 | 2\nUshul Tafsir | 2\nTafsir 3 | 2\nUshul Fiqih | 2\nHadits Ahkam 3 | 2\nFiqih 3 | 2\nKepersisan | 2"
+						},
+						{
+							"semester": "Semester 5",
+							"total_sks": 24,
+							"fokus": "Spesialisasi & Penelitian Hadis",
+							"mata_kuliah": "Sejarah dan Perkembangan Hadits di Indonesia | 2\nDigitalisasi Hadits | 2\nModel-Model Penelitian Hadits | 2\nInkar Sunnah | 2\nHadits dan Isu-isu Kontemporer | 2\nHermeneutika dan Al-Quran | 2\nIlmu Jarh Ta'dil 1 | 2\nHadits Ahkam 5 | 2\nMetode Kritik Matan | 2\nHadits 5 | 2"
+						},
+						{
+							"semester": "Semester 7",
+							"total_sks": 10,
+							"fokus": "Ujian Komprehensif & Praktek Profesi",
+							"mata_kuliah": "Ujian Komprehensif | 2\nMetodologi Penelitian Mahasiswa (MPM) | 4\nPPL/Praktek Profesi | 4"
+						}
+					],
+					"fasilitas_pengantar": "Didukung oleh fasilitas modern untuk menunjang pembelajaran dan penelitian mahasiswa.",
+					"fasilitas": [
+						{
+							"ikon": "fa-desktop",
+							"judul": "Lab Digital Hadis",
+							"item": "Software Maktabah Syamilah\nAkses Database Hadis Online\nKomputer & Internet"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Perpustakaan Khusus",
+							"item": "Koleksi 500+ Kitab Hadis\nJurnal Nasional & Internasional\nE-Library 24/7"
+						},
+						{
+							"ikon": "fa-flask",
+							"judul": "Lab Penelitian",
+							"item": "Ruang Diskusi Kelompok\nSoftware Analisis Data\nBimbingan Penelitian"
+						},
+						{
+							"ikon": "fa-language",
+							"judul": "Lab Bahasa Arab",
+							"item": "Multimedia Learning\nNative Speaker\nConversation Practice"
+						}
+					],
+					"karir_pengantar": "Lulusan Program Studi Ilmu Hadis memiliki peluang karir yang luas di berbagai sektor.",
+					"karir": [
+						{
+							"ikon": "fa-university",
+							"judul": "Akademisi & Pendidikan",
+							"item": "Dosen Ilmu Hadis\nGuru PAI\nPeneliti Hadis\nAsisten Riset"
+						},
+						{
+							"ikon": "fa-institution",
+							"judul": "Lembaga Keagamaan",
+							"item": "Mubaligh & Da'i\nKonsultan Syariah\nPengurus Masjid\nLembaga Dakwah"
+						},
+						{
+							"ikon": "fa-university",
+							"judul": "Pemerintahan",
+							"item": "Kementerian Agama\nMUI (Majelis Ulama)\nBAZNAS\nKantor Urusan Agama"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Media & Publikasi",
+							"item": "Penulis Buku Islam\nEditor Jurnal\nContent Creator\nJurnalis Islami"
+						}
+					],
+					"catatan": [
+						{
+							"ikon": "fa-info-circle",
+							"judul": "Alumni kami",
+							"teks": "telah bekerja di berbagai institusi pendidikan, lembaga penelitian, dan organisasi Islam di seluruh Indonesia.",
+							"letak": "karir"
+						}
+					],
+					"kaprodi_slug": "kaprodi-ilha",
+					"cta_teks": "Daftar sekarang dan jadilah ahli dalam bidang Ilmu Hadis",
+					"judul_seo": "Program Studi Ilmu Hadis (ILHA)",
+					"deskripsi_seo": "Program Studi S1 Ilmu Hadis IAI PERSIS Garut mengkaji sanad dan matan hadis secara mendalam untuk mencetak ahli hadis dan peneliti keislaman.",
+					"catatan_internal": "Total SKS tidak sama dengan jumlah SKS mata kuliah yang tercantum pada: Semester 3 (tertulis 24, jumlah 22), Semester 5 (tertulis 24, jumlah 20). Daftar mata kuliah situs lama hanya memuat semester ganjil."
+				}
+			},
+			{
+				"id": "prodi-iat",
+				"slug": "iat",
+				"status": "published",
+				"data": {
+					"nama": "Ilmu Al-Quran dan Tafsir",
+					"singkatan": "IAT",
+					"jenjang": "S1",
+					"fakultas": "ushuluddin",
+					"urutan": 60,
+					"gelar": "S.Ag.",
+					"lama_studi": 8,
+					"akreditasi": "B (Baik)",
+					"akreditasi_kartu": "B",
+					"gambar": {
+						"$asset": "/images/prodi/iat.jpg",
+						"alt": "Ilmu Al-Quran dan Tafsir"
+					},
+					"gambar_banner": {
+						"$asset": "/images/page-banner-2.jpg",
+						"alt": "Ilmu Al-Quran dan Tafsir"
+					},
+					"warna": "#3498db",
+					"deskripsi_singkat": "Berfokus pada pengkajian dan penelitian Al-Quran sebagai sumber utama ajaran Islam.",
+					"sorotan": "Kajian Tafsir Kontemporer\nMetode Tahfidz\nQira'at Sab'ah",
+					"deskripsi": "Program Studi Ilmu Al-Quran dan Tafsir berfokus pada pengkajian dan penelitian Al-Quran sebagai sumber utama ajaran Islam. Program studi ini mempersiapkan mahasiswa untuk menjadi ahli dalam bidang Al-Quran dan tafsir yang mampu memahami, meneliti, dan mengembangkan kajian Al-Quran secara komprehensif.",
+					"profil_lulusan": [
+						{
+							"ikon": "fa-search",
+							"judul": "Peneliti Al-Quran & Tafsir",
+							"deskripsi": "Ahli dalam riset dan kajian tafsir"
+						},
+						{
+							"ikon": "fa-graduation-cap",
+							"judul": "Akademisi",
+							"deskripsi": "Dosen dan pengajar ilmu Al-Quran dan tafsir"
+						},
+						{
+							"ikon": "fa-institution",
+							"judul": "Da&apos;i & Mubaligh",
+							"deskripsi": "Penyebar ajaran Islam berbasis Al-Quran"
+						},
+						{
+							"ikon": "fa-user",
+							"judul": "Konsultan Keagamaan",
+							"deskripsi": "Ahli konsultasi tafsir dan pemahaman Al-Quran"
+						}
+					],
+					"kompetensi": [
+						{
+							"judul": "Penguasaan Ilmu Al-Quran dan Tafsir",
+							"deskripsi": "Mampu memahami dan menganalisis ayat Al-Quran dengan metodologi tafsir yang tepat"
+						},
+						{
+							"judul": "Metodologi Tafsir",
+							"deskripsi": "Menguasai berbagai metode penafsiran Al-Quran klasik dan kontemporer"
+						},
+						{
+							"judul": "Penelitian Tafsir",
+							"deskripsi": "Mampu melakukan penelitian ilmiah dalam bidang ilmu Al-Quran dan tafsir"
+						},
+						{
+							"judul": "Bahasa Arab",
+							"deskripsi": "Menguasai bahasa Arab untuk memahami teks Al-Quran dan tafsir original"
+						}
+					],
+					"kurikulum_pengantar": "Kurikulum dirancang untuk menghasilkan lulusan yang kompeten dalam bidang ilmu Al-Quran dan tafsir dengan total 144 SKS.",
+					"kurikulum": [
+						{
+							"semester": "Semester 1",
+							"total_sks": 19,
+							"fokus": "Dasar Keilmuan Islam & Bahasa Arab",
+							"mata_kuliah": "Pancasila dan Kewarganegaraan | 3\nBahasa Indonesia | 2\nIlmu Tauhid | 2\nFiqih Ibadah | 2\nUlumul Quran | 2\nPengantar Ilmu Al-Quran dan Tafsir | 2\nIlmu Nahwu | 2\nIlmu Qiraat | 2\nSejarah Turunnya Al-Quran | 2"
+						},
+						{
+							"semester": "Semester 3",
+							"total_sks": 24,
+							"fokus": "Pendalaman Ilmu Al-Quran dan Tafsir & Metodologi",
+							"mata_kuliah": "Ulumul Quran 3 | 2\nIlmu Rasm Al-Quran | 2\nIlmu I'jaz Al-Quran | 2\nKaidah Tafsir | 2\nTafsir Tahlili 1 | 2\nUshul Tafsir | 2\nTafsir 3 | 2\nUshul Fiqih | 2\nIlmu Asbab Nuzul | 2\nFiqih 3 | 2\nKepersisan | 2"
+						},
+						{
+							"semester": "Semester 5",
+							"total_sks": 24,
+							"fokus": "Spesialisasi & Penelitian Tafsir",
+							"mata_kuliah": "Sejarah dan Perkembangan Tafsir di Indonesia | 2\nDigitalisasi Kajian Al-Quran | 2\nModel-Model Penelitian Tafsir | 2\nTafsir Maudhu'i | 2\nIsu-isu Kontemporer dalam Tafsir | 2\nHermeneutika Al-Quran | 2\nIlmu Munasabah Al-Quran | 2\nTafsir Ahkam | 2\nMetode Kritik Tafsir | 2\nTafsir 5 | 2"
+						},
+						{
+							"semester": "Semester 7",
+							"total_sks": 10,
+							"fokus": "Ujian Komprehensif & Praktek Profesi",
+							"mata_kuliah": "Ujian Komprehensif | 2\nMetodologi Penelitian Mahasiswa (MPM) | 4\nPPL/Praktek Profesi | 4"
+						}
+					],
+					"fasilitas_pengantar": "Didukung oleh fasilitas modern untuk menunjang pembelajaran dan penelitian mahasiswa.",
+					"fasilitas": [
+						{
+							"ikon": "fa-desktop",
+							"judul": "Lab Digital Al-Quran",
+							"item": "Software Maktabah Syamilah\nAkses Database Tafsir Online\nKomputer & Internet"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Perpustakaan Khusus",
+							"item": "Koleksi Kitab Tafsir & Ulumul Quran\nJurnal Nasional & Internasional\nE-Library 24/7"
+						},
+						{
+							"ikon": "fa-flask",
+							"judul": "Lab Penelitian",
+							"item": "Ruang Diskusi Kelompok\nSoftware Analisis Data\nBimbingan Penelitian"
+						},
+						{
+							"ikon": "fa-language",
+							"judul": "Lab Bahasa Arab & Tahfidz",
+							"item": "Multimedia Learning\nPembinaan Tahfidz Al-Quran\nConversation Practice"
+						}
+					],
+					"karir_pengantar": "Lulusan Program Studi Ilmu Al-Quran dan Tafsir memiliki peluang karir yang luas di berbagai sektor.",
+					"karir": [
+						{
+							"ikon": "fa-university",
+							"judul": "Akademisi & Pendidikan",
+							"item": "Dosen Ilmu Al-Quran dan Tafsir\nGuru PAI\nPeneliti Tafsir\nAsisten Riset"
+						},
+						{
+							"ikon": "fa-institution",
+							"judul": "Lembaga Keagamaan",
+							"item": "Mubaligh & Da'i\nKonsultan Tafsir\nPengurus Masjid\nLembaga Dakwah"
+						},
+						{
+							"ikon": "fa-university",
+							"judul": "Pemerintahan",
+							"item": "Kementerian Agama\nMUI (Majelis Ulama)\nBAZNAS\nKantor Urusan Agama"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Media & Publikasi",
+							"item": "Penulis Buku Tafsir\nEditor Jurnal\nContent Creator\nJurnalis Islami"
+						}
+					],
+					"catatan": [
+						{
+							"ikon": "fa-info-circle",
+							"judul": "Alumni kami",
+							"teks": "telah bekerja di berbagai institusi pendidikan, lembaga penelitian, dan organisasi Islam di seluruh Indonesia.",
+							"letak": "karir"
+						}
+					],
+					"kaprodi_slug": "kaprodi-iat",
+					"cta_teks": "Daftar sekarang dan jadilah ahli dalam bidang Ilmu Al-Quran dan Tafsir",
+					"judul_seo": "Program Studi Ilmu Al-Qur'an dan Tafsir (IAT)",
+					"deskripsi_seo": "Program Studi S1 Ilmu Al-Qur'an dan Tafsir IAI PERSIS Garut mencetak ahli tafsir dan pengkaji Al-Qur'an yang kompeten dan berakhlak mulia.",
+					"catatan_internal": "DRAFT: kurikulum/fasilitas/kompetensi/karir di bawah ini bersifat generik (pola umum prodi Ilmu Al-Quran dan Tafsir PTAI, diadaptasi dari struktur Ilmu Hadis), BUKAN data resmi kampus. Wajib direview & diganti dengan data kurikulum asli sebelum publish.\n\nBanner & breadcrumb situs lama keliru menulis \"Ilmu Aqidah dan Tafsir\"; nama yang dipakai: Ilmu Al-Quran dan Tafsir. Gambar banner situs lama (page-banner-2) ditandai \"Ganti dengan gambar yang sesuai\".\n\nTotal SKS tidak sama dengan jumlah SKS mata kuliah yang tercantum pada: Semester 3 (tertulis 24, jumlah 22), Semester 5 (tertulis 24, jumlah 20). Daftar mata kuliah situs lama hanya memuat semester ganjil."
+				}
+			},
+			{
+				"id": "prodi-spi",
+				"slug": "spi",
+				"status": "published",
+				"data": {
+					"nama": "Sejarah Peradaban Islam",
+					"singkatan": "SPI",
+					"jenjang": "S1",
+					"fakultas": "ushuluddin",
+					"urutan": 70,
+					"gelar": "S.Hum.",
+					"lama_studi": 8,
+					"akreditasi": "B (Baik)",
+					"akreditasi_kartu": "B",
+					"gambar": {
+						"$asset": "/images/prodi/iat.jpg",
+						"alt": "Sejarah Peradaban Islam"
+					},
+					"warna": "#8e44ad",
+					"deskripsi_singkat": "Mengkaji perkembangan sejarah, pemikiran, dan kebudayaan Islam dari masa klasik hingga kontemporer.",
+					"sorotan": "Historiografi Islam\nKajian Manuskrip\nRiset Peradaban",
+					"deskripsi": "Program Studi Sejarah Peradaban Islam mengkaji perkembangan sejarah, pemikiran, dan kebudayaan Islam dari masa klasik hingga kontemporer. Program studi ini mempersiapkan mahasiswa untuk menjadi ahli dalam bidang sejarah dan peradaban Islam yang mampu memahami, meneliti, dan mengembangkan kajian sejarah Islam secara komprehensif.",
+					"profil_lulusan": [
+						{
+							"ikon": "fa-book",
+							"judul": "Sejarawan Islam",
+							"deskripsi": "Ahli dalam riset dan penulisan sejarah peradaban Islam"
+						},
+						{
+							"ikon": "fa-university",
+							"judul": "Kurator Museum/Arsip",
+							"deskripsi": "Mengelola koleksi sejarah dan budaya Islam"
+						},
+						{
+							"ikon": "fa-graduation-cap",
+							"judul": "Guru Sejarah Kebudayaan Islam",
+							"deskripsi": "Mengajar SKI di sekolah/madrasah"
+						},
+						{
+							"ikon": "fa-search",
+							"judul": "Peneliti Peradaban Islam",
+							"deskripsi": "Mengkaji perkembangan peradaban dan pemikiran Islam"
+						}
+					],
+					"kompetensi": [
+						{
+							"judul": "Penguasaan Historiografi Islam",
+							"deskripsi": "Mampu menganalisis sumber dan penulisan sejarah Islam secara ilmiah"
+						},
+						{
+							"judul": "Metodologi Penelitian Sejarah",
+							"deskripsi": "Menguasai metode penelitian sejarah dan kajian sumber primer"
+						},
+						{
+							"judul": "Penelitian Peradaban Islam",
+							"deskripsi": "Mampu melakukan penelitian ilmiah dalam bidang sejarah dan peradaban Islam"
+						},
+						{
+							"judul": "Bahasa Arab",
+							"deskripsi": "Menguasai bahasa Arab untuk memahami sumber sejarah dan manuskrip klasik"
+						}
+					],
+					"kurikulum_pengantar": "Kurikulum dirancang untuk menghasilkan lulusan yang kompeten dalam bidang sejarah peradaban Islam dengan total 144 SKS.",
+					"kurikulum": [
+						{
+							"semester": "Semester 1",
+							"total_sks": 19,
+							"fokus": "Dasar Keilmuan Islam & Sejarah",
+							"mata_kuliah": "Pancasila dan Kewarganegaraan | 3\nBahasa Indonesia | 2\nIlmu Tauhid | 2\nFiqih Ibadah | 2\nUlumul Quran | 2\nPengantar Sejarah Peradaban Islam | 2\nIlmu Nahwu | 2\nHistoriografi Islam | 2\nSejarah Arab Pra-Islam | 2"
+						},
+						{
+							"semester": "Semester 3",
+							"total_sks": 24,
+							"fokus": "Pendalaman Sejarah Peradaban Islam & Metodologi",
+							"mata_kuliah": "Sejarah Islam Klasik | 2\nSejarah Islam Pertengahan | 2\nSejarah Islam Modern | 2\nMetodologi Sejarah | 2\nArkeologi Islam | 2\nUshul Fiqih | 2\nPeradaban Islam di Nusantara | 2\nKepersisan | 2\nSejarah Kebudayaan Arab | 2\nBahasa Inggris Sejarah | 2\nFilsafat Sejarah | 2"
+						},
+						{
+							"semester": "Semester 5",
+							"total_sks": 24,
+							"fokus": "Spesialisasi & Penelitian Peradaban Islam",
+							"mata_kuliah": "Sejarah Dinasti Islam | 2\nSejarah Pemikiran Islam | 2\nMetodologi Penelitian Sejarah | 2\nSejarah Islam Kontemporer | 2\nDiplomatik & Paleografi Islam | 2\nManuskrip & Naskah Kuno | 2\nMuseologi Islam | 2\nSejarah Peradaban Islam di Indonesia | 2\nKajian Warisan Budaya Islam | 2\nSejarah Sosial Politik Islam | 2"
+						},
+						{
+							"semester": "Semester 7",
+							"total_sks": 10,
+							"fokus": "Ujian Komprehensif & Praktek Profesi",
+							"mata_kuliah": "Ujian Komprehensif | 2\nMetodologi Penelitian Mahasiswa (MPM) | 4\nPPL/Praktek Profesi | 4"
+						}
+					],
+					"fasilitas_pengantar": "Didukung oleh fasilitas modern untuk menunjang pembelajaran dan penelitian mahasiswa.",
+					"fasilitas": [
+						{
+							"ikon": "fa-university",
+							"judul": "Lab Sejarah & Arkeologi",
+							"item": "Koleksi Replika Artefak Islam\nAlat Dokumentasi Lapangan\nSoftware Analisis Sumber Sejarah"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Perpustakaan Khusus",
+							"item": "Koleksi Manuskrip & Naskah Kuno\nJurnal Nasional & Internasional\nE-Library 24/7"
+						},
+						{
+							"ikon": "fa-flask",
+							"judul": "Lab Penelitian",
+							"item": "Ruang Diskusi Kelompok\nSoftware Analisis Data\nBimbingan Penelitian"
+						},
+						{
+							"ikon": "fa-map",
+							"judul": "Ruang Kajian Peradaban",
+							"item": "Koleksi Peta Sejarah Islam\nMultimedia Dokumenter\nDiskusi Kelompok Kajian"
+						}
+					],
+					"karir_pengantar": "Lulusan Program Studi Sejarah Peradaban Islam memiliki peluang karir yang luas di berbagai sektor.",
+					"karir": [
+						{
+							"ikon": "fa-university",
+							"judul": "Akademisi & Pendidikan",
+							"item": "Dosen Sejarah Peradaban Islam\nGuru Sejarah Kebudayaan Islam\nPeneliti Sejarah\nAsisten Riset"
+						},
+						{
+							"ikon": "fa-archive",
+							"judul": "Warisan Budaya & Kearsipan",
+							"item": "Kurator Museum Islam\nArsiparis\nPengelola Cagar Budaya\nKonservator Naskah Kuno"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Media & Publikasi",
+							"item": "Penulis Buku Sejarah\nEditor Jurnal Sejarah\nContent Creator Sejarah Islam\nJurnalis Budaya"
+						},
+						{
+							"ikon": "fa-university",
+							"judul": "Pemerintahan & Lembaga",
+							"item": "Kementerian Agama\nKementerian Kebudayaan\nLembaga Kearsipan Nasional\nLembaga Kajian Islam"
+						}
+					],
+					"catatan": [
+						{
+							"ikon": "fa-info-circle",
+							"judul": "Alumni kami",
+							"teks": "telah bekerja di berbagai institusi pendidikan, lembaga penelitian, dan organisasi Islam di seluruh Indonesia.",
+							"letak": "karir"
+						}
+					],
+					"kaprodi_slug": "kaprodi-spi",
+					"cta_teks": "Daftar sekarang dan jadilah ahli dalam bidang Sejarah Peradaban Islam",
+					"judul_seo": "Program Studi Sejarah Peradaban Islam (SPI)",
+					"deskripsi_seo": "Program Studi S1 Sejarah Peradaban Islam IAI PERSIS Garut mengkaji sejarah dan peradaban Islam untuk mencetak sejarawan dan peneliti profesional.",
+					"catatan_internal": "DRAFT: seluruh konten di bawah ini (kurikulum, fasilitas, kompetensi, karir, gelar) bersifat generik (pola umum prodi Sejarah Peradaban Islam PTAI), BUKAN data resmi kampus. Wajib direview & diganti dengan data asli sebelum publish.\n\nDRAFT (halaman /fakultas situs lama): status akreditasi PBA & SPI belum diverifikasi, cek ulang sebelum publish.\n\nTotal SKS tidak sama dengan jumlah SKS mata kuliah yang tercantum pada: Semester 3 (tertulis 24, jumlah 22), Semester 5 (tertulis 24, jumlah 20). Daftar mata kuliah situs lama hanya memuat semester ganjil."
+				}
+			},
+			{
+				"id": "prodi-ekosy",
+				"slug": "ekosy",
+				"status": "published",
+				"data": {
+					"nama": "Ekonomi Syariah",
+					"singkatan": "EKOSY",
+					"jenjang": "S1",
+					"fakultas": "ekonomi",
+					"urutan": 80,
+					"gelar": "S.E.",
+					"lama_studi": 8,
+					"akreditasi": "B (Baik)",
+					"akreditasi_kartu": "B",
+					"gambar": {
+						"$asset": "/images/prodi/ilha.jpg",
+						"alt": "Ekonomi Syariah"
+					},
+					"warna": "#e67e22",
+					"deskripsi_singkat": "Mempersiapkan profesional dalam bidang ekonomi berbasis prinsip-prinsip syariah dengan pemahaman mendalam tentang teori ekonomi Islam dan aplikasinya.",
+					"sorotan": "Perbankan Syariah\nPasar Modal Syariah\nEkonomi Makro Islam",
+					"deskripsi": "Program Studi Ekonomi Syariah mempersiapkan profesional dalam bidang ekonomi berbasis prinsip-prinsip syariah, dengan pemahaman mendalam tentang teori ekonomi Islam dan aplikasinya. Program studi ini mempersiapkan mahasiswa untuk menjadi ahli dalam bidang ekonomi syariah yang mampu memahami, menganalisis, dan mengembangkan praktik ekonomi Islam secara komprehensif.",
+					"profil_lulusan": [
+						{
+							"ikon": "fa-university",
+							"judul": "Praktisi Perbankan Syariah",
+							"deskripsi": "Ahli dalam operasional dan layanan bank syariah"
+						},
+						{
+							"ikon": "fa-line-chart",
+							"judul": "Analis Keuangan Syariah",
+							"deskripsi": "Menilai kelayakan dan risiko keuangan berbasis syariah"
+						},
+						{
+							"ikon": "fa-lightbulb-o",
+							"judul": "Wirausahawan Syariah",
+							"deskripsi": "Membangun bisnis berbasis prinsip syariah"
+						},
+						{
+							"ikon": "fa-search",
+							"judul": "Peneliti Ekonomi Islam",
+							"deskripsi": "Mengkaji isu ekonomi dan keuangan Islam kontemporer"
+						}
+					],
+					"kompetensi": [
+						{
+							"judul": "Penguasaan Ekonomi Syariah",
+							"deskripsi": "Mampu memahami dan menerapkan prinsip ekonomi Islam dalam praktik"
+						},
+						{
+							"judul": "Analisis Keuangan Syariah",
+							"deskripsi": "Menguasai analisis laporan keuangan berbasis prinsip syariah"
+						},
+						{
+							"judul": "Penelitian Ekonomi",
+							"deskripsi": "Mampu melakukan penelitian ilmiah dalam bidang ekonomi syariah"
+						},
+						{
+							"judul": "Fiqih Muamalah",
+							"deskripsi": "Menguasai landasan fiqih untuk transaksi ekonomi dan bisnis"
+						}
+					],
+					"kurikulum_pengantar": "Kurikulum dirancang untuk menghasilkan lulusan yang kompeten dalam bidang ekonomi syariah dengan total 144 SKS.",
+					"kurikulum": [
+						{
+							"semester": "Semester 1",
+							"total_sks": 19,
+							"fokus": "Dasar Keilmuan Islam & Ekonomi",
+							"mata_kuliah": "Pancasila dan Kewarganegaraan | 3\nBahasa Indonesia | 2\nIlmu Tauhid | 2\nFiqih Ibadah | 2\nUlumul Quran | 2\nPengantar Ekonomi Syariah | 2\nPengantar Ilmu Ekonomi | 2\nMatematika Ekonomi | 2\nBahasa Arab | 2"
+						},
+						{
+							"semester": "Semester 3",
+							"total_sks": 24,
+							"fokus": "Pendalaman Ekonomi Syariah & Metodologi",
+							"mata_kuliah": "Ekonomi Mikro Islam | 2\nEkonomi Makro Islam | 2\nFiqih Muamalah | 2\nAkuntansi Syariah 1 | 2\nManajemen Keuangan | 2\nStatistik Ekonomi | 2\nUshul Fiqih | 2\nHukum Bisnis Syariah | 2\nKepersisan | 2\nBahasa Inggris Ekonomi | 2\nPengantar Bisnis | 2"
+						},
+						{
+							"semester": "Semester 5",
+							"total_sks": 24,
+							"fokus": "Spesialisasi & Penelitian Ekonomi Syariah",
+							"mata_kuliah": "Perbankan Syariah | 2\nManajemen Zakat & Wakaf | 2\nEkonometrika | 2\nKewirausahaan Syariah | 2\nPasar Modal Syariah | 2\nAkuntansi Syariah 2 | 2\nMetodologi Penelitian Ekonomi | 2\nAnalisis Laporan Keuangan Syariah | 2\nFiqih Muamalah Kontemporer | 2\nManajemen Risiko Syariah | 2"
+						},
+						{
+							"semester": "Semester 7",
+							"total_sks": 10,
+							"fokus": "Ujian Komprehensif & Praktek Profesi",
+							"mata_kuliah": "Ujian Komprehensif | 2\nMetodologi Penelitian Mahasiswa (MPM) | 4\nPPL/Praktek Profesi | 4"
+						}
+					],
+					"fasilitas_pengantar": "Didukung oleh fasilitas modern untuk menunjang pembelajaran dan penelitian mahasiswa.",
+					"fasilitas": [
+						{
+							"ikon": "fa-desktop",
+							"judul": "Lab Komputer Akuntansi",
+							"item": "Software Akuntansi Syariah\nSimulasi Aplikasi Perbankan\nKomputer & Internet"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Perpustakaan Khusus",
+							"item": "Koleksi Buku Ekonomi Islam\nJurnal Nasional & Internasional\nE-Library 24/7"
+						},
+						{
+							"ikon": "fa-flask",
+							"judul": "Lab Penelitian",
+							"item": "Ruang Diskusi Kelompok\nSoftware Analisis Data (SPSS/Eviews)\nBimbingan Penelitian"
+						},
+						{
+							"ikon": "fa-university",
+							"judul": "Bank Mini Syariah",
+							"item": "Simulasi Transaksi Perbankan\nPraktik Layanan Nasabah\nSistem Informasi Perbankan"
+						}
+					],
+					"karir_pengantar": "Lulusan Program Studi Ekonomi Syariah memiliki peluang karir yang luas di berbagai sektor.",
+					"karir": [
+						{
+							"ikon": "fa-university",
+							"judul": "Perbankan & Keuangan",
+							"item": "Staf Bank Syariah\nAnalis Kredit Syariah\nAccount Officer\nCustomer Service Bank Syariah"
+						},
+						{
+							"ikon": "fa-handshake-o",
+							"judul": "Lembaga Keuangan Syariah",
+							"item": "Staf Asuransi Syariah\nPengelola BMT/Koperasi Syariah\nKonsultan Keuangan Syariah\nStaf Pegadaian Syariah"
+						},
+						{
+							"ikon": "fa-university",
+							"judul": "Pemerintahan & Regulator",
+							"item": "Kementerian Agama\nOtoritas Jasa Keuangan (OJK)\nBAZNAS\nDinas Koperasi & UKM"
+						},
+						{
+							"ikon": "fa-lightbulb-o",
+							"judul": "Akademisi & Wirausaha",
+							"item": "Dosen Ekonomi Syariah\nPeneliti Ekonomi Islam\nWirausahawan Syariah\nKonsultan Bisnis Syariah"
+						}
+					],
+					"catatan": [
+						{
+							"ikon": "fa-info-circle",
+							"judul": "Alumni kami",
+							"teks": "telah bekerja di berbagai institusi pendidikan, lembaga penelitian, dan organisasi Islam di seluruh Indonesia.",
+							"letak": "karir"
+						}
+					],
+					"kaprodi_slug": "kaprodi-ekosy",
+					"cta_teks": "Daftar sekarang dan jadilah ahli dalam bidang Ekonomi Syariah",
+					"judul_seo": "Program Studi Ekonomi Syariah",
+					"deskripsi_seo": "Program Studi S1 Ekonomi Syariah IAI PERSIS Garut mencetak praktisi dan analis ekonomi syariah yang kompeten untuk industri keuangan Islam.",
+					"catatan_internal": "DRAFT: kurikulum/fasilitas/kompetensi/karir di bawah ini bersifat generik (pola umum prodi Ekonomi Syariah PTAI), BUKAN data resmi kampus. Wajib direview & diganti dengan data kurikulum asli sebelum publish.\n\nTotal SKS tidak sama dengan jumlah SKS mata kuliah yang tercantum pada: Semester 3 (tertulis 24, jumlah 22), Semester 5 (tertulis 24, jumlah 20). Daftar mata kuliah situs lama hanya memuat semester ganjil."
+				}
+			},
+			{
+				"id": "prodi-mks",
+				"slug": "mks",
+				"status": "published",
+				"data": {
+					"nama": "Manajemen Keuangan Syariah",
+					"singkatan": "MKS",
+					"jenjang": "S1",
+					"fakultas": "ekonomi",
+					"urutan": 90,
+					"gelar": "S.E.",
+					"lama_studi": 8,
+					"akreditasi": "B (Baik)",
+					"akreditasi_kartu": "B",
+					"gambar": {
+						"$asset": "/images/prodi/iat.jpg",
+						"alt": "Manajemen Keuangan Syariah"
+					},
+					"warna": "#f39c12",
+					"deskripsi_singkat": "Fokus pada pengembangan kompetensi dalam pengelolaan keuangan berbasis syariah, perbankan syariah, dan lembaga keuangan syariah.",
+					"sorotan": "Manajemen Investasi\nKeuangan Syariah\nAkuntansi Syariah",
+					"deskripsi": "Program Studi Manajemen Keuangan Syariah fokus pada pengembangan kompetensi dalam pengelolaan keuangan berbasis syariah, perbankan syariah, dan lembaga keuangan syariah. Program studi ini mempersiapkan mahasiswa untuk menjadi ahli dalam bidang manajemen keuangan syariah yang mampu memahami, mengelola, dan mengembangkan praktik keuangan Islam secara komprehensif.",
+					"profil_lulusan": [
+						{
+							"ikon": "fa-money",
+							"judul": "Manajer Keuangan Syariah",
+							"deskripsi": "Mengelola arus kas dan investasi berbasis syariah"
+						},
+						{
+							"ikon": "fa-line-chart",
+							"judul": "Analis Investasi Syariah",
+							"deskripsi": "Menilai kelayakan produk investasi syariah"
+						},
+						{
+							"ikon": "fa-university",
+							"judul": "Praktisi Perbankan Syariah",
+							"deskripsi": "Ahli operasional bank dan lembaga keuangan syariah"
+						},
+						{
+							"ikon": "fa-user",
+							"judul": "Konsultan Keuangan Syariah",
+							"deskripsi": "Memberi layanan konsultasi pengelolaan keuangan Islami"
+						}
+					],
+					"kompetensi": [
+						{
+							"judul": "Penguasaan Manajemen Keuangan Syariah",
+							"deskripsi": "Mampu mengelola keuangan sesuai prinsip syariah secara profesional"
+						},
+						{
+							"judul": "Analisis Investasi Syariah",
+							"deskripsi": "Menguasai penilaian risiko dan kelayakan investasi syariah"
+						},
+						{
+							"judul": "Penelitian Keuangan",
+							"deskripsi": "Mampu melakukan penelitian ilmiah dalam bidang keuangan syariah"
+						},
+						{
+							"judul": "Manajemen Risiko Syariah",
+							"deskripsi": "Menguasai identifikasi dan mitigasi risiko keuangan syariah"
+						}
+					],
+					"kurikulum_pengantar": "Kurikulum dirancang untuk menghasilkan lulusan yang kompeten dalam bidang manajemen keuangan syariah dengan total 144 SKS.",
+					"kurikulum": [
+						{
+							"semester": "Semester 1",
+							"total_sks": 19,
+							"fokus": "Dasar Keilmuan Islam & Manajemen",
+							"mata_kuliah": "Pancasila dan Kewarganegaraan | 3\nBahasa Indonesia | 2\nIlmu Tauhid | 2\nFiqih Ibadah | 2\nUlumul Quran | 2\nPengantar Manajemen Keuangan Syariah | 2\nPengantar Akuntansi | 2\nMatematika Keuangan | 2\nBahasa Arab | 2"
+						},
+						{
+							"semester": "Semester 3",
+							"total_sks": 24,
+							"fokus": "Pendalaman Manajemen Keuangan Syariah & Metodologi",
+							"mata_kuliah": "Manajemen Keuangan Syariah 1 | 2\nFiqih Muamalah | 2\nAkuntansi Keuangan Syariah | 2\nPerbankan Syariah | 2\nStatistik Keuangan | 2\nUshul Fiqih | 2\nManajemen Investasi Syariah | 2\nKepersisan | 2\nHukum Perbankan Syariah | 2\nBahasa Inggris Bisnis | 2\nEkonomi Moneter Islam | 2"
+						},
+						{
+							"semester": "Semester 5",
+							"total_sks": 24,
+							"fokus": "Spesialisasi & Penelitian Keuangan Syariah",
+							"mata_kuliah": "Manajemen Risiko Keuangan Syariah | 2\nAnalisis Kredit Syariah | 2\nTreasury & Cash Management Syariah | 2\nPasar Modal Syariah | 2\nManajemen Investasi Lanjutan | 2\nAudit Keuangan Syariah | 2\nMetodologi Penelitian Keuangan | 2\nFintech Syariah | 2\nPerencanaan Keuangan Syariah | 2\nEtika Bisnis Islam | 2"
+						},
+						{
+							"semester": "Semester 7",
+							"total_sks": 10,
+							"fokus": "Ujian Komprehensif & Praktek Profesi",
+							"mata_kuliah": "Ujian Komprehensif | 2\nMetodologi Penelitian Mahasiswa (MPM) | 4\nPPL/Praktek Profesi | 4"
+						}
+					],
+					"fasilitas_pengantar": "Didukung oleh fasilitas modern untuk menunjang pembelajaran dan penelitian mahasiswa.",
+					"fasilitas": [
+						{
+							"ikon": "fa-desktop",
+							"judul": "Lab Simulasi Perbankan",
+							"item": "Software Core Banking Simulasi\nPraktik Teller & Customer Service\nKomputer & Internet"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Perpustakaan Khusus",
+							"item": "Koleksi Buku Manajemen Keuangan Islam\nJurnal Nasional & Internasional\nE-Library 24/7"
+						},
+						{
+							"ikon": "fa-flask",
+							"judul": "Lab Penelitian",
+							"item": "Ruang Diskusi Kelompok\nSoftware Analisis Keuangan\nBimbingan Penelitian"
+						},
+						{
+							"ikon": "fa-line-chart",
+							"judul": "Trading Room Syariah",
+							"item": "Simulasi Pasar Modal Syariah\nData Pasar Real-time\nPraktik Analisis Investasi"
+						}
+					],
+					"karir_pengantar": "Lulusan Program Studi Manajemen Keuangan Syariah memiliki peluang karir yang luas di berbagai sektor.",
+					"karir": [
+						{
+							"ikon": "fa-university",
+							"judul": "Perbankan & Lembaga Keuangan",
+							"item": "Staf Manajemen Keuangan Bank Syariah\nAnalis Kredit\nTreasury Officer\nRelationship Manager"
+						},
+						{
+							"ikon": "fa-line-chart",
+							"judul": "Investasi & Pasar Modal",
+							"item": "Analis Investasi Syariah\nManajer Portofolio Syariah\nKonsultan Reksa Dana Syariah\nStaf Sekuritas Syariah"
+						},
+						{
+							"ikon": "fa-building",
+							"judul": "Korporasi & Industri",
+							"item": "Financial Planner\nInternal Auditor Syariah\nStaf Keuangan Perusahaan\nManajer Treasury"
+						},
+						{
+							"ikon": "fa-university",
+							"judul": "Pemerintahan & Regulator",
+							"item": "Otoritas Jasa Keuangan (OJK)\nKementerian Keuangan\nBAZNAS\nDinas Koperasi & UKM"
+						}
+					],
+					"catatan": [
+						{
+							"ikon": "fa-info-circle",
+							"judul": "Alumni kami",
+							"teks": "telah bekerja di berbagai institusi pendidikan, lembaga penelitian, dan organisasi Islam di seluruh Indonesia.",
+							"letak": "karir"
+						}
+					],
+					"kaprodi_slug": "kaprodi-mks",
+					"cta_teks": "Daftar sekarang dan jadilah ahli dalam bidang Manajemen Keuangan Syariah",
+					"judul_seo": "Program Studi Manajemen Keuangan Syariah",
+					"deskripsi_seo": "Program Studi S1 Manajemen Keuangan Syariah IAI PERSIS Garut mencetak manajer keuangan syariah profesional untuk perbankan dan lembaga keuangan Islam.",
+					"catatan_internal": "DRAFT: kurikulum/fasilitas/kompetensi/karir di bawah ini bersifat generik (pola umum prodi Manajemen Keuangan Syariah PTAI), BUKAN data resmi kampus. Wajib direview & diganti dengan data kurikulum asli sebelum publish.\n\nTotal SKS tidak sama dengan jumlah SKS mata kuliah yang tercantum pada: Semester 3 (tertulis 24, jumlah 22), Semester 5 (tertulis 24, jumlah 20). Daftar mata kuliah situs lama hanya memuat semester ganjil."
+				}
+			},
+			{
+				"id": "prodi-mpai",
+				"slug": "mpai",
+				"status": "published",
+				"data": {
+					"nama": "Magister Pendidikan Agama Islam",
+					"singkatan": "MPAI",
+					"jenjang": "S2",
+					"fakultas": "pascasarjana",
+					"urutan": 100,
+					"gelar": "M.Pd.",
+					"lama_studi": 4,
+					"akreditasi": "B (Baik)",
+					"akreditasi_kartu": "B",
+					"gambar": {
+						"$asset": "/images/prodi/ilha.jpg",
+						"alt": "Magister Pendidikan Agama Islam"
+					},
+					"warna": "#006739",
+					"deskripsi_singkat": "Program Magister PAI dirancang untuk menghasilkan ahli dan praktisi pendidikan Islam yang memiliki kedalaman ilmu, kemampuan riset, dan kepemimpinan dalam bidang pendidikan Islam.",
+					"sorotan": "Riset & Publikasi\nKelas Regular & Weekend\nBeasiswa Tersedia",
+					"ringkasan_karir": "Dosen PAI\nPeneliti Pendidikan\nKonsultan Pendidikan\nPengembang Kurikulum",
+					"ringkasan_keunggulan": "Kurikulum Komprehensif\nDosen Berkualitas\nRiset Terstruktur\nJaringan Alumni Luas",
+					"deskripsi": "Program Magister Pendidikan Agama Islam dirancang untuk menghasilkan ahli dan praktisi pendidikan Islam yang memiliki kedalaman ilmu, kemampuan riset, dan kepemimpinan dalam bidang pendidikan Islam. Program ini menggabungkan teori pendidikan modern dengan nilai-nilai Islam autentik.",
+					"profil_lulusan": [
+						{
+							"ikon": "fa-graduation-cap",
+							"judul": "Dosen PAI",
+							"deskripsi": "Pendidik tingkat perguruan tinggi"
+						},
+						{
+							"ikon": "fa-search",
+							"judul": "Peneliti",
+							"deskripsi": "Ahli penelitian pendidikan Islam"
+						},
+						{
+							"ikon": "fa-user",
+							"judul": "Konsultan Pendidikan",
+							"deskripsi": "Ahli konsultasi pendidikan"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Pengembang Kurikulum",
+							"deskripsi": "Ahli pengembangan kurikulum PAI"
+						}
+					],
+					"kompetensi": [
+						{
+							"judul": "Penguasaan Teori Pendidikan Islam",
+							"deskripsi": "Memahami konsep dan teori pendidikan Islam secara mendalam"
+						},
+						{
+							"judul": "Kemampuan Penelitian",
+							"deskripsi": "Mampu melakukan penelitian ilmiah dengan metodologi yang tepat"
+						},
+						{
+							"judul": "Kepemimpinan Pendidikan",
+							"deskripsi": "Memiliki kemampuan memimpin dan mengelola lembaga pendidikan"
+						},
+						{
+							"judul": "Publikasi Ilmiah",
+							"deskripsi": "Mampu menulis dan mempublikasikan karya ilmiah di jurnal nasional/internasional"
+						}
+					],
+					"keunggulan": [
+						{
+							"judul": "Fleksibilitas Waktu",
+							"deskripsi": "Tersedia kelas regular (weekday) dan kelas weekend untuk profesional yang bekerja"
+						},
+						{
+							"judul": "Dosen Berkualitas",
+							"deskripsi": "Dosen berpendidikan doktor (S3) dengan pengalaman riset yang luas"
+						},
+						{
+							"judul": "Beasiswa Tersedia",
+							"deskripsi": "Program beasiswa untuk mahasiswa berprestasi dan kurang mampu"
+						},
+						{
+							"judul": "Jaringan Alumni",
+							"deskripsi": "Akses ke jaringan alumni yang bekerja di berbagai institusi pendidikan"
+						}
+					],
+					"fasilitas_pengantar": "Didukung oleh fasilitas modern untuk menunjang pembelajaran dan penelitian mahasiswa pascasarjana.",
+					"fasilitas": [
+						{
+							"ikon": "fa-book",
+							"judul": "Perpustakaan Pascasarjana",
+							"item": "Koleksi Buku S2\nJurnal Internasional\nDigital Library"
+						},
+						{
+							"ikon": "fa-desktop",
+							"judul": "Lab Penelitian",
+							"item": "Ruang Riset\nSoftware Analisis Data\nBimbingan Penelitian"
+						},
+						{
+							"ikon": "fa-laptop",
+							"judul": "Ruang Kuliah Modern",
+							"item": "Smart Classroom\nAC & Proyektor\nFree WiFi"
+						},
+						{
+							"ikon": "fa-users",
+							"judul": "Diskusi & Seminar",
+							"item": "Ruang Seminar\nForum Diskusi\nKuliah Tamu"
+						}
+					],
+					"karir_pengantar": "Lulusan Magister PAI memiliki peluang karir yang luas di berbagai sektor pendidikan dan penelitian.",
+					"karir": [
+						{
+							"ikon": "fa-university",
+							"judul": "Perguruan Tinggi",
+							"item": "Dosen PAI\nDosen Pendidikan Islam\nAsisten Profesor\nPeneliti Senior"
+						},
+						{
+							"ikon": "fa-search",
+							"judul": "Lembaga Penelitian",
+							"item": "Peneliti Pendidikan\nKonsultan Riset\nAnalis Kebijakan\nEditor Jurnal"
+						},
+						{
+							"ikon": "fa-briefcase",
+							"judul": "Manajemen Pendidikan",
+							"item": "Kepala Sekolah/Madrasah\nPengawas Pendidikan\nKonsultan Pendidikan\nTrainer Professional"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Pengembangan & Penulisan",
+							"item": "Pengembang Kurikulum\nPenulis Buku Pendidikan\nContent Developer\nEditor Materi Ajar"
+						}
+					],
+					"catatan": [
+						{
+							"ikon": "fa-info-circle",
+							"judul": "Alumni kami",
+							"teks": "telah bekerja sebagai dosen, peneliti, dan pemimpin di berbagai perguruan tinggi dan lembaga pendidikan di seluruh Indonesia.",
+							"letak": "karir"
+						}
+					],
+					"kaprodi_slug": "kaprodi-mpai",
+					"cta_teks": "Daftar sekarang dan raih gelar Magister Pendidikan Agama Islam",
+					"judul_seo": "Magister Pendidikan Agama Islam (MPAI)",
+					"deskripsi_seo": "Program Magister Pendidikan Agama Islam IAI PERSIS Garut mencetak akademisi dan praktisi pendidikan Islam tingkat lanjut."
+				}
+			},
+			{
+				"id": "prodi-mih",
+				"slug": "mih",
+				"status": "published",
+				"data": {
+					"nama": "Magister Ilmu Hadis",
+					"singkatan": "MIH",
+					"jenjang": "S2",
+					"fakultas": "pascasarjana",
+					"urutan": 110,
+					"gelar": "M.Ag.",
+					"lama_studi": 4,
+					"akreditasi": "B (Baik)",
+					"akreditasi_kartu": "B",
+					"gambar": {
+						"$asset": "/images/prodi/ilha.jpg",
+						"alt": "Magister Ilmu Hadis"
+					},
+					"warna": "#8e44ad",
+					"deskripsi_singkat": "Program Magister Ilmu Hadis dirancang untuk menghasilkan ahli dan peneliti hadis yang memiliki kedalaman ilmu, kemampuan riset, dan kepakaran dalam kajian hadis Nabi Muhammad SAW secara komprehensif.",
+					"sorotan": "Riset & Publikasi\nKelas Regular & Weekend\nBeasiswa Tersedia",
+					"ringkasan_karir": "Dosen Ilmu Hadis\nPeneliti Hadis\nKonsultan Keagamaan\nPengembang Kajian Hadis",
+					"ringkasan_keunggulan": "Kurikulum Komprehensif\nDosen Berkualitas\nRiset Terstruktur\nJaringan Alumni Luas",
+					"deskripsi": "Program Magister Ilmu Hadis dirancang untuk menghasilkan ahli dan peneliti hadis yang memiliki kedalaman ilmu, kemampuan riset, dan kepakaran dalam kajian hadis Nabi Muhammad SAW secara komprehensif. Program ini menggabungkan metodologi kritik hadis klasik dengan pendekatan penelitian modern.",
+					"profil_lulusan": [
+						{
+							"ikon": "fa-graduation-cap",
+							"judul": "Dosen Ilmu Hadis",
+							"deskripsi": "Pendidik tingkat perguruan tinggi bidang hadis"
+						},
+						{
+							"ikon": "fa-search",
+							"judul": "Peneliti Hadis",
+							"deskripsi": "Ahli penelitian dan kajian hadis lanjutan"
+						},
+						{
+							"ikon": "fa-user",
+							"judul": "Konsultan Keagamaan",
+							"deskripsi": "Ahli konsultasi hadis dan hukum Islam"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Pengembang Kajian Hadis",
+							"deskripsi": "Ahli pengembangan metodologi kajian hadis"
+						}
+					],
+					"kompetensi": [
+						{
+							"judul": "Penguasaan Ilmu Hadis Lanjutan",
+							"deskripsi": "Memahami metodologi kritik hadis secara mendalam dan komprehensif"
+						},
+						{
+							"judul": "Kemampuan Penelitian",
+							"deskripsi": "Mampu melakukan penelitian ilmiah dengan metodologi yang tepat"
+						},
+						{
+							"judul": "Kepakaran Kajian Sanad & Matan",
+							"deskripsi": "Memiliki kemampuan analisis kritis terhadap sanad dan matan hadis"
+						},
+						{
+							"judul": "Publikasi Ilmiah",
+							"deskripsi": "Mampu menulis dan mempublikasikan karya ilmiah di jurnal nasional/internasional"
+						}
+					],
+					"keunggulan": [
+						{
+							"judul": "Fleksibilitas Waktu",
+							"deskripsi": "Tersedia kelas regular (weekday) dan kelas weekend untuk profesional yang bekerja"
+						},
+						{
+							"judul": "Dosen Berkualitas",
+							"deskripsi": "Dosen berpendidikan doktor (S3) dengan pengalaman riset yang luas"
+						},
+						{
+							"judul": "Beasiswa Tersedia",
+							"deskripsi": "Program beasiswa untuk mahasiswa berprestasi dan kurang mampu"
+						},
+						{
+							"judul": "Jaringan Alumni",
+							"deskripsi": "Akses ke jaringan alumni yang bekerja di berbagai institusi pendidikan"
+						}
+					],
+					"fasilitas_pengantar": "Didukung oleh fasilitas modern untuk menunjang pembelajaran dan penelitian mahasiswa pascasarjana.",
+					"fasilitas": [
+						{
+							"ikon": "fa-book",
+							"judul": "Perpustakaan Pascasarjana",
+							"item": "Koleksi Kitab Hadis Klasik\nJurnal Internasional\nDigital Library"
+						},
+						{
+							"ikon": "fa-desktop",
+							"judul": "Lab Penelitian",
+							"item": "Ruang Riset\nSoftware Analisis Data\nBimbingan Penelitian"
+						},
+						{
+							"ikon": "fa-laptop",
+							"judul": "Ruang Kuliah Modern",
+							"item": "Smart Classroom\nAC & Proyektor\nFree WiFi"
+						},
+						{
+							"ikon": "fa-users",
+							"judul": "Diskusi & Seminar",
+							"item": "Ruang Seminar\nForum Diskusi\nKuliah Tamu"
+						}
+					],
+					"karir_pengantar": "Lulusan Magister Ilmu Hadis memiliki peluang karir yang luas di berbagai sektor pendidikan dan penelitian.",
+					"karir": [
+						{
+							"ikon": "fa-university",
+							"judul": "Perguruan Tinggi",
+							"item": "Dosen Ilmu Hadis\nDosen Studi Islam\nAsisten Profesor\nPeneliti Senior"
+						},
+						{
+							"ikon": "fa-search",
+							"judul": "Lembaga Penelitian",
+							"item": "Peneliti Hadis\nKonsultan Riset Keagamaan\nAnalis Kebijakan Keagamaan\nEditor Jurnal"
+						},
+						{
+							"ikon": "fa-institution",
+							"judul": "Lembaga Keagamaan",
+							"item": "Konsultan Hadis\nAnggota Lembaga Fatwa\nPengasuh Pesantren\nTrainer Kajian Hadis"
+						},
+						{
+							"ikon": "fa-book",
+							"judul": "Pengembangan & Penulisan",
+							"item": "Penulis Buku Hadis\nEditor Kitab\nContent Developer Keislaman\nPeneliti Digitalisasi Hadis"
+						}
+					],
+					"catatan": [
+						{
+							"ikon": "fa-info-circle",
+							"judul": "Alumni kami",
+							"teks": "telah bekerja sebagai dosen, peneliti, dan pemimpin di berbagai perguruan tinggi dan lembaga pendidikan di seluruh Indonesia.",
+							"letak": "karir"
+						}
+					],
+					"kaprodi_slug": "kaprodi-mih",
+					"cta_teks": "Daftar sekarang dan raih gelar Magister Ilmu Hadis",
+					"judul_seo": "Magister Ilmu Hadis (MIH)",
+					"deskripsi_seo": "Program Magister Ilmu Hadis IAI PERSIS Garut mencetak peneliti dan akademisi hadis tingkat lanjut dengan kompetensi keilmuan mendalam.",
+					"catatan_internal": "DRAFT: seluruh konten di bawah ini (fasilitas, kompetensi, karir, gelar) bersifat generik (pola umum program Magister Ilmu Hadis PTAI, diadaptasi dari struktur MPAI), BUKAN data resmi kampus. Wajib direview & diganti dengan data asli sebelum publish."
+				}
+			}
+		]
+	}
+}

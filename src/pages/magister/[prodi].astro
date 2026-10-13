@@ -1,0 +1,35 @@
+---
+// Detail prodi S2: /magister/<prodi>.
+import { decodeSlug } from "emdash";
+import Base from "@/layouts/Base.astro";
+import PageBanner from "@/components/layout/PageBanner.astro";
+import ProdiDetail from "@/components/akademik/ProdiDetail.astro";
+import { mediaSrc, useCacheHint } from "@/lib/cms";
+import { getFakultas, getKaprodi, getProdi, kalimatPertama } from "@/lib/akademik";
+
+const slug = decodeSlug(Astro.params.prodi);
+if (!slug) return Astro.rewrite("/404");
+
+const { entry, cacheHint } = await getProdi(slug);
+if (!entry || entry.data.jenjang !== "S2") return Astro.rewrite("/404");
+
+const [fak, kap] = await Promise.all([getFakultas(entry.data.fakultas), getKaprodi(entry.data.kaprodi_slug)]);
+useCacheHint(Astro, cacheHint, fak.cacheHint, kap.cacheHint);
+
+const p = entry.data;
+---
+
+<Base
+	title={p.judul_seo || `${p.nama} (${p.singkatan})`}
+	description={p.deskripsi_seo || p.deskripsi_singkat || kalimatPertama(p.deskripsi)}
+	content={{ collection: "prodi", id: p.id, slug }}
+>
+	<PageBanner
+		title={p.nama}
+		backgroundImage={mediaSrc(p.gambar_banner, "/images/page-banner-1.jpg")}
+		breadcrumbs={[{ text: "Home", url: "/" }, { text: "Magister", url: "/magister" }, { text: p.nama }]}
+	/>
+	<section class="container pt-70 pb-70">
+		<ProdiDetail prodi={entry} fakultas={fak.entry} kaprodi={kap.kaprodi} />
+	</section>
+</Base>

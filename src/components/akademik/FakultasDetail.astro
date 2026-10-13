@@ -1,0 +1,56 @@
+---
+// Isi halaman satu fakultas (S1) atau Program Pascasarjana (/magister):
+// ringkasan, statistik, daftar prodi, visi-misi, dan ajakan mendaftar.
+import { lines } from "@/lib/cms";
+import ProdiKartu from "@/components/akademik/ProdiKartu.astro";
+import type { FakultasEntry, ProdiEntry } from "@/lib/akademik";
+
+interface Props {
+	fakultas: FakultasEntry;
+	prodi: ProdiEntry[];
+}
+
+const { fakultas, prodi } = Astro.props;
+const f = fakultas.data;
+const edit = fakultas.edit ?? {};
+const misi = lines(f.misi);
+const s2 = f.jenjang === "S2";
+---
+
+<article class="fakultas-detail">
+	<header>
+		<h1 {...edit.judul_ringkasan}>{f.judul_ringkasan || f.nama}</h1>
+		{f.deskripsi && <p {...edit.deskripsi}>{f.deskripsi}</p>}
+		<dl>
+			<dt>Program Studi</dt>
+			<dd>{prodi.length}</dd>
+			{f.jumlah_mahasiswa && (<><dt>Mahasiswa</dt><dd {...edit.jumlah_mahasiswa}>{f.jumlah_mahasiswa}</dd></>)}
+			{f.jumlah_dosen && (<><dt>Dosen</dt><dd {...edit.jumlah_dosen}>{f.jumlah_dosen}</dd></>)}
+		</dl>
+	</header>
+
+	<section id="program-studi">
+		<h2>{s2 ? "Pilih Program Magister Anda" : "Pilih Program Studi Anda"}</h2>
+		{prodi.map((p) => <ProdiKartu prodi={p} />)}
+		{prodi.length === 0 && <p class="cms-empty">Belum ada program studi.</p>}
+	</section>
+
+	{
+		(f.visi || misi.length > 0) && (
+			<section id="visi-misi">
+				{f.visi && (<><h2>Visi</h2><p {...edit.visi}>{f.visi}</p></>)}
+				{misi.length > 0 && (<><h2>Misi</h2><ul {...edit.misi}>{misi.map((m) => <li>{m}</li>)}</ul></>)}
+			</section>
+		)
+	}
+
+	{
+		(f.cta_judul || f.cta_teks) && (
+			<footer>
+				{f.cta_judul && <h2 {...edit.cta_judul}>{f.cta_judul}</h2>}
+				{f.cta_teks && <p {...edit.cta_teks}>{f.cta_teks}</p>}
+				<p><a href="/pmb">Daftar Sekarang</a></p>
+			</footer>
+		)
+	}
+</article>
