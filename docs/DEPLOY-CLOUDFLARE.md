@@ -96,7 +96,9 @@ Setiap push ke `main` akan otomatis ter-deploy. Konten di CMS **tidak** ikut ter
 3. Hapus/ubah record `@` dan `www` yang sekarang mengarah ke Vercel.
 4. Aktifkan blok `routes` di `wrangler.jsonc`, lalu `npm run deploy` (atau push ke `main`).
 5. Di admin: **Settings → General → Change domain** ke `https://iaipersisgarut.ac.id`.
-6. Matikan project lama di Vercel setelah semuanya terverifikasi.
+6. Matikan project lama di Vercel setelah semuanya terverifikasi. (`vercel.json` di repo sudah
+   menonaktifkan deploy otomatis Vercel dari Git, jadi situs Vercel lama tetap menyajikan
+   deployment terakhirnya sampai DNS dipindah.)
 
 ## 6. Batasan paket Workers Free
 
