@@ -273,7 +273,7 @@ button {
 	color: var(--hijau-tua);
 }
 .btn-kecil {
-	min-height: 34px;
+	min-height: 40px;
 	padding: 0 16px;
 	font-size: 14px;
 }

@@ -1640,7 +1640,7 @@
 				"status": "published",
 				"data": {
 					"nama": "IAT",
-					"nama_lengkap": "Program Studi Ilmu Al-Quran and Tafsir",
+					"nama_lengkap": "Program Studi Ilmu Al-Qur'an dan Tafsir",
 					"kategori": "prodi",
 					"deskripsi": "Berfokus pada pengkajian dan penelitian Al-Quran sebagai sumber utama ajaran Islam dengan kajian tafsir kontemporer.",
 					"ikon": "fa-file-text-o",
@@ -1650,7 +1650,7 @@
 					"tampil_di_beranda": false,
 					"url": "/fakultas/ushuluddin/iat",
 					"fakultas": "Ushuluddin",
-					"catatan_internal": "Nama lengkap di data lama tertulis \"Ilmu Al-Quran and Tafsir\" (campur bahasa Inggris) — dibiarkan apa adanya, perbaiki bila perlu."
+					"catatan_internal": "Nama lengkap di data lama tertulis \"Ilmu Al-Qur'an dan Tafsir\" (campur bahasa Inggris) — dibiarkan apa adanya, perbaiki bila perlu."
 				}
 			},
 			{
