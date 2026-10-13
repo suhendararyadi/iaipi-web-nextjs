@@ -2,72 +2,239 @@
 // Daftar fakultas sarjana (S1) beserta prodinya. Angka statistik dihitung dari CMS.
 import Base from "@/layouts/Base.astro";
 import PageBanner from "@/components/layout/PageBanner.astro";
-import { mediaSrc, useCacheHint } from "@/lib/cms";
-import { getFakultasList, getProdiList, jumlahkanAngka, modus } from "@/lib/akademik";
+import KepalaSection from "@/components/ui/KepalaSection.astro";
+import PitaStatistik from "@/components/akademik/PitaStatistik.astro";
+import KartuGambar from "@/components/akademik/KartuGambar.astro";
+import AjakanHijau from "@/components/akademik/AjakanHijau.astro";
+import { mediaAlt, mediaSrc, useCacheHint } from "@/lib/cms";
+import { getFakultasList, getProdiList, jumlahkanAngka, modus, prodiUrl } from "@/lib/akademik";
 
 const [fak, prodi] = await Promise.all([getFakultasList(), getProdiList()]);
 useCacheHint(Astro, fak.cacheHint, prodi.cacheHint);
 
 const fakultas = fak.entries.filter((f) => f.data.jenjang !== "S2");
+const pasca = fak.entries.find((f) => f.data.jenjang === "S2");
 const prodiS1 = prodi.entries.filter((p) => p.data.jenjang !== "S2");
+const prodiS2 = prodi.entries.filter((p) => p.data.jenjang === "S2");
 const prodiOf = (slug: string) => prodiS1.filter((p) => p.data.fakultas === slug);
 const jumlahProdi = fakultas.reduce((n, f) => n + prodiOf(f.id).length, 0);
 const semuaTerakreditasi = prodiS1.length > 0 && prodiS1.every((p) => p.data.akreditasi || p.data.akreditasi_kartu);
 const akreditasi = modus(prodiS1.map((p) => p.data.akreditasi_kartu));
 const mahasiswa = jumlahkanAngka(fakultas.map((f) => f.data.jumlah_mahasiswa));
+const namaFakultas = (slug: string) => {
+	const f = fakultas.find((x) => x.id === slug);
+	return f?.data.nama_singkat || f?.data.nama || "";
+};
+const ringkasan = `${fakultas.length} Fakultas dengan ${jumlahProdi} Program Studi${semuaTerakreditasi ? " Terakreditasi BAN-PT" : ""}`;
+const pascaGambar = mediaSrc(pasca?.data.gambar_banner) || mediaSrc(pasca?.data.gambar);
 ---
 
-<Base
-	title="Fakultas"
-	description={`${fakultas.length} fakultas dan ${jumlahProdi} program studi sarjana (S1) di Institut Agama Islam PERSIS Garut.`}
->
-	<PageBanner title="Fakultas" backgroundImage="/images/page-banner-2.jpg" breadcrumbs={[{ text: "Home", url: "/" }, { text: "Fakultas" }]} />
+<Base title="Fakultas" description={`${fakultas.length} fakultas dan ${jumlahProdi} program studi sarjana (S1) di Institut Agama Islam PERSIS Garut.`}>
+	<PageBanner
+		title="Fakultas di IAI PERSIS Garut"
+		image="/images/slider/slider-iaipi-2.jpg"
+		imageAlt="Mahasiswi IAI PERSIS Garut membaca kitab di perpustakaan kampus"
+		badge="Pendidikan Sarjana (S1)"
+		summary={ringkasan}
+		breadcrumbs={[{ text: "Beranda", url: "/" }, { text: "Fakultas" }]}
+	/>
 
-	<section class="container pt-70 pb-70">
-		<header>
-			<p>Pendidikan Sarjana</p>
-			<h1>Fakultas di IAI PERSIS Garut</h1>
-			<p>
-				{fakultas.length} Fakultas dengan {jumlahProdi} Program Studi{semuaTerakreditasi && " Terakreditasi BAN-PT"}
-			</p>
-		</header>
+	<PitaStatistik
+		label="Pendidikan sarjana dalam angka"
+		min={240}
+		items={[
+			{ label: "Fakultas", nilai: fakultas.length },
+			{ label: "Program Studi", nilai: jumlahProdi },
+			{ label: "Akreditasi", nilai: akreditasi, catatan: akreditasi ? "mayoritas program studi" : null },
+			{ label: "Mahasiswa Aktif", nilai: mahasiswa },
+		]}
+	/>
 
-		{
-			fakultas.map((f) => {
-				const list = prodiOf(f.id);
-				const gambar = mediaSrc(f.data.gambar);
-				return (
-					<article data-warna={f.data.warna} data-ikon={f.data.ikon}>
-						{gambar && <img src={gambar} alt={f.data.nama} width="400" height="300" loading="lazy" />}
-						<h2><a href={`/fakultas/${f.id}`}>{f.data.nama}</a></h2>
-						<p>{list.length} Prodi</p>
-						{f.data.deskripsi_singkat && <p>{f.data.deskripsi_singkat}</p>}
-						<h3>Program Studi:</h3>
-						<ul>
-							{list.map((p) => (
-								<li><a href={`/fakultas/${f.id}/${p.id}`}>{p.data.nama} ({p.data.singkatan})</a></li>
-							))}
-						</ul>
-						<p><a href={`/fakultas/${f.id}`}>Lihat Detail</a></p>
-					</article>
-				);
-			})
-		}
-		{fakultas.length === 0 && <p class="cms-empty">Belum ada data fakultas.</p>}
-
-		<dl>
-			<dt>Fakultas</dt>
-			<dd>{fakultas.length}</dd>
-			<dt>Program Studi</dt>
-			<dd>{jumlahProdi}</dd>
-			{akreditasi && (<><dt>Akreditasi</dt><dd>{akreditasi}</dd></>)}
-			{mahasiswa && (<><dt>Mahasiswa Aktif</dt><dd>{mahasiswa}</dd></>)}
-		</dl>
-
-		<aside>
-			<h2>Butuh Informasi Lebih Lanjut?</h2>
-			<p>Hubungi bagian akademik untuk konsultasi program studi yang sesuai dengan minat Anda.</p>
-			<p><a href="/kontak">Hubungi Kami</a></p>
-		</aside>
+	<section class="section" aria-labelledby="fakultas-judul">
+		<div class="wadah">
+			<KepalaSection
+				judul="Pilih Fakultas"
+				ukuran="sedang"
+				id="fakultas-judul"
+				teks={`IAI PERSIS Garut memiliki ${fakultas.length} fakultas sarjana${pasca ? " dan satu program pascasarjana" : ""}. Setiap fakultas menaungi program studi dengan kurikulum berbasis turats Islam dan ilmu pengetahuan modern.`}
+			/>
+			{
+				fakultas.length > 0 ? (
+					<div class="grid-auto" style="--min: 240px">
+						{fakultas.map((f) => {
+							const list = prodiOf(f.id);
+							return (
+								<KartuGambar
+									judul={f.data.nama}
+									href={`/fakultas/${f.id}`}
+									gambar={mediaSrc(f.data.gambar)}
+									alt={mediaAlt(f.data.gambar, f.data.nama)}
+									labelTautan={`Selengkapnya tentang ${f.data.nama}`}
+								>
+									<span class="pil-jumlah" slot="atas">
+										{list.length} Program Studi
+									</span>
+									{f.data.deskripsi_singkat && <p>{f.data.deskripsi_singkat}</p>}
+									{list.length > 0 && (
+										<p class="daftar-singkat">
+											Prodi:{" "}
+											{list.map((p, i) => (
+												<>
+													<a href={prodiUrl(p)}>
+														<abbr title={p.data.nama}>{p.data.singkatan}</abbr>
+													</a>
+													{i < list.length - 1 ? ", " : "."}
+												</>
+											))}
+										</p>
+									)}
+								</KartuGambar>
+							);
+						})}
+					</div>
+				) : (
+					<p class="kosong">Belum ada data fakultas.</p>
+				)
+			}
+		</div>
 	</section>
+
+	{
+		prodiS1.length > 0 && (
+			<section class="section bg-abu" aria-labelledby="prodi-judul">
+				<div class="wadah">
+					<KepalaSection
+						judul="Program Studi Sarjana"
+						ukuran="sedang"
+						id="prodi-judul"
+						teks="Jelajahi seluruh program studi S1 beserta kurikulum, fasilitas, dan prospek karir lulusannya."
+					/>
+					<ul class="grid-auto grid-prodi" style="--min: 300px">
+						{prodiS1.map((p) => (
+							<li>
+								<a class="kartu-foto kecil" href={prodiUrl(p)}>
+									<img src={mediaSrc(p.data.gambar, "/images/slider/slider-iaipi-2.jpg")} alt="" loading="lazy" />
+									<div class="kartu-foto-isi">
+										<p class="meta">
+											<span>{p.data.singkatan}</span>
+											{namaFakultas(p.data.fakultas) && <span>{namaFakultas(p.data.fakultas)}</span>}
+										</p>
+										<h3 class="kartu-foto-judul">{p.data.nama}</h3>
+									</div>
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
+			</section>
+		)
+	}
+
+	{
+		pasca && (
+			<section class="section" aria-labelledby="magister-judul">
+				<div class="wadah">
+					<a class="kartu-foto magister" href="/magister" style="--tinggi: 400px">
+						<img src={pascaGambar || "/images/page-banner-7.jpg"} alt="" loading="lazy" />
+						<div class="kartu-foto-isi">
+							<p class="meta">
+								<span>Pascasarjana</span>
+								{prodiS2.length > 0 && <span>{prodiS2.length} Program Magister</span>}
+							</p>
+							<h2 class="kartu-foto-judul" id="magister-judul">
+								Program Magister (S2)
+							</h2>
+							{prodiS2.length > 0 && <p class="magister-teks">{prodiS2.map((p) => p.data.nama).join(" · ")}</p>}
+							<span class="btn btn-kuning btn-kecil">Lihat Program Magister</span>
+						</div>
+					</a>
+				</div>
+			</section>
+		)
+	}
+
+	<AjakanHijau
+		judul="Butuh informasi lebih lanjut?"
+		teks="Hubungi bagian akademik untuk konsultasi program studi yang sesuai dengan minat Anda."
+		tombol={[
+			{ teks: "Hubungi Kami", href: "/kontak" },
+			{ teks: "Info Pendaftaran", href: "/pmb", gaya: "garis-putih" },
+		]}
+	/>
 </Base>
+
+<style>
+	.pil-jumlah {
+		align-self: flex-start;
+		margin-bottom: 14px;
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 12px;
+		line-height: 1.4;
+		letter-spacing: 1px;
+		color: var(--hijau);
+		background: var(--abu);
+		border-radius: 999px;
+		padding: 3px 10px;
+	}
+	.daftar-singkat abbr {
+		text-decoration: none;
+		font-weight: 700;
+	}
+	.daftar-singkat a {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+	.grid-prodi {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.grid-prodi .kartu-foto {
+		--tinggi: 280px;
+		height: 100%;
+	}
+	.kartu-foto .meta {
+		flex-wrap: wrap;
+		gap: 6px 16px;
+	}
+	.magister .kartu-foto-judul {
+		font-size: clamp(28px, 3.4vw, 40px);
+	}
+	.magister .kartu-foto-isi {
+		padding: clamp(20px, 4vw, 40px);
+	}
+	.magister-teks {
+		font-size: 17px;
+		line-height: 1.5;
+		color: #e9f1ec;
+		max-width: 760px;
+	}
+	.magister .btn {
+		margin-top: 4px;
+	}
+	.kartu-foto:hover .btn {
+		background: var(--kuning-hover);
+	}
+	@media (max-width: 600px) {
+		.grid-prodi {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 14px;
+		}
+		.grid-prodi .kartu-foto {
+			--tinggi: 210px;
+			border-radius: var(--radius);
+		}
+		.grid-prodi .kartu-foto-isi {
+			padding: 14px 12px;
+			gap: 8px;
+		}
+		.grid-prodi .kartu-foto-judul {
+			font-size: 16px;
+			overflow-wrap: anywhere;
+		}
+		.grid-prodi .meta span + span {
+			display: none;
+		}
+	}
+</style>

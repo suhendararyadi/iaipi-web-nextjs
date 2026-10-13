@@ -3,7 +3,7 @@
 import Base from "@/layouts/Base.astro";
 import PageBanner from "@/components/layout/PageBanner.astro";
 import FakultasDetail from "@/components/akademik/FakultasDetail.astro";
-import { mediaSrc, useCacheHint } from "@/lib/cms";
+import { mediaAlt, mediaSrc, useCacheHint } from "@/lib/cms";
 import { getFakultasList, getProdiList, kalimatPertama } from "@/lib/akademik";
 
 const [fak, prodi] = await Promise.all([getFakultasList(), getProdiList()]);
@@ -11,6 +11,7 @@ useCacheHint(Astro, fak.cacheHint, prodi.cacheHint);
 
 const pasca = fak.entries.find((f) => f.data.jenjang === "S2");
 const list = prodi.entries.filter((p) => p.data.jenjang === "S2");
+const banner = mediaSrc(pasca?.data.gambar_banner);
 ---
 
 <Base
@@ -20,10 +21,21 @@ const list = prodi.entries.filter((p) => p.data.jenjang === "S2");
 >
 	<PageBanner
 		title="Program Magister (S2)"
-		backgroundImage={mediaSrc(pasca?.data.gambar_banner, "/images/page-banner-7.jpg")}
-		breadcrumbs={[{ text: "Home", url: "/" }, { text: "Program Magister" }]}
+		image={banner || "/images/page-banner-7.jpg"}
+		imageAlt={banner ? mediaAlt(pasca?.data.gambar_banner, pasca?.data.nama ?? "") : ""}
+		badge={pasca ? `${pasca.data.nama} · ${list.length} Program Magister` : undefined}
+		summary={pasca?.data.deskripsi_singkat}
+		breadcrumbs={[{ text: "Beranda", url: "/" }, { text: "Program Magister" }]}
 	/>
-	<section class="container pt-70 pb-70">
-		{pasca ? <FakultasDetail fakultas={pasca} prodi={list} /> : <p class="cms-empty">Belum ada data Program Pascasarjana.</p>}
-	</section>
+	{
+		pasca ? (
+			<FakultasDetail fakultas={pasca} prodi={list} />
+		) : (
+			<section class="section">
+				<div class="wadah">
+					<p class="kosong">Belum ada data Program Pascasarjana.</p>
+				</div>
+			</section>
+		)
+	}
 </Base>
