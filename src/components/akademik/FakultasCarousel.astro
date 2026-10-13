@@ -1,0 +1,36 @@
+---
+// Blok "Fakultas" untuk beranda: daftar fakultas S1 dari CMS (mengambil datanya
+// sendiri). Markup polos; tampilan akan dibuat ulang terpisah.
+import { mediaSrc, useCacheHint } from "@/lib/cms";
+import { getFakultasList } from "@/lib/akademik";
+
+interface Props {
+	eyebrow?: string;
+	title?: string;
+}
+
+const { eyebrow = "Pendidikan", title = "Fakultas" } = Astro.props;
+const { entries, cacheHint } = await getFakultasList();
+useCacheHint(Astro, cacheHint);
+const fakultas = entries.filter((f) => f.data.jenjang !== "S2");
+---
+
+{
+	fakultas.length > 0 && (
+		<section class="fakultas-beranda">
+			<p>{eyebrow}</p>
+			<h2>{title}</h2>
+			<ul>
+				{fakultas.map((f) => {
+					const gambar = mediaSrc(f.data.gambar);
+					return (
+						<li>
+							{gambar && <img src={gambar} alt={f.data.nama} loading="lazy" />}
+							<a href={`/fakultas/${f.id}`}>{f.data.nama}</a>
+						</li>
+					);
+				})}
+			</ul>
+		</section>
+	)
+}

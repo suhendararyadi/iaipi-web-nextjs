@@ -1,0 +1,73 @@
+---
+// Daftar fakultas sarjana (S1) beserta prodinya. Angka statistik dihitung dari CMS.
+import Base from "@/layouts/Base.astro";
+import PageBanner from "@/components/layout/PageBanner.astro";
+import { mediaSrc, useCacheHint } from "@/lib/cms";
+import { getFakultasList, getProdiList, jumlahkanAngka, modus } from "@/lib/akademik";
+
+const [fak, prodi] = await Promise.all([getFakultasList(), getProdiList()]);
+useCacheHint(Astro, fak.cacheHint, prodi.cacheHint);
+
+const fakultas = fak.entries.filter((f) => f.data.jenjang !== "S2");
+const prodiS1 = prodi.entries.filter((p) => p.data.jenjang !== "S2");
+const prodiOf = (slug: string) => prodiS1.filter((p) => p.data.fakultas === slug);
+const jumlahProdi = fakultas.reduce((n, f) => n + prodiOf(f.id).length, 0);
+const semuaTerakreditasi = prodiS1.length > 0 && prodiS1.every((p) => p.data.akreditasi || p.data.akreditasi_kartu);
+const akreditasi = modus(prodiS1.map((p) => p.data.akreditasi_kartu));
+const mahasiswa = jumlahkanAngka(fakultas.map((f) => f.data.jumlah_mahasiswa));
+---
+
+<Base
+	title="Fakultas"
+	description={`${fakultas.length} fakultas dan ${jumlahProdi} program studi sarjana (S1) di Institut Agama Islam PERSIS Garut.`}
+>
+	<PageBanner title="Fakultas" backgroundImage="/images/page-banner-2.jpg" breadcrumbs={[{ text: "Home", url: "/" }, { text: "Fakultas" }]} />
+
+	<section class="container pt-70 pb-70">
+		<header>
+			<p>Pendidikan Sarjana</p>
+			<h1>Fakultas di IAI PERSIS Garut</h1>
+			<p>
+				{fakultas.length} Fakultas dengan {jumlahProdi} Program Studi{semuaTerakreditasi && " Terakreditasi BAN-PT"}
+			</p>
+		</header>
+
+		{
+			fakultas.map((f) => {
+				const list = prodiOf(f.id);
+				const gambar = mediaSrc(f.data.gambar);
+				return (
+					<article data-warna={f.data.warna} data-ikon={f.data.ikon}>
+						{gambar && <img src={gambar} alt={f.data.nama} width="400" height="300" loading="lazy" />}
+						<h2><a href={`/fakultas/${f.id}`}>{f.data.nama}</a></h2>
+						<p>{list.length} Prodi</p>
+						{f.data.deskripsi_singkat && <p>{f.data.deskripsi_singkat}</p>}
+						<h3>Program Studi:</h3>
+						<ul>
+							{list.map((p) => (
+								<li><a href={`/fakultas/${f.id}/${p.id}`}>{p.data.nama} ({p.data.singkatan})</a></li>
+							))}
+						</ul>
+						<p><a href={`/fakultas/${f.id}`}>Lihat Detail</a></p>
+					</article>
+				);
+			})
+		}
+		{fakultas.length === 0 && <p class="cms-empty">Belum ada data fakultas.</p>}
+
+		<dl>
+			<dt>Fakultas</dt>
+			<dd>{fakultas.length}</dd>
+			<dt>Program Studi</dt>
+			<dd>{jumlahProdi}</dd>
+			{akreditasi && (<><dt>Akreditasi</dt><dd>{akreditasi}</dd></>)}
+			{mahasiswa && (<><dt>Mahasiswa Aktif</dt><dd>{mahasiswa}</dd></>)}
+		</dl>
+
+		<aside>
+			<h2>Butuh Informasi Lebih Lanjut?</h2>
+			<p>Hubungi bagian akademik untuk konsultasi program studi yang sesuai dengan minat Anda.</p>
+			<p><a href="/kontak">Hubungi Kami</a></p>
+		</aside>
+	</section>
+</Base>

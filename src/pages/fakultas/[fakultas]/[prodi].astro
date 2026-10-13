@@ -1,0 +1,43 @@
+---
+// Detail prodi S1: /fakultas/<fakultas>/<prodi>. Prodi harus milik fakultas itu.
+import { decodeSlug } from "emdash";
+import Base from "@/layouts/Base.astro";
+import PageBanner from "@/components/layout/PageBanner.astro";
+import ProdiDetail from "@/components/akademik/ProdiDetail.astro";
+import { mediaSrc, useCacheHint } from "@/lib/cms";
+import { getFakultas, getKaprodi, getProdi, judulProdi, kalimatPertama } from "@/lib/akademik";
+
+const fakultasSlug = decodeSlug(Astro.params.fakultas);
+const slug = decodeSlug(Astro.params.prodi);
+if (!fakultasSlug || !slug) return Astro.rewrite("/404");
+
+const { entry, cacheHint } = await getProdi(slug);
+if (!entry || entry.data.jenjang === "S2" || entry.data.fakultas !== fakultasSlug) return Astro.rewrite("/404");
+
+const [fak, kap] = await Promise.all([getFakultas(fakultasSlug), getKaprodi(entry.data.kaprodi_slug)]);
+useCacheHint(Astro, cacheHint, fak.cacheHint, kap.cacheHint);
+
+const p = entry.data;
+const fakultas = fak.entry;
+const judul = judulProdi(p);
+---
+
+<Base
+	title={p.judul_seo || `${judul} (${p.singkatan})`}
+	description={p.deskripsi_seo || p.deskripsi_singkat || kalimatPertama(p.deskripsi)}
+	content={{ collection: "prodi", id: p.id, slug }}
+>
+	<PageBanner
+		title={judul}
+		backgroundImage={mediaSrc(p.gambar_banner, "/images/page-banner-1.jpg")}
+		breadcrumbs={[
+			{ text: "Home", url: "/" },
+			{ text: "Fakultas", url: "/fakultas" },
+			{ text: fakultas?.data.nama_singkat || fakultas?.data.nama || fakultasSlug, url: `/fakultas/${fakultasSlug}` },
+			{ text: p.nama },
+		]}
+	/>
+	<section class="container pt-70 pb-70">
+		<ProdiDetail prodi={entry} fakultas={fakultas} kaprodi={kap.kaprodi} />
+	</section>
+</Base>
