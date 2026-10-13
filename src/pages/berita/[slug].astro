@@ -1,23 +1,39 @@
 ---
-// Detail berita. Tampilan sementara/polos (akan didesain ulang).
+// Detail berita: kepala artikel hijau tua (remah, kategori, judul, meta kuning), gambar utama,
+// isi Portable Text dalam .prosa, lalu tiga berita terkait.
 import { decodeSlug } from "emdash";
 import { PortableText } from "emdash/ui";
 import Base from "@/layouts/Base.astro";
+import KartuBerita from "@/components/berita/KartuBerita.astro";
+import KepalaSection from "@/components/ui/KepalaSection.astro";
 import { formatTanggal, mediaAlt, mediaSrc, useCacheHint } from "@/lib/cms";
-import { getBerita, kategoriBerita, tanggalBerita, waktuBaca } from "@/lib/berita";
+import { getBerita, getBeritaTerkait, kategoriBerita, tanggalBerita, waktuBaca } from "@/lib/berita";
 
 const slug = decodeSlug(Astro.params.slug);
 if (!slug) return Astro.rewrite("/404");
 
 const { entry, cacheHint } = await getBerita(slug);
 if (!entry) return Astro.rewrite("/404");
-useCacheHint(Astro, cacheHint);
+const terkait = await getBeritaTerkait(entry, 3);
+useCacheHint(Astro, cacheHint, ...terkait.cacheHints);
 
 const b = entry.data;
 const edit = entry.edit;
 const sampul = mediaSrc(b.featured_image);
 const tanggal = tanggalBerita(entry);
 const kategori = kategoriBerita(entry);
+const menit = waktuBaca(b.content);
+const adaIsi = Array.isArray(b.content) && b.content.length > 0;
+// Ringkasan hasil migrasi sering hanya potongan paragraf pertama; jangan tampilkan dua kali.
+const teksAwal = (b.content as { _type?: string; children?: { text?: string }[] }[] | undefined)
+	?.find((blok) => blok?._type === "block")
+	?.children?.map((c) => c.text ?? "")
+	.join("")
+	.replace(/\s+/g, " ")
+	.trim();
+const ringkasan = b.excerpt?.trim();
+const tampilRingkasan = !!ringkasan && !(teksAwal && teksAwal.startsWith(ringkasan.replace(/(\.\.\.|…)$/, "").replace(/\s+/g, " ").trim()));
+const kategoriRemah = kategori.find((k) => k.slug !== "berita");
 ---
 
 <Base
@@ -27,31 +43,254 @@ const kategori = kategoriBerita(entry);
 	content={{ collection: "berita", id: b.id, slug }}
 	pageType="article"
 >
-	<article class="container pt-70 pb-120">
-		<p><a href="/berita">← Semua berita</a></p>
-		<h1 {...edit.title}>{b.title}</h1>
-		<p>
-			<time datetime={tanggal?.toISOString()}>{formatTanggal(tanggal)}</time>
-			{b.byline && <> · {b.byline.displayName}</>}
-			{" · "}{waktuBaca(b.content)} menit baca
-			{
-				kategori.map((k) => (
-					<>
-						{" · "}
-						<a href={`/berita/kategori/${k.slug}`}>{k.label}</a>
-					</>
-				))
-			}
-		</p>
+	<article class="artikel">
+		<header class:list={["artikel-kepala", { "ada-sampul": sampul }]}>
+			<div class="wadah">
+				<nav aria-label="Remah roti">
+					<ol class="remah">
+						<li><a href="/">Beranda</a></li>
+						<li><a href="/berita">Berita</a></li>
+						{
+							kategoriRemah && (
+								<li>
+									<a href={`/berita/kategori/${kategoriRemah.slug}`}>{kategoriRemah.label}</a>
+								</li>
+							)
+						}
+					</ol>
+				</nav>
+				{
+					kategori.length > 0 && (
+						<ul class="artikel-kategori" role="list">
+							{kategori.map((k) => (
+								<li>
+									<a href={`/berita/kategori/${k.slug}`} class="lencana">
+										{k.label}
+									</a>
+								</li>
+							))}
+						</ul>
+					)
+				}
+				<h1 {...edit.title}>{b.title}</h1>
+				{tampilRingkasan && <p class="artikel-ringkasan" {...edit.excerpt}>{ringkasan}</p>}
+				<ul class="meta artikel-meta" role="list">
+					{
+						tanggal && (
+							<li>
+								<svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5" /><path d="M3.5 10h17M8 3v4M16 3v4" /></svg>
+								<time datetime={tanggal.toISOString()}>{formatTanggal(tanggal)}</time>
+							</li>
+						)
+					}
+					<li>
+						<svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="8.5" /><path d="M12 7.5V12l3 2" /></svg>
+						{menit} menit baca
+					</li>
+					{
+						b.byline && (
+							<li>
+								<svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="8" r="4" /><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0" /></svg>
+								<span>Oleh {b.byline.displayName}</span>
+							</li>
+						)
+					}
+				</ul>
+			</div>
+		</header>
+
 		{
 			sampul && (
-				<figure {...edit.featured_image}>
-					<img src={sampul} alt={mediaAlt(b.featured_image, b.title)} style="max-width:100%;height:auto" />
-				</figure>
+				<div class="wadah">
+					<figure class="artikel-sampul" {...edit.featured_image}>
+						<img src={sampul} alt={mediaAlt(b.featured_image, b.title)} fetchpriority="high" decoding="async" />
+					</figure>
+				</div>
 			)
 		}
-		<div class="cms-prose" {...edit.content}>
-			{b.content && b.content.length > 0 ? <PortableText value={b.content} /> : <p class="cms-empty">Isi berita belum diisi.</p>}
+
+		<div class="wadah artikel-badan">
+			<div class="prosa" {...edit.content}>
+				{adaIsi ? <PortableText value={b.content} /> : <p class="kosong">Isi berita belum diisi.</p>}
+			</div>
+			<div class="artikel-kaki">
+				<a href="/berita" class="btn btn-garis">
+					<svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6" /></svg>
+					Semua berita
+				</a>
+			</div>
 		</div>
 	</article>
+
+	{
+		terkait.entries.length > 0 && (
+			<section class="section bg-abu" aria-labelledby="judul-terkait">
+				<div class="wadah">
+					<KepalaSection judul="Berita *Terkait*" ukuran="sedang" id="judul-terkait" />
+					<ul class="grid-terkait" role="list">
+						{terkait.entries.map((t) => (
+							<li>
+								<KartuBerita entry={t} as="h3" />
+							</li>
+						))}
+					</ul>
+					<div class="tengah">
+						<a href="/berita" class="btn btn-kuning">
+							Semua Berita
+						</a>
+					</div>
+				</div>
+			</section>
+		)
+	}
 </Base>
+
+<style>
+	.artikel-kepala {
+		background: var(--hijau-tua);
+		color: var(--putih);
+		position: relative;
+		overflow: hidden;
+		isolation: isolate;
+	}
+	.artikel-kepala::before {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		width: 520px;
+		height: 520px;
+		right: -160px;
+		top: -220px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.05);
+	}
+	.artikel-kepala .wadah {
+		padding-block: 56px 56px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 18px;
+	}
+	.artikel-kepala.ada-sampul .wadah {
+		padding-bottom: 150px;
+	}
+	.artikel-kategori {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+	.artikel-kategori a:hover {
+		background: var(--kuning-hover);
+		color: var(--judul);
+		text-decoration: none;
+	}
+	.artikel-kepala h1 {
+		color: var(--putih);
+		font-weight: 900;
+		font-size: clamp(30px, 4.2vw, 54px);
+		line-height: 1.15;
+		letter-spacing: -0.5px;
+		max-width: 1000px;
+		overflow-wrap: anywhere;
+	}
+	.artikel-ringkasan {
+		font-size: 18px;
+		line-height: 1.5;
+		color: #e9f1ec;
+		max-width: 820px;
+	}
+	.artikel-meta {
+		list-style: none;
+		margin: 6px 0 0;
+		padding: 0;
+		flex-wrap: wrap;
+		gap: 8px 26px;
+		font-size: 12px;
+	}
+	.artikel-meta li {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.artikel-sampul {
+		margin: -110px 0 0;
+		position: relative;
+		display: flex;
+		justify-content: center;
+	}
+	.artikel-sampul img {
+		width: auto;
+		max-width: 100%;
+		max-height: 640px;
+		height: auto;
+		border-radius: var(--radius-l);
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+		background: var(--abu);
+	}
+
+	.artikel-badan {
+		padding-block: 56px 80px;
+	}
+	.artikel-badan .prosa {
+		margin-inline: auto;
+		overflow-wrap: break-word;
+	}
+	.artikel-badan .prosa :global(img) {
+		max-width: 100%;
+	}
+	.artikel-badan .prosa :global(figure) {
+		margin: 1.6em 0;
+	}
+	.artikel-badan .prosa :global(figcaption) {
+		margin-top: 8px;
+		font-size: 14px;
+		color: var(--redup);
+		text-align: center;
+	}
+	.artikel-kaki {
+		max-width: 780px;
+		margin: 48px auto 0;
+		padding-top: 28px;
+		border-top: 1px solid var(--garis);
+	}
+
+	.grid-terkait {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 30px;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+	}
+	.grid-terkait > li {
+		display: flex;
+		flex-direction: column;
+	}
+	.tengah {
+		margin-top: 48px;
+		display: flex;
+		justify-content: center;
+	}
+
+	@media (max-width: 600px) {
+		.artikel-kepala .wadah {
+			padding-block: 40px 44px;
+		}
+		.artikel-kepala.ada-sampul .wadah {
+			padding-bottom: 96px;
+		}
+		.artikel-sampul {
+			margin-top: -72px;
+		}
+		.artikel-badan {
+			padding-block: 40px 56px;
+		}
+		.grid-terkait {
+			gap: 20px;
+		}
+	}
+</style>

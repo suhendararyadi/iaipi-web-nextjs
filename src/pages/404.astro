@@ -1,17 +1,134 @@
 ---
+// Halaman 404: dipakai langsung dan lewat Astro.rewrite("/404") dari route dinamis.
 import Base from "@/layouts/Base.astro";
-import PageBanner from "@/components/layout/PageBanner.astro";
 
 Astro.response.status = 404;
+
+const tautan = [
+	{ teks: "Berita & Agenda", url: "/berita" },
+	{ teks: "Program Studi", url: "/fakultas" },
+	{ teks: "Penerimaan Mahasiswa Baru", url: "/pmb" },
+	{ teks: "Kontak", url: "/kontak" },
+];
 ---
 
-<Base title="Halaman tidak ditemukan">
-	<PageBanner title="Halaman tidak ditemukan" breadcrumbs={[{ text: "Home", url: "/" }, { text: "404" }]} />
-	<section class="pt-70 pb-120">
-		<div class="container text-center">
-			<h3 class="mb-20">Maaf, halaman yang Anda cari tidak tersedia.</h3>
-			<p class="mb-30">Mungkin alamatnya berubah atau halaman sudah dihapus.</p>
-			<a href="/" class="main-btn">Kembali ke Beranda</a>
+<Base title="Halaman tidak ditemukan" description="Halaman yang Anda cari tidak tersedia di situs Institut Agama Islam PERSIS Garut.">
+	<meta slot="head" name="robots" content="noindex" />
+	<section class="galat" aria-labelledby="judul-galat">
+		<div class="wadah">
+			<p class="kode" aria-hidden="true">404</p>
+			<h1 id="judul-galat" class="judul-besar">Halaman <span class="sorot">tidak ditemukan</span></h1>
+			<hr class="pemisah" />
+			<p class="lead">Maaf, halaman yang Anda cari tidak tersedia. Mungkin alamatnya berubah atau halaman sudah dihapus.</p>
+			<div class="aksi">
+				<a href="/" class="btn btn-kuning">
+					<svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5L12 4l9 7.5" /><path d="M5.5 10v10h13V10" /></svg>
+					Kembali ke Beranda
+				</a>
+				<a href="/kontak" class="btn btn-garis">Hubungi Kami</a>
+			</div>
+			<nav aria-label="Tautan populer" class="populer">
+				<p>Atau kunjungi:</p>
+				<ul role="list">
+					{
+						tautan.map((t) => (
+							<li>
+								<a href={t.url} class="tab">
+									{t.teks}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
 		</div>
 	</section>
 </Base>
+
+<style>
+	.galat {
+		position: relative;
+		overflow: hidden;
+		isolation: isolate;
+		padding-block: 96px 120px;
+		text-align: center;
+	}
+	.galat::before,
+	.galat::after {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		border-radius: 50%;
+		background: var(--hijau-muda);
+		opacity: 0.45;
+	}
+	.galat::before {
+		width: 420px;
+		height: 420px;
+		right: -140px;
+		top: -160px;
+	}
+	.galat::after {
+		width: 300px;
+		height: 300px;
+		left: -120px;
+		bottom: -140px;
+		background: var(--krem);
+		opacity: 1;
+	}
+	.kode {
+		font-family: var(--font-isi);
+		font-weight: 900;
+		font-size: clamp(96px, 16vw, 200px);
+		line-height: 1;
+		letter-spacing: -4px;
+		color: var(--hijau);
+		margin-bottom: 8px;
+	}
+	.pemisah {
+		max-width: 760px;
+		margin-inline: auto;
+	}
+	.lead {
+		margin-inline: auto;
+		max-width: 680px;
+	}
+	.aksi {
+		margin-top: 36px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 14px;
+		justify-content: center;
+	}
+	.populer {
+		margin-top: 56px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 14px;
+		color: var(--redup);
+	}
+	.populer ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px 12px;
+		justify-content: center;
+	}
+	.populer .tab {
+		display: inline-flex;
+		align-items: center;
+		text-decoration: none;
+	}
+	.populer .tab:hover {
+		background: var(--kuning);
+		color: var(--judul);
+	}
+	@media (max-width: 600px) {
+		.galat {
+			padding-block: 64px 80px;
+		}
+	}
+</style>

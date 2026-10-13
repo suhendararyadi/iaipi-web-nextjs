@@ -1,51 +1,163 @@
 ---
+// Pimpinan institut: banner, sambutan Rektor (kartu gelap di pita hijau tua), lalu grid kartu potret
+// per kelompok (wakil rektor, dekan, ketua program studi). Data: koleksi `pimpinan`.
 import Base from "@/layouts/Base.astro";
 import PageBanner from "@/components/layout/PageBanner.astro";
+import KepalaSection from "@/components/ui/KepalaSection.astro";
 import PimpinanUnggulan from "@/components/pimpinan/PimpinanUnggulan.astro";
-import { mediaSrc, useCacheHint } from "@/lib/cms";
-import { getPimpinan } from "@/lib/pimpinan";
+import KartuPimpinan from "@/components/pimpinan/KartuPimpinan.astro";
+import { useCacheHint } from "@/lib/cms";
+import { getPimpinan, KELOMPOK_PIMPINAN } from "@/lib/pimpinan";
 
 const { entries, cacheHint } = await getPimpinan();
 useCacheHint(Astro, cacheHint);
-const staf = entries.filter((e) => e.data.kelompok !== "rektor");
+
+const pengantar: Record<string, { judul: string; teks: string; min: string; isi?: string }> = {
+	wakil_rektor: {
+		judul: "Wakil *Rektor*",
+		teks: "Membantu Rektor memimpin bidang akademik, keuangan dan sarana, serta kemahasiswaan dan kerja sama.",
+		min: "260px",
+	},
+	dekan: {
+		judul: "Dekan *Fakultas*",
+		teks: "Memimpin penyelenggaraan pendidikan, penelitian, dan pengabdian di setiap fakultas.",
+		min: "260px",
+	},
+	kaprodi: {
+		judul: "Ketua *Program Studi*",
+		teks: "Mengelola kurikulum dan layanan akademik program sarjana dan magister.",
+		min: "220px",
+		isi: "auto-fill",
+	},
+};
+
+const adaRektor = entries.some((e) => e.data.kelompok === "rektor");
+const kelompok = KELOMPOK_PIMPINAN.filter((k) => k.kelompok !== "rektor")
+	.map((k) => ({ ...k, ...pengantar[k.kelompok], anggota: entries.filter((e) => e.data.kelompok === k.kelompok) }))
+	.filter((k) => k.anggota.length > 0);
+const navigasi = [...(adaRektor ? [{ label: "Rektor", anchor: "rektor", jumlah: 1 }] : []), ...kelompok.map((k) => ({ label: k.label, anchor: k.anchor, jumlah: k.anggota.length }))];
 ---
 
 <Base title="Pimpinan Institut" description="Struktur pimpinan Institut Agama Islam PERSIS Garut: rektor, wakil rektor, dekan, dan ketua program studi.">
 	<PageBanner
 		title="Pimpinan Institut"
-		backgroundImage="/images/page-banner-2.jpg"
-		breadcrumbs={[{ text: "Home", url: "/" }, { text: "Pimpinan Institut" }]}
+		image="/images/slider/slider-iaipi-1.jpg"
+		breadcrumbs={[{ text: "Beranda", url: "/" }, { text: "Pimpinan" }]}
+		badge="Struktur Organisasi"
+		summary="Rektor, wakil rektor, dekan, dan ketua program studi yang memimpin Institut Agama Islam PERSIS Garut."
 	/>
+
+	{
+		navigasi.length > 1 && (
+			<nav class="pita-navigasi bg-abu" aria-label="Kelompok pimpinan">
+				<ul class="wadah">
+					{navigasi.map((n) => (
+						<li>
+							<a href={`#${n.anchor}`} class="tab">
+								{n.label}
+								<span class="jumlah">
+									{n.jumlah}
+									<span class="sr-only"> orang</span>
+								</span>
+							</a>
+						</li>
+					))}
+				</ul>
+			</nav>
+		)
+	}
+
 	<PimpinanUnggulan entries={entries} />
 
-	<section id="teachers-part" class="pt-65 pb-120">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-5">
-					<div class="section-title mt-50 pb-35">
-						<h5>Organisasi</h5>
-						<h2>Staf Pimpinan</h2>
-					</div>
+	{
+		kelompok.map((k, i) => (
+			<section class:list={["section", "kelompok", { "bg-abu": i % 2 === 0 }]} id={k.anchor} aria-labelledby={`judul-${k.anchor}`}>
+				<div class="wadah">
+					<KepalaSection judul={k.judul} teks={k.teks} ukuran="sedang" id={`judul-${k.anchor}`} />
+					<ul class="grid-pimpinan" role="list" style={`--min: ${k.min}; --isi: ${k.isi ?? "auto-fit"}`}>
+						{k.anggota.map((p) => (
+							<li>
+								<KartuPimpinan entry={p} jabatan={k.kelompok === "kaprodi" ? p.data.jabatan.replace(/^Ketua Prodi\s+/i, "Prodi ") : undefined} />
+							</li>
+						))}
+					</ul>
 				</div>
+			</section>
+		))
+	}
+
+	{entries.length === 0 && (
+		<section class="section">
+			<div class="wadah">
+				<p class="kosong">Belum ada data pimpinan.</p>
 			</div>
-			<div class="row">
-				{
-					staf.map((p) => (
-						<div class="col-lg-3 col-sm-6">
-							<div class="singel-teachers mt-30 text-center">
-								<div class="image">
-									<img src={mediaSrc(p.data.foto, "/images/logo.jpeg")} alt={p.data.nama} loading="lazy" />
-								</div>
-								<div class="cont">
-									<a href={`/pimpinan/${p.id}`}><h6>{p.data.nama}</h6></a>
-									<span>{p.data.jabatan_singkat || p.data.jabatan}</span>
-								</div>
-							</div>
-						</div>
-					))
-				}
-				{staf.length === 0 && <p class="cms-empty col-12">Belum ada data pimpinan.</p>}
-			</div>
-		</div>
-	</section>
+		</section>
+	)}
 </Base>
+
+<style>
+	.pita-navigasi ul {
+		list-style: none;
+		margin: 0 auto;
+		padding-block: 20px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px 12px;
+	}
+	.pita-navigasi .tab {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		text-decoration: none;
+		background: var(--putih);
+	}
+	.pita-navigasi .tab:hover {
+		background: var(--kuning);
+		color: var(--judul);
+	}
+	.jumlah {
+		min-width: 24px;
+		height: 24px;
+		padding: 0 7px;
+		border-radius: 999px;
+		background: var(--hijau);
+		color: var(--putih);
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 12px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.kelompok {
+		scroll-margin-top: 16px;
+	}
+	.grid-pimpinan {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 30px;
+		grid-template-columns: repeat(var(--isi, auto-fill), minmax(min(100%, var(--min, 240px)), 1fr));
+	}
+	.grid-pimpinan > li {
+		display: flex;
+		flex-direction: column;
+	}
+	@media (max-width: 600px) {
+		.pita-navigasi ul {
+			flex-wrap: nowrap;
+			overflow-x: auto;
+			scrollbar-width: none;
+			padding-block: 16px;
+		}
+		.pita-navigasi li {
+			flex: none;
+		}
+		.grid-pimpinan {
+			gap: 16px;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+</style>

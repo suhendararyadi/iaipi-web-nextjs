@@ -1,66 +1,144 @@
 ---
-// Daftar berita sederhana (dipakai /berita dan /berita/kategori/[slug]).
-// Sengaja polos: tampilan akan didesain ulang.
-import { formatTanggal, mediaSrc, mediaAlt } from "@/lib/cms";
-import { kategoriBerita, tanggalBerita, type BeritaEntry, type KategoriBerita } from "@/lib/berita";
+// Daftar berita bergaya "IAIP Hari Ini" (dipakai /berita dan /berita/kategori/[slug]):
+// halaman pertama menyorot 3 berita teratas (1 kartu besar + 2 kartu kecil), sisanya grid kartu foto.
+// Paginasi cursor: ?cursor=... (tombol "Berita sebelumnya" + kembali ke terbaru).
+import KartuBerita from "@/components/berita/KartuBerita.astro";
+import PilKategori from "@/components/berita/PilKategori.astro";
+import type { BeritaEntry, KategoriBerita } from "@/lib/berita";
 
 interface Props {
 	entries: BeritaEntry[];
 	kategori: KategoriBerita[];
 	aktif?: string;
 	nextCursor?: string;
+	/** Cursor halaman ini (bila bukan halaman pertama). */
+	cursor?: string;
 }
 
-const { entries, kategori, aktif, nextCursor } = Astro.props;
+const { entries, kategori, aktif, nextCursor, cursor } = Astro.props;
+const halamanPertama = !cursor;
+const sorot = halamanPertama ? entries.slice(0, 3) : [];
+const sisa = halamanPertama ? entries.slice(3) : entries;
+const [utama, ...samping] = sorot;
+const labelAktif = kategori.find((k) => k.slug === aktif)?.label;
+const pathDasar = Astro.url.pathname;
 ---
 
-<nav aria-label="Kategori berita">
-	<ul>
-		<li>{aktif ? <a href="/berita">Semua</a> : <strong>Semua</strong>}</li>
-		{
-			kategori.map((k) => (
-				<li>{k.slug === aktif ? <strong>{k.label}</strong> : <a href={`/berita/kategori/${k.slug}`}>{k.label}</a>}</li>
-			))
-		}
-	</ul>
-</nav>
+<PilKategori kategori={kategori} aktif={aktif} />
 
 {
 	entries.length === 0 ? (
-		<p class="cms-empty">Belum ada berita.</p>
+		<div class="kosong kosong-berita">
+			<p>{labelAktif ? `Belum ada ${labelAktif.toLowerCase()} yang terbit.` : cursor ? "Tidak ada berita lagi." : "Belum ada berita yang terbit."}</p>
+			{(aktif || cursor) && (
+				<a href="/berita" class="btn btn-kuning">
+					Lihat semua berita
+				</a>
+			)}
+		</div>
 	) : (
-		<ul>
-			{entries.map((b) => {
-				const src = mediaSrc(b.data.featured_image);
-				return (
-					<li>
-						<article>
-							{src && <img src={src} alt={mediaAlt(b.data.featured_image, b.data.title)} width="320" loading="lazy" />}
-							<h2>
-								<a href={`/berita/${b.id}`}>{b.data.title}</a>
-							</h2>
-							<p>
-								<time datetime={tanggalBerita(b)?.toISOString()}>{formatTanggal(tanggalBerita(b))}</time>
-								{kategoriBerita(b).map((k) => (
-									<>
-										{" · "}
-										<a href={`/berita/kategori/${k.slug}`}>{k.label}</a>
-									</>
-								))}
-							</p>
-							{b.data.excerpt && <p>{b.data.excerpt}</p>}
-						</article>
-					</li>
-				);
-			})}
-		</ul>
+		<>
+			{utama && (
+				<div class:list={["sorotan", { tunggal: samping.length === 0 }]}>
+					<KartuBerita entry={utama} ukuran="besar" as="h2" tampilKategori={!aktif} eager class="sorotan-utama" />
+					{samping.length > 0 && (
+						<div class="sorotan-samping">
+							{samping.map((b) => (
+								<KartuBerita entry={b} as="h2" />
+							))}
+						</div>
+					)}
+				</div>
+			)}
+			{sisa.length > 0 && (
+				<ul class="grid-berita" role="list">
+					{sisa.map((b) => (
+						<li>
+							<KartuBerita entry={b} as="h2" />
+						</li>
+					))}
+				</ul>
+			)}
+		</>
 	)
 }
 
 {
-	nextCursor && (
-		<p>
-			<a href={`?cursor=${encodeURIComponent(nextCursor)}`}>Berita sebelumnya →</a>
-		</p>
+	(nextCursor || cursor) && entries.length > 0 && (
+		<nav class="paginasi" aria-label="Halaman berita">
+			{cursor && (
+				<a href={pathDasar} class="btn btn-garis">
+					<svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6" /></svg>
+					Berita terbaru
+				</a>
+			)}
+			{nextCursor && (
+				<a href={`${pathDasar}?cursor=${encodeURIComponent(nextCursor)}`} class="btn btn-kuning" rel="next">
+					Berita sebelumnya
+					<svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6" /></svg>
+				</a>
+			)}
+		</nav>
 	)
 }
+
+<style>
+	.sorotan {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 30px;
+		align-items: stretch;
+	}
+	.sorotan :global(.sorotan-utama) {
+		flex: 763 1 520px;
+		min-width: 0;
+	}
+	.sorotan-samping {
+		flex: 366 1 280px;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 28px;
+	}
+	.sorotan-samping > :global(*) {
+		flex: 1 1 255px;
+		--tinggi: 255px;
+	}
+	.grid-berita {
+		list-style: none;
+		margin: 30px 0 0;
+		padding: 0;
+		display: grid;
+		gap: 30px;
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+	}
+	.grid-berita > li {
+		display: flex;
+		flex-direction: column;
+	}
+	.paginasi {
+		margin-top: 64px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 14px;
+		justify-content: center;
+	}
+	.kosong-berita {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 18px;
+		padding: 56px 24px;
+		font-size: 18px;
+	}
+	@media (max-width: 600px) {
+		.sorotan,
+		.sorotan-samping {
+			gap: 20px;
+		}
+		.grid-berita {
+			margin-top: 20px;
+			gap: 20px;
+		}
+	}
+</style>
