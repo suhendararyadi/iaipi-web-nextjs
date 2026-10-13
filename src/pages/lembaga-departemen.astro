@@ -1,53 +1,199 @@
 ---
-// Halaman Lembaga & Departemen (sementara: HTML polos, desain menyusul). Data: koleksi lembaga + info_kampus.
+// Halaman Lembaga & Departemen. Data: koleksi lembaga (dikelompokkan per kategori) + info_kampus.
 import Base from "@/layouts/Base.astro";
-import { getInfoKampus, linkAttrs, telHref, useCacheHint } from "@/lib/cms";
-import { getLembaga, KATEGORI_LEMBAGA, urutkanLembaga } from "@/lib/profil";
+import PageBanner from "@/components/layout/PageBanner.astro";
+import KepalaSection from "@/components/ui/KepalaSection.astro";
+import JudulSorot from "@/components/ui/JudulSorot.astro";
+import KartuIkon from "@/components/profil/KartuIkon.astro";
+import PitaStatistik from "@/components/profil/PitaStatistik.astro";
+import SectionHijau from "@/components/profil/SectionHijau.astro";
+import PanelDaftar, { type BarisPanel } from "@/components/profil/PanelDaftar.astro";
+import TombolPil from "@/components/profil/TombolPil.astro";
+import { getInfoKampus, isExternal, telHref, useCacheHint } from "@/lib/cms";
+import { getLembaga, KATEGORI_LEMBAGA, type LembagaEntry } from "@/lib/profil";
 
 const [{ entries, cacheHint }, { info, cacheHint: infoHint }] = await Promise.all([getLembaga(), getInfoKampus()]);
 useCacheHint(Astro, cacheHint, infoHint);
 
-const tampil = urutkanLembaga(entries.filter((e) => e.data.tampil_di_halaman !== false));
+const tampil = entries.filter((e) => e.data.tampil_di_halaman !== false);
+/** Yang aktif lebih dulu, urutan editor dipertahankan. */
+const urutAktif = (list: LembagaEntry[]) =>
+	list
+		.map((e, i) => ({ e, i }))
+		.sort((a, b) => (a.e.data.ketersediaan === "aktif" ? 0 : 1) - (b.e.data.ketersediaan === "aktif" ? 0 : 1) || a.i - b.i)
+		.map(({ e }) => e);
+
+const KELOMPOK = [
+	{
+		id: "lembaga",
+		judul: "Lembaga",
+		teks: "Lembaga yang menjalankan penjaminan mutu, penelitian dan pengabdian, layanan pustaka, serta pembinaan keislaman sivitas akademika.",
+	},
+	{ id: "pusat", judul: "Pusat Studi", teks: "Pusat kajian dan pengembangan yang memperkuat tradisi keilmuan Islam, bahasa, karier, dan tahfidz." },
+	{ id: "unit", judul: "Unit Pendukung", teks: "Unit pelaksana teknis yang menopang layanan teknologi dan operasional kampus." },
+	{ id: "prodi", judul: "Program *Studi*", teks: "Program studi sarjana dan magister di lingkungan IAI PERSIS Garut." },
+];
+const kelompok = KELOMPOK.map((k) => ({ ...k, items: urutAktif(tampil.filter((e) => e.data.kategori === k.id)) })).filter((k) => k.items.length > 0);
+// Kategori baru dari editor (di luar daftar di atas) tetap tampil di akhir.
+const lain = tampil.filter((e) => !KELOMPOK.some((k) => k.id === e.data.kategori));
+if (lain.length > 0) kelompok.push({ id: "lainnya", judul: "Lainnya", teks: "", items: urutAktif(lain) });
+
 const jumlah = (k: string) => tampil.filter((e) => e.data.kategori === k).length;
+const statistik = [
+	{ label: "Lembaga", nilai: String(jumlah("lembaga")) },
+	{ label: "Pusat Studi", nilai: String(jumlah("pusat")) },
+	{ label: "Unit", nilai: String(jumlah("unit")) },
+	{ label: "Program Studi", nilai: String(jumlah("prodi")) },
+].filter((s) => s.nilai !== "0");
+
+const kontak: BarisPanel[] = [
+	...(info.email ? [{ label: "Email", nilai: info.email, href: `mailto:${info.email}`, ikon: "mail" }] : []),
+	...(info.telepon ? [{ label: "Telepon", nilai: info.telepon, href: telHref(info.telepon), ikon: "phone" }] : []),
+	...(info.alamat ? [{ label: "Alamat", teks: info.alamat, ikon: "pin" }] : []),
+];
 ---
 
 <Base
 	title="Lembaga dan Departemen"
 	description="Struktur organisasi lembaga dan departemen IAIPI Garut yang mendukung Tri Dharma Perguruan Tinggi: LPM, LPPM, Perpustakaan, Ma'had, Pusat Studi Islam, dan unit pendukung lainnya."
 >
-	<article>
-		<h1>Lembaga, Departemen &amp; Program Studi</h1>
-		<p>
-			Berbagai lembaga, unit, dan program studi yang mendukung operasional Institut Agama Islam PERSIS Garut dalam menjalankan Tri Dharma
-			Perguruan Tinggi
-		</p>
-		<p>
-			{jumlah("lembaga")} Lembaga · {jumlah("pusat")} Pusat Studi · {jumlah("unit")} Unit · {jumlah("prodi")} Program Studi
-		</p>
+	<PageBanner
+		title="Lembaga, Departemen & Program Studi"
+		image="/images/slider/slider-iaipi-3.jpg"
+		imageAlt="Gedung perkuliahan Institut Agama Islam PERSIS Garut"
+		breadcrumbs={[{ text: "Beranda", url: "/" }, { text: "Lembaga & Departemen" }]}
+		summary="Berbagai lembaga, unit, dan program studi yang mendukung operasional Institut Agama Islam PERSIS Garut dalam menjalankan Tri Dharma Perguruan Tinggi."
+	/>
 
-		{tampil.length === 0 && <p>Belum ada data lembaga.</p>}
-		<ul>
-			{
-				tampil.map(({ data: l }) => (
-					<li>
-						<strong>{l.nama}</strong> ({KATEGORI_LEMBAGA[l.kategori] ?? l.kategori}) — {l.nama_lengkap}
-						{l.fakultas && <> · Fakultas {l.fakultas}</>}. {l.deskripsi}{" "}
-						{l.url ? (
-							<a href={l.url} {...linkAttrs(l.url)}>{l.kategori === "prodi" ? "Lihat Detail Prodi" : "Kunjungi Website"}</a>
-						) : (
-							<em>{l.ketersediaan === "segera_hadir" ? "Coming Soon — Website Segera Hadir" : ""}</em>
-						)}
-					</li>
-				))
-			}
-		</ul>
+	<PitaStatistik items={statistik} label="Lembaga dan departemen dalam angka" min={240} />
 
-		<section>
-			<h2>Informasi Kontak</h2>
-			<p>
-				Untuk informasi lebih lanjut mengenai lembaga dan departemen, silakan hubungi Bagian Administrasi Umum Institut Agama Islam PERSIS Garut
-				melalui email: <a href={`mailto:${info.email}`}>{info.email}</a> atau telepon: <a href={telHref(info.telepon)}>{info.telepon}</a>
-			</p>
-		</section>
-	</article>
+	{
+		tampil.length === 0 && (
+			<section class="section">
+				<div class="wadah">
+					<p class="kosong">Belum ada data lembaga.</p>
+				</div>
+			</section>
+		)
+	}
+
+	{
+		kelompok.map((k, n) => {
+			const kartu = (
+				<ul class="grid-auto daftar-lembaga" style="--min: 260px">
+					{k.items.map(({ data: l }) => {
+						const prodi = l.kategori === "prodi";
+						const label = prodi && l.fakultas ? (/pasca/i.test(l.fakultas) ? l.fakultas : `Fakultas ${l.fakultas}`) : (KATEGORI_LEMBAGA[l.kategori] ?? l.kategori);
+						return (
+							<li>
+								<KartuIkon judul={l.nama} subjudul={l.nama_lengkap} teks={l.deskripsi} ikon={l.ikon} label={label} redup={!l.url}>
+									{l.url ? (
+										<TombolPil
+											slot="aksi"
+											href={l.url}
+											ikon={isExternal(l.url) ? "external" : "chevron-right"}
+											ariaLabel={`${prodi ? "Lihat detail" : "Kunjungi website"} ${l.nama}`}
+										>
+											{prodi ? "Lihat Detail Prodi" : "Kunjungi Website"}
+										</TombolPil>
+									) : (
+										<span slot="aksi" class="pil-segera">
+											{l.ketersediaan === "segera_hadir" ? "Website Segera Hadir" : "Belum ada website"}
+										</span>
+									)}
+								</KartuIkon>
+							</li>
+						);
+					})}
+				</ul>
+			);
+			return k.id === "prodi" ? (
+				<SectionHijau labelledby={`kelompok-${k.id}`}>
+					<JudulSorot text={k.judul} id={`kelompok-${k.id}`} class="judul-sedang" />
+					<hr class="pemisah garis-terang" />
+					{k.teks && <p class="lead teks-terang">{k.teks}</p>}
+					<div class="jarak">{kartu}</div>
+				</SectionHijau>
+			) : (
+				<section class:list={["section", { "bg-abu": n % 2 === 1 }]} aria-labelledby={`kelompok-${k.id}`}>
+					<div class="wadah">
+						<KepalaSection judul={k.judul} teks={k.teks || null} ukuran="sedang" id={`kelompok-${k.id}`} />
+						{kartu}
+					</div>
+				</section>
+			);
+		})
+	}
+
+	{
+		kontak.length > 0 && (
+			<section class="section" aria-labelledby="kontak-judul">
+				<div class="wadah kontak">
+					<div class="kontak-teks">
+						<KepalaSection
+							judul="Informasi *Kontak*"
+							teks="Untuk informasi lebih lanjut mengenai lembaga dan departemen, silakan hubungi Bagian Administrasi Umum Institut Agama Islam PERSIS Garut."
+							id="kontak-judul"
+						/>
+						<TombolPil href="/kontak" ikon="chevron-right" tebal>
+							Semua Kontak Kampus
+						</TombolPil>
+					</div>
+					<div class="kontak-panel">
+						<PanelDaftar judul="Bagian Administrasi Umum" ikon="landmark" items={kontak} kaki={info.email ? { href: `mailto:${info.email}`, label: "Kirim Email" } : null} />
+					</div>
+				</div>
+			</section>
+		)
+	}
 </Base>
+
+<style>
+	.daftar-lembaga {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 24px;
+		/* auto-fill: kategori berisi satu kartu tidak melebar sepenuh baris */
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--min)), 1fr));
+	}
+	.daftar-lembaga > li {
+		display: flex;
+	}
+	.daftar-lembaga > li > :global(.kartu) {
+		flex: 1;
+	}
+	.pil-segera {
+		display: inline-flex;
+		align-items: center;
+		min-height: 36px;
+		padding: 0 16px;
+		border-radius: 999px;
+		border: 1px solid var(--kuning);
+		background: var(--krem);
+		color: var(--judul);
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 13px;
+	}
+	.garis-terang {
+		border-top-color: rgba(255, 255, 255, 0.22);
+	}
+	.teks-terang {
+		color: var(--hijau-muda);
+	}
+	.jarak {
+		margin-top: 40px;
+	}
+	.kontak {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 380px);
+		gap: 40px 60px;
+		align-items: center;
+	}
+	@media (max-width: 900px) {
+		.kontak {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+</style>

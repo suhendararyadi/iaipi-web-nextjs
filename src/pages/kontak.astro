@@ -1,84 +1,317 @@
 ---
-// Halaman Kontak (sementara: HTML polos, desain menyusul).
-// Alamat/telepon/email/peta/sosmed dari info_kampus; jam operasional & kontak unit dari info_kontak.
+// Halaman Kontak. Alamat/telepon/email/peta/sosmed dari info_kampus; jam operasional & kontak unit
+// dari info_kontak.
 import Base from "@/layouts/Base.astro";
+import PageBanner from "@/components/layout/PageBanner.astro";
+import KepalaSection from "@/components/ui/KepalaSection.astro";
+import JudulSorot from "@/components/ui/JudulSorot.astro";
+import KartuKanal from "@/components/profil/KartuKanal.astro";
+import KartuIkon from "@/components/profil/KartuIkon.astro";
+import PanelDaftar from "@/components/profil/PanelDaftar.astro";
+import SectionHijau from "@/components/profil/SectionHijau.astro";
+import Ikon from "@/components/profil/Ikon.astro";
 import { getInfoKampus, lines, rows, telHref, useCacheHint, waHref } from "@/lib/cms";
 import { alamatBaris, getInfoKontak, PETA_EMBED_LAMA, telIndo, type UnitKontak } from "@/lib/profil";
 
 const [{ info, cacheHint: infoHint }, { kontak, cacheHint }] = await Promise.all([getInfoKampus(), getInfoKontak()]);
 useCacheHint(Astro, infoHint, cacheHint);
 
-const unit = rows<UnitKontak>(kontak?.unit);
-const jam = lines(kontak?.jam_operasional);
+const unit = rows<UnitKontak>(kontak?.unit).filter((u) => u.nama);
+const jam = lines(kontak?.jam_operasional).map((baris) => {
+	const i = baris.indexOf(":");
+	// "Senin - Jumat: 08:00 - 16:00 WIB" → label hari, nilai jam (titik dua pertama sebelum angka jam).
+	return i > 0 && !/^\d/.test(baris) ? { label: baris.slice(0, i).trim(), nilai: baris.slice(i + 1).trim() } : { label: "Jam", nilai: baris };
+});
 const peta = info.peta_embed || PETA_EMBED_LAMA;
+const alamat = alamatBaris(info.alamat);
 const sosmed = [
-	{ nama: "Facebook", url: info.facebook },
-	{ nama: "Instagram", url: info.instagram },
-	{ nama: "YouTube", url: info.youtube },
-	{ nama: "WhatsApp", url: info.whatsapp ? waHref({ whatsapp: info.whatsapp }) : "" },
+	{ nama: "Facebook", ikon: "facebook", url: info.facebook },
+	{ nama: "Instagram", ikon: "instagram", url: info.instagram },
+	{ nama: "YouTube", ikon: "youtube", url: info.youtube },
+	{ nama: "WhatsApp", ikon: "whatsapp", url: info.whatsapp ? waHref(info) : "" },
 ].filter((s) => s.url);
+
+/** Ikon unit ditebak dari namanya. */
+const ikonUnit = (nama: string) =>
+	/rektor/i.test(nama)
+		? "landmark"
+		: /pmb|mahasiswa baru/i.test(nama)
+			? "toga"
+			: /akademik/i.test(nama)
+				? "book"
+				: /mahasiswa/i.test(nama)
+					? "users"
+					: /keuangan/i.test(nama)
+						? "money"
+						: "mail";
 ---
 
 <Base title="Hubungi Kami" description={`Alamat, telepon, email, dan media sosial ${info.nama}.`}>
-	<article>
-		<h1>Hubungi Kami</h1>
+	<PageBanner
+		title="Hubungi Kami"
+		image="/images/page-banner-7.jpg"
+		imageAlt={`Gedung kampus ${info.nama}`}
+		breadcrumbs={[{ text: "Beranda", url: "/" }, { text: "Kontak" }]}
+		summary={`Alamat, telepon, email, dan media sosial ${info.nama}.`}
+	/>
 
-		<section>
-			<h2>Informasi Kontak</h2>
-			<h3>Alamat Kampus</h3>
-			<address>{alamatBaris(info.alamat).map((baris) => <div>{baris}</div>)}</address>
+	<section class="section" aria-labelledby="kanal-judul">
+		<div class="wadah">
+			<KepalaSection
+				judul="Kami Siap *Membantu*"
+				teks="Hubungi kampus melalui saluran berikut untuk informasi akademik, pendaftaran, maupun kerja sama."
+				id="kanal-judul"
+			/>
+			<div class="grid-auto grid-kanal" style="--min: 280px">
+				{
+					alamat.length > 0 && (
+						<KartuKanal
+							judul="Alamat"
+							as="h3"
+							href="#lokasi"
+							ikon="pin"
+							label="Kampus"
+							nilai={alamat[0]}
+							teks={alamat.slice(1).join("\n")}
+							tombol="Lihat Peta"
+						/>
+					)
+				}
+				{
+					info.telepon && (
+						<KartuKanal
+							judul="Telepon"
+							as="h3"
+							href={info.whatsapp ? waHref(info) : telHref(info.telepon)}
+							ikon={info.whatsapp ? "whatsapp" : "phone"}
+							label={info.whatsapp ? "Telepon & WhatsApp" : "Telepon"}
+							nilai={info.telepon}
+							teks="Layanan informasi umum kampus pada jam operasional."
+							tombol={info.whatsapp ? "Chat WhatsApp" : "Telepon"}
+						/>
+					)
+				}
+				{
+					info.email && (
+						<KartuKanal
+							judul="Email"
+							as="h3"
+							href={`mailto:${info.email}`}
+							ikon="mail"
+							label="Email Rektorat"
+							nilai={info.email}
+							teks={info.email_pmb ? `Pertanyaan pendaftaran mahasiswa baru: ${info.email_pmb}` : null}
+							tombol="Kirim Email"
+						/>
+					)
+				}
+			</div>
+		</div>
+	</section>
 
-			<h3>Telepon &amp; WhatsApp</h3>
-			<p><strong>Telepon:</strong> <a href={telHref(info.telepon)}>{info.telepon}</a></p>
-			<p><strong>WhatsApp:</strong> <a href={waHref(info)} target="_blank" rel="noopener noreferrer">{info.telepon}</a></p>
+	{
+		(unit.length > 0 || jam.length > 0) && (
+			<section class="section bg-abu" aria-labelledby="unit-judul">
+				<div class="wadah">
+					<KepalaSection
+						judul="Kontak Unit & Jam Layanan"
+						teks="Hubungi unit terkait secara langsung agar pertanyaan Anda ditangani lebih cepat."
+						ukuran="sedang"
+						id="unit-judul"
+					/>
+					<div class="grid-unit">
+						{jam.length > 0 && (
+							<div class="kolom-jam">
+								<PanelDaftar judul="Jam Operasional" ikon="clock" items={jam} />
+							</div>
+						)}
+						{unit.length > 0 && (
+							<ul class="grid-auto daftar-unit" style="--min: 250px">
+								{unit.map((u) => (
+									<li>
+										<KartuIkon judul={u.nama} teks={u.deskripsi} ikon={ikonUnit(u.nama)}>
+											<ul class="kontak-unit">
+												{u.email && (
+													<li>
+														<Ikon nama="mail" ukuran={18} />
+														<a href={`mailto:${u.email}`}>{u.email}</a>
+													</li>
+												)}
+												{u.telepon && (
+													<li>
+														<Ikon nama="phone" ukuran={18} />
+														<a href={telIndo(u.telepon)}>{u.telepon}</a>
+													</li>
+												)}
+											</ul>
+										</KartuIkon>
+									</li>
+								))}
+							</ul>
+						)}
+					</div>
+				</div>
+			</section>
+		)
+	}
 
-			<h3>Email</h3>
-			{info.email && <p><strong>Rektorat:</strong> <a href={`mailto:${info.email}`}>{info.email}</a></p>}
-			{info.email_pmb && <p><strong>PMB:</strong> <a href={`mailto:${info.email_pmb}`}>{info.email_pmb}</a></p>}
+	<section id="lokasi" class="section" aria-labelledby="lokasi-judul">
+		<div class="wadah">
+			<KepalaSection judul="Lokasi Kampus" teks={info.alamat} ukuran="sedang" id="lokasi-judul" />
+			<div class="peta">
+				<iframe
+					src={peta}
+					width="1160"
+					height="460"
+					loading="lazy"
+					referrerpolicy="no-referrer-when-downgrade"
+					title={`Peta lokasi ${info.nama}`}
+					allowfullscreen></iframe>
+			</div>
+		</div>
+	</section>
 
-			{
-				jam.length > 0 && (
-					<>
-						<h3>Jam Operasional</h3>
-						{jam.map((baris) => <p>{baris}</p>)}
-					</>
-				)
-			}
-		</section>
-
-		{
-			unit.length > 0 && (
-				<section>
-					<h2>Kontak Departemen</h2>
-					<ul>
-						{unit.map((u) => (
+	{
+		sosmed.length > 0 && (
+			<SectionHijau tua labelledby="sosmed-judul" class="sosmed">
+				<div class="sosmed-isi">
+					<div>
+						<JudulSorot text="Ikuti *IAIP*" id="sosmed-judul" />
+						<p class="lead teks-terang">Kabar kegiatan, prestasi, dan informasi terbaru kampus di media sosial resmi kami.</p>
+					</div>
+					<ul class="daftar-sosmed">
+						{sosmed.map((s) => (
 							<li>
-								<strong>{u.nama}</strong> — {u.deskripsi}
-								{u.email && <> · <a href={`mailto:${u.email}`}>{u.email}</a></>}
-								{u.telepon && <> · <a href={telIndo(u.telepon)}>{u.telepon}</a></>}
+								<a href={s.url} target="_blank" rel="noopener noreferrer" class="tombol-sosmed">
+									<span class="ikon-sosmed">
+										<Ikon nama={s.ikon} ukuran={22} />
+									</span>
+									{s.nama}
+									<span class="sr-only"> (membuka tab baru)</span>
+								</a>
 							</li>
 						))}
 					</ul>
-				</section>
-			)
-		}
-
-		<section>
-			<h2>Lokasi</h2>
-			<iframe src={peta} width="100%" height="450" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title={`Lokasi ${info.nama}`} allowfullscreen></iframe>
-		</section>
-
-		{
-			sosmed.length > 0 && (
-				<section>
-					<h2>Ikuti Kami</h2>
-					<ul>
-						{sosmed.map((s) => (
-							<li><a href={s.url} target="_blank" rel="noopener noreferrer">{s.nama}</a></li>
-						))}
-					</ul>
-				</section>
-			)
-		}
-	</article>
+				</div>
+			</SectionHijau>
+		)
+	}
 </Base>
+
+<style>
+	.grid-kanal {
+		gap: 40px 31px;
+	}
+	.grid-unit {
+		display: grid;
+		grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+		gap: 30px;
+		align-items: start;
+	}
+	.daftar-unit {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 24px;
+	}
+	.daftar-unit > li {
+		display: flex;
+	}
+	.daftar-unit > li > :global(.kartu) {
+		flex: 1;
+	}
+	.kontak-unit {
+		list-style: none;
+		margin: 16px 0 0;
+		padding: 14px 0 0;
+		border-top: 1px solid var(--garis);
+		display: grid;
+		gap: 10px;
+		font-size: 15px;
+	}
+	.kontak-unit li {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		color: var(--hijau);
+		min-width: 0;
+	}
+	.kontak-unit :global(svg) {
+		flex: none;
+	}
+	.kontak-unit a {
+		overflow-wrap: anywhere;
+		padding-block: 4px;
+	}
+	.peta {
+		border-radius: var(--radius-l);
+		overflow: hidden;
+		box-shadow: var(--bayangan);
+		background: var(--abu);
+	}
+	.peta iframe {
+		display: block;
+		width: 100%;
+		height: clamp(320px, 40vw, 460px);
+		border: 0;
+	}
+
+	.sosmed-isi {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 32px 48px;
+	}
+	.sosmed-isi > div {
+		flex: 1 1 420px;
+		min-width: 0;
+	}
+	.teks-terang {
+		margin-top: 18px;
+		color: var(--hijau-muda);
+	}
+	.daftar-sosmed {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 14px;
+	}
+	.tombol-sosmed {
+		display: inline-flex;
+		align-items: center;
+		gap: 12px;
+		min-height: 56px;
+		padding: 0 24px 0 8px;
+		border-radius: 999px;
+		background: var(--putih);
+		color: var(--hijau-tua);
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 16px;
+		text-decoration: none;
+	}
+	.tombol-sosmed:hover {
+		background: var(--kuning);
+		color: var(--judul);
+		text-decoration: none;
+	}
+	.ikon-sosmed {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background: var(--hijau);
+		color: var(--putih);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	@media (max-width: 900px) {
+		.grid-unit {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+</style>

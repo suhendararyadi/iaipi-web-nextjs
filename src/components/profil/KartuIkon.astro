@@ -1,0 +1,165 @@
+---
+// Kartu putih gaya "Lokasi Kampus" Unpad: kepala abu (atau foto) 170px, judul Lato 700 18px,
+// deskripsi 15px, tombol pil di bawah (slot "aksi"). Kepala abu memuat angka besar
+// bertepi kuning (langkah) dan/atau ikon dalam lingkaran putih.
+import Ikon from "./Ikon.astro";
+
+interface Props {
+	judul: string;
+	teks?: string | null;
+	ikon?: string | null;
+	nomor?: string | number | null;
+	gambar?: string | null;
+	gambarAlt?: string;
+	/** Label kecil hijau di atas judul, mis. "Fakultas · S1". */
+	label?: string | null;
+	/** Baris kedua di bawah judul (nama lengkap). */
+	subjudul?: string | null;
+	/** Teks pembaca layar sebelum judul, mis. "Langkah 1: ". */
+	awalanSr?: string;
+	redup?: boolean;
+	as?: "h2" | "h3";
+}
+
+const { judul, teks, ikon, nomor, gambar, gambarAlt = "", label, subjudul, awalanSr, redup = false, as: Tag = "h3" } = Astro.props;
+const adaNomor = nomor !== undefined && nomor !== null && nomor !== "";
+---
+
+<article class:list={["kartu", "kartu-ikon", { redup }]}>
+	{
+		gambar ? (
+			<img class="kartu-gambar" src={gambar} alt={gambarAlt} loading="lazy" width="400" height="170" />
+		) : (
+			<div class:list={["kepala", { "ada-nomor": adaNomor }]}>
+				{adaNomor && (
+					<span class="nomor" aria-hidden="true">
+						{nomor}
+					</span>
+				)}
+				{ikon && (
+					<span class="ikon-bulat">
+						<Ikon nama={ikon} ukuran={28} />
+					</span>
+				)}
+			</div>
+		)
+	}
+	<div class="kartu-isi">
+		{label && <span class="label">{label}</span>}
+		<Tag class="judul">
+			{awalanSr && <span class="sr-only">{awalanSr}</span>}
+			{judul}
+		</Tag>
+		{subjudul && <p class="subjudul">{subjudul}</p>}
+		{teks && <p>{teks}</p>}
+		<slot />
+		{
+			Astro.slots.has("aksi") && (
+				<div class="aksi">
+					<slot name="aksi" />
+				</div>
+			)
+		}
+	</div>
+</article>
+
+<style>
+	.kartu-ikon {
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+		min-width: 0;
+	}
+	.kepala {
+		height: 128px;
+		padding: 0 24px;
+		background: var(--abu);
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 16px;
+	}
+	.kepala.ada-nomor {
+		height: 170px;
+		padding: 0 28px;
+		justify-content: space-between;
+	}
+	.nomor {
+		font-family: var(--font-isi);
+		font-weight: 900;
+		font-size: 96px;
+		line-height: 1;
+		letter-spacing: -2px;
+		color: var(--hijau);
+		text-shadow: 3px 4px 0 var(--kuning);
+	}
+	.ikon-bulat {
+		flex: none;
+		width: 64px;
+		height: 64px;
+		border-radius: 50%;
+		background: var(--putih);
+		color: var(--hijau);
+		box-shadow: 0 4px 12px rgba(3, 51, 29, 0.08);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.kartu-isi {
+		padding: 20px 20px 26px;
+		gap: 0;
+	}
+	.label {
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 12px;
+		line-height: 1.3;
+		letter-spacing: 1.2px;
+		text-transform: uppercase;
+		color: var(--hijau);
+		margin-bottom: 6px;
+	}
+	.judul {
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 18px;
+		line-height: 1.3;
+		color: var(--judul);
+	}
+	.subjudul {
+		margin-top: 4px;
+		font-size: 14px;
+		line-height: 1.45;
+		color: var(--redup);
+	}
+	.kartu-isi > p:not(.subjudul) {
+		margin-top: 12px;
+		font-size: 15px;
+		line-height: 24px;
+		letter-spacing: 0.3px;
+		color: var(--teks);
+	}
+	.aksi {
+		margin-top: auto;
+		padding-top: 28px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		align-items: center;
+	}
+	.redup .kepala {
+		background: #f6f7f6;
+	}
+	.redup .ikon-bulat {
+		color: var(--redup);
+	}
+	@media (max-width: 600px) {
+		.kepala {
+			height: 96px;
+		}
+		.kepala.ada-nomor {
+			height: 130px;
+		}
+		.nomor {
+			font-size: 80px;
+		}
+	}
+</style>
