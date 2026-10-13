@@ -891,8 +891,8 @@
 						"alt": "Pendaftaran Mahasiswa Baru IAIPI Garut"
 					},
 					"teks_alt": "Pendaftaran Mahasiswa Baru IAIPI Garut",
-					"urutan": 10,
-					"aktif": true
+					"urutan": 90,
+					"aktif": false
 				}
 			},
 			{
@@ -906,7 +906,7 @@
 						"alt": "Kampus Institut Agama Islam PERSIS Garut"
 					},
 					"teks_alt": "Kampus Institut Agama Islam PERSIS Garut",
-					"urutan": 20,
+					"urutan": 5,
 					"aktif": true
 				}
 			},
@@ -969,7 +969,7 @@
 						"$asset": "/images/jurnal/Al Mudzakarah.jpg",
 						"alt": "Sampul jurnal Al Mudzakarah"
 					},
-					"urutan": 10
+					"urutan": 40
 				}
 			},
 			{
@@ -984,7 +984,7 @@
 						"$asset": "/images/jurnal/Al-Rusafa - Jurnal Ekonomi Dan Bisnis Islam.jpg",
 						"alt": "Sampul jurnal Al-Rusafa"
 					},
-					"urutan": 20
+					"urutan": 50
 				}
 			},
 			{
@@ -1014,7 +1014,7 @@
 						"$asset": "/images/jurnal/Hadisuna- Jurnal Studi Ilmu Hadis.jpg",
 						"alt": "Sampul jurnal Hadisuna"
 					},
-					"urutan": 40
+					"urutan": 10
 				}
 			},
 			{
@@ -1029,7 +1029,7 @@
 						"$asset": "/images/jurnal/Quranuna.jpg",
 						"alt": "Sampul jurnal Qur'anuna"
 					},
-					"urutan": 50
+					"urutan": 20
 				}
 			},
 			{
