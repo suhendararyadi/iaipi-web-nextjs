@@ -1,0 +1,26 @@
+---
+// Arsip berita per kategori (taksonomi kategori_berita), mis. /berita/kategori/agenda.
+import { decodeSlug } from "emdash";
+import Base from "@/layouts/Base.astro";
+import DaftarBerita from "@/components/beranda/DaftarBerita.astro";
+import { useCacheHint } from "@/lib/cms";
+import { getDaftarBerita, getKategoriBerita } from "@/lib/berita";
+
+const slug = decodeSlug(Astro.params.slug);
+if (!slug) return Astro.rewrite("/404");
+
+const kategoriResult = await getKategoriBerita();
+const term = kategoriResult.kategori.find((k) => k.slug === slug);
+if (!term) return Astro.rewrite("/404");
+
+const cursor = Astro.url.searchParams.get("cursor") ?? undefined;
+const { entries, nextCursor, cacheHint } = await getDaftarBerita({ cursor, kategori: term.slug });
+useCacheHint(Astro, kategoriResult.cacheHint, cacheHint);
+---
+
+<Base title={term.label} description={`${term.label} Institut Agama Islam PERSIS Garut.`}>
+	<section class="container pt-70 pb-120">
+		<h1>{term.label}</h1>
+		<DaftarBerita entries={entries} kategori={kategoriResult.kategori} aktif={term.slug} nextCursor={nextCursor} />
+	</section>
+</Base>

@@ -1,0 +1,66 @@
+---
+// Daftar berita sederhana (dipakai /berita dan /berita/kategori/[slug]).
+// Sengaja polos: tampilan akan didesain ulang.
+import { formatTanggal, mediaSrc, mediaAlt } from "@/lib/cms";
+import { kategoriBerita, tanggalBerita, type BeritaEntry, type KategoriBerita } from "@/lib/berita";
+
+interface Props {
+	entries: BeritaEntry[];
+	kategori: KategoriBerita[];
+	aktif?: string;
+	nextCursor?: string;
+}
+
+const { entries, kategori, aktif, nextCursor } = Astro.props;
+---
+
+<nav aria-label="Kategori berita">
+	<ul>
+		<li>{aktif ? <a href="/berita">Semua</a> : <strong>Semua</strong>}</li>
+		{
+			kategori.map((k) => (
+				<li>{k.slug === aktif ? <strong>{k.label}</strong> : <a href={`/berita/kategori/${k.slug}`}>{k.label}</a>}</li>
+			))
+		}
+	</ul>
+</nav>
+
+{
+	entries.length === 0 ? (
+		<p class="cms-empty">Belum ada berita.</p>
+	) : (
+		<ul>
+			{entries.map((b) => {
+				const src = mediaSrc(b.data.featured_image);
+				return (
+					<li>
+						<article>
+							{src && <img src={src} alt={mediaAlt(b.data.featured_image, b.data.title)} width="320" loading="lazy" />}
+							<h2>
+								<a href={`/berita/${b.id}`}>{b.data.title}</a>
+							</h2>
+							<p>
+								<time datetime={tanggalBerita(b)?.toISOString()}>{formatTanggal(tanggalBerita(b))}</time>
+								{kategoriBerita(b).map((k) => (
+									<>
+										{" · "}
+										<a href={`/berita/kategori/${k.slug}`}>{k.label}</a>
+									</>
+								))}
+							</p>
+							{b.data.excerpt && <p>{b.data.excerpt}</p>}
+						</article>
+					</li>
+				);
+			})}
+		</ul>
+	)
+}
+
+{
+	nextCursor && (
+		<p>
+			<a href={`?cursor=${encodeURIComponent(nextCursor)}`}>Berita sebelumnya →</a>
+		</p>
+	)
+}
