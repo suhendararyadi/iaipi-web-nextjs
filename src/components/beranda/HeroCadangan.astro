@@ -1,0 +1,305 @@
+---
+// Banner komposisi HTML (desain A) — hanya tampil bila koleksi `slider` tidak punya slide aktif.
+// Isi sengaja statis: ini cadangan; konten utama hero dikelola lewat koleksi Slider Beranda.
+interface Props {
+	logo: string;
+	gambar?: string;
+}
+
+const { logo, gambar = "/images/slider/slider-iaipi-1.jpg" } = Astro.props;
+---
+
+<section class="cadangan" aria-label="Sorotan IAI PERSIS Garut">
+	<img class="latar" src={gambar} alt="" />
+	<div class="kabut" aria-hidden="true"></div>
+	<div class="lingkaran" aria-hidden="true"></div>
+	<div class="wadah isi">
+		<div class="kiri">
+			<div class="bingkai-wrap">
+				<div class="bingkai">
+					<div class="bingkai-dalam">
+						<img src={logo} alt="Logo IAI PERSIS Garut" width="40" height="58" />
+						<div class="bingkai-teks">
+							<span>Institut<i class="balok"></i></span>
+							<span>Terakreditasi<i class="balok"></i></span>
+							<span>BAN-PT<i class="balok kuning"></i></span>
+						</div>
+					</div>
+				</div>
+				<div class="tahun"><span class="pmb">PMB</span><span class="angka-tahun">2026/2027</span></div>
+			</div>
+			<p class="kutipan">
+				Pendidikan yang berlandaskan Al-Qur'an dan Sunnah, untuk generasi yang <strong>unggul, berakhlak, dan berdaya saing</strong>.
+			</p>
+		</div>
+		<div class="kanan">
+			<div class="label-garis"><i aria-hidden="true"></i><span>Penerimaan Mahasiswa Baru</span><i aria-hidden="true"></i></div>
+			<div class="baris">
+				<span class="hingga">Hingga</span>
+				<span class="besar">100%</span>
+				<span class="pita">
+					<span class="pita-judul">Beasiswa<br />Hafidz</span>
+					<span class="pita-kecil">min. 15 juz</span>
+					<svg aria-hidden="true" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M2 7 C30 2 62 9 98 3" fill="none" stroke="#FFC600" stroke-width="3.5" stroke-linecap="round"></path></svg>
+				</span>
+			</div>
+			<div class="baris kanan-rata">
+				<span class="besar">11</span>
+				<span class="pita pita-2">
+					<span class="pita-judul nowrap">Program Studi</span>
+					<svg aria-hidden="true" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M2 7 C30 2 62 9 98 3" fill="none" stroke="#FFC600" stroke-width="3.5" stroke-linecap="round"></path></svg>
+				</span>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.cadangan {
+		position: relative;
+		overflow: hidden;
+		min-height: 630px;
+		padding: 127px 0 96px;
+		background: #f4f6f5;
+	}
+	.latar {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center 45%;
+		filter: grayscale(0.3);
+	}
+	.kabut {
+		position: absolute;
+		inset: 0;
+		background: rgba(255, 255, 255, 0.78);
+	}
+	.lingkaran {
+		position: absolute;
+		left: -745px;
+		top: 305px;
+		width: 990px;
+		height: 990px;
+		border-radius: 50%;
+		background: rgba(0, 103, 56, 0.08);
+		box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.75);
+	}
+	.isi {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 28px 12px;
+	}
+	.kiri {
+		flex: 0 1 381px;
+		min-width: 0;
+		max-width: 381px;
+		align-self: flex-start;
+		margin-top: 37px;
+	}
+	.bingkai-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 274px;
+		max-width: 100%;
+		margin-inline: auto;
+	}
+	.bingkai {
+		width: 100%;
+		padding: 8px 14px 10px 16px;
+		border: 3px solid var(--kuning);
+		border-radius: 14px;
+		background: rgba(255, 255, 255, 0.55);
+		box-shadow: 0 0 0 4px rgba(255, 198, 0, 0.18), 0 8px 20px rgba(3, 51, 29, 0.1);
+	}
+	.bingkai-dalam {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		background: var(--putih);
+		padding: 12px 10px;
+		border-radius: 2px;
+	}
+	.bingkai-dalam img {
+		flex: none;
+		width: 40px;
+		height: 58px;
+		object-fit: contain;
+	}
+	.bingkai-teks {
+		flex: 1 1 auto;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+		font-weight: 800;
+		font-size: 15px;
+		line-height: 1.15;
+		letter-spacing: 0.3px;
+		color: var(--judul);
+		text-transform: uppercase;
+	}
+	.bingkai-teks span {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+	}
+	.balok {
+		flex: 1 1 auto;
+		height: 12px;
+		background: var(--hijau);
+		border-radius: 1px;
+	}
+	.balok.kuning {
+		background: var(--kuning);
+	}
+	.tahun {
+		position: relative;
+		margin-top: -15px;
+		padding: 0 10px;
+		background: rgba(255, 255, 255, 0.94);
+		border-radius: 8px;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+	.pmb {
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 15px;
+		line-height: 1;
+		letter-spacing: 1.2px;
+		color: var(--hijau-tua);
+	}
+	.angka-tahun {
+		font-weight: 900;
+		font-size: 32px;
+		line-height: 1.1;
+		letter-spacing: -0.5px;
+		color: var(--hijau);
+	}
+	.kutipan {
+		margin-top: 18px;
+		font-size: 14.5px;
+		line-height: 1.3;
+		font-style: italic;
+		font-weight: 500;
+		color: var(--teks);
+	}
+	.kutipan strong {
+		color: var(--hijau);
+	}
+	.kanan {
+		flex: 0 1 auto;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+	}
+	.label-garis,
+	.hingga {
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 13.5px;
+		line-height: 18px;
+		letter-spacing: 1.4px;
+		color: var(--hijau-tua);
+		text-transform: uppercase;
+	}
+	.label-garis {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+	}
+	.label-garis i {
+		flex: none;
+		width: 24px;
+		height: 2px;
+		background: var(--kuning);
+	}
+	.baris {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		margin-top: 6px;
+	}
+	.baris.kanan-rata {
+		justify-content: flex-end;
+		margin-top: -2px;
+	}
+	.hingga {
+		flex: none;
+		margin-right: 8px;
+		writing-mode: vertical-rl;
+		transform: rotate(180deg);
+	}
+	.besar {
+		font-weight: 900;
+		font-size: clamp(64px, 8vw, 112px);
+		line-height: 1;
+		letter-spacing: -2px;
+		color: var(--hijau);
+		text-shadow: 3px 4px 0 var(--kuning), 7px 9px 0 rgba(0, 103, 56, 0.12);
+	}
+	.pita {
+		position: relative;
+		display: inline-block;
+		margin-left: 10px;
+		padding: 9px 22px 14px 16px;
+		background: var(--putih);
+		transform: rotate(-3deg);
+		clip-path: polygon(4% 6%, 100% 0, 95% 50%, 100% 100%, 0 94%, 2% 50%);
+		color: var(--hijau-tua);
+	}
+	.pita-2 {
+		margin-left: 14px;
+		margin-top: 10px;
+		padding: 8px 22px 12px 16px;
+	}
+	.pita-judul {
+		display: block;
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 19px;
+		line-height: 1.05;
+		letter-spacing: 0.6px;
+		text-transform: uppercase;
+	}
+	.pita-2 .pita-judul {
+		font-size: 20px;
+	}
+	.nowrap {
+		white-space: nowrap;
+	}
+	.pita-kecil {
+		display: block;
+		margin-top: 4px;
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 12px;
+		line-height: 1;
+		letter-spacing: 0.4px;
+	}
+	.pita svg {
+		position: absolute;
+		left: 14px;
+		bottom: 5px;
+		width: calc(100% - 32px);
+		height: 7px;
+	}
+	@media (max-width: 600px) {
+		.cadangan {
+			min-height: 0;
+			padding: 56px 0 48px;
+		}
+		.kiri {
+			margin-top: 0;
+		}
+	}
+</style>

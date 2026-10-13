@@ -1,0 +1,329 @@
+---
+// Tiga kolom: Agenda & Pengumuman (berita kategori `agenda` / `pengumuman`) dan
+// Layanan (koleksi `layanan`, hanya yang aktif) dalam panel hijau tua bergulir.
+import { linkAttrs } from "@/lib/cms";
+import { tanggalBerita, type BeritaEntry } from "@/lib/berita";
+import { tanggalIso, tanggalRingkas } from "@/lib/beranda";
+import type { Layanan } from "@/lib/profil";
+
+interface Props {
+	agenda: BeritaEntry[];
+	pengumuman: BeritaEntry[];
+	layanan: { id: string; data: Layanan }[];
+	kampus: string;
+}
+
+const { agenda, pengumuman, kampus } = Astro.props;
+const layanan = Astro.props.layanan.filter((l) => l.data.ketersediaan === "aktif" && l.data.url);
+
+const kolom = [
+	{ id: "agenda", judul: "Agenda", entries: agenda, kosong: "Belum ada agenda terdekat.", semua: "/berita/kategori/agenda" },
+	{ id: "pengumuman", judul: "Pengumuman", entries: pengumuman, kosong: "Belum ada pengumuman terbaru.", semua: "/berita/kategori/pengumuman" },
+];
+
+/** Nama host tanpa "www." untuk label kecil di atas nama layanan. */
+function host(url: string): string {
+	try {
+		return new URL(url).host.replace(/^www\./, "");
+	} catch {
+		return "";
+	}
+}
+
+// Ikon garis (viewBox 24) berdasarkan isian ikon FontAwesome di CMS, dengan cadangan per kategori.
+const IKON: Record<string, string[]> = {
+	akademik: ["M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z", "M8 20h8M12 16v4"],
+	buku: ["M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z", "M5 17a3 3 0 0 1 3-3h11"],
+	arsip: ["M4 4h16a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z", "M5 9v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9M10 13h4"],
+	cari: ["M5 11a6 6 0 1 0 12 0 6 6 0 1 0-12 0", "M16 16l4.5 4.5"],
+	orang: ["M5 8a4 4 0 1 0 8 0 4 4 0 1 0-8 0", "M2 20c0-3.3 3.1-6 7-6s7 2.7 7 6", "M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5c2.4.6 4 2.6 4 5"],
+	dokumen: ["M7 3h7l5 5v13H7z", "M14 3v5h5M10 13h6M10 17h6"],
+	cetak: ["M7 9V3h10v6", "M5 9h14a2 2 0 0 1 2 2v6h-4M7 17H3v-6a2 2 0 0 1 2-2", "M7 14h10v7H7z"],
+	perisai: ["M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z", "M9 12l2 2 4-4"],
+	kisi: ["M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"],
+};
+const DARI_FA: Record<string, string> = {
+	"fa-graduation-cap": "akademik",
+	"fa-laptop": "akademik",
+	"fa-book": "buku",
+	"fa-database": "arsip",
+	"fa-flask": "cari",
+	"fa-search": "cari",
+	"fa-users": "orang",
+	"fa-user-plus": "orang",
+	"fa-print": "cetak",
+	"fa-file-text": "dokumen",
+	"fa-certificate": "perisai",
+};
+const DARI_KATEGORI: Record<string, string> = {
+	akademik: "akademik",
+	penelitian: "cari",
+	publikasi: "dokumen",
+	mahasiswa: "orang",
+	alumni: "orang",
+	administrasi: "perisai",
+};
+function ikon(l: Layanan): string[] {
+	const fa = (l.ikon ?? "").trim().replace(/^fa\s+/, "");
+	const kunci = DARI_FA[fa.startsWith("fa-") ? fa : `fa-${fa}`] ?? DARI_KATEGORI[l.kategori] ?? "kisi";
+	return IKON[kunci];
+}
+---
+
+<section id="info-kampus" class="info" aria-label="Agenda, pengumuman, dan layanan kampus">
+	<div class="wadah grid">
+		{
+			kolom.map((k) => (
+				<div class="kolom">
+					<h2 id={`${k.id}-judul`}>{k.judul}</h2>
+					{k.entries.length > 0 ? (
+						<ul class="papan" role="list" aria-labelledby={`${k.id}-judul`}>
+							{k.entries.map((b) => {
+								const tanggal = tanggalBerita(b);
+								return (
+									<li>
+										<a href={`/berita/${b.id}`}>
+											<time datetime={tanggalIso(tanggal)}>{tanggalRingkas(tanggal)}</time>
+											<span>{b.data.title}</span>
+										</a>
+									</li>
+								);
+							})}
+							<li class="semua">
+								<a href={k.semua}>Lihat semua {k.judul.toLowerCase()} ›</a>
+							</li>
+						</ul>
+					) : (
+						<p class="papan kosong-hijau">{k.kosong}</p>
+					)}
+				</div>
+			))
+		}
+		<div class="kolom">
+			<h2 id="layanan-judul">Layanan</h2>
+			<div class="widget">
+				<p class="widget-kepala">
+					<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#FFC600" stroke-width="2">
+						<rect x="3.5" y="3.5" width="7" height="7" rx="1.5" />
+						<rect x="13.5" y="3.5" width="7" height="7" rx="1.5" />
+						<rect x="3.5" y="13.5" width="7" height="7" rx="1.5" />
+						<rect x="13.5" y="13.5" width="7" height="7" rx="1.5" />
+					</svg>
+					Layanan Daring {kampus}
+				</p>
+				{
+					layanan.length > 0 ? (
+						<ul class="daftar-layanan" role="list" aria-labelledby="layanan-judul" tabindex="0">
+							{layanan.map((l) => (
+								<li>
+									<a href={l.data.url} {...linkAttrs(l.data.url)}>
+										<span class="bulat" aria-hidden="true">
+											<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+												{ikon(l.data).map((d) => (
+													<path d={d} />
+												))}
+											</svg>
+										</span>
+										<span class="teks-layanan">
+											<span class="host">{host(l.data.url!)}</span>
+											<span class="nama">{l.data.nama_singkat || l.data.nama}</span>
+											{l.data.nama_singkat && <span class="ket">{l.data.nama}</span>}
+										</span>
+									</a>
+								</li>
+							))}
+						</ul>
+					) : (
+						<p class="daftar-layanan kosong-putih">Belum ada layanan daring.</p>
+					)
+				}
+				<p class="widget-kaki"><a href="/layanan">Semua layanan ›</a></p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.info {
+		padding: 30px 0 64px;
+	}
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+		gap: 40px 31px;
+		align-items: start;
+	}
+	.kolom {
+		min-width: 0;
+	}
+	h2 {
+		margin-bottom: 19px;
+		font-weight: 900;
+		font-size: 34px;
+		line-height: 1.2;
+		letter-spacing: -0.3px;
+	}
+	.papan {
+		list-style: none;
+		margin: 0;
+		padding: 15px 25px 20px;
+		border-radius: var(--radius-l);
+		background: var(--hijau);
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+		color: var(--putih);
+	}
+	.papan li + li {
+		border-top: 1px solid rgba(255, 255, 255, 0.22);
+	}
+	.papan a {
+		display: flex;
+		padding: 16px 0;
+		color: var(--putih);
+		text-decoration: none;
+	}
+	.papan a:hover span {
+		text-decoration: underline;
+	}
+	.papan time {
+		flex: 0 0 72px;
+		padding-right: 8px;
+		font-family: var(--font-ui);
+		font-size: 15px;
+		line-height: 1.4;
+		color: var(--hijau-muda);
+	}
+	.papan a span {
+		flex: 1 1 auto;
+		min-width: 0;
+		font-weight: 800;
+		font-size: 17px;
+		line-height: 1.27;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+	.papan .semua a {
+		justify-content: flex-end;
+		padding-bottom: 4px;
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 14px;
+	}
+	.kosong-hijau {
+		min-height: 84px;
+		padding: 20px 26px;
+		display: flex;
+		align-items: center;
+		font-family: var(--font-ui);
+		font-size: 15px;
+		line-height: 1.4;
+	}
+	.widget {
+		border-radius: 6px;
+		background: var(--hijau-tua);
+		padding: 0 6px;
+		border-bottom: 4px solid var(--kuning);
+		overflow: hidden;
+	}
+	.widget-kepala {
+		height: 80px;
+		padding: 0 12px;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 15px;
+		letter-spacing: 0.4px;
+		color: var(--putih);
+	}
+	.daftar-layanan {
+		list-style: none;
+		margin: 0;
+		padding: 0 12px;
+		max-height: 455px;
+		overflow-y: auto;
+		border-radius: 3px;
+		background: var(--putih);
+	}
+	.daftar-layanan li + li {
+		border-top: 1px dotted #9db5a8;
+	}
+	.daftar-layanan a {
+		display: flex;
+		gap: 14px;
+		align-items: center;
+		padding: 14px 0;
+		color: var(--judul);
+		text-decoration: none;
+	}
+	.daftar-layanan a:hover .nama {
+		color: var(--hijau);
+		text-decoration: underline;
+	}
+	.bulat {
+		flex: none;
+		width: 44px;
+		height: 44px;
+		border-radius: 50%;
+		background: var(--hijau);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.teks-layanan {
+		flex: 1 1 auto;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+	}
+	.host {
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 11.5px;
+		line-height: 1.3;
+		letter-spacing: 0.3px;
+		color: var(--hijau);
+		overflow-wrap: anywhere;
+	}
+	.nama {
+		margin-top: 3px;
+		font-weight: 700;
+		font-size: 16px;
+		line-height: 1.3;
+		color: var(--judul);
+	}
+	.ket {
+		margin-top: 2px;
+		font-size: 14px;
+		line-height: 1.45;
+		color: var(--teks);
+	}
+	.kosong-putih {
+		padding: 24px 12px;
+		color: var(--redup);
+	}
+	.widget-kaki {
+		height: 46px;
+		padding: 0 12px;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+	}
+	.widget-kaki a {
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 14px;
+		color: var(--putih);
+	}
+	@media (max-width: 600px) {
+		.info {
+			padding: 24px 0 48px;
+		}
+		h2 {
+			font-size: 30px;
+		}
+	}
+</style>
