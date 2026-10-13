@@ -95,36 +95,6 @@ export interface Pimpinan {
   terms?: Record<string, TaxonomyTerm[]>;
 }
 
-export interface Beranda {
-  id: string;
-  slug: string | null;
-  status: string;
-  nama: string;
-  pimpinan_eyebrow?: string;
-  pimpinan_judul?: string;
-  berita_eyebrow?: string;
-  berita_judul?: string;
-  berita_jumlah?: number;
-  berita_teks_tautan?: string;
-  video_url?: string;
-  video_latar?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown>; darkVariant?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> } };
-  video_judul?: string;
-  video_poin?: { "judul": string; "deskripsi"?: string | null; "ikon"?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown>; darkVariant?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> } } | null }[];
-  publikasi_eyebrow?: string;
-  publikasi_judul?: string;
-  publikasi_url?: string;
-  publikasi_teks_tombol?: string;
-  testimoni_eyebrow?: string;
-  testimoni_judul?: string;
-  testimoni_latar?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown>; darkVariant?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> } };
-  createdAt: Date;
-  updatedAt: Date;
-  publishedAt: Date | null;
-  byline?: BylineSummary | null;
-  bylines?: ContentBylineCredit[];
-  terms?: Record<string, TaxonomyTerm[]>;
-}
-
 export interface Fakulta {
   id: string;
   slug: string | null;
@@ -260,25 +230,6 @@ export interface Jurnal {
   terms?: Record<string, TaxonomyTerm[]>;
 }
 
-export interface Testimoni {
-  id: string;
-  slug: string | null;
-  status: string;
-  nama: string;
-  program_studi?: string;
-  keterangan?: string;
-  foto?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown>; darkVariant?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> } };
-  isi: string;
-  urutan?: number;
-  catatan_internal?: string;
-  createdAt: Date;
-  updatedAt: Date;
-  publishedAt: Date | null;
-  byline?: BylineSummary | null;
-  bylines?: ContentBylineCredit[];
-  terms?: Record<string, TaxonomyTerm[]>;
-}
-
 export interface Lembaga {
   id: string;
   slug: string | null;
@@ -353,6 +304,52 @@ export interface Pmb {
   terms?: Record<string, TaxonomyTerm[]>;
 }
 
+export interface Beranda {
+  id: string;
+  slug: string | null;
+  status: string;
+  nama: string;
+  tautan_cepat?: { "judul"?: string | null; "keterangan"?: string | null; "url"?: string | null }[];
+  pernyataan_judul?: string;
+  pernyataan_teks?: string;
+  pernyataan_lencana?: string;
+  statistik?: { "label"?: string | null; "nilai"?: string | null; "catatan"?: string | null }[];
+  studi_judul?: string;
+  studi_teks?: string;
+  studi_kartu?: { "judul"?: string | null; "gambar"?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown>; darkVariant?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> } } | null; "url"?: string | null; "teks_tombol"?: string | null }[];
+  berita_judul?: string;
+  berita_teks?: string;
+  berita_jumlah?: number;
+  kehidupan_judul?: string;
+  kehidupan_teks?: string;
+  kehidupan_gambar?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown>; darkVariant?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> } };
+  kehidupan_angka?: { "nilai"?: string | null; "label"?: string | null }[];
+  fakultas_judul?: string;
+  fakultas_teks?: string;
+  fasilitas_tab_1?: string;
+  fasilitas_tab_2?: string;
+  fasilitas?: { "tab"?: "1" | "2" | null; "judul"?: string | null; "gambar"?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown>; darkVariant?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> } } | null }[];
+  nilai_judul?: string;
+  nilai_teks?: string;
+  nilai_tab_1?: string;
+  nilai_tab_2?: string;
+  nilai_kartu?: { "tab"?: "1" | "2" | null; "judul"?: string | null; "deskripsi"?: string | null; "gambar"?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown>; darkVariant?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> } } | null }[];
+  sambutan_judul?: string;
+  sambutan_latar?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown>; darkVariant?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> } };
+  angka_judul?: string;
+  angka_teks?: string;
+  angka_latar?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown>; darkVariant?: { id: string; src?: string; alt?: string; width?: number; height?: number; filename?: string; mimeType?: string; blurhash?: string; dominantColor?: string; focalX?: number; focalY?: number; provider?: string; previewUrl?: string; meta?: Record<string, unknown> } };
+  angka?: { "nilai"?: string | null; "label"?: string | null; "ikon"?: "toga" | "buku" | "gedung" | "jurnal" | "mahasiswa" | "dosen" | "staf" | "bintang" | null }[];
+  jurnal_judul?: string;
+  jurnal_teks?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  byline?: BylineSummary | null;
+  bylines?: ContentBylineCredit[];
+  terms?: Record<string, TaxonomyTerm[]>;
+}
+
 export interface InfoKampu {
   id: string;
   slug: string | null;
@@ -409,15 +406,14 @@ declare module "emdash" {
     profil_institusi: ProfilInstitusi;
     halaman: Halaman;
     pimpinan: Pimpinan;
-    beranda: Beranda;
     fakultas: Fakulta;
     layanan: Layanan;
     prodi: Prodi;
     slider: Slider;
     jurnal: Jurnal;
-    testimoni: Testimoni;
     lembaga: Lembaga;
     pmb: Pmb;
+    beranda: Beranda;
     info_kampus: InfoKampu;
     info_kontak: InfoKontak;
   }

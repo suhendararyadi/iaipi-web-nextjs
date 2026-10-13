@@ -1,12 +1,12 @@
 ---
-// Layout dasar semua halaman publik: CSS tema lama, header, footer, navigasi
-// bawah (mobile), tombol WhatsApp, dan skrip jQuery tema (slider, counter, dll).
+// Layout dasar semua halaman publik: font, stylesheet desain (src/styles/global.css),
+// header, footer, tombol WhatsApp, dan skrip interaksi kecil (src/scripts/ui.ts).
+import "@/styles/global.css";
 import { getMenuWithCacheHint, getSiteSettingsWithCacheHint } from "emdash";
 import { EmDashBodyEnd, EmDashBodyStart, EmDashHead } from "emdash/ui";
 import { createPublicPageContext } from "emdash/page";
 import Header from "@/components/layout/Header.astro";
 import Footer from "@/components/layout/Footer.astro";
-import BottomNav from "@/components/layout/BottomNav.astro";
 import WhatsAppFloat from "@/components/layout/WhatsAppFloat.astro";
 import { getInfoKampus, mediaSrc, useCacheHint } from "@/lib/cms";
 
@@ -25,21 +25,30 @@ interface Props {
 
 const { title, description, canonical, image, content, pageType = "website" } = Astro.props;
 
-const [settingsResult, menuResult, footerSitemap, footerLayanan, infoResult] = await Promise.all([
+const [settingsResult, menuResult, tautanAtas, footerSumber, footerLayanan, footerProfil, infoResult] = await Promise.all([
 	getSiteSettingsWithCacheHint(),
 	getMenuWithCacheHint("utama"),
-	getMenuWithCacheHint("footer_sitemap"),
+	getMenuWithCacheHint("tautan_atas"),
+	getMenuWithCacheHint("footer_sumber"),
 	getMenuWithCacheHint("footer_layanan"),
+	getMenuWithCacheHint("footer_profil"),
 	getInfoKampus(),
 ]);
 useCacheHint(
 	Astro,
 	settingsResult.cacheHint,
 	menuResult.cacheHint,
-	footerSitemap.cacheHint,
+	tautanAtas.cacheHint,
+	footerSumber.cacheHint,
 	footerLayanan.cacheHint,
+	footerProfil.cacheHint,
 	infoResult.cacheHint,
 );
+const kolomFooter = [
+	{ judul: "Sumber", menu: footerSumber.data },
+	{ judul: "Layanan", menu: footerLayanan.data },
+	{ judul: "Profil", menu: footerProfil.data },
+];
 
 const info = infoResult.info;
 const siteTitle = settingsResult.data?.title || info.nama;
@@ -97,18 +106,9 @@ const gaId = info.google_analytics_id?.trim();
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-		<link rel="stylesheet" href="/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="/css/slick.css" />
-		<link rel="stylesheet" href="/css/magnific-popup.css" />
-		<link rel="stylesheet" href="/css/style.css" />
-		<link rel="stylesheet" href="/css/default.css" />
-		<link rel="stylesheet" href="/css/header3.css" />
-		<link rel="stylesheet" href="/css/tabs.css" />
-		<link rel="stylesheet" href="/css/custom.css" />
-		<link rel="stylesheet" href="/css/slider-fix.css" />
-		<link rel="stylesheet" href="/css/header-islamic-v3.css" />
-		<link rel="stylesheet" href="/css/site.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Lato:wght@400;700;900&display=swap" />
 		<slot name="head" />
 
 		<EmDashHead page={pageCtx} />
@@ -135,41 +135,19 @@ const gaId = info.google_analytics_id?.trim();
 		<EmDashBodyStart page={pageCtx} />
 		<a href="#main-content" class="skip-link">Langsung ke konten utama</a>
 
-		<div class="preloader">
-			<div class="loader rubix-cube">
-				<div class="layer layer-1"></div>
-				<div class="layer layer-2"></div>
-				<div class="layer layer-3"></div>
-				<div class="layer layer-4"></div>
-				<div class="layer layer-5"></div>
-				<div class="layer layer-6"></div>
-				<div class="layer layer-7"></div>
-				<div class="layer layer-8"></div>
-			</div>
-		</div>
-
-		<Header info={info} logo={logo} menu={menuResult.data} />
+		<Header info={info} logo={logo} menu={menuResult.data} tautanAtas={tautanAtas.data} />
 
 		<main id="main-content">
 			<slot />
 		</main>
 
-		<Footer info={info} logo={logo} sitemap={footerSitemap.data} layanan={footerLayanan.data} />
-		<BottomNav siakadUrl={info.link_siakad} />
-
-		<a href="#" class="back-to-top" aria-label="Kembali ke atas"><i class="fa fa-angle-up"></i></a>
+		<Footer info={info} logo={logo} kolom={kolomFooter} />
 		<WhatsAppFloat info={info} />
-
-		<script is:inline src="/js/vendor/jquery-1.12.4.min.js"></script>
-		<script is:inline src="/js/bootstrap.min.js"></script>
-		<script is:inline src="/js/slick.min.js"></script>
-		<script is:inline src="/js/waypoints.min.js"></script>
-		<script is:inline src="/js/jquery.counterup.min.js"></script>
-		<script is:inline src="/js/jquery.nice-select.min.js"></script>
-		<script is:inline src="/js/jquery.magnific-popup.min.js"></script>
-		<script is:inline src="/js/main.js"></script>
 		<slot name="scripts" />
 
+		<script>
+			import "@/scripts/ui.ts";
+		</script>
 		<EmDashBodyEnd page={pageCtx} />
 	</body>
 </html>

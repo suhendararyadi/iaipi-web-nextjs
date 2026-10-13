@@ -147,3 +147,20 @@ export function formatTanggal(date: Date | string | null | undefined): string {
 	if (Number.isNaN(d.getTime())) return "";
 	return d.toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Jakarta" });
 }
+
+/**
+ * Memecah judul bertanda *kata* menjadi segmen agar kata yang disorot bisa diberi
+ * warna (class "sorot") tanpa set:html. Contoh: "Studi di *IAI PERSIS Garut*".
+ */
+export function segmenSorot(text: string | null | undefined): { teks: string; sorot: boolean }[] {
+	if (!text) return [];
+	return text
+		.split(/(\*[^*]+\*)/g)
+		.filter(Boolean)
+		.map((bagian) => (bagian.startsWith("*") && bagian.endsWith("*") ? { teks: bagian.slice(1, -1), sorot: true } : { teks: bagian, sorot: false }));
+}
+
+/** Teks polos dari judul bertanda *kata* (untuk title/alt/aria). */
+export function tanpaSorot(text: string | null | undefined): string {
+	return (text ?? "").replace(/\*/g, "");
+}

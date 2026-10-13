@@ -1,6 +1,349 @@
 {
 	"collections": [
 		{
+			"slug": "beranda",
+			"label": "Beranda",
+			"labelSingular": "Beranda",
+			"description": "Teks, gambar, dan angka setiap section beranda. Cukup satu entri (slug: utama). Berita, fakultas, jurnal, pimpinan, layanan diambil dari koleksinya masing-masing.",
+			"group": "Pengaturan",
+			"sortOrder": 80,
+			"supports": [
+				"revisions"
+			],
+			"routable": false,
+			"titleField": "nama",
+			"fields": [
+				{
+					"slug": "nama",
+					"label": "Nama entri",
+					"type": "string",
+					"required": true
+				},
+				{
+					"slug": "tautan_cepat",
+					"label": "Pita tautan cepat (3 kartu di bawah slider)",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "judul",
+								"label": "Judul",
+								"type": "string"
+							},
+							{
+								"slug": "keterangan",
+								"label": "Keterangan kecil",
+								"type": "string"
+							},
+							{
+								"slug": "url",
+								"label": "Tautan",
+								"type": "url"
+							}
+						]
+					}
+				},
+				{
+					"slug": "pernyataan_judul",
+					"label": "Pernyataan besar — judul (tulis *kata* untuk menyorot dengan warna hijau)",
+					"type": "string"
+				},
+				{
+					"slug": "pernyataan_teks",
+					"label": "Pernyataan besar — paragraf",
+					"type": "text"
+				},
+				{
+					"slug": "pernyataan_lencana",
+					"label": "Pernyataan besar — lencana kecil",
+					"type": "string"
+				},
+				{
+					"slug": "statistik",
+					"label": "Kartu statistik di atas pita hijau (3)",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "label",
+								"label": "Label",
+								"type": "string"
+							},
+							{
+								"slug": "nilai",
+								"label": "Nilai",
+								"type": "string"
+							},
+							{
+								"slug": "catatan",
+								"label": "Catatan kecil (opsional)",
+								"type": "string"
+							}
+						]
+					}
+				},
+				{
+					"slug": "studi_judul",
+					"label": "Studi — judul (tulis *kata* untuk menyorot dengan warna hijau)",
+					"type": "string"
+				},
+				{
+					"slug": "studi_teks",
+					"label": "Studi — paragraf",
+					"type": "text"
+				},
+				{
+					"slug": "studi_kartu",
+					"label": "Studi — kartu foto (kartu pertama tampil tinggi di kiri)",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "judul",
+								"label": "Judul",
+								"type": "string"
+							},
+							{
+								"slug": "gambar",
+								"label": "Foto",
+								"type": "image"
+							},
+							{
+								"slug": "url",
+								"label": "Tautan",
+								"type": "url"
+							},
+							{
+								"slug": "teks_tombol",
+								"label": "Teks tombol",
+								"type": "string"
+							}
+						]
+					}
+				},
+				{
+					"slug": "berita_judul",
+					"label": "Berita — judul (tulis *kata* untuk menyorot dengan warna hijau)",
+					"type": "string"
+				},
+				{
+					"slug": "berita_teks",
+					"label": "Berita — paragraf",
+					"type": "text"
+				},
+				{
+					"slug": "berita_jumlah",
+					"label": "Berita — jumlah kartu",
+					"type": "integer",
+					"defaultValue": 3
+				},
+				{
+					"slug": "kehidupan_judul",
+					"label": "Kehidupan mahasiswa — judul (tulis *kata* untuk menyorot dengan warna hijau)",
+					"type": "string"
+				},
+				{
+					"slug": "kehidupan_teks",
+					"label": "Kehidupan mahasiswa — paragraf",
+					"type": "text"
+				},
+				{
+					"slug": "kehidupan_gambar",
+					"label": "Kehidupan mahasiswa — foto lebar",
+					"type": "image"
+				},
+				{
+					"slug": "kehidupan_angka",
+					"label": "Kehidupan mahasiswa — angka (3)",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "nilai",
+								"label": "Nilai",
+								"type": "string"
+							},
+							{
+								"slug": "label",
+								"label": "Label",
+								"type": "string"
+							}
+						]
+					}
+				},
+				{
+					"slug": "fakultas_judul",
+					"label": "Fakultas — judul",
+					"type": "string"
+				},
+				{
+					"slug": "fakultas_teks",
+					"label": "Fakultas — paragraf",
+					"type": "text"
+				},
+				{
+					"slug": "fasilitas_tab_1",
+					"label": "Fasilitas — nama tab 1",
+					"type": "string"
+				},
+				{
+					"slug": "fasilitas_tab_2",
+					"label": "Fasilitas — nama tab 2",
+					"type": "string"
+				},
+				{
+					"slug": "fasilitas",
+					"label": "Fasilitas — foto (urutan menentukan pola bento)",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "tab",
+								"label": "Tampil di tab",
+								"type": "select",
+								"options": [
+									"1",
+									"2"
+								]
+							},
+							{
+								"slug": "judul",
+								"label": "Judul",
+								"type": "string"
+							},
+							{
+								"slug": "gambar",
+								"label": "Foto",
+								"type": "image"
+							}
+						]
+					}
+				},
+				{
+					"slug": "nilai_judul",
+					"label": "Nilai & keunggulan — judul",
+					"type": "string"
+				},
+				{
+					"slug": "nilai_teks",
+					"label": "Nilai & keunggulan — paragraf",
+					"type": "text"
+				},
+				{
+					"slug": "nilai_tab_1",
+					"label": "Nilai & keunggulan — nama tab 1",
+					"type": "string"
+				},
+				{
+					"slug": "nilai_tab_2",
+					"label": "Nilai & keunggulan — nama tab 2",
+					"type": "string"
+				},
+				{
+					"slug": "nilai_kartu",
+					"label": "Nilai & keunggulan — kartu",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "tab",
+								"label": "Tampil di tab",
+								"type": "select",
+								"options": [
+									"1",
+									"2"
+								]
+							},
+							{
+								"slug": "judul",
+								"label": "Judul",
+								"type": "string"
+							},
+							{
+								"slug": "deskripsi",
+								"label": "Deskripsi",
+								"type": "text"
+							},
+							{
+								"slug": "gambar",
+								"label": "Foto latar (opsional)",
+								"type": "image"
+							}
+						]
+					}
+				},
+				{
+					"slug": "sambutan_judul",
+					"label": "Sambutan — judul (tulis *kata* untuk menyorot dengan warna hijau)",
+					"type": "string"
+				},
+				{
+					"slug": "sambutan_latar",
+					"label": "Sambutan — foto latar samar",
+					"type": "image"
+				},
+				{
+					"slug": "angka_judul",
+					"label": "Dalam angka — judul (tulis *kata* untuk menyorot dengan warna hijau)",
+					"type": "string"
+				},
+				{
+					"slug": "angka_teks",
+					"label": "Dalam angka — paragraf",
+					"type": "text"
+				},
+				{
+					"slug": "angka_latar",
+					"label": "Dalam angka — foto latar",
+					"type": "image"
+				},
+				{
+					"slug": "angka",
+					"label": "Dalam angka — 8 angka",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "nilai",
+								"label": "Nilai",
+								"type": "string"
+							},
+							{
+								"slug": "label",
+								"label": "Label",
+								"type": "string"
+							},
+							{
+								"slug": "ikon",
+								"label": "Ikon",
+								"type": "select",
+								"options": [
+									"toga",
+									"buku",
+									"gedung",
+									"jurnal",
+									"mahasiswa",
+									"dosen",
+									"staf",
+									"bintang"
+								]
+							}
+						]
+					}
+				},
+				{
+					"slug": "jurnal_judul",
+					"label": "Jurnal — judul (tulis *kata* untuk menyorot dengan warna hijau)",
+					"type": "string"
+				},
+				{
+					"slug": "jurnal_teks",
+					"label": "Jurnal — paragraf",
+					"type": "text"
+				}
+			]
+		},
+		{
 			"slug": "berita",
 			"label": "Berita",
 			"labelSingular": "Berita",
@@ -39,134 +382,6 @@
 					"label": "Isi berita",
 					"type": "portableText",
 					"searchable": true
-				}
-			]
-		},
-		{
-			"slug": "beranda",
-			"label": "Pengaturan Beranda",
-			"labelSingular": "Pengaturan Beranda",
-			"description": "Judul section, video, dan tautan di halaman beranda. Cukup satu entri (slug: utama).",
-			"group": "Beranda",
-			"sortOrder": 30,
-			"supports": [
-				"revisions"
-			],
-			"routable": false,
-			"titleField": "nama",
-			"fields": [
-				{
-					"slug": "nama",
-					"label": "Nama entri",
-					"type": "string",
-					"required": true,
-					"defaultValue": "Beranda"
-				},
-				{
-					"slug": "pimpinan_eyebrow",
-					"label": "Section Pimpinan: teks kecil di atas judul",
-					"type": "string"
-				},
-				{
-					"slug": "pimpinan_judul",
-					"label": "Section Pimpinan: judul",
-					"type": "string"
-				},
-				{
-					"slug": "berita_eyebrow",
-					"label": "Section Berita: teks kecil di atas judul",
-					"type": "string"
-				},
-				{
-					"slug": "berita_judul",
-					"label": "Section Berita: judul",
-					"type": "string"
-				},
-				{
-					"slug": "berita_jumlah",
-					"label": "Section Berita: jumlah berita yang ditampilkan (3–6)",
-					"type": "integer",
-					"defaultValue": 4
-				},
-				{
-					"slug": "berita_teks_tautan",
-					"label": "Section Berita: teks tautan ke semua berita",
-					"type": "string"
-				},
-				{
-					"slug": "video_url",
-					"label": "Section Video: URL video YouTube",
-					"type": "url"
-				},
-				{
-					"slug": "video_latar",
-					"label": "Section Video: gambar latar",
-					"type": "image"
-				},
-				{
-					"slug": "video_judul",
-					"label": "Section Video: judul daftar keunggulan",
-					"type": "string"
-				},
-				{
-					"slug": "video_poin",
-					"label": "Section Video: daftar keunggulan",
-					"type": "repeater",
-					"validation": {
-						"subFields": [
-							{
-								"slug": "judul",
-								"label": "Judul",
-								"type": "string",
-								"required": true
-							},
-							{
-								"slug": "deskripsi",
-								"label": "Deskripsi",
-								"type": "text"
-							},
-							{
-								"slug": "ikon",
-								"label": "Ikon",
-								"type": "image"
-							}
-						]
-					}
-				},
-				{
-					"slug": "publikasi_eyebrow",
-					"label": "Section Publikasi: teks kecil di atas judul",
-					"type": "string"
-				},
-				{
-					"slug": "publikasi_judul",
-					"label": "Section Publikasi: judul",
-					"type": "string"
-				},
-				{
-					"slug": "publikasi_url",
-					"label": "Section Publikasi: tautan tombol (portal jurnal)",
-					"type": "url"
-				},
-				{
-					"slug": "publikasi_teks_tombol",
-					"label": "Section Publikasi: teks tombol",
-					"type": "string"
-				},
-				{
-					"slug": "testimoni_eyebrow",
-					"label": "Section Testimoni: teks kecil di atas judul",
-					"type": "string"
-				},
-				{
-					"slug": "testimoni_judul",
-					"label": "Section Testimoni: judul",
-					"type": "string"
-				},
-				{
-					"slug": "testimoni_latar",
-					"label": "Section Testimoni: gambar latar",
-					"type": "image"
 				}
 			]
 		},
@@ -280,68 +495,6 @@
 					"indexed": true
 				}
 			]
-		},
-		{
-			"slug": "testimoni",
-			"label": "Testimoni",
-			"labelSingular": "Testimoni",
-			"description": "Kesan alumni/mahasiswa yang tampil di beranda. Gunakan hanya testimoni asli yang sudah disetujui orangnya.",
-			"group": "Beranda",
-			"sortOrder": 33,
-			"supports": [
-				"drafts",
-				"revisions"
-			],
-			"routable": false,
-			"titleField": "nama",
-			"admin": {
-				"listColumns": [
-					"program_studi",
-					"keterangan",
-					"urutan"
-				]
-			},
-			"fields": [
-				{
-					"slug": "nama",
-					"label": "Nama",
-					"type": "string",
-					"required": true
-				},
-				{
-					"slug": "program_studi",
-					"label": "Program studi",
-					"type": "string"
-				},
-				{
-					"slug": "keterangan",
-					"label": "Keterangan (mis. Alumni 2023 / Mahasiswa Aktif)",
-					"type": "string"
-				},
-				{
-					"slug": "foto",
-					"label": "Foto (persegi; kosongkan = avatar inisial)",
-					"type": "image"
-				},
-				{
-					"slug": "isi",
-					"label": "Isi testimoni",
-					"type": "text",
-					"required": true
-				},
-				{
-					"slug": "urutan",
-					"label": "Urutan tampil (kecil = lebih dulu)",
-					"type": "integer",
-					"defaultValue": 100,
-					"indexed": true
-				},
-				{
-					"slug": "catatan_internal",
-					"label": "Catatan internal (tidak tampil di situs)",
-					"type": "text"
-				}
-			]
 		}
 	],
 	"taxonomies": [
@@ -383,55 +536,346 @@
 				"slug": "utama",
 				"status": "published",
 				"data": {
-					"nama": "Beranda",
-					"pimpinan_eyebrow": "Dosen dan Peneliti",
-					"pimpinan_judul": "Pimpinan",
-					"berita_eyebrow": "Berita & Agenda",
-					"berita_judul": "Berita Terbaru IAIPI Garut",
-					"berita_jumlah": 4,
-					"berita_teks_tautan": "Lihat Semua Berita",
-					"video_url": "https://www.youtube.com/watch?v=2EvLSLtotQg",
-					"video_latar": {
-						"$asset": "/images/slider/slider-iaipi-3.jpg",
-						"alt": "Suasana Kampus IAIPI Garut"
+					"nama": "Beranda utama",
+					"tautan_cepat": [
+						{
+							"judul": "PMB 2026/2027",
+							"keterangan": "Penerimaan Mahasiswa Baru",
+							"url": "/pmb"
+						},
+						{
+							"judul": "Berita",
+							"keterangan": "Kabar kampus terbaru",
+							"url": "/berita"
+						},
+						{
+							"judul": "Jurnal Ilmiah",
+							"keterangan": "8 jurnal terindeks SINTA",
+							"url": "https://jurnal.iaipigarut.ac.id"
+						}
+					],
+					"pernyataan_judul": "Jadikan *IAI PERSIS Garut* pilihanmu dan raih masa depan cemerlang!",
+					"pernyataan_teks": "Dengan pendidikan berlandaskan Al-Qur'an dan Sunnah, lingkungan kampus yang Islami, dosen profesional, pembelajaran blended, serta beasiswa hingga 100% bagi penghafal Al-Qur'an, IAI PERSIS Garut siap membekali Anda menjadi pendidik, dai, peneliti, dan profesional yang berdaya saing.",
+					"pernyataan_lencana": "Kampus Saintek Dakwah Turats Islam",
+					"statistik": [
+						{
+							"label": "Akreditasi Institusi",
+							"nilai": "BAIK",
+							"catatan": "BAN-PT"
+						},
+						{
+							"label": "Program Studi S1 & S2",
+							"nilai": "11",
+							"catatan": ""
+						},
+						{
+							"label": "Jurnal Ilmiah Terindeks SINTA",
+							"nilai": "8",
+							"catatan": ""
+						}
+					],
+					"studi_judul": "Studi di *IAI PERSIS Garut*",
+					"studi_teks": "Rasakan pengalaman kuliah di kampus Islam yang berakar pada turats, riset yang aktif, dan pengabdian nyata bagi masyarakat. Kembangkan potensi Anda melalui program sarjana dan magister serta kesempatan meraih beasiswa.",
+					"studi_kartu": [
+						{
+							"judul": "Program Studi",
+							"gambar": {
+								"$asset": "/images/slider/slider-iaipi-2.jpg",
+								"alt": "Mahasiswi membaca di perpustakaan kampus"
+							},
+							"url": "/fakultas",
+							"teks_tombol": "Lihat semua"
+						},
+						{
+							"judul": "Program Magister",
+							"gambar": {
+								"$media": {
+									"url": "https://cdn.hashnode.com/uploads/covers/681095a5c388603fb537a2fa/9b18640e-5357-4ee5-8389-87fa28f246d6.jpg",
+									"alt": "Pelantikan HMPS Magister PAI",
+									"filename": "beranda-2.jpg"
+								}
+							},
+							"url": "/magister",
+							"teks_tombol": "Lihat semua"
+						},
+						{
+							"judul": "Beasiswa",
+							"gambar": {
+								"$media": {
+									"url": "https://cdn.hashnode.com/uploads/covers/681095a5c388603fb537a2fa/c76b0f74-aecc-4a92-888f-ce2baf2cb1cd.jpg",
+									"alt": "Wisuda IAI PERSIS Garut",
+									"filename": "beranda-5.jpg"
+								}
+							},
+							"url": "/pmb",
+							"teks_tombol": "Lihat semua"
+						}
+					],
+					"berita_judul": "*IAIP* Hari Ini",
+					"berita_teks": "Kabar terbaru dari kampus: kegiatan akademik, prestasi, dan pengabdian sivitas IAI PERSIS Garut.",
+					"berita_jumlah": 3,
+					"kehidupan_judul": "Kehidupan Mahasiswa *IAIP*",
+					"kehidupan_teks": "Perjalanan studi Anda akan penuh warna: unit kegiatan mahasiswa, himpunan program studi, pengabdian Khidmatul Ummah, hingga kajian dan dakwah bersama teman-teman seperjuangan.",
+					"kehidupan_gambar": {
+						"$media": {
+							"url": "https://cdn.hashnode.com/uploads/covers/681095a5c388603fb537a2fa/0c42355a-365d-4260-bafe-f4235833e436.jpg",
+							"alt": "Mahasiswa IAI PERSIS Garut dalam kegiatan Khidmatul Ummah",
+							"filename": "beranda-9.jpg"
+						}
 					},
-					"video_judul": "Tentang Kami",
-					"video_poin": [
+					"kehidupan_angka": [
 						{
-							"judul": "Visi",
-							"deskripsi": "Menjadi Kampus Unggul Pengemban Turats Islam pada Tahun 2028 di Indonesia.",
-							"ikon": {
-								"$asset": "/images/all-icon/f-1.png",
-								"alt": ""
+							"nilai": "1000+",
+							"label": "Jumlah Mahasiswa"
+						},
+						{
+							"nilai": "6",
+							"label": "Unit Kegiatan Mahasiswa"
+						},
+						{
+							"nilai": "30+",
+							"label": "Dosen dan Peneliti"
+						}
+					],
+					"fakultas_judul": "Fakultas di IAI PERSIS Garut",
+					"fakultas_teks": "IAI PERSIS Garut memiliki tiga fakultas dan satu program pascasarjana di kampus Tarogong Kidul, Garut, dengan fasilitas perkuliahan, perpustakaan, dan ruang praktik yang mendukung tradisi keilmuan Islam.",
+					"fasilitas_tab_1": "Fasilitas Akademik",
+					"fasilitas_tab_2": "Kegiatan Keislaman",
+					"fasilitas": [
+						{
+							"tab": "1",
+							"judul": "Gedung Kampus",
+							"gambar": {
+								"$asset": "/images/slider/slider-iaipi-1.jpg",
+								"alt": "Gedung kampus IAI PERSIS Garut"
 							}
 						},
 						{
-							"judul": "Moto",
-							"deskripsi": "Kampus Saintek Dakwah dalam Bidang Keilmuan Turats",
-							"ikon": {
-								"$asset": "/images/all-icon/f-2.png",
-								"alt": ""
+							"tab": "1",
+							"judul": "Perpustakaan",
+							"gambar": {
+								"$asset": "/images/slider/slider-iaipi-2.jpg",
+								"alt": "Perpustakaan kampus"
 							}
 						},
 						{
-							"judul": "Fasilitas",
-							"deskripsi": "Fasilitas Pendidikan yang Lengkap Untuk Menunjang Perkuliahan.",
-							"ikon": {
-								"$asset": "/images/all-icon/f-3.png",
-								"alt": ""
+							"tab": "1",
+							"judul": "Aula Kampus",
+							"gambar": {
+								"$media": {
+									"url": "https://cdn.hashnode.com/uploads/covers/681095a5c388603fb537a2fa/ca78734f-ff41-4f2e-8386-26019ee13f9d.jpg",
+									"alt": "Kegiatan di aula kampus",
+									"filename": "beranda-8.jpg"
+								}
+							}
+						},
+						{
+							"tab": "1",
+							"judul": "Ruang Perkuliahan",
+							"gambar": {
+								"$asset": "/images/slider/slider-iaipi-3.jpg",
+								"alt": "Koridor gedung perkuliahan"
+							}
+						},
+						{
+							"tab": "2",
+							"judul": "Seminar Dakwah dan Kebudayaan",
+							"gambar": {
+								"$media": {
+									"url": "https://cdn.hashnode.com/uploads/covers/681095a5c388603fb537a2fa/d491fbbf-8365-4a5e-a252-0e42b8be8ed2.jpg",
+									"alt": "Seminar nasional dakwah dan kebudayaan",
+									"filename": "beranda-7.jpg"
+								}
+							}
+						},
+						{
+							"tab": "2",
+							"judul": "Khidmatul Ummah",
+							"gambar": {
+								"$media": {
+									"url": "https://cdn.hashnode.com/uploads/covers/681095a5c388603fb537a2fa/0c42355a-365d-4260-bafe-f4235833e436.jpg",
+									"alt": "Kegiatan Khidmatul Ummah",
+									"filename": "beranda-9.jpg"
+								}
+							}
+						},
+						{
+							"tab": "2",
+							"judul": "Wisuda dan Pengutusan Dai",
+							"gambar": {
+								"$media": {
+									"url": "https://cdn.hashnode.com/uploads/covers/681095a5c388603fb537a2fa/c76b0f74-aecc-4a92-888f-ce2baf2cb1cd.jpg",
+									"alt": "Wisuda IAI PERSIS Garut",
+									"filename": "beranda-5.jpg"
+								}
+							}
+						},
+						{
+							"tab": "2",
+							"judul": "Kuliah Umum",
+							"gambar": {
+								"$media": {
+									"url": "https://cdn.hashnode.com/uploads/covers/681095a5c388603fb537a2fa/02a3d417-d636-4c9f-a582-9780955cd13b.jpg",
+									"alt": "Kuliah umum perdana IAI PERSIS Garut",
+									"filename": "beranda-4.jpg"
+								}
 							}
 						}
 					],
-					"publikasi_eyebrow": "Publikasi",
-					"publikasi_judul": "Jurnal IAIPI Garut",
-					"publikasi_url": "https://jurnal.iaipigarut.ac.id",
-					"publikasi_teks_tombol": "Selengkapnya",
-					"testimoni_eyebrow": "Testimonial",
-					"testimoni_judul": "Kata Mereka Tentang IAIPI",
-					"testimoni_latar": {
-						"$asset": "/images/slider/slider-iaipi-2.jpg",
-						"alt": "Kegiatan Mahasiswa IAIPI Garut"
-					}
+					"nilai_judul": "IAI PERSIS Garut menjunjung nilai Islam dan kebersamaan",
+					"nilai_teks": "Kami berkomitmen menciptakan lingkungan pendidikan yang Islami, ramah, dan setara bagi mahasiswa, dosen, dan staf untuk mengoptimalkan potensi setiap insan.",
+					"nilai_tab_1": "Keunggulan Kampus",
+					"nilai_tab_2": "Kegiatan Mahasiswa",
+					"nilai_kartu": [
+						{
+							"tab": "1",
+							"judul": "Kampus Islami",
+							"deskripsi": "Nuansa religius yang mendukung pengembangan karakter Islami.",
+							"gambar": {
+								"$media": {
+									"url": "https://cdn.hashnode.com/uploads/covers/681095a5c388603fb537a2fa/ca78734f-ff41-4f2e-8386-26019ee13f9d.jpg",
+									"alt": "Sivitas IAI PERSIS Garut",
+									"filename": "beranda-8.jpg"
+								}
+							}
+						},
+						{
+							"tab": "1",
+							"judul": "Terakreditasi BAN-PT",
+							"deskripsi": "Institusi dan program studi terakreditasi Badan Akreditasi Nasional Perguruan Tinggi.",
+							"gambar": {
+								"$media": {
+									"url": "https://cdn.hashnode.com/uploads/covers/681095a5c388603fb537a2fa/c76b0f74-aecc-4a92-888f-ce2baf2cb1cd.jpg",
+									"alt": "Wisuda IAI PERSIS Garut",
+									"filename": "beranda-5.jpg"
+								}
+							}
+						},
+						{
+							"tab": "1",
+							"judul": "Kemenag Berdampak",
+							"deskripsi": "Bagian dari transformasi pendidikan tinggi Islam oleh Kementerian Agama.",
+							"gambar": {
+								"$media": {
+									"url": "https://cdn.hashnode.com/uploads/covers/681095a5c388603fb537a2fa/d491fbbf-8365-4a5e-a252-0e42b8be8ed2.jpg",
+									"alt": "Seminar nasional di aula",
+									"filename": "beranda-7.jpg"
+								}
+							}
+						},
+						{
+							"tab": "1",
+							"judul": "Blended Learning",
+							"deskripsi": "Perpaduan pembelajaran tatap muka dan daring yang fleksibel.",
+							"gambar": {
+								"$media": {
+									"url": "https://cdn.hashnode.com/uploads/covers/681095a5c388603fb537a2fa/9b18640e-5357-4ee5-8389-87fa28f246d6.jpg",
+									"alt": "Mahasiswa magister IAI PERSIS Garut",
+									"filename": "beranda-2.jpg"
+								}
+							}
+						},
+						{
+							"tab": "1",
+							"judul": "Penelitian Aktif",
+							"deskripsi": "Delapan jurnal ilmiah terindeks SINTA dan Google Scholar.",
+							"gambar": {
+								"$media": {
+									"url": "https://cdn.hashnode.com/uploads/covers/681095a5c388603fb537a2fa/0c42355a-365d-4260-bafe-f4235833e436.jpg",
+									"alt": "Mahasiswa dalam Khidmatul Ummah",
+									"filename": "beranda-9.jpg"
+								}
+							}
+						},
+						{
+							"tab": "2",
+							"judul": "Aksara",
+							"deskripsi": "Unit kegiatan mahasiswa bidang kepenulisan."
+						},
+						{
+							"tab": "2",
+							"judul": "Trekata",
+							"deskripsi": "Fotografi, videografi, dan desain grafis."
+						},
+						{
+							"tab": "2",
+							"judul": "Imaraga",
+							"deskripsi": "Unit kegiatan mahasiswa bidang olahraga."
+						},
+						{
+							"tab": "2",
+							"judul": "Shurulkhan",
+							"deskripsi": "Unit kegiatan mahasiswa bidang bela diri."
+						},
+						{
+							"tab": "2",
+							"judul": "Himpara",
+							"deskripsi": "Himpunan mahasiswa pecinta alam."
+						},
+						{
+							"tab": "2",
+							"judul": "Protokoler",
+							"deskripsi": "Unit kegiatan mahasiswa bidang keprotokolan."
+						}
+					],
+					"sambutan_judul": "Belajar di Garut Bersama *IAI PERSIS*",
+					"sambutan_latar": {
+						"$asset": "/images/slider/slider-iaipi-1.jpg",
+						"alt": "Gedung kampus IAI PERSIS Garut"
+					},
+					"angka_judul": "*IAIP* dalam Angka",
+					"angka_teks": "Kami mendidik pendidik, dai, dan peneliti muda yang berakar pada turats Islam dan siap memberi dampak bagi masyarakat.",
+					"angka_latar": {
+						"$media": {
+							"url": "https://cdn.hashnode.com/uploads/covers/681095a5c388603fb537a2fa/c76b0f74-aecc-4a92-888f-ce2baf2cb1cd.jpg",
+							"alt": "Wisuda IAI PERSIS Garut",
+							"filename": "beranda-5.jpg"
+						}
+					},
+					"angka": [
+						{
+							"nilai": "9",
+							"label": "Program Sarjana",
+							"ikon": "toga"
+						},
+						{
+							"nilai": "2",
+							"label": "Program Magister",
+							"ikon": "toga"
+						},
+						{
+							"nilai": "3",
+							"label": "Fakultas",
+							"ikon": "gedung"
+						},
+						{
+							"nilai": "8",
+							"label": "Jurnal Ilmiah",
+							"ikon": "jurnal"
+						},
+						{
+							"nilai": "1000+",
+							"label": "Mahasiswa",
+							"ikon": "mahasiswa"
+						},
+						{
+							"nilai": "30+",
+							"label": "Dosen dan Peneliti",
+							"ikon": "dosen"
+						},
+						{
+							"nilai": "50+",
+							"label": "Staf",
+							"ikon": "staf"
+						},
+						{
+							"nilai": "6",
+							"label": "UKM",
+							"ikon": "bintang"
+						}
+					],
+					"jurnal_judul": "Jurnal Ilmiah *IAIP*",
+					"jurnal_teks": "Delapan jurnal ilmiah terindeks SINTA dan Google Scholar yang mewadahi riset dosen dan mahasiswa di bidang pendidikan, syariah, hadis, tafsir, dan ekonomi Islam."
 				}
 			}
 		],
@@ -631,47 +1075,6 @@
 						"alt": "Sampul jurnal RADIYYA"
 					},
 					"urutan": 80
-				}
-			}
-		],
-		"testimoni": [
-			{
-				"id": "testimoni-ahmad-fauzi",
-				"slug": "ahmad-fauzi",
-				"status": "published",
-				"data": {
-					"nama": "Ahmad Fauzi",
-					"program_studi": "Ilmu Al-Qur'an dan Tafsir",
-					"keterangan": "Alumni 2023",
-					"isi": "Alhamdulillah, IAIPI Garut memberikan pengalaman belajar yang luar biasa. Dosen-dosen yang berkompeten dan lingkungan Islami membuat saya semakin mencintai ilmu Al-Qur'an.",
-					"urutan": 10,
-					"catatan_internal": "Testimoni contoh dari situs lama (foto avatar generik, identitas belum terverifikasi). Ganti dengan testimoni asli atau ubah ke draf."
-				}
-			},
-			{
-				"id": "testimoni-siti-nurhaliza",
-				"slug": "siti-nurhaliza",
-				"status": "published",
-				"data": {
-					"nama": "Siti Nurhaliza",
-					"program_studi": "Ekonomi Syariah",
-					"keterangan": "Mahasiswa Aktif",
-					"isi": "Kampus yang nyaman dengan sistem pembelajaran modern. Program beasiswa sangat membantu saya dalam menuntut ilmu. Recommended untuk yang ingin kuliah di kampus Islami!",
-					"urutan": 20,
-					"catatan_internal": "Testimoni contoh dari situs lama (foto avatar generik, identitas belum terverifikasi). Ganti dengan testimoni asli atau ubah ke draf."
-				}
-			},
-			{
-				"id": "testimoni-muhammad-rizki",
-				"slug": "muhammad-rizki",
-				"status": "published",
-				"data": {
-					"nama": "Muhammad Rizki",
-					"program_studi": "Ilmu Hadits",
-					"keterangan": "Alumni 2022",
-					"isi": "Terima kasih IAIPI Garut telah membimbing saya menjadi pribadi yang lebih baik. Ilmu yang didapat tidak hanya akademis tapi juga pembinaan karakter Islami.",
-					"urutan": 30,
-					"catatan_internal": "Testimoni contoh dari situs lama (foto avatar generik, identitas belum terverifikasi). Ganti dengan testimoni asli atau ubah ke draf."
 				}
 			}
 		],

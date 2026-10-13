@@ -185,163 +185,8 @@
 	],
 	"menus": [
 		{
-			"name": "utama",
-			"label": "Menu Utama",
-			"items": [
-				{
-					"type": "custom",
-					"label": "Profil",
-					"url": "/tentang",
-					"children": [
-						{
-							"type": "custom",
-							"label": "Tentang Institut",
-							"url": "/tentang"
-						},
-						{
-							"type": "custom",
-							"label": "Pimpinan Institut",
-							"url": "/pimpinan"
-						},
-						{
-							"type": "custom",
-							"label": "Lembaga dan Departemen",
-							"url": "/lembaga-departemen"
-						},
-						{
-							"type": "custom",
-							"label": "Layanan & Sistem Informasi",
-							"url": "/layanan"
-						},
-						{
-							"type": "custom",
-							"label": "Kontak",
-							"url": "/kontak"
-						}
-					]
-				},
-				{
-					"type": "custom",
-					"label": "Pendidikan",
-					"url": "/fakultas",
-					"children": [
-						{
-							"type": "custom",
-							"label": "Fakultas",
-							"url": "/fakultas"
-						},
-						{
-							"type": "custom",
-							"label": "Magister S2",
-							"url": "/magister"
-						}
-					]
-				},
-				{
-					"type": "custom",
-					"label": "Mahasiswa",
-					"url": "#",
-					"children": [
-						{
-							"type": "custom",
-							"label": "Kehidupan Kampus",
-							"url": "#"
-						},
-						{
-							"type": "custom",
-							"label": "Unit Kegiatan Mahasiswa",
-							"url": "#"
-						},
-						{
-							"type": "custom",
-							"label": "Prestasi Mahasiswa",
-							"url": "#"
-						},
-						{
-							"type": "custom",
-							"label": "Beasiswa",
-							"url": "#"
-						}
-					]
-				},
-				{
-					"type": "custom",
-					"label": "Berita",
-					"url": "/berita",
-					"children": [
-						{
-							"type": "custom",
-							"label": "Berita",
-							"url": "/berita"
-						},
-						{
-							"type": "custom",
-							"label": "Agenda",
-							"url": "/berita/kategori/agenda"
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "footer_sitemap",
-			"label": "Footer: Sitemap",
-			"items": [
-				{
-					"type": "custom",
-					"label": "Home",
-					"url": "/"
-				},
-				{
-					"type": "custom",
-					"label": "Tentang",
-					"url": "/tentang"
-				},
-				{
-					"type": "custom",
-					"label": "Fakultas",
-					"url": "/fakultas"
-				},
-				{
-					"type": "custom",
-					"label": "Magister",
-					"url": "/magister"
-				},
-				{
-					"type": "custom",
-					"label": "Lembaga",
-					"url": "/lembaga-departemen"
-				},
-				{
-					"type": "custom",
-					"label": "Layanan & Sistem",
-					"url": "/layanan"
-				},
-				{
-					"type": "custom",
-					"label": "Kontak",
-					"url": "/kontak"
-				},
-				{
-					"type": "custom",
-					"label": "Pimpinan",
-					"url": "/pimpinan"
-				},
-				{
-					"type": "custom",
-					"label": "PMB",
-					"url": "/pmb"
-				},
-				{
-					"type": "custom",
-					"label": "Berita",
-					"url": "/berita"
-				}
-			]
-		},
-		{
-			"name": "footer_layanan",
-			"label": "Footer: Layanan",
+			"name": "tautan_atas",
+			"label": "Bilah atas (tautan cepat)",
 			"items": [
 				{
 					"type": "custom",
@@ -363,8 +208,8 @@
 				},
 				{
 					"type": "custom",
-					"label": "LPM",
-					"url": "https://lpm.iaipersisgarut.ac.id",
+					"label": "Jurnal",
+					"url": "https://jurnal.iaipigarut.ac.id",
 					"target": "_blank"
 				},
 				{
@@ -375,14 +220,244 @@
 				},
 				{
 					"type": "custom",
-					"label": "Jurnal",
+					"label": "LPM",
+					"url": "https://lpm.iaipersisgarut.ac.id",
+					"target": "_blank"
+				}
+			]
+		},
+		{
+			"name": "utama",
+			"label": "Menu Utama",
+			"items": [
+				{
+					"type": "custom",
+					"label": "Tentang IAIP",
+					"url": "/tentang",
+					"children": [
+						{
+							"type": "custom",
+							"label": "Profil Institut",
+							"url": "/tentang"
+						},
+						{
+							"type": "custom",
+							"label": "Pimpinan",
+							"url": "/pimpinan"
+						},
+						{
+							"type": "custom",
+							"label": "Lembaga dan Departemen",
+							"url": "/lembaga-departemen"
+						},
+						{
+							"type": "custom",
+							"label": "Kontak",
+							"url": "/kontak"
+						}
+					]
+				},
+				{
+					"type": "custom",
+					"label": "Akademik",
+					"url": "/fakultas",
+					"children": [
+						{
+							"type": "custom",
+							"label": "Fakultas",
+							"url": "/fakultas"
+						},
+						{
+							"type": "custom",
+							"label": "Fakultas Tarbiyah dan Keguruan",
+							"url": "/fakultas/tarbiyah"
+						},
+						{
+							"type": "custom",
+							"label": "Fakultas Ushuluddin",
+							"url": "/fakultas/ushuluddin"
+						},
+						{
+							"type": "custom",
+							"label": "Fakultas Ekonomi dan Bisnis Islam",
+							"url": "/fakultas/ekonomi"
+						},
+						{
+							"type": "custom",
+							"label": "Program Magister",
+							"url": "/magister"
+						}
+					]
+				},
+				{
+					"type": "custom",
+					"label": "Penelitian",
+					"url": "https://jurnal.iaipigarut.ac.id",
+					"target": "_blank",
+					"children": [
+						{
+							"type": "custom",
+							"label": "Jurnal Ilmiah",
+							"url": "https://jurnal.iaipigarut.ac.id",
+							"target": "_blank"
+						},
+						{
+							"type": "custom",
+							"label": "LPPM",
+							"url": "https://lppm.iaipersisgarut.ac.id",
+							"target": "_blank"
+						},
+						{
+							"type": "custom",
+							"label": "Repository",
+							"url": "https://repository.iaipersisgarut.ac.id",
+							"target": "_blank"
+						}
+					]
+				},
+				{
+					"type": "custom",
+					"label": "Mahasiswa",
+					"url": "/layanan",
+					"children": [
+						{
+							"type": "custom",
+							"label": "Layanan & Sistem Informasi",
+							"url": "/layanan"
+						},
+						{
+							"type": "custom",
+							"label": "SIAKAD",
+							"url": "https://siakad.iaipersisgarut.ac.id",
+							"target": "_blank"
+						},
+						{
+							"type": "custom",
+							"label": "Penerimaan Mahasiswa Baru",
+							"url": "/pmb"
+						}
+					]
+				},
+				{
+					"type": "custom",
+					"label": "Berita",
+					"url": "/berita",
+					"children": [
+						{
+							"type": "custom",
+							"label": "Berita",
+							"url": "/berita/kategori/berita"
+						},
+						{
+							"type": "custom",
+							"label": "Agenda",
+							"url": "/berita/kategori/agenda"
+						},
+						{
+							"type": "custom",
+							"label": "Pengumuman",
+							"url": "/berita/kategori/pengumuman"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "footer_sumber",
+			"label": "Footer: Sumber",
+			"items": [
+				{
+					"type": "custom",
+					"label": "Repository",
+					"url": "https://repository.iaipersisgarut.ac.id",
+					"target": "_blank"
+				},
+				{
+					"type": "custom",
+					"label": "Perpustakaan",
+					"url": "https://library.iaipersisgarut.ac.id",
+					"target": "_blank"
+				},
+				{
+					"type": "custom",
+					"label": "Jurnal Ilmiah",
 					"url": "https://jurnal.iaipigarut.ac.id",
 					"target": "_blank"
 				},
 				{
 					"type": "custom",
-					"label": "Berita",
+					"label": "Berita & Agenda",
 					"url": "/berita"
+				},
+				{
+					"type": "custom",
+					"label": "RSS Berita",
+					"url": "/rss.xml"
+				}
+			]
+		},
+		{
+			"name": "footer_layanan",
+			"label": "Footer: Layanan",
+			"items": [
+				{
+					"type": "custom",
+					"label": "SIAKAD",
+					"url": "https://siakad.iaipersisgarut.ac.id",
+					"target": "_blank"
+				},
+				{
+					"type": "custom",
+					"label": "Penerimaan Mahasiswa Baru",
+					"url": "/pmb"
+				},
+				{
+					"type": "custom",
+					"label": "LPPM",
+					"url": "https://lppm.iaipersisgarut.ac.id",
+					"target": "_blank"
+				},
+				{
+					"type": "custom",
+					"label": "LPM",
+					"url": "https://lpm.iaipersisgarut.ac.id",
+					"target": "_blank"
+				},
+				{
+					"type": "custom",
+					"label": "Layanan & Sistem Informasi",
+					"url": "/layanan"
+				}
+			]
+		},
+		{
+			"name": "footer_profil",
+			"label": "Footer: Profil",
+			"items": [
+				{
+					"type": "custom",
+					"label": "Tentang IAIP",
+					"url": "/tentang"
+				},
+				{
+					"type": "custom",
+					"label": "Pimpinan",
+					"url": "/pimpinan"
+				},
+				{
+					"type": "custom",
+					"label": "Lembaga & Departemen",
+					"url": "/lembaga-departemen"
+				},
+				{
+					"type": "custom",
+					"label": "Fakultas & Magister",
+					"url": "/fakultas"
+				},
+				{
+					"type": "custom",
+					"label": "Kontak",
+					"url": "/kontak"
 				}
 			]
 		}

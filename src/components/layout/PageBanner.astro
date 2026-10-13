@@ -1,4 +1,5 @@
 ---
+// Banner halaman dalam: foto full-bleed + gradasi gelap, remah roti, pil, judul besar.
 interface Crumb {
 	text: string;
 	url?: string | null;
@@ -6,32 +7,33 @@ interface Crumb {
 
 interface Props {
 	title: string;
-	backgroundImage?: string;
+	image?: string;
+	imageAlt?: string;
 	breadcrumbs?: Crumb[];
+	badge?: string;
+	summary?: string | null;
 }
 
-const { title, backgroundImage = "/images/page-banner-1.jpg", breadcrumbs = [] } = Astro.props;
+const { title, image = "/images/slider/slider-iaipi-1.jpg", imageAlt = "", breadcrumbs = [], badge, summary } = Astro.props;
 ---
 
-<section id="page-banner" class="pt-105 pb-110 bg_cover" style={`background-image: url(${JSON.stringify(backgroundImage)})`} data-overlay="8">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="page-banner-cont">
-					<h2>{title}</h2>
-					<nav aria-label="breadcrumb">
-						<ol class="breadcrumb">
-							{
-								breadcrumbs.map((item) => (
-									<li class:list={["breadcrumb-item", { active: !item.url }]} aria-current={item.url ? undefined : "page"}>
-										{item.url ? <a href={item.url}>{item.text}</a> : item.text}
-									</li>
-								))
-							}
-						</ol>
-					</nav>
-				</div>
-			</div>
-		</div>
+<section class="banner">
+	<img src={image} alt={imageAlt} fetchpriority="high" />
+	<div class="wadah">
+		{
+			breadcrumbs.length > 0 && (
+				<nav aria-label="Remah roti">
+					<ol class="remah">
+						{breadcrumbs.map((item) => (
+							<li aria-current={item.url ? undefined : "page"}>{item.url ? <a href={item.url}>{item.text}</a> : item.text}</li>
+						))}
+					</ol>
+				</nav>
+			)
+		}
+		{badge && <span class="lencana">{badge}</span>}
+		<h1>{title}</h1>
+		{summary && <p class="ringkasan">{summary}</p>}
+		<slot />
 	</div>
 </section>
