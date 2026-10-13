@@ -1,0 +1,106 @@
+---
+import { decodeSlug, getEmDashEntry } from "emdash";
+import Base from "@/layouts/Base.astro";
+import PageBanner from "@/components/layout/PageBanner.astro";
+import { lines, mediaSrc, paragraphs, useCacheHint } from "@/lib/cms";
+import type { Pimpinan } from "@/lib/pimpinan";
+
+const slug = decodeSlug(Astro.params.slug);
+if (!slug) return Astro.rewrite("/404");
+
+const { entry, cacheHint } = await getEmDashEntry("pimpinan", slug);
+if (!entry) return Astro.rewrite("/404");
+useCacheHint(Astro, cacheHint);
+
+const p = entry.data as unknown as Pimpinan & { id: string };
+const edit = entry.edit as Record<string, Record<string, string>>;
+const tentang = paragraphs(p.tentang);
+const pendidikan = lines(p.pendidikan);
+const foto = mediaSrc(p.foto, "/images/logo.jpeg");
+---
+
+<Base
+	title={`${p.nama} – ${p.jabatan}`}
+	description={p.tentang ? tentang[0] : `${p.nama}, ${p.jabatan} Institut Agama Islam PERSIS Garut.`}
+	image={new URL(foto, Astro.url).href}
+	content={{ collection: "pimpinan", id: p.id, slug }}
+>
+	<PageBanner
+		title={`${p.jabatan_singkat || p.jabatan} - ${p.nama}`}
+		backgroundImage="/images/page-banner-7.jpg"
+		breadcrumbs={[
+			{ text: "Home", url: "/" },
+			{ text: "Pimpinan", url: "/pimpinan" },
+			{ text: p.jabatan_singkat || p.jabatan },
+		]}
+	/>
+
+	<section id="teachers-singel" class="pt-70 pb-120 gray-bg">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-4 col-md-8">
+					<div class="teachers-left mt-50">
+						<div class="hero" {...edit.foto}>
+							<img src={foto} alt={p.nama} />
+						</div>
+						<div class="name">
+							<h6 {...edit.nama}>{p.nama}</h6>
+							<span {...edit.jabatan}>{p.jabatan}</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-8">
+					<div class="teachers-right mt-50">
+						<ul class="nav nav-justified" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" href="#profil" role="tab" aria-selected="true">Profil</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane fade show active" id="profil" role="tabpanel">
+								<div class="dashboard-cont">
+									{
+										tentang.length > 0 && (
+											<div class="singel-dashboard pt-40" {...edit.tentang}>
+												<h5>Tentang</h5>
+												{tentang.map((para) => <p>{para}</p>)}
+											</div>
+										)
+									}
+									{
+										pendidikan.length > 0 && (
+											<div class="singel-dashboard pt-40" {...edit.pendidikan}>
+												<h5>Pendidikan</h5>
+												{pendidikan.map((row) => <p>{row}</p>)}
+											</div>
+										)
+									}
+									{
+										(p.sinta_id || p.google_scholar) && (
+											<div class="singel-dashboard pt-40">
+												<h5>ID Penelitian</h5>
+												{p.sinta_id && <p>Sinta ID: {p.sinta_id}</p>}
+												{p.google_scholar && (
+													<p>
+														Google Scholar:{" "}
+														<a href={p.google_scholar} target="_blank" rel="noopener noreferrer">Klik di sini</a>
+													</p>
+												)}
+											</div>
+										)
+									}
+									{
+										tentang.length === 0 && pendidikan.length === 0 && !p.sinta_id && !p.google_scholar && (
+											<p class="cms-empty">Profil lengkap belum tersedia.</p>
+										)
+									}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</Base>

@@ -1,0 +1,29 @@
+---
+import { waHref, type InfoKampus } from "@/lib/cms";
+
+interface Props {
+	info: InfoKampus;
+}
+
+const { info } = Astro.props;
+---
+
+{
+	info.whatsapp && (
+		<a href={waHref(info)} class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat via WhatsApp" data-wa-float hidden>
+			<i class="fa fa-whatsapp"></i>
+			<span>Chat Admin</span>
+		</a>
+	)
+}
+
+<script>
+	const button = document.querySelector<HTMLElement>("[data-wa-float]");
+	if (button) {
+		const update = () => {
+			button.hidden = window.scrollY <= 300;
+		};
+		window.addEventListener("scroll", update, { passive: true });
+		update();
+	}
+</script>

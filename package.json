@@ -1,23 +1,33 @@
 {
-  "name": "iaipi-web-nextjs",
-  "version": "3.1.0",
+  "name": "iaipi-web",
+  "version": "4.0.0",
   "private": true,
+  "type": "module",
+  "emdash": {
+    "seed": "seed/seed.json"
+  },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint ."
+    "dev": "npm run seed:build && astro dev",
+    "build": "npm run seed:build && astro build",
+    "preview": "astro preview",
+    "deploy": "npm run build && wrangler deploy",
+    "seed:build": "node scripts/build-seed.mjs",
+    "typecheck": "astro check"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.4.1",
-    "next": "^16.1.1",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "swiper": "^11.2.8",
-    "xml2js": "^0.6.2"
+    "@astrojs/cloudflare": "^14.3.4",
+    "@astrojs/react": "^7.0.1",
+    "@emdash-cms/cloudflare": "^1.2.0",
+    "astro": "^7.3.8",
+    "emdash": "^1.2.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "swiper": "^14.3.0"
   },
   "devDependencies": {
-    "eslint": "^8",
-    "eslint-config-next": "^15.5.20"
+    "@astrojs/check": "^0.9.10",
+    "@cloudflare/workers-types": "^5.20260820.1",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.125.0"
   }
 }

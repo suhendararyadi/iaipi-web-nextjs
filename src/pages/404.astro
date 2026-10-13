@@ -1,0 +1,17 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageBanner from "@/components/layout/PageBanner.astro";
+
+Astro.response.status = 404;
+---
+
+<Base title="Halaman tidak ditemukan">
+	<PageBanner title="Halaman tidak ditemukan" breadcrumbs={[{ text: "Home", url: "/" }, { text: "404" }]} />
+	<section class="pt-70 pb-120">
+		<div class="container text-center">
+			<h3 class="mb-20">Maaf, halaman yang Anda cari tidak tersedia.</h3>
+			<p class="mb-30">Mungkin alamatnya berubah atau halaman sudah dihapus.</p>
+			<a href="/" class="main-btn">Kembali ke Beranda</a>
+		</div>
+	</section>
+</Base>

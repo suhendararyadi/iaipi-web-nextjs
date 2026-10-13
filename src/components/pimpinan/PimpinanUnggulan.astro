@@ -1,0 +1,70 @@
+---
+// Blok "Pimpinan + sambutan Rektor" (dipakai di beranda dan /pimpinan).
+import { mediaSrc } from "@/lib/cms";
+import type { PimpinanEntry } from "@/lib/pimpinan";
+
+interface Props {
+	entries: PimpinanEntry[];
+	eyebrow?: string;
+	title?: string;
+}
+
+const { entries, eyebrow = "Organisasi", title = "Pimpinan" } = Astro.props;
+const rektor = entries.find((e) => e.data.kelompok === "rektor");
+const wakil = entries.filter((e) => e.data.kelompok === "wakil_rektor");
+---
+
+<section id="teachers-part" class="pt-65 pb-120 gray-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="section-title mt-50 pb-25">
+					<h5>{eyebrow}</h5>
+					<h2>{title}</h2>
+				</div>
+				<div class="teachers-2">
+					<div class="row">
+						{
+							wakil.map((p) => (
+								<div class="col-md-6">
+									<div class="teachers-2-singel mt-30">
+										<div class="thum">
+											<img src={mediaSrc(p.data.foto_avatar) || mediaSrc(p.data.foto)} alt={p.data.nama} loading="lazy" />
+										</div>
+										<div class="cont">
+											<a href={`/pimpinan/${p.id}`}><h5>{p.data.nama}</h5></a>
+											<p>{p.data.jabatan_singkat || p.data.jabatan}</p>
+										</div>
+									</div>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</div>
+			{
+				rektor && (
+					<div class="col-lg-6">
+						<div class="happy-student mt-55">
+							<div class="happy-title">
+								<h3>{rektor.data.jabatan_singkat || rektor.data.jabatan}</h3>
+							</div>
+							<div class="student-slied">
+								<div class="singel-student">
+									<img src="/images/teachers/teacher-2/quote.png" alt="" />
+									{rektor.data.kutipan && <p>“{rektor.data.kutipan}”</p>}
+									<a href={`/pimpinan/${rektor.id}`}><h6>{rektor.data.nama}</h6></a>
+									<br />
+									<br />
+								</div>
+							</div>
+							<div class="student-image">
+								<img src={mediaSrc(rektor.data.foto_sambutan) || mediaSrc(rektor.data.foto)} alt={rektor.data.nama} loading="lazy" />
+							</div>
+						</div>
+					</div>
+				)
+			}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,37 @@
+---
+interface Crumb {
+	text: string;
+	url?: string | null;
+}
+
+interface Props {
+	title: string;
+	backgroundImage?: string;
+	breadcrumbs?: Crumb[];
+}
+
+const { title, backgroundImage = "/images/page-banner-1.jpg", breadcrumbs = [] } = Astro.props;
+---
+
+<section id="page-banner" class="pt-105 pb-110 bg_cover" style={`background-image: url(${JSON.stringify(backgroundImage)})`} data-overlay="8">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="page-banner-cont">
+					<h2>{title}</h2>
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb">
+							{
+								breadcrumbs.map((item) => (
+									<li class:list={["breadcrumb-item", { active: !item.url }]} aria-current={item.url ? undefined : "page"}>
+										{item.url ? <a href={item.url}>{item.text}</a> : item.text}
+									</li>
+								))
+							}
+						</ol>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

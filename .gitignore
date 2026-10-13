@@ -1,40 +1,26 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+node_modules
 
-# testing
-/coverage
+# build output
+dist
+.astro
 
-# next.js
-/.next/
-/out/
+# EmDash / Wrangler local state
+.emdash/migrations.json
+.wrangler
+uploads
+data.db
 
-# production
-/build
+# generated (dibangun dari seed/parts oleh scripts/build-seed.mjs)
+seed/seed.json
+
+# env / secrets
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
 
 # misc
 .DS_Store
-*.pem
-
-# debug
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts

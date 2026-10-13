@@ -1,0 +1,51 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageBanner from "@/components/layout/PageBanner.astro";
+import PimpinanUnggulan from "@/components/pimpinan/PimpinanUnggulan.astro";
+import { mediaSrc, useCacheHint } from "@/lib/cms";
+import { getPimpinan } from "@/lib/pimpinan";
+
+const { entries, cacheHint } = await getPimpinan();
+useCacheHint(Astro, cacheHint);
+const staf = entries.filter((e) => e.data.kelompok !== "rektor");
+---
+
+<Base title="Pimpinan Institut" description="Struktur pimpinan Institut Agama Islam PERSIS Garut: rektor, wakil rektor, dekan, dan ketua program studi.">
+	<PageBanner
+		title="Pimpinan Institut"
+		backgroundImage="/images/page-banner-2.jpg"
+		breadcrumbs={[{ text: "Home", url: "/" }, { text: "Pimpinan Institut" }]}
+	/>
+	<PimpinanUnggulan entries={entries} />
+
+	<section id="teachers-part" class="pt-65 pb-120">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5">
+					<div class="section-title mt-50 pb-35">
+						<h5>Organisasi</h5>
+						<h2>Staf Pimpinan</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				{
+					staf.map((p) => (
+						<div class="col-lg-3 col-sm-6">
+							<div class="singel-teachers mt-30 text-center">
+								<div class="image">
+									<img src={mediaSrc(p.data.foto, "/images/logo.jpeg")} alt={p.data.nama} loading="lazy" />
+								</div>
+								<div class="cont">
+									<a href={`/pimpinan/${p.id}`}><h6>{p.data.nama}</h6></a>
+									<span>{p.data.jabatan_singkat || p.data.jabatan}</span>
+								</div>
+							</div>
+						</div>
+					))
+				}
+				{staf.length === 0 && <p class="cms-empty col-12">Belum ada data pimpinan.</p>}
+			</div>
+		</div>
+	</section>
+</Base>

@@ -1,0 +1,141 @@
+---
+import { linkAttrs, telHref, waHref, withYear, type InfoKampus } from "@/lib/cms";
+
+interface MenuItem {
+	id: string;
+	label: string;
+	url: string;
+	target?: string;
+}
+
+interface Props {
+	info: InfoKampus;
+	logo: string;
+	sitemap?: { items: MenuItem[] } | null;
+	layanan?: { items: MenuItem[] } | null;
+}
+
+const { info, logo, sitemap, layanan } = Astro.props;
+const sitemapItems = sitemap?.items ?? [];
+const half = Math.ceil(sitemapItems.length / 2);
+const sitemapColumns = [sitemapItems.slice(0, half), sitemapItems.slice(half)].filter((col) => col.length > 0);
+const attrs = (item: MenuItem) => (item.target === "_blank" ? { target: "_blank", rel: "noopener noreferrer" } : linkAttrs(item.url));
+---
+
+<footer>
+	<div class="footer-top pt-40 pb-70">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-6">
+					<div class="footer-about mt-40">
+						<div class="logo">
+							<a href="/">
+								<img src={logo} alt={`Logo ${info.nama}`} width="100" height="100" style="object-fit: contain; width: auto; max-height: 90px;" />
+							</a>
+						</div>
+						{info.deskripsi && <p>{info.deskripsi}</p>}
+						<ul class="mt-20">
+							{info.facebook && <li><a href={info.facebook} target="_blank" rel="noopener noreferrer" aria-label={`Facebook ${info.nama_singkat}`}><i class="fa fa-facebook-f"></i></a></li>}
+							{info.instagram && <li><a href={info.instagram} target="_blank" rel="noopener noreferrer" aria-label={`Instagram ${info.nama_singkat}`}><i class="fa fa-instagram"></i></a></li>}
+							{info.youtube && <li><a href={info.youtube} target="_blank" rel="noopener noreferrer" aria-label={`YouTube ${info.nama_singkat}`}><i class="fa fa-youtube"></i></a></li>}
+							{info.whatsapp && <li><a href={waHref(info)} target="_blank" rel="noopener noreferrer" aria-label={`WhatsApp ${info.nama_singkat}`}><i class="fa fa-whatsapp"></i></a></li>}
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="footer-link mt-40">
+						<div class="footer-title pb-25">
+							<h6>Sitemap</h6>
+						</div>
+						{
+							sitemapColumns.map((column) => (
+								<ul>
+									{column.map((item) => (
+										<li>
+											<a href={item.url} {...attrs(item)}><i class="fa fa-angle-right"></i>{item.label}</a>
+										</li>
+									))}
+								</ul>
+							))
+						}
+					</div>
+				</div>
+
+				<div class="col-lg-2 col-md-6 col-sm-6">
+					<div class="footer-link support mt-40">
+						<div class="footer-title pb-25">
+							<h6>Layanan</h6>
+						</div>
+						<ul>
+							{
+								(layanan?.items ?? []).map((item) => (
+									<li>
+										<a href={item.url} {...attrs(item)}><i class="fa fa-angle-right"></i>{item.label}</a>
+									</li>
+								))
+							}
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-address mt-40">
+						<div class="footer-title pb-25">
+							<h6>Kontak</h6>
+						</div>
+						<ul>
+							{
+								info.alamat && (
+									<li>
+										<div class="icon"><i class="fa fa-home"></i></div>
+										<div class="cont"><p>{info.alamat}</p></div>
+									</li>
+								)
+							}
+							{
+								(info.telepon || info.whatsapp) && (
+									<li>
+										<div class="icon"><i class="fa fa-phone"></i></div>
+										<div class="cont">
+											{info.telepon && <p><a href={telHref(info.telepon)} style="color: inherit;">{info.telepon}</a></p>}
+											{info.whatsapp && <p><a href={waHref({ whatsapp: info.whatsapp })} target="_blank" rel="noopener noreferrer" style="color: inherit;">{info.telepon || `+${info.whatsapp}`} (WhatsApp)</a></p>}
+										</div>
+									</li>
+								)
+							}
+							{
+								(info.email || info.email_pmb) && (
+									<li>
+										<div class="icon"><i class="fa fa-envelope-o"></i></div>
+										<div class="cont">
+											{info.email && <p><a href={`mailto:${info.email}`} style="color: inherit;">{info.email}</a></p>}
+											{info.email_pmb && <p><a href={`mailto:${info.email_pmb}`} style="color: inherit;">{info.email_pmb}</a></p>}
+										</div>
+									</li>
+								)
+							}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer-copyright pt-10 pb-25">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="copyright text-md-left text-center pt-15">
+						<p>{withYear(info.teks_hak_cipta) || `© ${new Date().getFullYear()} ${info.nama}`}</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="copyright text-md-right text-center pt-15">
+						{info.teks_pengembang && <p>{info.teks_pengembang}</p>}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

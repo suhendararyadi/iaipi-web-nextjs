@@ -1,0 +1,14 @@
+---
+// SEMENTARA: beranda akan diisi section-section dari CMS.
+import Base from "@/layouts/Base.astro";
+import PimpinanUnggulan from "@/components/pimpinan/PimpinanUnggulan.astro";
+import { useCacheHint } from "@/lib/cms";
+import { getPimpinan } from "@/lib/pimpinan";
+
+const { entries, cacheHint } = await getPimpinan();
+useCacheHint(Astro, cacheHint);
+---
+
+<Base>
+	<PimpinanUnggulan entries={entries} eyebrow="Dosen dan Peneliti" />
+</Base>

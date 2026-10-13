@@ -1,0 +1,36 @@
+---
+import { decodeSlug, getEmDashEntry } from "emdash";
+import { PortableText } from "emdash/ui";
+import Base from "@/layouts/Base.astro";
+import PageBanner from "@/components/layout/PageBanner.astro";
+import { mediaSrc, useCacheHint, type MediaField } from "@/lib/cms";
+
+const slug = decodeSlug(Astro.params.slug);
+if (!slug) return Astro.rewrite("/404");
+
+const { entry, cacheHint } = await getEmDashEntry("halaman", slug);
+if (!entry) return Astro.rewrite("/404");
+useCacheHint(Astro, cacheHint);
+
+const page = entry.data as { id: string; title: string; ringkasan?: string; gambar_banner?: MediaField; content?: unknown[] };
+const edit = entry.edit as Record<string, Record<string, string>>;
+---
+
+<Base title={page.title} description={page.ringkasan} content={{ collection: "halaman", id: page.id, slug }}>
+	<PageBanner
+		title={page.title}
+		backgroundImage={mediaSrc(page.gambar_banner, "/images/page-banner-1.jpg")}
+		breadcrumbs={[{ text: "Home", url: "/" }, { text: page.title }]}
+	/>
+	<section class="pt-70 pb-120">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-9">
+					<article class="cms-prose" {...edit.content}>
+						{page.content && page.content.length > 0 ? <PortableText value={page.content} /> : <p class="cms-empty">Konten halaman ini belum diisi.</p>}
+					</article>
+				</div>
+			</div>
+		</div>
+	</section>
+</Base>

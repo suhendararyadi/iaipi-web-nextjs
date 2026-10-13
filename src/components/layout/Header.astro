@@ -1,0 +1,122 @@
+---
+import { linkAttrs, telHref, waHref, type InfoKampus } from "@/lib/cms";
+
+interface MenuItem {
+	id: string;
+	label: string;
+	url: string;
+	target?: string;
+	children?: MenuItem[];
+}
+
+interface Props {
+	info: InfoKampus;
+	logo: string;
+	menu?: { items: MenuItem[] } | null;
+}
+
+const { info, logo, menu } = Astro.props;
+const items = menu?.items ?? [];
+const attrs = (item: MenuItem) => (item.target === "_blank" ? { target: "_blank", rel: "noopener noreferrer" } : linkAttrs(item.url));
+---
+
+<header id="header-part">
+	<div class="mobile-menu-overlay" data-menu-overlay hidden></div>
+	<div class="navigation navigation-2 islamic-header-v3">
+		<div class="islamic-top-info-bar">
+			<div class="container">
+				<div class="islamic-info-content">
+					<div class="islamic-info-left">
+						<div class="islamic-institution-name">
+							<i class="fa fa-university"></i>
+							<span>{info.nama}</span>
+						</div>
+						{
+							info.telepon && (
+								<div class="islamic-info-item">
+									<i class="fa fa-phone"></i>
+									<a href={telHref(info.telepon)}>{info.telepon}</a>
+								</div>
+							)
+						}
+						{
+							info.email && (
+								<div class="islamic-info-item">
+									<i class="fa fa-envelope"></i>
+									<a href={`mailto:${info.email}`}>{info.email}</a>
+								</div>
+							)
+						}
+					</div>
+					<div class="islamic-social-links">
+						{info.facebook && <a href={info.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa fa-facebook"></i></a>}
+						{info.instagram && <a href={info.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa fa-instagram"></i></a>}
+						{info.youtube && <a href={info.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa fa-youtube"></i></a>}
+						{info.whatsapp && <a href={waHref({ whatsapp: info.whatsapp })} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa fa-whatsapp"></i></a>}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="islamic-white-nav-bar">
+			<div class="container">
+				<div class="row no-gutters">
+					<div class="col-lg-11 col-md-10 col-sm-9 col-9">
+						<nav class="navbar navbar-expand-lg" aria-label="Menu utama">
+							<a class="navbar-brand" href="/" style="height: 60px; display: flex; align-items: center;">
+								<img src={logo} alt={`Logo ${info.nama}`} width="110" height="110" style="object-fit: contain;" />
+							</a>
+							<button class="navbar-toggler" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="navbarSupportedContent" data-menu-toggle>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+								<ul class="navbar-nav ml-auto">
+									{
+										items.map((item) => (
+											<li class="nav-item">
+												<a href={item.url} {...attrs(item)}>{item.label}</a>
+												{item.children && item.children.length > 0 && (
+													<ul class="sub-menu">
+														{item.children.map((child) => (
+															<li>
+																<a href={child.url} {...attrs(child)}>{child.label}</a>
+															</li>
+														))}
+													</ul>
+												)}
+											</li>
+										))
+									}
+									<li class="nav-item nav-item-register">
+										<a href="/pmb" class="btn-register"><span>Daftar Sekarang</span></a>
+									</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+					<div class="col-lg-1 col-md-2 col-sm-3 col-3">
+						<div class="register-btn-wrapper">
+							<a href="/pmb" class="btn-register-mobile"><span>PMB</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<script>
+	const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+	const panel = document.getElementById("navbarSupportedContent");
+	const overlay = document.querySelector<HTMLElement>("[data-menu-overlay]");
+	const setOpen = (open: boolean) => {
+		panel?.classList.toggle("show", open);
+		toggle?.setAttribute("aria-expanded", String(open));
+		toggle?.setAttribute("aria-label", open ? "Tutup menu" : "Buka menu");
+		if (overlay) overlay.hidden = !open;
+	};
+	toggle?.addEventListener("click", () => setOpen(!panel?.classList.contains("show")));
+	overlay?.addEventListener("click", () => setOpen(false));
+</script>
