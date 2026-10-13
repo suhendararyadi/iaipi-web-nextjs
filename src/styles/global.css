@@ -97,6 +97,8 @@ button {
 
 .sr-only {
 	position: absolute;
+	left: 0;
+	top: 0;
 	width: 1px;
 	height: 1px;
 	padding: 0;
@@ -293,7 +295,13 @@ button {
 	font-size: 15px;
 	cursor: pointer;
 }
-.tab[aria-selected="true"] {
+a.tab {
+	display: inline-flex;
+	align-items: center;
+	text-decoration: none;
+}
+.tab[aria-selected="true"],
+.tab[aria-current="page"] {
 	background: var(--kuning);
 }
 
