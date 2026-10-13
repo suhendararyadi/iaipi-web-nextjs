@@ -1,0 +1,126 @@
+---
+// Kartu fakultas di section "Pilihan Program Studi" PMB: foto, label jenjang, nama fakultas,
+// daftar prodi (pil singkatan + nama tertaut), tombol "Selengkapnya".
+import TombolPil from "@/components/profil/TombolPil.astro";
+
+export interface ProdiRingkas {
+	singkatan?: string;
+	nama: string;
+	href?: string;
+}
+
+interface Props {
+	judul: string;
+	label: string;
+	gambar: string;
+	gambarAlt?: string;
+	href?: string;
+	prodi: ProdiRingkas[];
+}
+
+const { judul, label, gambar, gambarAlt = "", href, prodi } = Astro.props;
+---
+
+<article class="kartu kartu-fak">
+	<img class="kartu-gambar" src={gambar} alt={gambarAlt} loading="lazy" width="400" height="170" />
+	<div class="kartu-isi">
+		<span class="label">{label}</span>
+		<h3>{judul}</h3>
+		<ul class="prodi">
+			{
+				prodi.map((p) => (
+					<li>
+						{p.singkatan && <span class="singkatan">{p.singkatan}</span>}
+						{p.href ? (
+							<a href={p.href}>
+								{p.nama}
+								<span aria-hidden="true"> ›</span>
+							</a>
+						) : (
+							<span class="nama">{p.nama}</span>
+						)}
+					</li>
+				))
+			}
+		</ul>
+		{
+			href && (
+				<div class="aksi">
+					<TombolPil href={href} ariaLabel={`Selengkapnya tentang ${judul}`}>
+						Selengkapnya
+					</TombolPil>
+				</div>
+			)
+		}
+	</div>
+</article>
+
+<style>
+	.kartu-fak {
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+		min-width: 0;
+	}
+	.kartu-isi {
+		padding: 20px 20px 26px;
+		gap: 0;
+	}
+	.label {
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 12px;
+		line-height: 1.3;
+		letter-spacing: 1.2px;
+		color: var(--hijau);
+		text-transform: uppercase;
+	}
+	h3 {
+		margin-top: 6px;
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 18px;
+		line-height: 1.3;
+	}
+	.prodi {
+		list-style: none;
+		margin: 14px 0 0;
+		padding: 0;
+	}
+	.prodi li {
+		display: flex;
+		gap: 10px;
+		align-items: flex-start;
+		padding: 9px 0;
+		border-top: 1px solid #eef0ee;
+		font-size: 15px;
+		line-height: 1.45;
+	}
+	.singkatan {
+		flex: none;
+		min-width: 44px;
+		padding: 3px 6px;
+		border-radius: 999px;
+		background: var(--abu);
+		text-align: center;
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 11px;
+		line-height: 1.4;
+		letter-spacing: 0.5px;
+		color: var(--hijau);
+	}
+	.prodi a {
+		color: var(--hijau);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+	.prodi a:hover {
+		color: var(--hijau-tua);
+	}
+	.nama {
+		color: var(--teks);
+	}
+	.aksi {
+		margin-top: auto;
+		padding-top: 32px;
+	}
+</style>

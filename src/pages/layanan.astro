@@ -1,49 +1,231 @@
 ---
-// Halaman Layanan & Sistem Informasi (sementara: HTML polos, desain menyusul). Data: koleksi layanan + info_kampus.
+// Halaman Layanan & Sistem Informasi. Data: koleksi layanan + info_kampus (kontak help desk).
+// Filter kategori memakai pil tab (data-tabs di src/scripts/ui.ts).
 import Base from "@/layouts/Base.astro";
+import PageBanner from "@/components/layout/PageBanner.astro";
+import KepalaSection from "@/components/ui/KepalaSection.astro";
+import JudulSorot from "@/components/ui/JudulSorot.astro";
+import KartuIkon from "@/components/profil/KartuIkon.astro";
+import PitaStatistik from "@/components/profil/PitaStatistik.astro";
+import SectionHijau from "@/components/profil/SectionHijau.astro";
+import TombolPil from "@/components/profil/TombolPil.astro";
 import { getInfoKampus, useCacheHint, waHref } from "@/lib/cms";
-import { getLayanan, KATEGORI_LAYANAN } from "@/lib/profil";
+import { getLayanan, KATEGORI_LAYANAN, labelUrl } from "@/lib/profil";
 
 const [{ entries, cacheHint }, { info, cacheHint: infoHint }] = await Promise.all([getLayanan(), getInfoKampus()]);
 useCacheHint(Astro, cacheHint, infoHint);
 
-const kelompok = KATEGORI_LAYANAN.filter((k) => k.id !== "all")
-	.map((k) => ({ ...k, items: entries.filter((e) => e.data.kategori === k.id) }))
-	.filter((k) => k.items.length > 0);
+const deskripsi = "Akses berbagai layanan dan sistem informasi untuk mendukung aktivitas akademik, penelitian, dan administrasi.";
+const namaKategori = (id: string) => KATEGORI_LAYANAN.find((k) => k.id === id)?.nama ?? id;
+// Layanan aktif lebih dulu, urutan editor dipertahankan.
+const urut = entries
+	.map((e, i) => ({ e, i }))
+	.sort((a, b) => (a.e.data.ketersediaan === "aktif" ? 0 : 1) - (b.e.data.ketersediaan === "aktif" ? 0 : 1) || a.i - b.i)
+	.map(({ e }) => e);
+const tabs = KATEGORI_LAYANAN.map((k) => ({
+	...k,
+	items: k.id === "all" ? urut : urut.filter((e) => e.data.kategori === k.id),
+})).filter((k) => k.items.length > 0);
+const aktif = entries.filter((e) => e.data.ketersediaan === "aktif").length;
+const statistik = [
+	{ label: "Layanan Aktif", nilai: String(aktif) },
+	{ label: "Segera Hadir", nilai: String(entries.length - aktif) },
+	{ label: "Kategori Layanan", nilai: String(tabs.filter((t) => t.id !== "all").length) },
+];
 ---
 
-<Base title="Layanan dan Sistem Informasi" description="Akses berbagai layanan dan sistem informasi untuk mendukung aktivitas akademik, penelitian, dan administrasi.">
-	<article>
-		<h1>Layanan dan Sistem Informasi</h1>
-		<p>Akses berbagai layanan dan sistem informasi untuk mendukung aktivitas akademik, penelitian, dan administrasi.</p>
+<Base title="Layanan dan Sistem Informasi" description={deskripsi}>
+	<PageBanner
+		title="Layanan dan Sistem Informasi"
+		image="/images/slider/slider-iaipi-2.jpg"
+		imageAlt="Mahasiswi IAI PERSIS Garut membaca di perpustakaan"
+		breadcrumbs={[{ text: "Beranda", url: "/" }, { text: "Layanan" }]}
+		summary={deskripsi}
+	/>
 
-		{entries.length === 0 && <p>Belum ada data layanan.</p>}
-		{
-			kelompok.map((k) => (
-				<section>
-					<h2>{k.nama}</h2>
-					<ul>
-						{k.items.map(({ data: l }) => (
-							<li>
-								<strong>{l.nama_singkat}</strong> — {l.nama}. {l.deskripsi}{" "}
-								{l.ketersediaan === "aktif" && l.url ? (
-									<a href={l.url} target="_blank" rel="noopener noreferrer">Akses Sistem</a>
-								) : (
-									<em>Segera Hadir</em>
-								)}
-							</li>
+	<section class="section" aria-labelledby="layanan-judul">
+		<div class="wadah">
+			<KepalaSection
+				judul="Sistem Informasi *IAIP*"
+				teks="Pilih kategori untuk menyaring layanan. Layanan bertanda Segera Hadir sedang disiapkan dan belum dapat diakses."
+				id="layanan-judul"
+			/>
+			{
+				entries.length === 0 ? (
+					<p class="kosong">Belum ada data layanan.</p>
+				) : (
+					<div data-tabs>
+						<div class="tab-grup" role="tablist" aria-label="Kategori layanan">
+							{tabs.map((t, i) => (
+								<button
+									type="button"
+									class="tab"
+									role="tab"
+									id={`tab-layanan-${t.id}`}
+									aria-controls={`panel-layanan-${t.id}`}
+									aria-selected={i === 0 ? "true" : "false"}
+									tabindex={i === 0 ? 0 : -1}
+								>
+									{t.nama} <span class="jumlah">{t.items.length}</span>
+								</button>
+							))}
+						</div>
+						{tabs.map((t, i) => (
+							<div role="tabpanel" id={`panel-layanan-${t.id}`} aria-labelledby={`tab-layanan-${t.id}`} hidden={i !== 0} tabindex="0">
+								<ul class="grid-auto daftar-layanan" style="--min: 260px">
+									{t.items.map(({ data: l }) => {
+										const siap = l.ketersediaan === "aktif" && !!l.url;
+										return (
+											<li>
+												<KartuIkon
+													judul={l.nama_singkat}
+													subjudul={l.nama}
+													teks={l.deskripsi}
+													ikon={l.ikon}
+													label={namaKategori(l.kategori)}
+													redup={!siap}
+												>
+													{siap ? (
+														<>
+															<p class="url">{labelUrl(l.url)}</p>
+															<TombolPil slot="aksi" href={l.url ?? "#"} ikon="external" ariaLabel={`Akses ${l.nama_singkat}`}>
+																Akses Sistem
+															</TombolPil>
+														</>
+													) : (
+														<span slot="aksi" class="pil-segera">
+															Segera Hadir
+														</span>
+													)}
+												</KartuIkon>
+											</li>
+										);
+									})}
+								</ul>
+							</div>
 						))}
-					</ul>
-				</section>
-			))
-		}
+					</div>
+				)
+			}
+		</div>
+	</section>
 
-		<section>
-			<h2>Butuh Bantuan?</h2>
-			<p>
-				Jika mengalami kesulitan dalam mengakses sistem atau memerlukan bantuan teknis, silakan hubungi <strong>Help Desk TI</strong> melalui WhatsApp di{" "}
-				<a href={waHref(info)} target="_blank" rel="noopener noreferrer">{info.telepon}</a> atau email ke <a href={`mailto:${info.email}`}>{info.email}</a>
-			</p>
-		</section>
-	</article>
+	{entries.length > 0 && <PitaStatistik items={statistik} label="Layanan dalam angka" />}
+
+	<SectionHijau tua labelledby="bantuan-judul">
+		<div class="bantuan">
+			<div class="bantuan-teks">
+				<JudulSorot text="Butuh *Bantuan*?" id="bantuan-judul" />
+				<p class="lead">
+					Jika mengalami kesulitan mengakses sistem atau memerlukan bantuan teknis, hubungi <strong>Help Desk TI</strong> melalui WhatsApp
+					{info.telepon && ` di ${info.telepon}`}
+					{info.email && ` atau email ke ${info.email}`}.
+				</p>
+			</div>
+			<div class="bantuan-aksi">
+				{
+					info.whatsapp && (
+						<TombolPil href={waHref(info)} ikon="arrow-right" besar>
+							Chat Help Desk
+						</TombolPil>
+					)
+				}
+				{
+					info.email && (
+						<TombolPil href={`mailto:${info.email}`} varian="garis-putih" ikon="none" besar>
+							Kirim Email
+						</TombolPil>
+					)
+				}
+			</div>
+		</div>
+	</SectionHijau>
 </Base>
+
+<style>
+	.jumlah {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 24px;
+		height: 22px;
+		margin-left: 6px;
+		padding: 0 7px;
+		border-radius: 999px;
+		background: rgba(0, 0, 0, 0.08);
+		font-size: 12px;
+		font-weight: 700;
+	}
+	@media (max-width: 600px) {
+		/* pil kategori digeser menyamping agar tidak memakan banyak baris */
+		.tab-grup {
+			flex-wrap: nowrap;
+			overflow-x: auto;
+			margin-inline: -24px;
+			padding: 2px 24px 8px;
+			scrollbar-width: none;
+		}
+		.tab-grup .tab {
+			flex: none;
+		}
+	}
+	.daftar-layanan {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 24px;
+		/* auto-fill: kategori berisi satu kartu tidak melebar sepenuh baris */
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--min)), 1fr));
+	}
+	.daftar-layanan > li {
+		display: flex;
+	}
+	.daftar-layanan > li > :global(.kartu) {
+		flex: 1;
+	}
+	.url {
+		margin-top: 10px;
+		font-family: var(--font-ui);
+		font-size: 13px;
+		font-weight: 700;
+		color: var(--hijau);
+		overflow-wrap: anywhere;
+	}
+	.pil-segera {
+		display: inline-flex;
+		align-items: center;
+		min-height: 36px;
+		padding: 0 16px;
+		border-radius: 999px;
+		border: 1px solid var(--kuning);
+		background: var(--krem);
+		color: var(--judul);
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 13px;
+	}
+
+	.bantuan {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 32px 48px;
+	}
+	.bantuan-teks {
+		flex: 1 1 520px;
+		min-width: 0;
+	}
+	.bantuan .lead {
+		margin-top: 18px;
+		color: var(--hijau-muda);
+	}
+	.bantuan .lead strong {
+		color: var(--putih);
+	}
+	.bantuan-aksi {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+</style>

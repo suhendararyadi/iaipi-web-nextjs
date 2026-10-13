@@ -1,0 +1,166 @@
+---
+// Panel hijau tua berisi daftar putih (padanan widget GPR Unpad): kepala ikon kuning + judul,
+// baris label kecil hijau → nilai tebal → keterangan, garis titik-titik, tautan kaki kanan bawah.
+import { linkAttrs } from "@/lib/cms";
+import { segmenPatah } from "@/lib/profil";
+import Ikon from "./Ikon.astro";
+
+export interface BarisPanel {
+	label: string;
+	nilai?: string | null;
+	href?: string | null;
+	teks?: string | null;
+	ikon?: string | null;
+}
+
+interface Props {
+	judul: string;
+	ikon?: string;
+	items: BarisPanel[];
+	kaki?: { href: string; label: string } | null;
+	as?: "h2" | "h3" | "p";
+}
+
+const { judul, ikon = "mail", items, kaki, as: Tag = "p" } = Astro.props;
+---
+
+<div class="panel">
+	<Tag class="kepala">
+		<Ikon nama={ikon} ukuran={20} class="ikon-kepala" />
+		{judul}
+	</Tag>
+	<ul class="daftar">
+		{
+			items.map((i) => (
+				<li class:list={{ "ada-ikon": !!i.ikon }}>
+					{i.ikon && (
+						<span class="ikon-baris">
+							<Ikon nama={i.ikon} ukuran={18} />
+						</span>
+					)}
+					<span class="isi">
+						<span class="label">{i.label}</span>
+						{i.nilai &&
+							(i.href ? (
+								<a class="nilai" href={i.href} {...linkAttrs(i.href)}>
+									{segmenPatah(i.nilai).map((b, n) => (n > 0 ? [<wbr />, b] : b))}
+								</a>
+							) : (
+								<span class="nilai">{segmenPatah(i.nilai).map((b, n) => (n > 0 ? [<wbr />, b] : b))}</span>
+							))}
+						{i.teks && <span class="teks">{i.teks}</span>}
+					</span>
+				</li>
+			))
+		}
+	</ul>
+	<div class="kaki">
+		{
+			kaki && (
+				<a href={kaki.href} {...linkAttrs(kaki.href)}>
+					{kaki.label} <span aria-hidden="true">›</span>
+				</a>
+			)
+		}
+	</div>
+</div>
+
+<style>
+	.panel {
+		border-radius: 6px;
+		background: var(--hijau-tua);
+		padding: 0 6px;
+		border-bottom: 4px solid var(--kuning);
+		overflow: hidden;
+	}
+	.kepala {
+		min-height: 64px;
+		margin: 0;
+		padding: 0 12px;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 15px;
+		line-height: 1.3;
+		letter-spacing: 0.4px;
+		color: var(--putih);
+	}
+	.kepala :global(.ikon-kepala) {
+		flex: none;
+		color: var(--kuning);
+	}
+	.daftar {
+		list-style: none;
+		margin: 0;
+		padding: 0 14px;
+		border-radius: 3px;
+		background: var(--putih);
+	}
+	.daftar li {
+		padding: 14px 0;
+		display: flex;
+		gap: 12px;
+		align-items: flex-start;
+	}
+	.daftar li + li {
+		border-top: 1px dotted #9db5a8;
+	}
+	.ikon-baris {
+		flex: none;
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		background: var(--hijau);
+		color: var(--putih);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.isi {
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+	}
+	.label {
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 11.5px;
+		line-height: 1.3;
+		letter-spacing: 0.6px;
+		text-transform: uppercase;
+		color: var(--hijau);
+	}
+	.nilai {
+		font-family: var(--font-isi);
+		font-weight: 700;
+		font-size: 16px;
+		line-height: 1.35;
+		color: var(--judul);
+		overflow-wrap: break-word;
+	}
+	a.nilai:hover {
+		color: var(--hijau);
+	}
+	.teks {
+		font-size: 14px;
+		line-height: 1.5;
+		color: var(--teks);
+	}
+	.kaki {
+		min-height: 46px;
+		padding: 0 12px;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+	}
+	.kaki a {
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 14px;
+		color: var(--putih);
+		padding: 12px 0;
+	}
+</style>

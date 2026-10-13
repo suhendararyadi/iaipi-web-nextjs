@@ -1,150 +1,854 @@
 ---
-// Halaman PMB (sementara: HTML polos, desain menyusul). Data: koleksi pmb + info_kampus (link pendaftaran).
+// Halaman PMB (desain "PMB.dc.html"). Data: koleksi pmb (entri "utama"), info_kampus (link daftar,
+// email, alamat), fakultas + prodi (pilihan program studi), profil_institusi (lencana).
 import Base from "@/layouts/Base.astro";
+import JudulSorot from "@/components/ui/JudulSorot.astro";
+import KepalaSection from "@/components/ui/KepalaSection.astro";
+import HeroPmb, { type SlideHero } from "@/components/pmb/HeroPmb.astro";
+import TautanCepat from "@/components/pmb/TautanCepat.astro";
+import PanelBiaya from "@/components/pmb/PanelBiaya.astro";
+import KartuFakultas, { type ProdiRingkas } from "@/components/pmb/KartuFakultas.astro";
+import PitaStatistik from "@/components/profil/PitaStatistik.astro";
+import KartuIkon from "@/components/profil/KartuIkon.astro";
+import KartuKanal from "@/components/profil/KartuKanal.astro";
+import PanelDaftar, { type BarisPanel } from "@/components/profil/PanelDaftar.astro";
+import SectionHijau from "@/components/profil/SectionHijau.astro";
+import TombolPil from "@/components/profil/TombolPil.astro";
+import Ikon from "@/components/profil/Ikon.astro";
 import { formatTanggal, getInfoKampus, lines, mediaAlt, mediaSrc, rows, useCacheHint } from "@/lib/cms";
-import { getPmb, keTanggal, waLink, type ItemIkon, type Pmb } from "@/lib/profil";
+import { getFakultasList, getProdiList, prodiUrl } from "@/lib/akademik";
+import {
+	getPmb,
+	getProfil,
+	ikonUkm,
+	keTanggal,
+	labelUrl,
+	namaPendek,
+	persenDari,
+	rincianBiaya,
+	statusPendaftaran,
+	waLink,
+	type ItemIkon,
+	type Pmb,
+} from "@/lib/profil";
 
-const [{ pmb: p, cacheHint }, { info, cacheHint: infoHint }] = await Promise.all([getPmb(), getInfoKampus()]);
-useCacheHint(Astro, cacheHint, infoHint);
+const [{ pmb: p, cacheHint }, { info, cacheHint: infoHint }, fakultasRes, prodiRes, { profil, cacheHint: profilHint }] = await Promise.all([
+	getPmb(),
+	getInfoKampus(),
+	getFakultasList(),
+	getProdiList(),
+	getProfil(),
+]);
+useCacheHint(Astro, cacheHint, infoHint, fakultasRes.cacheHint, prodiRes.cacheHint, profilHint);
 
 const judul = p?.judul || "Penerimaan Mahasiswa Baru";
+const tahun = p?.tahun_akademik;
+const logo = mediaSrc(info.logo, "/images/logo.jpeg");
+const daftar = info.link_pendaftaran || "#bantuan";
+const waAdmin = p?.whatsapp_admin ? waLink(p.whatsapp_admin, p.pesan_whatsapp_admin) : "#bantuan";
+const gelombang = p?.gelombang_aktif?.trim();
 const tutup = keTanggal(p?.tanggal_tutup);
 const tutupBeasiswa = keTanggal(p?.tanggal_tutup_beasiswa);
-const waAdmin = waLink(p?.whatsapp_admin, p?.pesan_whatsapp_admin);
-const daftar = info.link_pendaftaran || "#";
+const status = statusPendaftaran(tutup);
+const persenBeasiswa = persenDari(p?.beranda_teks_beasiswa);
 
-const keunggulan = rows<ItemIkon>(p?.keunggulan);
-const prodi = rows<NonNullable<Pmb["program_studi"]>[number]>(p?.program_studi);
-const ukm = rows<NonNullable<Pmb["ukm"]>[number]>(p?.ukm);
-const biayaS1 = rows<{ komponen: string; nominal: string }>(p?.biaya_s1);
-const biayaS2 = rows<{ komponen: string; nominal: string }>(p?.biaya_s2);
-const alur = rows<{ judul: string; deskripsi?: string }>(p?.alur_pendaftaran);
-const jadwal = rows<{ jalur: string; periode: string }>(p?.jadwal);
-const poster = rows<NonNullable<Pmb["poster"]>[number]>(p?.poster);
-const kanal = rows<NonNullable<Pmb["kanal_bantuan"]>[number]>(p?.kanal_bantuan);
+// ---- program studi (koleksi akademik; cadangan: field program_studi PMB)
+const prodiS1 = prodiRes.entries.filter((e) => e.data.jenjang !== "S2");
+const prodiS2 = prodiRes.entries.filter((e) => e.data.jenjang === "S2");
+const fakultasS1 = fakultasRes.entries.filter((f) => f.data.jenjang !== "S2");
+const GAMBAR_CADANGAN = ["/images/course/fak-2.jpg", "/images/course/fak-1.jpg", "/images/course/fak-3.jpg", "/images/slider/slider-iaipi-2.jpg"];
+type KartuFak = { judul: string; label: string; gambar: string; gambarAlt: string; href?: string; prodi: ProdiRingkas[] };
+let kartuFakultas: KartuFak[] = fakultasRes.entries
+	.map((f, i) => {
+		const s2 = f.data.jenjang === "S2";
+		const list = prodiRes.entries.filter((e) => e.data.fakultas === f.id && (s2 ? e.data.jenjang === "S2" : e.data.jenjang !== "S2"));
+		return {
+			judul: namaPendek(f.data.nama),
+			label: s2 ? "Pascasarjana · S2" : "Fakultas · S1",
+			gambar: mediaSrc(f.data.gambar, GAMBAR_CADANGAN[i % GAMBAR_CADANGAN.length]),
+			gambarAlt: mediaAlt(f.data.gambar, ""),
+			href: s2 ? "/magister" : `/fakultas/${f.id}`,
+			prodi: list.map((e) => ({ singkatan: e.data.singkatan, nama: e.data.nama, href: prodiUrl(e) })),
+		};
+	})
+	.filter((k) => k.prodi.length > 0);
+if (kartuFakultas.length === 0) {
+	kartuFakultas = rows<NonNullable<Pmb["program_studi"]>[number]>(p?.program_studi).map((f, i) => ({
+		judul: namaPendek(f.fakultas),
+		label: /magister|pasca/i.test(f.fakultas) ? "Pascasarjana · S2" : "Fakultas · S1",
+		gambar: GAMBAR_CADANGAN[i % GAMBAR_CADANGAN.length],
+		gambarAlt: "",
+		prodi: lines(f.prodi).map((nama) => ({ nama })),
+	}));
+}
+const totalProdi = prodiS1.length + prodiS2.length;
+const leadProdi =
+	totalProdi > 0
+		? `IAI PERSIS Garut memiliki ${totalProdi} program studi: ${prodiS1.length} program sarjana di ${fakultasS1.length} fakultas dan ${prodiS2.length} program magister di Program Pascasarjana.`
+		: "Pilih program studi sarjana (S1) atau magister (S2) yang sesuai dengan minat dan cita-citamu.";
+
+// ---- hero
+const slides: SlideHero[] = [];
+if (prodiS1.length || prodiS2.length) {
+	slides.push({
+		label: "Penerimaan Mahasiswa Baru",
+		angka1: String(prodiS1.length),
+		pita1: ["Program", "Sarjana"],
+		...(prodiS2.length ? { angka2: String(prodiS2.length), pita2: ["Program", "Magister"] as [string, string] } : {}),
+	});
+} else if (p?.jumlah_prodi) {
+	slides.push({ label: "Penerimaan Mahasiswa Baru", angka1: p.jumlah_prodi, pita1: ["Program", "Studi"] });
+}
+if (p?.biaya_minimum_s1) {
+	slides.push({
+		label: "Biaya minimum langsung kuliah",
+		angka1: p.biaya_minimum_s1,
+		pita1: ["Program", "Sarjana"],
+		...(p.biaya_minimum_s2 ? { angka2: p.biaya_minimum_s2, pita2: ["Program", "Magister"] as [string, string] } : {}),
+	});
+}
+if (persenBeasiswa) {
+	slides.push({
+		label: "Beasiswa kuliah hingga",
+		angka1: persenBeasiswa,
+		pita1: ["Biaya", "Kuliah"],
+		...(gelombang && status === "dibuka" ? { angka2: gelombang, pita2: ["Gelombang", "Dibuka"] as [string, string] } : {}),
+	});
+}
+if (slides.length === 0) slides.push({ label: "Penerimaan Mahasiswa Baru", angka1: tahun ?? "", pita1: ["Tahun", "Akademik"] });
+
+// ---- statistik
+const statistik = [
+	{ label: p?.label_jumlah_prodi || "Program Studi", nilai: p?.jumlah_prodi || (totalProdi ? String(totalProdi) : "") },
+	{ label: "Biaya Minimum Langsung Kuliah S1", nilai: p?.biaya_minimum_s1 ? `Rp ${p.biaya_minimum_s1}` : "" },
+	persenBeasiswa
+		? { label: "Beasiswa Kuliah hingga", nilai: persenBeasiswa }
+		: { label: "Gelombang Pendaftaran", nilai: gelombang ? `Gel. ${gelombang}` : "" },
+];
+
+// ---- jadwal
+const jadwal = rows<{ jalur?: string; periode?: string }>(p?.jadwal).filter((j) => j.jalur || j.periode);
+const namaJalur = (j: string | undefined) => (j ? (/^jalur/i.test(j) ? j : `Jalur ${j}`) : "Pendaftaran");
+
+// ---- langkah
+const alur = rows<{ judul?: string; deskripsi?: string }>(p?.alur_pendaftaran).filter((a) => a.judul);
+const IKON_LANGKAH = ["form", "upload", "check-circle"];
+const aksiLangkah = [
+	{ href: daftar, teks: "Buka Formulir" },
+	{ href: "#biaya", teks: "Lihat Rincian Biaya" },
+	{ href: waAdmin, teks: "Tanya Admin PMB" },
+];
+const persyaratan = lines(p?.persyaratan);
+
+// ---- biaya
+const tabBiaya = [
+	{
+		kunci: "s1",
+		label: "Program Sarjana (S1)",
+		baris: rincianBiaya(rows(p?.biaya_s1)),
+		sub: prodiS1.length ? `${prodiS1.length} program studi sarjana di ${fakultasS1.length} fakultas.` : null,
+		catatan: p?.biaya_minimum_s1 ? `Biaya minimum langsung kuliah mulai Rp ${p.biaya_minimum_s1}.` : null,
+	},
+	{
+		kunci: "s2",
+		label: "Program Magister (S2)",
+		baris: rincianBiaya(rows(p?.biaya_s2)),
+		sub: prodiS2.length ? `${prodiS2.length} program magister di Program Pascasarjana.` : null,
+		catatan: p?.biaya_minimum_s2 ? `Biaya minimum langsung kuliah mulai Rp ${p.biaya_minimum_s2}.` : null,
+	},
+].filter((t) => t.baris.length > 0);
+
+const keunggulan = rows<ItemIkon>(p?.keunggulan).filter((k) => k.judul);
+const ukm = rows<{ nama?: string; bidang?: string }>(p?.ukm).filter((u) => u.nama);
+const poster = rows<{ gambar?: Parameters<typeof mediaSrc>[0]; keterangan?: string }>(p?.poster).filter((x) => x.gambar);
+
+// ---- bantuan
+const kanal = rows<NonNullable<Pmb["kanal_bantuan"]>[number]>(p?.kanal_bantuan).filter((k) => k.url);
+const kanalWa = kanal.find((k) => /whatsapp/i.test(k.ikon ?? "") || /wa\.me/.test(k.url));
+const kanalIg = kanal.find((k) => /instagram/i.test(k.ikon ?? "") || /instagram\.com/.test(k.url));
+const nomorWa = kanalWa?.keterangan || (p?.whatsapp_admin ? `+${p.whatsapp_admin}` : "");
+const kanalLain = kanal.filter((k) => k !== kanalWa && k !== kanalIg && !/\/pmb\/?$/.test(k.url));
+const barisEmail: BarisPanel[] = [
+	...(info.email_pmb ? [{ label: "Email PMB", nilai: info.email_pmb, href: `mailto:${info.email_pmb}`, teks: "Kirim pertanyaan seputar PMB melalui email." }] : []),
+	...(info.link_pendaftaran ? [{ label: "Daftar online", nilai: labelUrl(info.link_pendaftaran), href: info.link_pendaftaran }] : []),
+	...kanalLain.map((k) => ({ label: k.label, nilai: k.keterangan || labelUrl(k.url), href: k.url })),
+	...(info.alamat ? [{ label: "Kampus", teks: info.alamat }] : []),
+];
 ---
 
 <Base title={judul} description={p?.intro_deskripsi}>
-	<article>
-		<h1>{judul}</h1>
-		{
-			!p ? (
-				<p>Informasi PMB belum diisi.</p>
-			) : (
-				<>
-					<section>
-						<h2>{p.intro_judul}</h2>
-						<p>{p.intro_deskripsi}</p>
-						<ul>
-							{p.jumlah_prodi && <li><strong>{p.jumlah_prodi}</strong> {p.label_jumlah_prodi}</li>}
-							{p.gelombang_aktif && <li><strong>Gel. {p.gelombang_aktif}</strong> Gelombang Pendaftaran Aktif</li>}
-							{p.biaya_minimum_s1 && <li><strong>{p.biaya_minimum_s1}</strong> Biaya Minimum Langsung Kuliah</li>}
-						</ul>
-						<p>
-							<a href={daftar} target="_blank" rel="noopener noreferrer">Daftar Online Sekarang</a> ·{" "}
-							<a href={waAdmin} target="_blank" rel="noopener noreferrer">Konsultasi dengan Admin PMB</a>
-						</p>
-					</section>
+	{
+		!p ? (
+			<section class="section">
+				<div class="wadah">
+					<KepalaSection judul={judul} teks="Informasi Penerimaan Mahasiswa Baru belum diisi. Silakan hubungi kampus untuk informasi pendaftaran." />
+				</div>
+			</section>
+		) : (
+			<>
+				<HeroPmb
+					judul={`${judul} — ${info.nama}`}
+					tahun={tahun}
+					logo={logo}
+					kutipan={p.intro_judul}
+					slides={slides}
+					gambarAlt={`Gedung kampus ${info.nama}`}
+				/>
 
-					<section>
-						<h2>Jadwal Pendaftaran Gelombang {p.gelombang_aktif}</h2>
-						<ul>{jadwal.map((j) => <li>{j.jalur}: {j.periode}</li>)}</ul>
-						{tutup && <p>Pendaftaran reguler ditutup: {formatTanggal(tutup)}</p>}
-						{tutupBeasiswa && <p>Pendaftaran beasiswa ditutup: {formatTanggal(tutupBeasiswa)}</p>}
-						{p.catatan_jadwal && <p>{p.catatan_jadwal}</p>}
-					</section>
+				<TautanCepat daftar={daftar} wa={waAdmin} />
 
-					{keunggulan.length > 0 && (
-						<section>
-							<h2>Kenapa Daftar di IAI Persis Garut?</h2>
-							<ul>{keunggulan.map((k) => <li><strong>{k.judul}</strong>: {k.deskripsi}</li>)}</ul>
-						</section>
-					)}
+				<section class="ajakan" aria-labelledby="pmb-ajakan">
+					<div class="wadah">
+						<img class="watermark" src={logo} alt="" aria-hidden="true" width="210" height="300" />
+						<JudulSorot text="Mulai perjalanan ilmumu di *IAI PERSIS Garut*!" id="pmb-ajakan" class="judul-besar judul-ajakan" />
+						{p.intro_deskripsi && <p class="lead">{p.intro_deskripsi}</p>}
+						{(profil?.lencana_judul || profil?.lencana_subjudul) && (
+							<p class="stiker">
+								{profil?.lencana_judul && <span class="stiker-atas">{profil.lencana_judul}</span>}
+								{profil?.lencana_subjudul && <span class="stiker-bawah">{profil.lencana_subjudul}</span>}
+							</p>
+						)}
+					</div>
+				</section>
 
-					{prodi.length > 0 && (
-						<section>
-							<h2>Pilihan Program Studi S1 dan S2</h2>
-							{prodi.map((f) => (
-								<>
-									<h3>{f.fakultas}</h3>
-									<ul>{lines(f.prodi).map((x) => <li>{x}</li>)}</ul>
-								</>
-							))}
-						</section>
-					)}
+				<PitaStatistik items={statistik} label="PMB dalam angka" />
 
-					{ukm.length > 0 && (
-						<section>
-							<h2>Unit Kegiatan Mahasiswa</h2>
-							<ul>{ukm.map((u) => <li><strong>{u.nama}</strong>: {u.bidang}</li>)}</ul>
-						</section>
-					)}
-
-					<section>
-						<h2>Rincian Biaya Program S1 dan S2</h2>
-						{p.catatan_biaya && <p>{p.catatan_biaya}</p>}
-						{[
-							{ judul: "S1 – Program Sarjana", baris: biayaS1, minimum: p.biaya_minimum_s1 },
-							{ judul: "S2 – Program Magister", baris: biayaS2, minimum: p.biaya_minimum_s2 },
-						]
-							.filter((t) => t.baris.length > 0)
-							.map((t) => (
-								<>
-									<h3>{t.judul}</h3>
-									<table>
-										<tbody>
-											{t.baris.map((b) => (
-												<tr>
-													<td>{b.komponen}</td>
-													<td>{b.nominal}</td>
-												</tr>
-											))}
-										</tbody>
-									</table>
-									{t.minimum && <p>Biaya Minimum {t.minimum} Bisa Langsung Kuliah</p>}
-								</>
-							))}
-					</section>
-
-					<section>
-						<h2>{p.langkah_judul || "Langkah Pendaftaran"}</h2>
-						{p.langkah_deskripsi && <p>{p.langkah_deskripsi}</p>}
-						<ol>{alur.map((a) => <li><strong>{a.judul}</strong>: {a.deskripsi}</li>)}</ol>
-						<h3>Persyaratan Umum</h3>
-						<ul>{lines(p.persyaratan).map((x) => <li>{x}</li>)}</ul>
-					</section>
-
-					{poster.length > 0 && (
-						<section>
-							<h2>Poster Penerimaan Mahasiswa Baru TA {p.tahun_akademik}</h2>
-							{p.poster_lengkap && (
-								<p>
-									<a href={mediaSrc(p.poster_lengkap)} target="_blank" rel="noopener noreferrer">Unduh poster lengkap</a>
-								</p>
+				<section id="jadwal" class="section jadwal" aria-labelledby="jadwal-judul">
+					<div class="wadah">
+						<KepalaSection judul="Jadwal PMB *IAIP*" id="jadwal-judul">
+							<p class="lead">
+								Penerimaan {tahun ? `TA ${tahun} ` : ""}untuk jenjang S1 dan S2 terbagi atas jalur beasiswa dan jalur reguler.
+								{status && (
+									<>
+										{" "}
+										Status pendaftaran{gelombang ? ` gelombang ${gelombang}` : ""} saat ini:{" "}
+										<span class:list={["status", status]}>{status}</span>
+									</>
+								)}
+							</p>
+						</KepalaSection>
+						<ul class="daftar-jadwal">
+							{jadwal.length > 0 ? (
+								jadwal.map((j) => (
+									<li class="baris">
+										<span class="periode">{j.periode || "Tanggal menyusul"}</span>
+										<span class="jalur">
+											{namaJalur(j.jalur)}
+											{gelombang && ` · Gelombang ${gelombang}`}
+										</span>
+									</li>
+								))
+							) : (
+								<li class="baris">
+									<span class="periode">Segera diumumkan</span>
+									<span class="jalur">Jadwal gelombang berikutnya sedang disiapkan</span>
+								</li>
 							)}
-							{poster.map((x) => (
-								<figure>
-									<img src={mediaSrc(x.gambar)} alt={mediaAlt(x.gambar, x.keterangan ?? "Poster PMB")} loading="lazy" width="300" />
-									<figcaption>{x.keterangan}</figcaption>
-								</figure>
-							))}
-						</section>
-					)}
+							{(tutup || tutupBeasiswa) && (
+								<li class="baris">
+									<span class="periode">Batas pendaftaran</span>
+									<span class="jalur">
+										{tutupBeasiswa && `Beasiswa ${formatTanggal(tutupBeasiswa)}`}
+										{tutup && tutupBeasiswa && " · "}
+										{tutup && `Reguler ${formatTanggal(tutup)}`}
+									</span>
+								</li>
+							)}
+							{p.catatan_jadwal && <li class="catatan">{p.catatan_jadwal}</li>}
+						</ul>
+					</div>
+				</section>
 
-					{kanal.length > 0 && (
-						<section>
-							<h2>Butuh Bantuan? Tim PMB Siap Membantu</h2>
-							<ul>
-								{kanal.map((k) => (
+				<section id="langkah" class="section langkah" aria-labelledby="langkah-judul">
+					<div class="wadah">
+						<KepalaSection judul={p.langkah_judul || "Tiga Langkah Mendaftar"} teks={p.langkah_deskripsi} ukuran="sedang" id="langkah-judul" />
+						{alur.length > 0 && (
+							<ol class="grid-auto grid-langkah" style="--min: 260px">
+								{alur.map((a, i) => (
 									<li>
-										<a href={k.url} target="_blank" rel="noopener noreferrer">{k.label}</a> — {k.keterangan}
+										<KartuIkon judul={a.judul ?? ""} teks={a.deskripsi} nomor={i + 1} ikon={IKON_LANGKAH[i] ?? "star"} awalanSr={`Langkah ${i + 1}: `}>
+											{aksiLangkah[i] && (
+												<TombolPil slot="aksi" href={aksiLangkah[i].href}>
+													{aksiLangkah[i].teks}
+												</TombolPil>
+											)}
+										</KartuIkon>
+									</li>
+								))}
+							</ol>
+						)}
+						{persyaratan.length > 0 && (
+							<div class="syarat">
+								<h3>Persyaratan Pendaftaran</h3>
+								<ul>
+									{persyaratan.map((s) => (
+										<li>
+											<span class="centang">
+												<Ikon nama="check" ukuran={14} tebal={3} />
+											</span>
+											{s}
+										</li>
+									))}
+								</ul>
+							</div>
+						)}
+					</div>
+				</section>
+
+				{tabBiaya.length > 0 && (
+					<section id="biaya" class="section biaya" aria-labelledby="biaya-judul">
+						<div class="wadah">
+							<KepalaSection judul="Rincian Biaya Kuliah *IAIP*" teks={p.catatan_biaya} id="biaya-judul" />
+							<div data-tabs>
+								<div class="tab-grup" role="tablist" aria-label="Jenjang program">
+									{tabBiaya.map((t, i) => (
+										<button
+											type="button"
+											class="tab"
+											role="tab"
+											id={`tab-biaya-${t.kunci}`}
+											aria-controls={`panel-biaya-${t.kunci}`}
+											aria-selected={i === 0 ? "true" : "false"}
+											tabindex={i === 0 ? 0 : -1}
+										>
+											{t.label}
+										</button>
+									))}
+								</div>
+								{tabBiaya.map((t, i) => (
+									<PanelBiaya
+										id={`panel-biaya-${t.kunci}`}
+										tabId={`tab-biaya-${t.kunci}`}
+										aktif={i === 0}
+										judul={t.label}
+										subjudul={t.sub}
+										tahun={tahun}
+										baris={t.baris}
+										catatan={t.catatan}
+										daftar={daftar}
+										wa={waAdmin}
+									/>
+								))}
+							</div>
+						</div>
+					</section>
+				)}
+
+				{keunggulan.length > 0 && (
+					<section class="section bg-abu keunggulan" aria-labelledby="keunggulan-judul">
+						<div class="wadah">
+							<KepalaSection judul="Kenapa Daftar di IAI PERSIS Garut?" ukuran="sedang" id="keunggulan-judul" />
+							<ul class="grid-auto daftar-unggul" style="--min: 300px">
+								{keunggulan.map((k) => (
+									<li>
+										<span class="ikon-unggul">
+											<Ikon nama={k.ikon} ukuran={26} />
+										</span>
+										<span>
+											<h3>{k.judul}</h3>
+											{k.deskripsi && <p>{k.deskripsi}</p>}
+										</span>
 									</li>
 								))}
 							</ul>
-						</section>
-					)}
-				</>
-			)
-		}
-	</article>
+						</div>
+					</section>
+				)}
+
+				{kartuFakultas.length > 0 && (
+					<section id="prodi" class="section prodi" aria-labelledby="prodi-judul">
+						<div class="wadah">
+							<KepalaSection judul="Pilihan Program Studi" teks={leadProdi} ukuran="sedang" id="prodi-judul" />
+							<div class="grid-auto" style="--min: 240px">
+								{kartuFakultas.map((k) => (
+									<KartuFakultas {...k} />
+								))}
+							</div>
+						</div>
+					</section>
+				)}
+
+				{ukm.length > 0 && (
+					<section id="ukm" class="ukm" aria-labelledby="ukm-judul">
+						<div class="wadah ukm-kepala">
+							<JudulSorot text="Kembangkan Minat & Bakat di *IAIP*" id="ukm-judul" />
+							<p class="lead">
+								Di luar perkuliahan, {ukm.length} Unit Kegiatan Mahasiswa (UKM) menjadi wadah untuk menyalurkan minat, mengasah bakat, dan
+								membangun kebersamaan.
+							</p>
+						</div>
+						<SectionHijau label="Daftar Unit Kegiatan Mahasiswa">
+							<div class="carousel" data-carousel>
+								<ul class="carousel-jalur daftar-ukm">
+									{ukm.map((u) => (
+										<li class="kartu-ukm">
+											<span class="ikon-ukm">
+												<Ikon nama={ikonUkm(u.bidang)} ukuran={38} tebal={1.8} />
+											</span>
+											<h3>{u.nama}</h3>
+											{u.bidang && <p>{u.bidang}</p>}
+											<span class="pil-ukm">Unit Kegiatan Mahasiswa</span>
+										</li>
+									))}
+								</ul>
+								{ukm.length > 3 && (
+									<>
+										<button type="button" class="panah-bulat carousel-prev" aria-label="UKM sebelumnya" data-prev>
+											<Ikon nama="chevron-left" ukuran={22} tebal={2.4} />
+										</button>
+										<button type="button" class="panah-bulat carousel-next" aria-label="UKM berikutnya" data-next>
+											<Ikon nama="chevron-right" ukuran={22} tebal={2.4} />
+										</button>
+									</>
+								)}
+							</div>
+						</SectionHijau>
+					</section>
+				)}
+
+				<section id="bantuan" class="bantuan" aria-labelledby="bantuan-judul">
+					<div class="wadah">
+						<h2 id="bantuan-judul" class="sr-only">
+							Butuh bantuan? Hubungi tim PMB
+						</h2>
+						<div class="grid-auto grid-bantuan" style="--min: 280px">
+							{p.whatsapp_admin && (
+								<KartuKanal
+									judul="WhatsApp"
+									as="h3"
+									href={waAdmin}
+									ikon="whatsapp"
+									label="Admin PMB"
+									nilai={nomorWa}
+									teks="Konsultasi program studi, biaya, beasiswa, dan pendaftaran langsung dengan admin PMB."
+									tombol="Chat Admin PMB"
+								/>
+							)}
+							{kanalIg && (
+								<KartuKanal
+									judul="Instagram"
+									as="h3"
+									href={kanalIg.url}
+									ikon="instagram"
+									label="Instagram PMB"
+									nilai={kanalIg.keterangan || labelUrl(kanalIg.url)}
+									teks={`Ikuti informasi terbaru seputar Penerimaan Mahasiswa Baru ${info.nama}.`}
+									tombol="Kunjungi Instagram"
+								/>
+							)}
+							{barisEmail.length > 0 && (
+								<div class="kolom-panel">
+									<h3 class="judul-kolom">Email</h3>
+									<PanelDaftar
+										judul="Kontak PMB IAI PERSIS Garut"
+										items={barisEmail}
+										kaki={info.email_pmb ? { href: `mailto:${info.email_pmb}`, label: "Kirim Email" } : null}
+									/>
+								</div>
+							)}
+						</div>
+					</div>
+				</section>
+
+				{poster.length > 0 && (
+					<section id="poster" class="section bg-abu" aria-labelledby="poster-judul">
+						<div class="wadah">
+							<KepalaSection judul={`Poster PMB${tahun ? ` TA ${tahun}` : ""}`} ukuran="sedang" id="poster-judul">
+								<p class="lead">Simpan dan bagikan poster resmi Penerimaan Mahasiswa Baru kepada keluarga dan teman.</p>
+								{p.poster_lengkap && (
+									<p class="unduh">
+										<TombolPil href={mediaSrc(p.poster_lengkap)} ikon="download" tebal>
+											Unduh Poster Lengkap
+										</TombolPil>
+									</p>
+								)}
+							</KepalaSection>
+							<ul class="grid-auto daftar-poster" style="--min: 240px">
+								{poster.map((x, i) => (
+									<li>
+										<a href={mediaSrc(x.gambar)} class="poster" target="_blank" rel="noopener noreferrer">
+											<img src={mediaSrc(x.gambar)} alt={mediaAlt(x.gambar, x.keterangan || `Poster PMB ${i + 1}`)} loading="lazy" width="554" height="1024" />
+											<span class="sr-only"> (buka ukuran penuh di tab baru)</span>
+										</a>
+										{x.keterangan && <p class="ket-poster">{x.keterangan}</p>}
+									</li>
+								))}
+							</ul>
+						</div>
+					</section>
+				)}
+			</>
+		)
+	}
 </Base>
+
+<style>
+	/* ---- pernyataan besar */
+	.ajakan {
+		position: relative;
+		overflow: hidden;
+		padding: 90px 0 70px;
+		text-align: center;
+	}
+	.ajakan .wadah {
+		position: relative;
+	}
+	.watermark {
+		position: absolute;
+		left: 50%;
+		top: -8px;
+		width: 210px;
+		height: 300px;
+		transform: translateX(-50%);
+		object-fit: contain;
+		opacity: 0.06;
+		pointer-events: none;
+	}
+	.ajakan :global(.judul-ajakan) {
+		position: relative;
+		max-width: 1000px;
+		margin: 0 auto;
+		line-height: 1.27;
+	}
+	.ajakan .lead {
+		position: relative;
+		max-width: 960px;
+		margin: 14px auto 0;
+		line-height: 1.72;
+	}
+	.stiker {
+		position: relative;
+		margin-top: 16px;
+		display: inline-flex;
+		flex-direction: column;
+		align-items: center;
+		line-height: 1;
+		transform: rotate(-4deg);
+		text-transform: uppercase;
+		font-style: italic;
+	}
+	.stiker-atas {
+		padding: 4px 9px;
+		border-radius: 4px;
+		background: var(--kuning);
+		transform: skewX(-8deg);
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 11.5px;
+		letter-spacing: 1.2px;
+		color: var(--judul);
+	}
+	.stiker-bawah {
+		margin-top: 4px;
+		font-weight: 900;
+		font-size: 18px;
+		letter-spacing: -0.2px;
+		color: var(--hijau);
+	}
+
+	/* ---- jadwal */
+	.jadwal {
+		padding-bottom: 40px;
+	}
+	.jadwal :global(.kepala-section) {
+		margin-bottom: 0;
+	}
+	.status {
+		display: inline-block;
+		padding: 2px 12px;
+		border-radius: 999px;
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 14px;
+		text-transform: uppercase;
+		letter-spacing: 0.6px;
+		vertical-align: 2px;
+	}
+	.status.dibuka {
+		background: var(--kuning);
+		color: var(--judul);
+	}
+	.status.ditutup {
+		background: var(--abu);
+		color: var(--hijau-tua);
+		border: 1px solid var(--garis);
+	}
+	.daftar-jadwal {
+		list-style: none;
+		margin: 36px 0 0;
+		padding: 15px 25px 28px;
+		border-radius: var(--radius-l);
+		background: var(--hijau);
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+	}
+	.daftar-jadwal .baris {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px 16px;
+		padding: 16px 0;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+	}
+	.periode {
+		flex: 0 0 220px;
+		max-width: 100%;
+		font-family: var(--font-ui);
+		font-size: 15px;
+		line-height: 1.4;
+		color: var(--hijau-muda);
+	}
+	.jalur {
+		flex: 1 1 240px;
+		min-width: 0;
+		font-weight: 800;
+		font-size: 17px;
+		line-height: 1.27;
+		color: var(--putih);
+	}
+	.daftar-jadwal .catatan {
+		padding-top: 16px;
+		font-size: 15px;
+		line-height: 1.55;
+		letter-spacing: 0.3px;
+		color: var(--hijau-muda);
+	}
+	.daftar-jadwal li:last-child.baris {
+		border-bottom: 0;
+	}
+
+	/* ---- langkah */
+	.grid-langkah {
+		list-style: none;
+		margin: 46px 0 0;
+		padding: 0;
+	}
+	.grid-langkah > li {
+		display: flex;
+		min-width: 0;
+	}
+	.grid-langkah > li > :global(.kartu) {
+		flex: 1;
+	}
+	.syarat {
+		margin-top: 30px;
+		padding: clamp(24px, 3vw, 34px) clamp(24px, 3.4vw, 40px);
+		border-radius: var(--radius-l);
+		background: var(--abu);
+	}
+	.syarat h3 {
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 20px;
+		line-height: 1.3;
+	}
+	.syarat ul {
+		list-style: none;
+		margin: 18px 0 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+		gap: 14px 20px;
+	}
+	.syarat li {
+		display: flex;
+		gap: 10px;
+		align-items: flex-start;
+		font-size: 16px;
+		line-height: 1.45;
+		letter-spacing: 0.2px;
+	}
+	.centang {
+		flex: none;
+		width: 24px;
+		height: 24px;
+		border-radius: 50%;
+		background: var(--hijau);
+		color: var(--putih);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	/* ---- biaya */
+	.biaya {
+		padding-block: 90px 80px;
+	}
+	.biaya .tab-grup {
+		margin-top: 48px;
+		margin-bottom: 0;
+	}
+	.biaya .tab {
+		font-family: var(--font-ui);
+		font-size: 16px;
+	}
+
+	/* ---- keunggulan */
+	.daftar-unggul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 22px 30px;
+	}
+	.daftar-unggul li {
+		display: flex;
+		gap: 16px;
+		align-items: flex-start;
+		padding: 22px;
+		border-radius: var(--radius);
+		background: var(--putih);
+		border: 1px solid #eef0ee;
+	}
+	.ikon-unggul {
+		flex: none;
+		width: 52px;
+		height: 52px;
+		border-radius: 50%;
+		background: var(--hijau);
+		color: var(--putih);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.daftar-unggul h3 {
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 18px;
+		line-height: 1.3;
+	}
+	.daftar-unggul p {
+		margin-top: 6px;
+		font-size: 15px;
+		line-height: 1.6;
+	}
+
+	/* ---- prodi */
+	.prodi {
+		padding-bottom: 70px;
+	}
+
+	/* ---- UKM */
+	.ukm-kepala {
+		padding-block: clamp(72px, 9vw, 120px) clamp(40px, 5vw, 76px);
+	}
+	.ukm-kepala .lead {
+		margin-top: 18px;
+	}
+	.daftar-ukm {
+		list-style: none;
+		margin: 0;
+		padding: 6px 0 12px;
+		gap: 31px;
+	}
+	.kartu-ukm {
+		min-height: 440px;
+		padding: 56px 28px 70px;
+		border-radius: var(--radius-xl);
+		background: var(--putih);
+		box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.ikon-ukm {
+		margin-block: 23px;
+		width: 84px;
+		height: 84px;
+		border-radius: 50%;
+		background: var(--abu);
+		color: var(--hijau);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.kartu-ukm h3 {
+		margin-top: 24px;
+		font-weight: 800;
+		font-size: 20px;
+		line-height: 1.25;
+		color: var(--judul);
+	}
+	.kartu-ukm p {
+		margin-top: 8px;
+		font-size: 16px;
+		letter-spacing: 0.3px;
+		color: var(--teks);
+	}
+	.pil-ukm {
+		margin-top: 16px;
+		padding: 4px 12px;
+		border-radius: 999px;
+		border: 1px solid var(--kuning);
+		background: var(--krem);
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 13px;
+		line-height: 1.4;
+		color: var(--judul);
+	}
+
+	/* ---- bantuan */
+	.bantuan {
+		padding: 30px 0 64px;
+	}
+	.grid-bantuan {
+		gap: 40px 31px;
+		align-items: stretch;
+	}
+	.kolom-panel {
+		min-width: 0;
+	}
+	.judul-kolom {
+		margin: 0 0 19px;
+		font-weight: 900;
+		font-size: clamp(28px, 3vw, 34px);
+		line-height: 1.2;
+		letter-spacing: -0.3px;
+	}
+
+	/* ---- poster */
+	.unduh {
+		margin-top: 20px;
+	}
+	.daftar-poster {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.poster {
+		display: block;
+		border-radius: var(--radius);
+		overflow: hidden;
+		background: var(--putih);
+		box-shadow: var(--bayangan);
+	}
+	.poster img {
+		width: 100%;
+		height: auto;
+		transition: transform 0.3s ease;
+	}
+	.poster:hover img {
+		transform: scale(1.02);
+	}
+	.ket-poster {
+		margin-top: 10px;
+		font-size: 14px;
+		color: var(--redup);
+	}
+
+	@media (max-width: 600px) {
+		.daftar-poster {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 16px;
+		}
+		.ajakan {
+			padding: 64px 0 48px;
+		}
+		.daftar-jadwal {
+			padding: 8px 20px 22px;
+		}
+		.kartu-ukm {
+			min-height: 340px;
+			padding: 36px 22px 44px;
+		}
+	}
+</style>

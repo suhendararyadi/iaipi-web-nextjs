@@ -1,0 +1,448 @@
+---
+// Hero PMB: foto gedung dipudarkan + komposisi banner (kartu bingkai logo & tahun akademik di kiri,
+// angka besar bertumpuk dengan pita miring di kanan). Bagian kanan berganti otomatis lewat
+// data-slider (src/scripts/ui.ts).
+import { segmenSorot } from "@/lib/cms";
+import Ikon from "@/components/profil/Ikon.astro";
+
+export interface SlideHero {
+	label: string;
+	angka1: string;
+	pita1: [string, string];
+	angka2?: string;
+	pita2?: [string, string];
+}
+
+interface Props {
+	judul: string;
+	tahun?: string | null;
+	logo: string;
+	kutipan?: string | null;
+	slides: SlideHero[];
+	gambar?: string;
+	gambarAlt?: string;
+}
+
+const { judul, tahun, logo, kutipan, slides, gambar = "/images/page-banner-7.jpg", gambarAlt = "" } = Astro.props;
+const banyak = slides.length > 1;
+---
+
+<section class="hero" aria-roledescription="carousel" aria-label="Sorotan Penerimaan Mahasiswa Baru" data-slider={banyak ? "" : undefined}>
+	<img class="latar" src={gambar} alt={gambarAlt} fetchpriority="high" />
+	<span class="lapis" aria-hidden="true"></span>
+	<span class="busur" aria-hidden="true"></span>
+	<h1 class="sr-only">{judul}</h1>
+
+	<div class="wadah komposisi">
+		<div class="kiri">
+			<div class="bingkai-wrap">
+				<div class="bingkai">
+					<div class="bingkai-isi">
+						<img src={logo} alt="" width="40" height="58" />
+						<div class="baris-pmb" aria-hidden="true">
+							<span>Penerimaan<i></i></span>
+							<span>Mahasiswa<i></i></span>
+							<span>Baru<i class="kuning"></i></span>
+						</div>
+					</div>
+				</div>
+				{tahun && <div class="tahun">{tahun}</div>}
+			</div>
+			{
+				kutipan && (
+					<p class="kutipan">
+						“{segmenSorot(kutipan).map((s) => (s.sorot ? <strong>{s.teks}</strong> : s.teks))}”
+					</p>
+				)
+			}
+		</div>
+
+		<div class="kanan">
+			{
+				slides.map((s, i) => (
+					<div
+						class="slide"
+						role="group"
+						aria-roledescription="slide"
+						aria-label={`Slide ${i + 1} dari ${slides.length}`}
+						data-slide
+						data-active={String(i === 0)}
+						aria-hidden={i === 0 ? undefined : "true"}
+					>
+						<p class="label-slide">
+							<span aria-hidden="true" />
+							{s.label}
+							<span aria-hidden="true" />
+						</p>
+						<p class="baris-angka">
+							<span class="angka">{s.angka1}</span>
+							<span class="pita">
+								<span>{s.pita1[0]}</span>
+								<span>{s.pita1[1]}</span>
+								<svg aria-hidden="true" viewBox="0 0 100 10" preserveAspectRatio="none">
+									<path d="M2 7 C30 2 62 9 98 3" />
+								</svg>
+							</span>
+						</p>
+						{s.angka2 && s.pita2 && (
+							<p class="baris-angka kedua">
+								<span class="angka">{s.angka2}</span>
+								<span class="pita">
+									<span>{s.pita2[0]}</span>
+									<span>{s.pita2[1]}</span>
+									<svg aria-hidden="true" viewBox="0 0 100 10" preserveAspectRatio="none">
+										<path d="M2 7 C30 2 62 9 98 3" />
+									</svg>
+								</span>
+							</p>
+						)}
+					</div>
+				))
+			}
+		</div>
+	</div>
+
+	{
+		banyak && (
+			<div class="kontrol">
+				<button type="button" class="panah prev" aria-label="Slide sebelumnya" data-prev>
+					<span>
+						<Ikon nama="chevron-left" ukuran={18} tebal={2.6} />
+					</span>
+				</button>
+				<div class="titik">
+					{slides.map((_, i) => (
+						<button type="button" aria-label={`Tampilkan slide ${i + 1}`} aria-current={i === 0 ? "true" : "false"} data-dot>
+							<span />
+						</button>
+					))}
+				</div>
+				<button type="button" class="panah next" aria-label="Slide berikutnya" data-next>
+					<span>
+						<Ikon nama="chevron-right" ukuran={18} tebal={2.6} />
+					</span>
+				</button>
+			</div>
+		)
+	}
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		overflow: hidden;
+		min-height: 630px;
+		padding: 127px 0 96px;
+		background: #f4f6f5;
+		isolation: isolate;
+	}
+	.latar {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center 45%;
+		filter: grayscale(0.3);
+		z-index: -3;
+	}
+	.lapis {
+		position: absolute;
+		inset: 0;
+		background: rgba(255, 255, 255, 0.78);
+		z-index: -2;
+	}
+	.busur {
+		position: absolute;
+		left: -820px;
+		top: 40px;
+		width: 1100px;
+		height: 1100px;
+		border-radius: 50%;
+		background: rgba(0, 103, 56, 0.08);
+		box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.75);
+		z-index: -1;
+	}
+	.komposisi {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 28px 30px;
+	}
+	.kiri {
+		flex: 0 1 381px;
+		min-width: 0;
+		max-width: 381px;
+	}
+	.bingkai-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 274px;
+		max-width: 100%;
+	}
+	.bingkai {
+		width: 100%;
+		padding: 8px 14px 10px 16px;
+		border: 3px solid var(--kuning);
+		border-radius: 14px;
+		background: rgba(255, 255, 255, 0.55);
+		box-shadow: 0 0 0 4px rgba(255, 198, 0, 0.18), 0 8px 20px rgba(3, 51, 29, 0.1);
+	}
+	.bingkai-isi {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		background: var(--putih);
+		padding: 12px 10px;
+		border-radius: 2px;
+	}
+	.bingkai-isi img {
+		flex: none;
+		width: 40px;
+		height: 58px;
+		object-fit: contain;
+	}
+	.baris-pmb {
+		flex: 1 1 auto;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+		font-weight: 800;
+		font-size: 15px;
+		line-height: 1.15;
+		letter-spacing: 0.3px;
+		color: var(--judul);
+		text-transform: uppercase;
+	}
+	.baris-pmb span {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+	}
+	.baris-pmb i {
+		flex: 1 1 auto;
+		height: 12px;
+		background: var(--hijau);
+		border-radius: 1px;
+	}
+	.baris-pmb i.kuning {
+		background: var(--kuning);
+	}
+	.tahun {
+		position: relative;
+		margin-top: -15px;
+		padding: 0 10px;
+		background: rgba(255, 255, 255, 0.94);
+		border-radius: 8px;
+		font-weight: 900;
+		font-size: 32px;
+		line-height: 1.1;
+		letter-spacing: -0.5px;
+		color: var(--hijau);
+	}
+	.kutipan {
+		margin-top: 18px;
+		font-size: 14.5px;
+		line-height: 1.3;
+		font-style: italic;
+		font-weight: 500;
+		letter-spacing: 0.1px;
+		color: var(--teks);
+	}
+	.kutipan strong {
+		font-weight: 700;
+		color: var(--hijau);
+	}
+
+	.kanan {
+		flex: 0 1 auto;
+		min-width: 0;
+		display: grid;
+	}
+	.slide {
+		grid-area: 1 / 1;
+		display: flex;
+		flex-direction: column;
+		transition: opacity 0.4s ease, visibility 0.4s;
+	}
+	.slide[data-active="false"] {
+		opacity: 0;
+		visibility: hidden;
+	}
+	.label-slide {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 13.5px;
+		line-height: 18px;
+		letter-spacing: 1.4px;
+		color: var(--hijau-tua);
+		text-transform: uppercase;
+	}
+	.label-slide span {
+		flex: none;
+		width: 24px;
+		height: 2px;
+		background: var(--kuning);
+	}
+	.baris-angka {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		margin-top: 6px;
+	}
+	.baris-angka.kedua {
+		justify-content: flex-end;
+		margin-top: -2px;
+	}
+	.angka {
+		font-weight: 900;
+		font-size: clamp(64px, 8vw, 112px);
+		line-height: 1;
+		letter-spacing: -2px;
+		color: var(--hijau);
+		text-shadow: 3px 4px 0 var(--kuning), 7px 9px 0 rgba(0, 103, 56, 0.12);
+		white-space: nowrap;
+	}
+	.pita {
+		position: relative;
+		display: inline-flex;
+		flex-direction: column;
+		margin-left: 10px;
+		padding: 9px 22px 14px 16px;
+		background: var(--putih);
+		transform: rotate(-3deg);
+		clip-path: polygon(4% 6%, 100% 0, 95% 50%, 100% 100%, 0 94%, 2% 50%);
+		box-shadow: 0 6px 16px rgba(3, 51, 29, 0.1);
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 19px;
+		line-height: 1.05;
+		letter-spacing: 0.6px;
+		color: var(--hijau-tua);
+		text-transform: uppercase;
+	}
+	.kedua .pita {
+		margin-left: 14px;
+		margin-top: 18px;
+	}
+	.pita svg {
+		position: absolute;
+		left: 14px;
+		bottom: 5px;
+		width: calc(100% - 32px);
+		height: 7px;
+		fill: none;
+		stroke: var(--kuning);
+		stroke-width: 3.5;
+		stroke-linecap: round;
+	}
+
+	.kontrol {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+	.kontrol > * {
+		pointer-events: auto;
+	}
+	.titik {
+		position: absolute;
+		left: 50%;
+		bottom: 11px;
+		transform: translateX(-50%);
+		display: flex;
+		align-items: center;
+	}
+	.titik button,
+	.panah {
+		height: 44px;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+	}
+	.titik button {
+		width: 44px;
+	}
+	.titik button span {
+		display: block;
+		width: 14px;
+		height: 14px;
+		border-radius: 999px;
+		background: var(--redup);
+		transition: width 0.25s ease, background-color 0.25s ease;
+	}
+	.titik button[aria-current="true"] {
+		width: 86px;
+	}
+	.titik button[aria-current="true"] span {
+		width: 76px;
+		background: var(--kuning);
+	}
+	.panah {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 44px;
+	}
+	.panah.prev {
+		left: 20px;
+	}
+	.panah.next {
+		right: 20px;
+	}
+	.panah span {
+		width: 32px;
+		height: 32px;
+		background: var(--putih);
+		color: var(--judul);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+	}
+	.panah:hover span {
+		background: var(--kuning);
+	}
+
+	@media (max-width: 760px) {
+		.hero {
+			min-height: 0;
+			padding: 72px 0 88px;
+		}
+		.kiri {
+			flex-basis: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+		}
+		.baris-angka.kedua {
+			justify-content: flex-end;
+		}
+		.pita {
+			font-size: 16px;
+		}
+		.panah {
+			top: auto;
+			bottom: 11px;
+			transform: none;
+		}
+		.panah.prev {
+			left: 12px;
+		}
+		.panah.next {
+			right: 12px;
+		}
+	}
+</style>

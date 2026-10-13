@@ -263,3 +263,82 @@ export async function getPmb(): Promise<{ pmb: Pmb | null; edit: Edit; cacheHint
 	return { pmb: (first?.data as unknown as Pmb) ?? null, edit: (first?.edit ?? {}) as Edit, cacheHint: list.cacheHint };
 }
 
+// ------------------------------------------------------------------ helper tampilan PMB & profil
+
+export type FrekuensiBayar = "sekali" | "semester" | null;
+
+export interface BarisBiaya {
+	/** Nama komponen tanpa keterangan dalam kurung, mis. "Pembinaan THQ*". */
+	label: string;
+	/** Keterangan dalam kurung, mis. "PAI, PGMI, BKPI". */
+	sub: string;
+	frekuensi: FrekuensiBayar;
+	nominal: string;
+}
+
+/**
+ * Baris repeater biaya → data tabel. Penanda di nama komponen dari editor:
+ * "**" = dibayar tiap semester, "*" = dibayar sekali; "(…)" di akhir menjadi sub-keterangan.
+ */
+export function rincianBiaya(list: { komponen?: string; nominal?: string }[]): BarisBiaya[] {
+	return list
+		.filter((b) => (b.komponen ?? "").trim() !== "")
+		.map((b) => {
+			const teks = (b.komponen ?? "").trim();
+			const m = teks.match(/^(.*?)\s*\(([^)]*)\)\s*$/);
+			const label = (m ? m[1] : teks).trim();
+			const frekuensi: FrekuensiBayar = /\*\*/.test(teks) ? "semester" : /\*/.test(teks) ? "sekali" : null;
+			return { label, sub: m ? m[2].trim() : "", frekuensi, nominal: (b.nominal ?? "").trim() };
+		});
+}
+
+/** Komponen biaya per semester pertama (untuk panel ringkasan), atau null. */
+export function biayaSemester(list: BarisBiaya[]): BarisBiaya | null {
+	return list.find((b) => b.frekuensi === "semester") ?? null;
+}
+
+/** Hapus penanda * dari teks (untuk label ringkasan). */
+export function tanpaBintang(text: string | null | undefined): string {
+	return (text ?? "").replace(/\*/g, "").trim();
+}
+
+/** Persentase pertama di sebuah teks ("hingga **100%**" → "100%"), atau "". */
+export function persenDari(text: string | null | undefined): string {
+	const m = (text ?? "").match(/(\d+(?:[.,]\d+)?)\s*%/);
+	return m ? `${m[1]}%` : "";
+}
+
+/** Status pendaftaran berdasarkan tanggal tutup: "dibuka", "ditutup", atau null bila tanggal kosong. */
+export function statusPendaftaran(tutup: Date | null, sekarang = new Date()): "dibuka" | "ditutup" | null {
+	if (!tutup) return null;
+	return tutup.getTime() >= sekarang.getTime() ? "dibuka" : "ditutup";
+}
+
+/** Ikon UKM ditebak dari bidangnya (koleksi pmb tidak punya field ikon untuk UKM). */
+export function ikonUkm(bidang: string | null | undefined): string {
+	const b = (bidang ?? "").toLowerCase();
+	if (/tulis|nulis|jurnal|sastra/.test(b)) return "pen";
+	if (/foto|video|desain|media/.test(b)) return "camera";
+	if (/bela ?diri|silat/.test(b)) return "fist";
+	if (/olahraga|sport/.test(b)) return "trophy";
+	if (/alam|gunung|lingkungan/.test(b)) return "mountain";
+	if (/protokol|pidato/.test(b)) return "mic";
+	if (/dakwah|kajian|tahfidz/.test(b)) return "book-open";
+	return "star";
+}
+
+/** Nama fakultas tanpa awalan "Fakultas " untuk judul kartu ("Fakultas Tarbiyah" → "Tarbiyah"). */
+export function namaPendek(nama: string | null | undefined): string {
+	return (nama ?? "").replace(/^Fakultas\s+/i, "").trim();
+}
+
+/** Pecah teks tanpa spasi (email, domain) setelah titik, garis miring, atau @ — untuk disisipi <wbr>. */
+export function segmenPatah(teks: string | null | undefined): string[] {
+	return (teks ?? "").split(/(?<=[./@])/);
+}
+
+/** Label tautan dari URL ("https://a.b/c/" → "a.b/c"). */
+export function labelUrl(url: string | null | undefined): string {
+	return (url ?? "").replace(/^https?:\/\//i, "").replace(/\/$/, "");
+}
+
