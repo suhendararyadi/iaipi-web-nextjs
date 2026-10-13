@@ -1,0 +1,31 @@
+---
+// Detail prodi S1: /fakultas/<fakultas>/<prodi>. Prodi harus milik fakultas itu.
+import { decodeSlug } from "emdash";
+import Base from "@/layouts/Base.astro";
+import ProdiDetail from "@/components/akademik/ProdiDetail.astro";
+import { mediaSrc, useCacheHint } from "@/lib/cms";
+import { getFakultas, getKaprodiProfil, getProdi, judulProdi, kalimatPertama } from "@/lib/akademik";
+
+const fakultasSlug = decodeSlug(Astro.params.fakultas);
+const slug = decodeSlug(Astro.params.prodi);
+if (!fakultasSlug || !slug) return Astro.rewrite("/404");
+
+const { entry, cacheHint } = await getProdi(slug);
+if (!entry || entry.data.jenjang === "S2" || entry.data.fakultas !== fakultasSlug) return Astro.rewrite("/404");
+
+const [fak, kap] = await Promise.all([getFakultas(fakultasSlug), getKaprodiProfil(entry.data.kaprodi_slug)]);
+useCacheHint(Astro, cacheHint, fak.cacheHint, kap.cacheHint);
+
+const p = entry.data;
+const judul = judulProdi(p);
+const gambar = mediaSrc(p.gambar_banner) || mediaSrc(p.gambar);
+---
+
+<Base
+	title={p.judul_seo || `${judul} (${p.singkatan})`}
+	description={p.deskripsi_seo || p.deskripsi_singkat || kalimatPertama(p.deskripsi)}
+	image={gambar ? new URL(gambar, Astro.url).href : null}
+	content={{ collection: "prodi", id: p.id, slug }}
+>
+	<ProdiDetail prodi={entry} fakultas={fak.entry} kaprodi={kap.kaprodi} />
+</Base>

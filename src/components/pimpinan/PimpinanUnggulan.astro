@@ -1,0 +1,186 @@
+---
+// Section sambutan Rektor (pola "Belajar di Garut Bersama IAI PERSIS" pada desain beranda):
+// kepala section → pita hijau tua dengan foto kampus samar → kartu gelap berisi foto, nama kuning,
+// dan kutipan sambutan. Dipakai di /pimpinan.
+import KepalaSection from "@/components/ui/KepalaSection.astro";
+import { mediaAlt, mediaSrc, paragraphs } from "@/lib/cms";
+import { jabatanRingkas, type PimpinanEntry } from "@/lib/pimpinan";
+
+interface Props {
+	entries: PimpinanEntry[];
+	/** Judul section; *kata* disorot. */
+	title?: string;
+	/** Paragraf pengantar di bawah judul. */
+	teks?: string | null;
+	/** Tampilkan tombol ke profil Rektor (default true). */
+	tombol?: boolean;
+	/** Tidak dipakai lagi pada desain baru (dipertahankan agar pemanggil lama tetap valid). */
+	eyebrow?: string;
+}
+
+const { entries, title = "Sambutan *Rektor*", teks, tombol = true } = Astro.props;
+const rektor = entries.find((e) => e.data.kelompok === "rektor");
+const p = rektor?.data;
+const foto = p ? mediaSrc(p.foto_sambutan) || mediaSrc(p.foto) : "";
+const kutipan = paragraphs(p?.kutipan);
+const profil = paragraphs(p?.tentang)[0];
+const instansi = "IAI PERSIS Garut";
+---
+
+{
+	rektor && p && (
+		<section class="sambutan" aria-labelledby="judul-sambutan" id="rektor">
+			<div class="wadah sambutan-kepala">
+				<KepalaSection judul={title} teks={teks} id="judul-sambutan" />
+			</div>
+			<div class="sambutan-pita bg-hijau-tua">
+				<img class="sambutan-latar" src="/images/slider/slider-iaipi-1.jpg" alt="" aria-hidden="true" loading="lazy" />
+				<div class="wadah">
+					<div class="sambutan-kartu">
+						<figure class="sambutan-foto">
+							{foto && <img src={foto} alt={mediaAlt(p.foto_sambutan ?? p.foto, `${jabatanRingkas(p)} ${instansi}, ${p.nama}`)} loading="lazy" />}
+							<figcaption>
+								<span class="nama">{p.nama}</span>
+								<span class="jabatan">
+									{p.jabatan} {instansi}
+								</span>
+							</figcaption>
+						</figure>
+						<div class="sambutan-teks">
+							<h3>“Selamat Datang”</h3>
+							{kutipan.length > 0 ? (
+								<blockquote>
+									{kutipan.map((para) => (
+										<p>{para}</p>
+									))}
+								</blockquote>
+							) : (
+								<p>Selamat datang di website resmi {instansi}.</p>
+							)}
+							{profil && <p class="profil">{profil}</p>}
+						</div>
+					</div>
+					{tombol && (
+						<div class="sambutan-aksi">
+							<a href={`/pimpinan/${rektor.id}`} class="btn btn-kuning">
+								Profil {jabatanRingkas(p)}
+							</a>
+						</div>
+					)}
+				</div>
+			</div>
+		</section>
+	)
+}
+
+<style>
+	.sambutan-kepala {
+		padding-block: 64px 36px;
+	}
+	.sambutan-kepala :global(.kepala-section) {
+		margin-bottom: 0;
+	}
+	.sambutan-pita {
+		position: relative;
+		overflow: hidden;
+		isolation: isolate;
+		padding-block: 100px;
+	}
+	.sambutan-latar {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		opacity: 0.18;
+		z-index: -1;
+	}
+	.sambutan-kartu {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 28px 40px;
+		align-items: flex-start;
+		padding: 50px clamp(22px, 6vw, 86px) 56px clamp(22px, 4.2vw, 60px);
+		border-radius: var(--radius-xl);
+		background: rgba(0, 0, 0, 0.28);
+	}
+	.sambutan-foto {
+		flex: 0 1 316px;
+		min-width: 0;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.sambutan-foto img {
+		width: 100%;
+		aspect-ratio: 1 / 1;
+		object-fit: cover;
+		object-position: center top;
+		border-radius: var(--radius);
+		background: #0e2a1b;
+	}
+	.sambutan-foto figcaption {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		margin-top: 20px;
+	}
+	.nama {
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 17px;
+		line-height: 1.3;
+		color: var(--kuning);
+	}
+	.jabatan {
+		font-family: var(--font-ui);
+		font-size: 15px;
+		line-height: 1.4;
+		color: var(--hijau-muda);
+	}
+	.sambutan-teks {
+		flex: 1 1 320px;
+		min-width: 0;
+		color: var(--putih);
+	}
+	.sambutan-teks h3 {
+		text-align: center;
+		font-family: var(--font-isi);
+		font-weight: 800;
+		font-style: italic;
+		font-size: clamp(26px, 3vw, 32px);
+		line-height: 1.2;
+		color: var(--putih);
+	}
+	blockquote {
+		margin: 0;
+	}
+	.sambutan-teks p {
+		margin-top: 16px;
+		font-size: 18px;
+		line-height: 1.5;
+		letter-spacing: 0.3px;
+	}
+	.sambutan-teks .profil {
+		color: var(--hijau-muda);
+		font-size: 16px;
+	}
+	.sambutan-aksi {
+		margin-top: 48px;
+		display: flex;
+		justify-content: center;
+	}
+	@media (max-width: 600px) {
+		.sambutan-kepala {
+			padding-block: 48px 28px;
+		}
+		.sambutan-pita {
+			padding-block: 48px;
+		}
+		.sambutan-kartu {
+			padding-block: 28px 32px;
+		}
+		.sambutan-teks p {
+			font-size: 17px;
+		}
+	}
+</style>

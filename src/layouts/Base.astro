@@ -1,0 +1,153 @@
+---
+// Layout dasar semua halaman publik: font, stylesheet desain (src/styles/global.css),
+// header, footer, tombol WhatsApp, dan skrip interaksi kecil (src/scripts/ui.ts).
+import "@/styles/global.css";
+import { getMenuWithCacheHint, getSiteSettingsWithCacheHint } from "emdash";
+import { EmDashBodyEnd, EmDashBodyStart, EmDashHead } from "emdash/ui";
+import { createPublicPageContext } from "emdash/page";
+import Header from "@/components/layout/Header.astro";
+import Footer from "@/components/layout/Footer.astro";
+import WhatsAppFloat from "@/components/layout/WhatsAppFloat.astro";
+import { getInfoKampus, mediaSrc, useCacheHint } from "@/lib/cms";
+
+interface Props {
+	/** Judul halaman (tanpa nama situs). Kosongkan untuk beranda. */
+	title?: string;
+	description?: string | null;
+	/** Path kanonis, mis. "/pimpinan". Default: path halaman ini. */
+	canonical?: string | null;
+	/** URL gambar Open Graph. */
+	image?: string | null;
+	/** Isi bila halaman merender satu entri CMS (untuk panel SEO & visual editing). */
+	content?: { collection: string; id: string; slug?: string | null };
+	pageType?: "website" | "article";
+}
+
+const { title, description, canonical, image, content, pageType = "website" } = Astro.props;
+
+const [settingsResult, menuResult, tautanAtas, footerSumber, footerLayanan, footerProfil, infoResult] = await Promise.all([
+	getSiteSettingsWithCacheHint(),
+	getMenuWithCacheHint("utama"),
+	getMenuWithCacheHint("tautan_atas"),
+	getMenuWithCacheHint("footer_sumber"),
+	getMenuWithCacheHint("footer_layanan"),
+	getMenuWithCacheHint("footer_profil"),
+	getInfoKampus(),
+]);
+useCacheHint(
+	Astro,
+	settingsResult.cacheHint,
+	menuResult.cacheHint,
+	tautanAtas.cacheHint,
+	footerSumber.cacheHint,
+	footerLayanan.cacheHint,
+	footerProfil.cacheHint,
+	infoResult.cacheHint,
+);
+const kolomFooter = [
+	{ judul: "Sumber", menu: footerSumber.data },
+	{ judul: "Layanan", menu: footerLayanan.data },
+	{ judul: "Profil", menu: footerProfil.data },
+];
+
+const info = infoResult.info;
+const siteTitle = settingsResult.data?.title || info.nama;
+const fullTitle = title ? `${title} | ${info.nama_singkat || siteTitle}` : `${siteTitle} | ${settingsResult.data?.tagline ?? ""}`.replace(/ \| $/, "");
+const pageDescription = description || info.deskripsi || settingsResult.data?.tagline || null;
+const logo = mediaSrc(info.logo, "/images/logo.jpeg", 240);
+const ogImage = image || new URL(logo, Astro.url).href;
+const canonicalUrl = new URL(canonical ?? Astro.url.pathname, Astro.site ?? Astro.url).href;
+
+const pageCtx = createPublicPageContext({
+	Astro,
+	kind: content ? "content" : "custom",
+	pageType,
+	title: fullTitle,
+	pageTitle: title ?? siteTitle,
+	description: pageDescription,
+	canonical: canonicalUrl,
+	image: ogImage,
+	content,
+	siteName: siteTitle,
+});
+
+const organizationJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "EducationalOrganization",
+	name: info.nama,
+	alternateName: info.nama_singkat,
+	url: (Astro.site ?? Astro.url).origin,
+	logo: new URL(logo, Astro.site ?? Astro.url).href,
+	description: info.deskripsi,
+	address: {
+		"@type": "PostalAddress",
+		streetAddress: info.alamat,
+		addressLocality: info.kota,
+		addressRegion: info.provinsi,
+		postalCode: info.kode_pos,
+		addressCountry: "ID",
+	},
+	telephone: info.telepon,
+	email: info.email,
+	sameAs: [info.facebook, info.instagram, info.youtube].filter(Boolean),
+};
+
+const gaId = info.google_analytics_id?.trim();
+---
+
+<!doctype html>
+<html lang="id">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{fullTitle}</title>
+		<link rel="icon" href="/favicon.ico" sizes="any" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&family=Lato:wght@400;700;900&display=swap" />
+		<slot name="head" />
+
+		<EmDashHead page={pageCtx} />
+		<script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
+
+		{
+			gaId && (
+				<>
+					<script async src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaId)}`} />
+					<script is:inline define:vars={{ gaId }}>
+						window.dataLayer = window.dataLayer || [];
+						function gtag() {
+							dataLayer.push(arguments);
+						}
+						gtag("js", new Date());
+						gtag("config", gaId);
+					</script>
+				</>
+			)
+		}
+	</head>
+
+	<body>
+		<EmDashBodyStart page={pageCtx} />
+		<a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+
+		<Header info={info} logo={logo} menu={menuResult.data} tautanAtas={tautanAtas.data} />
+
+		<main id="main-content">
+			<slot />
+		</main>
+
+		<Footer info={info} logo={logo} kolom={kolomFooter} />
+		<WhatsAppFloat info={info} />
+		<slot name="scripts" />
+
+		<script>
+			import "@/scripts/ui.ts";
+		</script>
+		<EmDashBodyEnd page={pageCtx} />
+	</body>
+</html>

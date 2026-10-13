@@ -1,0 +1,81 @@
+---
+// Tombol pil kecil gaya Unpad ("Selengkapnya ›"): tinggi 44px (target sentuh), Lato 14px.
+// Varian kuning (teks gelap), krem bergaris kuning, atau garis putih untuk latar hijau.
+import { linkAttrs } from "@/lib/cms";
+import Ikon from "./Ikon.astro";
+
+interface Props {
+	href: string;
+	varian?: "kuning" | "krem" | "garis-putih";
+	/** Ikon di kanan teks: chevron (default), panah, eksternal, atau tanpa ikon. */
+	ikon?: "chevron-right" | "arrow-right" | "external" | "download" | "none";
+	tebal?: boolean;
+	besar?: boolean;
+	lebar?: boolean;
+	ariaLabel?: string;
+}
+
+const { href, varian = "kuning", ikon = "chevron-right", tebal = false, besar = false, lebar = false, ariaLabel } = Astro.props;
+---
+
+<a href={href} class:list={["pil", varian, { tebal, besar, lebar }]} aria-label={ariaLabel} {...linkAttrs(href)}>
+	<slot />
+	{ikon !== "none" && <Ikon nama={ikon} ukuran={ikon === "chevron-right" ? 11 : 16} tebal={ikon === "chevron-right" ? 3 : 2.6} />}
+	{linkAttrs(href).target && <span class="sr-only"> (membuka tab baru)</span>}
+</a>
+
+<style>
+	.pil {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		min-height: 44px;
+		padding: 0 20px;
+		border-radius: 999px;
+		border: 1px solid var(--kuning);
+		background: var(--kuning);
+		color: var(--judul);
+		font-family: var(--font-ui);
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 1.2;
+		text-decoration: none;
+		transition: background-color 0.15s ease;
+	}
+	.pil:hover {
+		background: var(--kuning-hover);
+		border-color: var(--kuning-hover);
+		color: var(--judul);
+		text-decoration: none;
+	}
+	.krem {
+		background: var(--krem);
+	}
+	.krem:hover {
+		background: var(--kuning);
+	}
+	.garis-putih {
+		background: transparent;
+		border-color: rgba(255, 255, 255, 0.8);
+		color: var(--putih);
+	}
+	.garis-putih:hover {
+		background: var(--putih);
+		border-color: var(--putih);
+		color: var(--hijau-tua);
+	}
+	.tebal {
+		font-weight: 900;
+		font-size: 15px;
+	}
+	.besar {
+		min-height: 50px;
+		padding: 0 22px;
+		font-weight: 900;
+		font-size: 16px;
+	}
+	.lebar {
+		width: 100%;
+	}
+</style>

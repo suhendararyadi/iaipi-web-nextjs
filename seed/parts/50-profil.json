@@ -1,0 +1,2065 @@
+{
+	"collections": [
+		{
+			"slug": "profil_institusi",
+			"label": "Profil Institusi",
+			"labelSingular": "Profil Institusi",
+			"description": "Isi halaman /tentang: sejarah singkat, keunggulan, visi-misi-tujuan, moto & nilai, statistik, dan akreditasi. Cukup satu entri (slug: utama).",
+			"group": "Profil Institusi",
+			"sortOrder": 10,
+			"supports": [
+				"drafts",
+				"revisions"
+			],
+			"routable": false,
+			"titleField": "nama",
+			"fields": [
+				{
+					"slug": "nama",
+					"label": "Nama institusi (judul bagian Tentang Kami)",
+					"type": "string",
+					"required": true
+				},
+				{
+					"slug": "paragraf_pembuka",
+					"label": "Paragraf pembuka (huruf lebih besar)",
+					"type": "text"
+				},
+				{
+					"slug": "tentang",
+					"label": "Paragraf berikutnya (pisahkan paragraf dengan baris kosong)",
+					"type": "text"
+				},
+				{
+					"slug": "gambar_tentang",
+					"label": "Foto kampus",
+					"type": "image"
+				},
+				{
+					"slug": "lencana_judul",
+					"label": "Lencana di foto: judul",
+					"type": "string"
+				},
+				{
+					"slug": "lencana_subjudul",
+					"label": "Lencana di foto: subjudul",
+					"type": "string"
+				},
+				{
+					"slug": "poin_utama",
+					"label": "Poin utama di bawah paragraf",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "ikon",
+								"label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+								"type": "string"
+							},
+							{
+								"slug": "judul",
+								"label": "Judul",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "deskripsi",
+								"label": "Deskripsi",
+								"type": "text"
+							}
+						]
+					}
+				},
+				{
+					"slug": "keunggulan",
+					"label": "Keunggulan (Mengapa Memilih IAI PERSIS Garut?)",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "ikon",
+								"label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+								"type": "string"
+							},
+							{
+								"slug": "judul",
+								"label": "Judul",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "deskripsi",
+								"label": "Deskripsi",
+								"type": "text"
+							}
+						]
+					}
+				},
+				{
+					"slug": "visi",
+					"label": "Visi",
+					"type": "text"
+				},
+				{
+					"slug": "misi",
+					"label": "Misi",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "ikon",
+								"label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+								"type": "string"
+							},
+							{
+								"slug": "teks",
+								"label": "Butir misi",
+								"type": "text",
+								"required": true
+							}
+						]
+					}
+				},
+				{
+					"slug": "tujuan",
+					"label": "Tujuan",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "ikon",
+								"label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+								"type": "string"
+							},
+							{
+								"slug": "teks",
+								"label": "Butir tujuan",
+								"type": "text",
+								"required": true
+							}
+						]
+					}
+				},
+				{
+					"slug": "moto",
+					"label": "Moto",
+					"type": "string"
+				},
+				{
+					"slug": "nilai",
+					"label": "Nilai-nilai",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "ikon",
+								"label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+								"type": "string"
+							},
+							{
+								"slug": "teks",
+								"label": "Nilai",
+								"type": "string",
+								"required": true
+							}
+						]
+					}
+				},
+				{
+					"slug": "statistik",
+					"label": "Statistik (angka berjalan)",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "angka",
+								"label": "Angka",
+								"type": "integer",
+								"required": true
+							},
+							{
+								"slug": "akhiran",
+								"label": "Akhiran (mis. +)",
+								"type": "string"
+							},
+							{
+								"slug": "label",
+								"label": "Label",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "ikon",
+								"label": "Ikon (opsional) — Ikon FontAwesome 4.7 (mis. fa-book)",
+								"type": "string"
+							}
+						]
+					}
+				},
+				{
+					"slug": "akreditasi_peringkat",
+					"label": "Akreditasi: peringkat (mis. BAIK (B))",
+					"type": "string"
+				},
+				{
+					"slug": "akreditasi_keterangan",
+					"label": "Akreditasi: keterangan (tulis **teks** untuk huruf tebal)",
+					"type": "text"
+				},
+				{
+					"slug": "akreditasi_sertifikat",
+					"label": "Akreditasi: daftar sertifikat",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "judul",
+								"label": "Jenis (mis. Akreditasi Program Studi)",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "program",
+								"label": "Institusi / program studi",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "peringkat",
+								"label": "Peringkat (huruf)",
+								"type": "string"
+							},
+							{
+								"slug": "label_peringkat",
+								"label": "Label peringkat (mis. BAIK)",
+								"type": "string"
+							},
+							{
+								"slug": "masa_berlaku",
+								"label": "Masa berlaku (mis. 2021-2026)",
+								"type": "string"
+							},
+							{
+								"slug": "nomor_sk",
+								"label": "Nomor SK",
+								"type": "string"
+							},
+							{
+								"slug": "gambar",
+								"label": "Gambar sertifikat",
+								"type": "image"
+							},
+							{
+								"slug": "tautan",
+								"label": "Tautan unduh/lihat sertifikat",
+								"type": "url"
+							},
+							{
+								"slug": "warna",
+								"label": "Warna ikon (kode hex)",
+								"type": "string"
+							}
+						]
+					}
+				},
+				{
+					"slug": "akreditasi_statistik",
+					"label": "Akreditasi: angka ringkas",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "ikon",
+								"label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+								"type": "string"
+							},
+							{
+								"slug": "angka",
+								"label": "Angka",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "label",
+								"label": "Label",
+								"type": "string",
+								"required": true
+							}
+						]
+					}
+				},
+				{
+					"slug": "akreditasi_informasi",
+					"label": "Akreditasi: teks Informasi Akreditasi",
+					"type": "text"
+				},
+				{
+					"slug": "akreditasi_email",
+					"label": "Akreditasi: email untuk informasi lebih lanjut",
+					"type": "string"
+				},
+				{
+					"slug": "catatan_internal",
+					"label": "Catatan internal (tidak tampil di situs)",
+					"type": "text"
+				}
+			]
+		},
+		{
+			"slug": "layanan",
+			"label": "Layanan & Sistem Informasi",
+			"labelSingular": "Layanan",
+			"description": "Kartu sistem informasi di halaman /layanan (dengan filter kategori).",
+			"group": "Profil Institusi",
+			"sortOrder": 30,
+			"supports": [
+				"drafts",
+				"revisions"
+			],
+			"routable": false,
+			"titleField": "nama",
+			"admin": {
+				"listColumns": [
+					"nama_singkat",
+					"kategori",
+					"ketersediaan",
+					"urutan"
+				]
+			},
+			"fields": [
+				{
+					"slug": "nama",
+					"label": "Nama sistem",
+					"type": "string",
+					"required": true,
+					"searchable": true
+				},
+				{
+					"slug": "nama_singkat",
+					"label": "Nama singkat (judul kartu)",
+					"type": "string",
+					"required": true
+				},
+				{
+					"slug": "kategori",
+					"label": "Kategori (untuk filter)",
+					"type": "select",
+					"required": true,
+					"defaultValue": "akademik",
+					"validation": {
+						"options": [
+							"akademik",
+							"penelitian",
+							"publikasi",
+							"mahasiswa",
+							"alumni",
+							"administrasi"
+						]
+					}
+				},
+				{
+					"slug": "deskripsi",
+					"label": "Deskripsi",
+					"type": "text",
+					"searchable": true
+				},
+				{
+					"slug": "url",
+					"label": "Alamat sistem",
+					"type": "url"
+				},
+				{
+					"slug": "ikon",
+					"label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+					"type": "string"
+				},
+				{
+					"slug": "warna",
+					"label": "Warna (kode hex, mis. #006739)",
+					"type": "string"
+				},
+				{
+					"slug": "ketersediaan",
+					"label": "Ketersediaan",
+					"type": "select",
+					"required": true,
+					"defaultValue": "aktif",
+					"validation": {
+						"options": [
+							"aktif",
+							"segera_hadir"
+						]
+					}
+				},
+				{
+					"slug": "urutan",
+					"label": "Urutan tampil (kecil = lebih dulu)",
+					"type": "integer",
+					"defaultValue": 100,
+					"indexed": true
+				},
+				{
+					"slug": "catatan_internal",
+					"label": "Catatan internal (tidak tampil di situs)",
+					"type": "text"
+				}
+			]
+		},
+		{
+			"slug": "lembaga",
+			"label": "Lembaga & Departemen",
+			"labelSingular": "Lembaga",
+			"description": "Kartu di halaman /lembaga-departemen dan blok \"Layanan Institusi\" di beranda (centang Tampil di beranda).",
+			"group": "Profil Institusi",
+			"sortOrder": 40,
+			"supports": [
+				"drafts",
+				"revisions"
+			],
+			"routable": false,
+			"titleField": "nama",
+			"admin": {
+				"listColumns": [
+					"nama_lengkap",
+					"kategori",
+					"ketersediaan",
+					"tampil_di_beranda"
+				]
+			},
+			"fields": [
+				{
+					"slug": "nama",
+					"label": "Nama singkat (judul kartu)",
+					"type": "string",
+					"required": true,
+					"searchable": true
+				},
+				{
+					"slug": "nama_lengkap",
+					"label": "Nama lengkap",
+					"type": "string",
+					"searchable": true
+				},
+				{
+					"slug": "kategori",
+					"label": "Kategori",
+					"type": "select",
+					"required": true,
+					"defaultValue": "lembaga",
+					"validation": {
+						"options": [
+							"lembaga",
+							"pusat",
+							"unit",
+							"prodi"
+						]
+					}
+				},
+				{
+					"slug": "fakultas",
+					"label": "Fakultas (khusus program studi, tanpa kata \"Fakultas\")",
+					"type": "string"
+				},
+				{
+					"slug": "deskripsi",
+					"label": "Deskripsi",
+					"type": "text",
+					"searchable": true
+				},
+				{
+					"slug": "url",
+					"label": "Tautan (website lembaga atau halaman prodi, mis. /fakultas/tarbiyah/pai)",
+					"type": "string"
+				},
+				{
+					"slug": "ikon",
+					"label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+					"type": "string"
+				},
+				{
+					"slug": "ketersediaan",
+					"label": "Ketersediaan",
+					"type": "select",
+					"required": true,
+					"defaultValue": "aktif",
+					"validation": {
+						"options": [
+							"aktif",
+							"segera_hadir"
+						]
+					}
+				},
+				{
+					"slug": "urutan",
+					"label": "Urutan tampil (kecil = lebih dulu)",
+					"type": "integer",
+					"defaultValue": 100,
+					"indexed": true
+				},
+				{
+					"slug": "tampil_di_halaman",
+					"label": "Tampil di halaman Lembaga & Departemen",
+					"type": "boolean",
+					"defaultValue": true
+				},
+				{
+					"slug": "tampil_di_beranda",
+					"label": "Tampil di beranda (blok Layanan Institusi)",
+					"type": "boolean",
+					"defaultValue": false
+				},
+				{
+					"slug": "urutan_beranda",
+					"label": "Urutan di beranda",
+					"type": "integer",
+					"defaultValue": 100
+				},
+				{
+					"slug": "beranda_nama_lengkap",
+					"label": "Nama lengkap di beranda (kosongkan = pakai Nama lengkap)",
+					"type": "string"
+				},
+				{
+					"slug": "beranda_deskripsi",
+					"label": "Deskripsi singkat di beranda (kosongkan = pakai Deskripsi)",
+					"type": "text"
+				},
+				{
+					"slug": "warna",
+					"label": "Warna ikon di beranda (kode hex)",
+					"type": "string"
+				},
+				{
+					"slug": "catatan_internal",
+					"label": "Catatan internal (tidak tampil di situs)",
+					"type": "text"
+				}
+			]
+		},
+		{
+			"slug": "info_kontak",
+			"label": "Info Kontak",
+			"labelSingular": "Info Kontak",
+			"description": "Pelengkap halaman /kontak: jam operasional dan kontak per unit. Alamat, telepon, email utama, peta, dan media sosial diambil dari Info Kampus. Cukup satu entri (slug: utama).",
+			"group": "Pengaturan",
+			"sortOrder": 91,
+			"supports": [
+				"revisions"
+			],
+			"routable": false,
+			"titleField": "judul",
+			"fields": [
+				{
+					"slug": "judul",
+					"label": "Judul entri",
+					"type": "string",
+					"required": true
+				},
+				{
+					"slug": "jam_operasional",
+					"label": "Jam operasional (satu baris per baris tampil)",
+					"type": "text"
+				},
+				{
+					"slug": "unit",
+					"label": "Kontak unit layanan",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "nama",
+								"label": "Nama unit",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "deskripsi",
+								"label": "Deskripsi",
+								"type": "string"
+							},
+							{
+								"slug": "email",
+								"label": "Email",
+								"type": "string"
+							},
+							{
+								"slug": "telepon",
+								"label": "Telepon (mis. 085123123670)",
+								"type": "string"
+							}
+						]
+					}
+				},
+				{
+					"slug": "catatan_internal",
+					"label": "Catatan internal (tidak tampil di situs)",
+					"type": "text"
+				}
+			]
+		},
+		{
+			"slug": "pmb",
+			"label": "Penerimaan Mahasiswa Baru",
+			"labelSingular": "PMB",
+			"description": "Isi halaman /pmb dan kartu PMB + beasiswa (dengan hitung mundur) di beranda. Cukup satu entri (slug: utama); perbarui tiap gelombang.",
+			"group": "PMB",
+			"sortOrder": 50,
+			"supports": [
+				"drafts",
+				"revisions"
+			],
+			"routable": false,
+			"titleField": "judul",
+			"fields": [
+				{
+					"slug": "judul",
+					"label": "Judul halaman (banner)",
+					"type": "string",
+					"required": true
+				},
+				{
+					"slug": "tahun_akademik",
+					"label": "Tahun akademik (mis. 2026/2027)",
+					"type": "string",
+					"required": true
+				},
+				{
+					"slug": "gelombang_aktif",
+					"label": "Gelombang aktif (angka saja, mis. 5)",
+					"type": "string"
+				},
+				{
+					"slug": "tanggal_tutup",
+					"label": "Pendaftaran reguler ditutup (dipakai hitung mundur beranda)",
+					"type": "datetime"
+				},
+				{
+					"slug": "tanggal_tutup_beasiswa",
+					"label": "Pendaftaran beasiswa ditutup",
+					"type": "datetime"
+				},
+				{
+					"slug": "intro_judul",
+					"label": "Intro: judul",
+					"type": "string"
+				},
+				{
+					"slug": "intro_deskripsi",
+					"label": "Intro: paragraf",
+					"type": "text"
+				},
+				{
+					"slug": "jumlah_prodi",
+					"label": "Intro: angka jumlah program studi",
+					"type": "string"
+				},
+				{
+					"slug": "label_jumlah_prodi",
+					"label": "Intro: label jumlah program studi",
+					"type": "string"
+				},
+				{
+					"slug": "biaya_minimum_s1",
+					"label": "Biaya minimum langsung kuliah S1 (mis. 2,9 Jt)",
+					"type": "string"
+				},
+				{
+					"slug": "biaya_minimum_s2",
+					"label": "Biaya minimum langsung kuliah S2 (mis. 4 Jt)",
+					"type": "string"
+				},
+				{
+					"slug": "jadwal",
+					"label": "Jadwal pendaftaran gelombang aktif",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "jalur",
+								"label": "Jalur",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "periode",
+								"label": "Periode",
+								"type": "string",
+								"required": true
+							}
+						]
+					}
+				},
+				{
+					"slug": "catatan_jadwal",
+					"label": "Catatan di bawah jadwal",
+					"type": "text"
+				},
+				{
+					"slug": "whatsapp_admin",
+					"label": "Nomor WhatsApp admin PMB (format internasional tanpa +)",
+					"type": "string"
+				},
+				{
+					"slug": "pesan_whatsapp_admin",
+					"label": "Pesan awal WhatsApp admin PMB",
+					"type": "string"
+				},
+				{
+					"slug": "keunggulan",
+					"label": "Keunggulan PMB",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "ikon",
+								"label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+								"type": "string"
+							},
+							{
+								"slug": "judul",
+								"label": "Judul",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "deskripsi",
+								"label": "Deskripsi",
+								"type": "text"
+							}
+						]
+					}
+				},
+				{
+					"slug": "program_studi",
+					"label": "Pilihan program studi per fakultas",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "fakultas",
+								"label": "Fakultas / program",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "ikon",
+								"label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+								"type": "string"
+							},
+							{
+								"slug": "prodi",
+								"label": "Daftar program studi (satu baris per prodi)",
+								"type": "text"
+							}
+						]
+					}
+				},
+				{
+					"slug": "ukm",
+					"label": "Unit Kegiatan Mahasiswa",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "nama",
+								"label": "Nama UKM",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "bidang",
+								"label": "Bidang",
+								"type": "string"
+							}
+						]
+					}
+				},
+				{
+					"slug": "catatan_biaya",
+					"label": "Catatan biaya (di bawah judul Biaya Kuliah)",
+					"type": "text"
+				},
+				{
+					"slug": "biaya_s1",
+					"label": "Rincian biaya S1",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "komponen",
+								"label": "Komponen",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "nominal",
+								"label": "Nominal",
+								"type": "string",
+								"required": true
+							}
+						]
+					}
+				},
+				{
+					"slug": "biaya_s2",
+					"label": "Rincian biaya S2",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "komponen",
+								"label": "Komponen",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "nominal",
+								"label": "Nominal",
+								"type": "string",
+								"required": true
+							}
+						]
+					}
+				},
+				{
+					"slug": "langkah_judul",
+					"label": "Langkah pendaftaran: judul",
+					"type": "string"
+				},
+				{
+					"slug": "langkah_deskripsi",
+					"label": "Langkah pendaftaran: paragraf",
+					"type": "text"
+				},
+				{
+					"slug": "alur_pendaftaran",
+					"label": "Langkah pendaftaran",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "judul",
+								"label": "Judul",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "deskripsi",
+								"label": "Deskripsi",
+								"type": "text"
+							}
+						]
+					}
+				},
+				{
+					"slug": "persyaratan",
+					"label": "Persyaratan umum (satu baris per syarat)",
+					"type": "text"
+				},
+				{
+					"slug": "poster",
+					"label": "Poster PMB",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "gambar",
+								"label": "Gambar poster",
+								"type": "image",
+								"required": true
+							},
+							{
+								"slug": "keterangan",
+								"label": "Keterangan",
+								"type": "string"
+							}
+						]
+					}
+				},
+				{
+					"slug": "poster_lengkap",
+					"label": "Poster lengkap (untuk tautan unduh)",
+					"type": "image"
+				},
+				{
+					"slug": "kanal_bantuan",
+					"label": "Kanal bantuan PMB",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "ikon",
+								"label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+								"type": "string"
+							},
+							{
+								"slug": "label",
+								"label": "Label",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "url",
+								"label": "Tautan",
+								"type": "url",
+								"required": true
+							},
+							{
+								"slug": "keterangan",
+								"label": "Keterangan",
+								"type": "string"
+							}
+						]
+					}
+				},
+				{
+					"slug": "beranda_judul_pmb",
+					"label": "Beranda: judul kartu PMB",
+					"type": "string"
+				},
+				{
+					"slug": "beranda_teks_pmb",
+					"label": "Beranda: teks kartu PMB (tulis **teks** untuk huruf tebal)",
+					"type": "text"
+				},
+				{
+					"slug": "beranda_judul_beasiswa",
+					"label": "Beranda: judul kartu beasiswa",
+					"type": "string"
+				},
+				{
+					"slug": "beranda_teks_beasiswa",
+					"label": "Beranda: teks kartu beasiswa (tulis **teks** untuk huruf tebal)",
+					"type": "text"
+				},
+				{
+					"slug": "beranda_sorotan_beasiswa",
+					"label": "Beranda: sorotan beasiswa (mis. kuota/penerima)",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "ikon",
+								"label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+								"type": "string"
+							},
+							{
+								"slug": "teks",
+								"label": "Teks (tulis **teks** untuk huruf tebal)",
+								"type": "string",
+								"required": true
+							}
+						]
+					}
+				},
+				{
+					"slug": "catatan_internal",
+					"label": "Catatan internal (tidak tampil di situs)",
+					"type": "text"
+				}
+			]
+		}
+	],
+	"content": {
+		"profil_institusi": [
+			{
+				"id": "profil-utama",
+				"slug": "utama",
+				"status": "published",
+				"data": {
+					"nama": "Institut Agama Islam PERSIS Garut",
+					"paragraf_pembuka": "IAI PERSIS Garut adalah perguruan tinggi Islam yang menyelenggarakan pendidikan akademik dan profesional dalam kelompok disiplin agama, ilmu pengetahuan, teknologi dan kesenian.",
+					"tentang": "Berdiri di kota Garut, Jawa Barat, kami berkomitmen untuk mencetak lulusan yang tidak hanya unggul dalam ilmu pengetahuan, tetapi juga memiliki akhlak mulia dan pemahaman Islam yang mendalam.",
+					"gambar_tentang": {
+						"$asset": "/images/about/about-2.jpg",
+						"alt": "Kampus IAI PERSIS Garut"
+					},
+					"lencana_judul": "Kampus Saintek Dakwah",
+					"lencana_subjudul": "Turats Islam",
+					"poin_utama": [
+						{
+							"ikon": "fa-book",
+							"judul": "Berbasis Alquran & Sunah",
+							"deskripsi": "Pendidikan yang berlandaskan pada Alquran, Sunah, dan tidak bertentangan dengan keduanya."
+						},
+						{
+							"ikon": "fa-graduation-cap",
+							"judul": "Akreditasi B BAN-PT",
+							"deskripsi": "Terakreditasi B oleh Badan Akreditasi Nasional Perguruan Tinggi."
+						},
+						{
+							"ikon": "fa-users",
+							"judul": "Lingkungan Islami",
+							"deskripsi": "Kampus dengan nuansa religius yang mendukung pengembangan karakter Islami."
+						}
+					],
+					"keunggulan": [
+						{
+							"ikon": "fa-trophy",
+							"judul": "Beasiswa Penuh",
+							"deskripsi": "Program beasiswa hingga 100% untuk hafidz Al-Qur'an minimal 15 juz dan prestasi akademik."
+						},
+						{
+							"ikon": "fa-certificate",
+							"judul": "Program S1 & S2",
+							"deskripsi": "Tersedia program Sarjana (S1) dan Magister (S2) dengan konsentrasi keilmuan yang beragam."
+						},
+						{
+							"ikon": "fa-university",
+							"judul": "Fasilitas Modern",
+							"deskripsi": "Kampus dengan fasilitas lengkap: perpustakaan digital, lab komputer, dan ruang kelas ber-AC."
+						},
+						{
+							"ikon": "fa-flask",
+							"judul": "Penelitian Aktif",
+							"deskripsi": "8 jurnal ilmiah terindex SINTA dan Google Scholar untuk mendukung penelitian mahasiswa."
+						},
+						{
+							"ikon": "fa-briefcase",
+							"judul": "Career Development",
+							"deskripsi": "Program pelatihan soft skill dan career center untuk persiapan dunia kerja."
+						},
+						{
+							"ikon": "fa-map-marker",
+							"judul": "Lokasi Strategis",
+							"deskripsi": "Terletak di Garut, Jawa Barat dengan akses mudah dan lingkungan yang kondusif."
+						}
+					],
+					"visi": "Terwujudnya IAI Persis Garut sebagai kampus unggulan dalam bidang keilmuan turats Islam dan menjadi Pusat Pengembangan Dakwah di Indonesia pada 2035 dan tataran global pada 2050.",
+					"misi": [
+						{
+							"ikon": "fa-book",
+							"teks": "Keislaman dengan menjaga turats Islam dan mengambangkan syari’ah Islam yang relevan dengan perkembangan zaman, serta turut serta dalam syi’ar Islam pada masyarakat lokal, nasional dan internasional."
+						},
+						{
+							"ikon": "fa-users",
+							"teks": "Kemanusiaan dengan turut aktif dalam menjaga dan meningkatkan harkat manusia dalam upaya meneguhkan nilai-nilai kemanusiaan yang beradab."
+						},
+						{
+							"ikon": "fa-bullhorn",
+							"teks": "Kejam’iyyahan dalam bentuk peran sebagai Pusat Pengembangan Dakwah Persatuan Islam (Persis) untuk membina umat yang beradab, berilmu dan memiliki kemandirian."
+						},
+						{
+							"ikon": "fa-map",
+							"teks": "Kewilayahan dengan mendukung pengembangan Jawa Barat sebagai wilayah yang harmonis, berbudaya Sunda serta religius."
+						},
+						{
+							"ikon": "fa-graduation-cap",
+							"teks": "Keilmuan dengan menyelenggarakan pendidikan, penelitian dan pengabdian masyarakat secara profesional dengan menerapkan pembelajaran Blended Learning Online, serta mengembangkan peserta didik agar menjadi lulusan yang beriman, bertaqwa dan berakhlak mulia, berwawasan dan berkemampuan dalam ilmu pengetahuan dan teknologi mutakhir."
+						}
+					],
+					"tujuan": [
+						{
+							"ikon": "fa-lightbulb-o",
+							"teks": "Menghasilkan dan mengembangkan kajian khusus turats Islam yang relevan dengan perkembangan zaman"
+						},
+						{
+							"ikon": "fa-heart",
+							"teks": "Mewujudkan civitas akademika yang berdakwah kemanusiaan dalam menjaga dan meningkatkan harkat manusia"
+						},
+						{
+							"ikon": "fa-home",
+							"teks": "Mewujudkan kampus sebagai pusat pengembangan dakwah PERSIS untuk membina umat yang beradab"
+						},
+						{
+							"ikon": "fa-globe",
+							"teks": "Mewujudkan Jawa Barat sebagai wilayah yang harmonis, berbudaya Sunda, serta religius"
+						},
+						{
+							"ikon": "fa-trophy",
+							"teks": "Menghasilkan lulusan yang beriman, bertaqwa dan berakhlak mulia, berwawasan dan berkemampuan dalam ilmu pengetahuan dan teknologi mutakhir"
+						}
+					],
+					"moto": "Kampus Saintek Dakwah dalam Bidang Keilmuan Turats",
+					"nilai": [
+						{
+							"ikon": "fa-book",
+							"teks": "Alquran dan Sunah"
+						},
+						{
+							"ikon": "fa-gavel",
+							"teks": "Regulasi Pemerintah"
+						},
+						{
+							"ikon": "fa-leaf",
+							"teks": "Budaya Lokal"
+						},
+						{
+							"ikon": "fa-flask",
+							"teks": "Perkembangan IPTEK Mutakhir"
+						}
+					],
+					"statistik": [
+						{
+							"angka": 1000,
+							"akhiran": "+",
+							"label": "Mahasiswa"
+						},
+						{
+							"angka": 9,
+							"akhiran": "",
+							"label": "Program Studi"
+						},
+						{
+							"angka": 30,
+							"akhiran": "+",
+							"label": "Dosen dan Peneliti"
+						},
+						{
+							"angka": 50,
+							"akhiran": "+",
+							"label": "Staff"
+						}
+					],
+					"akreditasi_peringkat": "BAIK (B)",
+					"akreditasi_keterangan": "Institut Agama Islam PERSIS Garut telah mendapatkan akreditasi institusi dan program studi dengan peringkat **BAIK (B)** dari Badan Akreditasi Nasional Perguruan Tinggi.",
+					"akreditasi_sertifikat": [
+						{
+							"judul": "Akreditasi Institusi",
+							"program": "STAI Persis Garut",
+							"peringkat": "B",
+							"label_peringkat": "BAIK",
+							"masa_berlaku": "2021-2026",
+							"nomor_sk": "732/SK/BAN-PT/Akred/PT/VIII/2021",
+							"gambar": {
+								"$asset": "/images/akreditasi/sertifikat-2021.png",
+								"alt": "Sertifikat STAI Persis Garut"
+							},
+							"tautan": "https://drive.google.com/file/d/1WvHV5I-NWmfpsLy3f019_KhhThKby4iU/view?usp=sharing",
+							"warna": "#006739"
+						},
+						{
+							"judul": "Akreditasi Program Studi",
+							"program": "Ekonomi Syariah",
+							"peringkat": "B",
+							"label_peringkat": "BAIK",
+							"masa_berlaku": "2021-2026",
+							"nomor_sk": "Ekosy 2021",
+							"gambar": {
+								"$asset": "/images/akreditasi/sertifikat-2021.png",
+								"alt": "Sertifikat Ekonomi Syariah"
+							},
+							"tautan": "https://drive.google.com/file/d/1uVstElurjfxnvJzI-PXXemYVo8No1Dg2/view?usp=sharing",
+							"warna": "#ffc600"
+						},
+						{
+							"judul": "Akreditasi Program Studi",
+							"program": "Pendidikan Agama Islam",
+							"peringkat": "B",
+							"label_peringkat": "BAIK",
+							"masa_berlaku": "2021-2026",
+							"nomor_sk": "PAI 2021",
+							"gambar": {
+								"$asset": "/images/akreditasi/sertifikat-2021.png",
+								"alt": "Sertifikat Pendidikan Agama Islam"
+							},
+							"tautan": "https://drive.google.com/file/d/1N47EAZs4DtEaAtKWioSyw-9l8jtCVAUR/view?usp=sharing",
+							"warna": "#3498db"
+						},
+						{
+							"judul": "Akreditasi Program Studi",
+							"program": "Ilmu Hadits",
+							"peringkat": "B",
+							"label_peringkat": "BAIK",
+							"masa_berlaku": "2021-2026",
+							"nomor_sk": "ILHA 2021",
+							"gambar": {
+								"$asset": "/images/akreditasi/sertifikat-2021.png",
+								"alt": "Sertifikat Ilmu Hadits"
+							},
+							"tautan": "https://drive.google.com/file/d/1EfR67I0cg15HZWtD7Doz42v17zJjgqXg/view?usp=sharing",
+							"warna": "#e74c3c"
+						}
+					],
+					"akreditasi_statistik": [
+						{
+							"ikon": "fa-university",
+							"angka": "1",
+							"label": "Akreditasi Institusi"
+						},
+						{
+							"ikon": "fa-graduation-cap",
+							"angka": "9",
+							"label": "Program Studi Terakreditasi"
+						}
+					],
+					"akreditasi_informasi": "Akreditasi merupakan bentuk pengakuan terhadap kualitas institusi dan program studi. IAI PERSIS Garut berkomitmen untuk terus meningkatkan kualitas pendidikan dan pelayanan.",
+					"akreditasi_email": "admin@iaipersisgarut.ac.id",
+					"catatan_internal": "Migrasi dari situs Next.js lama — hal yang perlu dicek bagian akademik/LPM:\n- Statistik \"9 Program Studi\" = 9 prodi S1 (ILHA, IAT, SPI, PAI, PGMI, BKPI, PBA, EKOSY, MKS), belum termasuk 2 magister (MPAI, MIH) — sesuai perbaikan v3.1.0. Angka mahasiswa/dosen/staff (1000+, 30+, 50+) belum terverifikasi.\n- Akreditasi \"9 Program Studi Terakreditasi\": di kode lama bertanda DRAFT — status akreditasi PBA & SPI belum diverifikasi, cek ulang sebelum publish.\n- Daftar sertifikat baru memuat 1 institusi + 3 prodi; keempatnya memakai gambar sertifikat yang sama (sertifikat-2021.png). Nomor SK prodi (\"Ekosy 2021\", \"PAI 2021\", \"ILHA 2021\") adalah placeholder, bukan nomor SK resmi. Sertifikat institusi masih atas nama STAI Persis Garut; masa berlaku 2021-2026.\n- Ikon FontAwesome 5 di data lama (fa-book-open, fa-lightbulb, fa-quran) tidak tampil di FA 4.7; diganti fa-book / fa-lightbulb-o / fa-book."
+				}
+			}
+		],
+		"layanan": [
+			{
+				"id": "layanan-siakad",
+				"slug": "siakad",
+				"status": "published",
+				"data": {
+					"nama": "Sistem Informasi Akademik",
+					"nama_singkat": "SIAKAD",
+					"kategori": "akademik",
+					"deskripsi": "Portal akademik untuk mahasiswa dan dosen, meliputi KRS, KHS, jadwal kuliah, dan informasi akademik lainnya.",
+					"ikon": "fa-graduation-cap",
+					"warna": "#006739",
+					"ketersediaan": "aktif",
+					"urutan": 10,
+					"url": "https://siakad.iaipersisgarut.ac.id/"
+				}
+			},
+			{
+				"id": "layanan-sim-lppm",
+				"slug": "sim-lppm",
+				"status": "published",
+				"data": {
+					"nama": "Sistem Informasi Manajemen LPPM",
+					"nama_singkat": "SIM LPPM",
+					"kategori": "penelitian",
+					"deskripsi": "Sistem manajemen penelitian, publikasi, dan administrasi lembaga penelitian.",
+					"ikon": "fa-flask",
+					"warna": "#3498db",
+					"ketersediaan": "aktif",
+					"urutan": 20,
+					"url": "https://sim-lppm.iaipersisgarut.ac.id"
+				}
+			},
+			{
+				"id": "layanan-sim-p2m",
+				"slug": "sim-p2m",
+				"status": "published",
+				"data": {
+					"nama": "Sistem Informasi Pengabdian Mahasiswa",
+					"nama_singkat": "SIM P2M",
+					"kategori": "penelitian",
+					"deskripsi": "Platform untuk mengelola kegiatan pengabdian kepada masyarakat oleh mahasiswa.",
+					"ikon": "fa-users",
+					"warna": "#27ae60",
+					"ketersediaan": "aktif",
+					"urutan": 30,
+					"url": "https://sim-lppm-p2m.iaipersisgarut.ac.id/"
+				}
+			},
+			{
+				"id": "layanan-jurnal",
+				"slug": "jurnal",
+				"status": "published",
+				"data": {
+					"nama": "Portal Jurnal Ilmiah",
+					"nama_singkat": "Jurnal",
+					"kategori": "publikasi",
+					"deskripsi": "Akses ke jurnal-jurnal ilmiah yang diterbitkan oleh IAIPI Garut.",
+					"ikon": "fa-book",
+					"warna": "#9b59b6",
+					"ketersediaan": "aktif",
+					"urutan": 40,
+					"url": "https://jurnal.iaipigarut.ac.id/"
+				}
+			},
+			{
+				"id": "layanan-repository",
+				"slug": "repository",
+				"status": "published",
+				"data": {
+					"nama": "Repository Institusional",
+					"nama_singkat": "Repository",
+					"kategori": "publikasi",
+					"deskripsi": "Pusat arsip digital untuk karya ilmiah, skripsi, tesis, dan publikasi penelitian akademik Institut Agama Islam Persis Garut.",
+					"ikon": "fa-database",
+					"warna": "#34495e",
+					"ketersediaan": "aktif",
+					"urutan": 50,
+					"url": "https://repository.iaipersisgarut.ac.id"
+				}
+			},
+			{
+				"id": "layanan-iaipi-press",
+				"slug": "iaipi-press",
+				"status": "published",
+				"data": {
+					"nama": "IAIPI Press",
+					"nama_singkat": "Press",
+					"kategori": "publikasi",
+					"deskripsi": "Lembaga penerbitan kampus yang memfasilitasi publikasi buku ajar, monograf, dan karya ilmiah dalam bentuk cetak maupun digital.",
+					"ikon": "fa-print",
+					"warna": "#e67e22",
+					"ketersediaan": "aktif",
+					"urutan": 60,
+					"url": "https://press.iaipersisgarut.ac.id"
+				}
+			},
+			{
+				"id": "layanan-siperpus",
+				"slug": "siperpus",
+				"status": "published",
+				"data": {
+					"nama": "Sistem Informasi Perpustakaan",
+					"nama_singkat": "SIPERPUS",
+					"kategori": "akademik",
+					"deskripsi": "Layanan perpustakaan digital dengan koleksi buku, jurnal, dan referensi ilmiah yang mendukung pembelajaran.",
+					"ikon": "fa-book",
+					"warna": "#e74c3c",
+					"ketersediaan": "aktif",
+					"urutan": 70,
+					"url": "https://library.iaipersisgarut.ac.id"
+				}
+			},
+			{
+				"id": "layanan-e-learning",
+				"slug": "e-learning",
+				"status": "published",
+				"data": {
+					"nama": "Portal E-Learning",
+					"nama_singkat": "E-Learning",
+					"kategori": "akademik",
+					"deskripsi": "Platform pembelajaran online untuk kuliah jarak jauh dan materi digital.",
+					"ikon": "fa-laptop",
+					"warna": "#2980b9",
+					"ketersediaan": "segera_hadir",
+					"urutan": 80,
+					"catatan_internal": "Di situs lama berstatus Coming Soon (belum ada alamat sistem). Isi Alamat sistem lalu ubah Ketersediaan ke aktif bila sudah tersedia."
+				}
+			},
+			{
+				"id": "layanan-tracer-study",
+				"slug": "tracer-study",
+				"status": "published",
+				"data": {
+					"nama": "Portal Tracer Study",
+					"nama_singkat": "Tracer Study",
+					"kategori": "alumni",
+					"deskripsi": "Sistem pelacakan alumni untuk mengukur kualitas lulusan dan penyerapan kerja.",
+					"ikon": "fa-line-chart",
+					"warna": "#16a085",
+					"ketersediaan": "segera_hadir",
+					"urutan": 90,
+					"catatan_internal": "Di situs lama berstatus Coming Soon (belum ada alamat sistem). Isi Alamat sistem lalu ubah Ketersediaan ke aktif bila sudah tersedia."
+				}
+			},
+			{
+				"id": "layanan-sikeu",
+				"slug": "sikeu",
+				"status": "published",
+				"data": {
+					"nama": "Sistem Informasi Keuangan",
+					"nama_singkat": "SIKEU",
+					"kategori": "administrasi",
+					"deskripsi": "Portal pembayaran UKT, SPP, dan informasi keuangan mahasiswa.",
+					"ikon": "fa-money",
+					"warna": "#f39c12",
+					"ketersediaan": "segera_hadir",
+					"urutan": 100,
+					"catatan_internal": "Di situs lama berstatus Coming Soon (belum ada alamat sistem). Isi Alamat sistem lalu ubah Ketersediaan ke aktif bila sudah tersedia."
+				}
+			},
+			{
+				"id": "layanan-beasiswa",
+				"slug": "beasiswa",
+				"status": "published",
+				"data": {
+					"nama": "Portal Beasiswa",
+					"nama_singkat": "Beasiswa",
+					"kategori": "mahasiswa",
+					"deskripsi": "Informasi beasiswa, pendaftaran, dan monitoring status penerima beasiswa.",
+					"ikon": "fa-trophy",
+					"warna": "#d35400",
+					"ketersediaan": "segera_hadir",
+					"urutan": 110,
+					"catatan_internal": "Di situs lama berstatus Coming Soon (belum ada alamat sistem). Isi Alamat sistem lalu ubah Ketersediaan ke aktif bila sudah tersedia."
+				}
+			},
+			{
+				"id": "layanan-spmi",
+				"slug": "spmi",
+				"status": "published",
+				"data": {
+					"nama": "Sistem Penjaminan Mutu",
+					"nama_singkat": "SPMI",
+					"kategori": "administrasi",
+					"deskripsi": "Sistem monitoring dan evaluasi penjaminan mutu internal institusi.",
+					"ikon": "fa-certificate",
+					"warna": "#8e44ad",
+					"ketersediaan": "segera_hadir",
+					"urutan": 120,
+					"catatan_internal": "Di situs lama berstatus Coming Soon (belum ada alamat sistem). Isi Alamat sistem lalu ubah Ketersediaan ke aktif bila sudah tersedia."
+				}
+			},
+			{
+				"id": "layanan-alumni",
+				"slug": "alumni",
+				"status": "published",
+				"data": {
+					"nama": "Portal Alumni",
+					"nama_singkat": "Alumni",
+					"kategori": "alumni",
+					"deskripsi": "Platform komunikasi dan networking alumni IAIPI Garut.",
+					"ikon": "fa-users",
+					"warna": "#c0392b",
+					"ketersediaan": "segera_hadir",
+					"urutan": 130,
+					"catatan_internal": "Di situs lama berstatus Coming Soon (belum ada alamat sistem). Isi Alamat sistem lalu ubah Ketersediaan ke aktif bila sudah tersedia."
+				}
+			}
+		],
+		"lembaga": [
+			{
+				"id": "lembaga-lpm",
+				"slug": "lpm",
+				"status": "published",
+				"data": {
+					"nama": "LPM",
+					"nama_lengkap": "Lembaga Penjaminan Mutu",
+					"kategori": "lembaga",
+					"deskripsi": "Lembaga yang bertanggung jawab dalam menjamin dan meningkatkan mutu pendidikan, akreditasi, dan sistem penjaminan mutu internal institusi.",
+					"ikon": "fa-certificate",
+					"ketersediaan": "aktif",
+					"urutan": 10,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": true,
+					"url": "https://lpm.iaipersisgarut.ac.id",
+					"urutan_beranda": 1,
+					"beranda_deskripsi": "Menjamin kualitas pendidikan dan akreditasi institusi",
+					"warna": "#006739"
+				}
+			},
+			{
+				"id": "lembaga-lppm",
+				"slug": "lppm",
+				"status": "published",
+				"data": {
+					"nama": "LPPM",
+					"nama_lengkap": "Lembaga Penelitian dan Pengabdian kepada Masyarakat",
+					"kategori": "lembaga",
+					"deskripsi": "Lembaga yang mengelola dan mengkoordinasikan kegiatan penelitian dan pengabdian kepada masyarakat untuk meningkatkan kualitas Tri Dharma Perguruan Tinggi.",
+					"ikon": "fa-flask",
+					"ketersediaan": "aktif",
+					"urutan": 20,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": true,
+					"url": "https://lppm.iaipersisgarut.ac.id",
+					"urutan_beranda": 2,
+					"beranda_nama_lengkap": "Lembaga Penelitian dan Pengabdian Masyarakat",
+					"beranda_deskripsi": "Mengelola penelitian dan pengabdian kepada masyarakat",
+					"warna": "#3498db"
+				}
+			},
+			{
+				"id": "lembaga-perpustakaan",
+				"slug": "perpustakaan",
+				"status": "published",
+				"data": {
+					"nama": "Perpustakaan",
+					"nama_lengkap": "Perpustakaan Institut",
+					"kategori": "lembaga",
+					"deskripsi": "Unit lembaga yang menyediakan layanan perpustakaan digital dan konvensional dengan koleksi buku, jurnal, dan referensi ilmiah yang mendukung pembelajaran dan penelitian.",
+					"ikon": "fa-book",
+					"ketersediaan": "aktif",
+					"urutan": 30,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": true,
+					"url": "https://library.iaipersisgarut.ac.id",
+					"urutan_beranda": 3,
+					"beranda_nama_lengkap": "Perpustakaan",
+					"beranda_deskripsi": "Pusat sumber belajar dan informasi digital kampus",
+					"warna": "#9b59b6"
+				}
+			},
+			{
+				"id": "lembaga-upt-tik",
+				"slug": "upt-tik",
+				"status": "published",
+				"data": {
+					"nama": "UPT TIK",
+					"nama_lengkap": "Unit Pelaksana Teknis Teknologi Informasi dan Komunikasi",
+					"kategori": "unit",
+					"deskripsi": "Unit yang mengelola infrastruktur teknologi informasi, sistem informasi akademik, website, dan layanan digital kampus.",
+					"ikon": "fa-laptop",
+					"ketersediaan": "segera_hadir",
+					"urutan": 40,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": false,
+					"catatan_internal": "Di situs lama berstatus Coming Soon (belum ada website). Keberadaan dan nama resmi lembaga/unit ini perlu dikonfirmasi."
+				}
+			},
+			{
+				"id": "lembaga-mahad-al-jamiah",
+				"slug": "mahad-al-jamiah",
+				"status": "published",
+				"data": {
+					"nama": "Ma'had Al-Jami'ah",
+					"nama_lengkap": "Pesantren Mahasiswa",
+					"kategori": "lembaga",
+					"deskripsi": "Lembaga yang menyelenggarakan pendidikan kepesantrenan bagi mahasiswa dengan program tahfidz Al-Qur'an, kajian kitab kuning, dan pembinaan akhlak.",
+					"ikon": "fa-graduation-cap",
+					"ketersediaan": "segera_hadir",
+					"urutan": 50,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": false,
+					"catatan_internal": "Di situs lama berstatus Coming Soon (belum ada website). Keberadaan dan nama resmi lembaga/unit ini perlu dikonfirmasi."
+				}
+			},
+			{
+				"id": "lembaga-pusat-studi-islam",
+				"slug": "pusat-studi-islam",
+				"status": "published",
+				"data": {
+					"nama": "Pusat Studi Islam",
+					"nama_lengkap": "Pusat Studi dan Kajian Islam",
+					"kategori": "pusat",
+					"deskripsi": "Pusat penelitian dan kajian mendalam tentang Islam kontemporer, pemikiran Islam, dan isu-isu keislaman terkini.",
+					"ikon": "fa-university",
+					"ketersediaan": "segera_hadir",
+					"urutan": 60,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": false,
+					"catatan_internal": "Di situs lama berstatus Coming Soon (belum ada website). Keberadaan dan nama resmi lembaga/unit ini perlu dikonfirmasi."
+				}
+			},
+			{
+				"id": "lembaga-pusat-bahasa",
+				"slug": "pusat-bahasa",
+				"status": "published",
+				"data": {
+					"nama": "Pusat Bahasa",
+					"nama_lengkap": "Pusat Pengembangan Bahasa",
+					"kategori": "pusat",
+					"deskripsi": "Pusat yang menyelenggarakan program pembelajaran bahasa Arab dan Inggris, serta tes kemampuan bahasa bagi mahasiswa dan dosen.",
+					"ikon": "fa-language",
+					"ketersediaan": "segera_hadir",
+					"urutan": 70,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": false,
+					"catatan_internal": "Di situs lama berstatus Coming Soon (belum ada website). Keberadaan dan nama resmi lembaga/unit ini perlu dikonfirmasi."
+				}
+			},
+			{
+				"id": "lembaga-career-center",
+				"slug": "career-center",
+				"status": "published",
+				"data": {
+					"nama": "Career Center",
+					"nama_lengkap": "Pusat Pengembangan Karir dan Kewirausahaan",
+					"kategori": "pusat",
+					"deskripsi": "Lembaga yang memfasilitasi mahasiswa dalam pengembangan soft skill, pelatihan kerja, magang, dan kewirausahaan untuk persiapan karir.",
+					"ikon": "fa-briefcase",
+					"ketersediaan": "segera_hadir",
+					"urutan": 80,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": false,
+					"catatan_internal": "Di situs lama berstatus Coming Soon (belum ada website). Keberadaan dan nama resmi lembaga/unit ini perlu dikonfirmasi."
+				}
+			},
+			{
+				"id": "lembaga-lembaga-dakwah-kampus",
+				"slug": "lembaga-dakwah-kampus",
+				"status": "published",
+				"data": {
+					"nama": "Lembaga Dakwah Kampus",
+					"nama_lengkap": "Lembaga Dakwah Kampus",
+					"kategori": "lembaga",
+					"deskripsi": "Lembaga yang mengkoordinasikan kegiatan dakwah, mentoring, kajian Islam, dan pembinaan rohani mahasiswa di lingkungan kampus.",
+					"ikon": "fa-bullhorn",
+					"ketersediaan": "segera_hadir",
+					"urutan": 90,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": false,
+					"catatan_internal": "Di situs lama berstatus Coming Soon (belum ada website). Keberadaan dan nama resmi lembaga/unit ini perlu dikonfirmasi."
+				}
+			},
+			{
+				"id": "lembaga-pusat-tahfidz",
+				"slug": "pusat-tahfidz",
+				"status": "published",
+				"data": {
+					"nama": "Pusat Tahfidz",
+					"nama_lengkap": "Pusat Tahfidz Al-Qur'an",
+					"kategori": "pusat",
+					"deskripsi": "Pusat pembinaan hafalan Al-Qur'an dengan metode pembelajaran modern dan pendampingan intensif untuk mahasiswa penghafal Al-Qur'an.",
+					"ikon": "fa-book",
+					"ketersediaan": "segera_hadir",
+					"urutan": 100,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": false,
+					"catatan_internal": "Di situs lama berstatus Coming Soon (belum ada website). Keberadaan dan nama resmi lembaga/unit ini perlu dikonfirmasi. Ikon lama fa-quran (FA5) tidak tampil di FA 4.7; diganti fa-book."
+				}
+			},
+			{
+				"id": "lembaga-lembaga-konsultasi-syariah",
+				"slug": "lembaga-konsultasi-syariah",
+				"status": "published",
+				"data": {
+					"nama": "Lembaga Konsultasi Syariah",
+					"nama_lengkap": "Lembaga Konsultasi dan Fatwa Syariah",
+					"kategori": "lembaga",
+					"deskripsi": "Lembaga yang memberikan layanan konsultasi hukum Islam, fatwa syariah, dan pendampingan dalam masalah keagamaan bagi masyarakat.",
+					"ikon": "fa-balance-scale",
+					"ketersediaan": "segera_hadir",
+					"urutan": 110,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": false,
+					"catatan_internal": "Di situs lama berstatus Coming Soon (belum ada website). Keberadaan dan nama resmi lembaga/unit ini perlu dikonfirmasi."
+				}
+			},
+			{
+				"id": "lembaga-pusat-gender-dan-anak",
+				"slug": "pusat-gender-dan-anak",
+				"status": "published",
+				"data": {
+					"nama": "Pusat Gender dan Anak",
+					"nama_lengkap": "Pusat Studi Gender dan Perlindungan Anak",
+					"kategori": "pusat",
+					"deskripsi": "Pusat kajian dan advokasi tentang isu gender, kesetaraan, dan perlindungan anak dalam perspektif Islam.",
+					"ikon": "fa-users",
+					"ketersediaan": "segera_hadir",
+					"urutan": 120,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": false,
+					"catatan_internal": "Di situs lama berstatus Coming Soon (belum ada website). Keberadaan dan nama resmi lembaga/unit ini perlu dikonfirmasi."
+				}
+			},
+			{
+				"id": "lembaga-prodi-ilha",
+				"slug": "prodi-ilha",
+				"status": "published",
+				"data": {
+					"nama": "ILHA",
+					"nama_lengkap": "Program Studi Ilmu Hadis",
+					"kategori": "prodi",
+					"deskripsi": "Fokus pada pengkajian dan penelitian hadis Nabi Muhammad SAW sebagai sumber kedua ajaran Islam dengan metodologi riset yang mendalam.",
+					"ikon": "fa-book",
+					"ketersediaan": "aktif",
+					"urutan": 130,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": false,
+					"url": "/fakultas/ushuluddin/ilha",
+					"fakultas": "Ushuluddin",
+					"catatan_internal": "Daftar program studi di halaman lama hanya 7 prodi S1 + MPAI; SPI, PBA (S1) dan MIH (S2) belum ada. Tambahkan bila perlu."
+				}
+			},
+			{
+				"id": "lembaga-prodi-iat",
+				"slug": "prodi-iat",
+				"status": "published",
+				"data": {
+					"nama": "IAT",
+					"nama_lengkap": "Program Studi Ilmu Al-Qur'an dan Tafsir",
+					"kategori": "prodi",
+					"deskripsi": "Berfokus pada pengkajian dan penelitian Al-Quran sebagai sumber utama ajaran Islam dengan kajian tafsir kontemporer.",
+					"ikon": "fa-file-text-o",
+					"ketersediaan": "aktif",
+					"urutan": 140,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": false,
+					"url": "/fakultas/ushuluddin/iat",
+					"fakultas": "Ushuluddin",
+					"catatan_internal": "Nama lengkap di data lama tertulis \"Ilmu Al-Qur'an dan Tafsir\" (campur bahasa Inggris) — dibiarkan apa adanya, perbaiki bila perlu."
+				}
+			},
+			{
+				"id": "lembaga-prodi-pai",
+				"slug": "prodi-pai",
+				"status": "published",
+				"data": {
+					"nama": "PAI",
+					"nama_lengkap": "Program Studi Pendidikan Agama Islam",
+					"kategori": "prodi",
+					"deskripsi": "Menyiapkan tenaga pendidik profesional dalam bidang Pendidikan Agama Islam dengan kompetensi pedagogik dan keislaman yang mumpuni.",
+					"ikon": "fa-graduation-cap",
+					"ketersediaan": "aktif",
+					"urutan": 150,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": false,
+					"url": "/fakultas/tarbiyah/pai",
+					"fakultas": "Tarbiyah"
+				}
+			},
+			{
+				"id": "lembaga-prodi-pgmi",
+				"slug": "prodi-pgmi",
+				"status": "published",
+				"data": {
+					"nama": "PGMI",
+					"nama_lengkap": "Program Studi Pendidikan Guru Madrasah Ibtidaiyah",
+					"kategori": "prodi",
+					"deskripsi": "Fokus pada penyiapan guru profesional untuk tingkat MI/SD dengan kompetensi pembelajaran terpadu berbasis nilai-nilai Islam.",
+					"ikon": "fa-child",
+					"ketersediaan": "aktif",
+					"urutan": 160,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": false,
+					"url": "/fakultas/tarbiyah/pgmi",
+					"fakultas": "Tarbiyah"
+				}
+			},
+			{
+				"id": "lembaga-prodi-bkpi",
+				"slug": "prodi-bkpi",
+				"status": "published",
+				"data": {
+					"nama": "BKPI",
+					"nama_lengkap": "Program Studi Bimbingan Konseling Pendidikan Islam",
+					"kategori": "prodi",
+					"deskripsi": "Menyiapkan konselor pendidikan kompeten dalam layanan bimbingan dan konseling dengan pendekatan Islam.",
+					"ikon": "fa-comments",
+					"ketersediaan": "aktif",
+					"urutan": 170,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": false,
+					"url": "/fakultas/tarbiyah/bkpi",
+					"fakultas": "Tarbiyah"
+				}
+			},
+			{
+				"id": "lembaga-prodi-ekosy",
+				"slug": "prodi-ekosy",
+				"status": "published",
+				"data": {
+					"nama": "EKOSY",
+					"nama_lengkap": "Program Studi Ekonomi Syariah",
+					"kategori": "prodi",
+					"deskripsi": "Mempersiapkan profesional dalam bidang ekonomi berbasis prinsip-prinsip syariah dengan pemahaman mendalam tentang teori ekonomi Islam.",
+					"ikon": "fa-money",
+					"ketersediaan": "aktif",
+					"urutan": 180,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": false,
+					"url": "/fakultas/ekonomi/ekosy",
+					"fakultas": "Ekonomi & Bisnis Islam"
+				}
+			},
+			{
+				"id": "lembaga-prodi-mks",
+				"slug": "prodi-mks",
+				"status": "published",
+				"data": {
+					"nama": "MKS",
+					"nama_lengkap": "Program Studi Manajemen Keuangan Syariah",
+					"kategori": "prodi",
+					"deskripsi": "Fokus pada pengembangan kompetensi dalam pengelolaan keuangan berbasis syariah, perbankan syariah, dan lembaga keuangan syariah.",
+					"ikon": "fa-bank",
+					"ketersediaan": "aktif",
+					"urutan": 190,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": false,
+					"url": "/fakultas/ekonomi/mks",
+					"fakultas": "Ekonomi & Bisnis Islam"
+				}
+			},
+			{
+				"id": "lembaga-prodi-mpai",
+				"slug": "prodi-mpai",
+				"status": "published",
+				"data": {
+					"nama": "MPAI",
+					"nama_lengkap": "Program Magister Pendidikan Agama Islam (S2)",
+					"kategori": "prodi",
+					"deskripsi": "Program Magister yang dirancang untuk menghasilkan ahli dan praktisi pendidikan Islam dengan kedalaman ilmu, kemampuan riset, dan kepemimpinan.",
+					"ikon": "fa-mortar-board",
+					"ketersediaan": "aktif",
+					"urutan": 200,
+					"tampil_di_halaman": true,
+					"tampil_di_beranda": false,
+					"url": "/magister/mpai",
+					"fakultas": "Pascasarjana"
+				}
+			},
+			{
+				"id": "lembaga-repository",
+				"slug": "repository",
+				"status": "published",
+				"data": {
+					"nama": "Repository",
+					"nama_lengkap": "Institutional Repository",
+					"kategori": "unit",
+					"deskripsi": "Pusat arsip digital karya ilmiah dan penelitian",
+					"url": "https://repository.iaipersisgarut.ac.id",
+					"ikon": "fa-database",
+					"ketersediaan": "aktif",
+					"urutan": 210,
+					"tampil_di_halaman": false,
+					"tampil_di_beranda": true,
+					"urutan_beranda": 4,
+					"warna": "#e67e22",
+					"catatan_internal": "Entri ini hanya untuk blok Layanan Institusi di beranda (di situs lama tidak ada di halaman Lembaga & Departemen, jadi Tampil di halaman = tidak). Kategori \"unit\" ditentukan saat migrasi."
+				}
+			}
+		],
+		"info_kontak": [
+			{
+				"id": "info-kontak-utama",
+				"slug": "utama",
+				"status": "published",
+				"data": {
+					"judul": "Halaman Kontak",
+					"jam_operasional": "Senin - Jumat: 08:00 - 16:00 WIB\nSabtu: 08:00 - 13:00 WIB\nMinggu & Libur: Tutup",
+					"unit": [
+						{
+							"nama": "Rektorat",
+							"email": "rektorat@iaipersisgarut.ac.id",
+							"telepon": "085123123670",
+							"deskripsi": "Informasi umum dan kebijakan institusi"
+						},
+						{
+							"nama": "Penerimaan Mahasiswa Baru (PMB)",
+							"email": "pmb@iaipersisgarut.ac.id",
+							"telepon": "082129526424",
+							"deskripsi": "Pendaftaran dan informasi calon mahasiswa"
+						},
+						{
+							"nama": "Akademik",
+							"email": "akademik@iaipersisgarut.ac.id",
+							"telepon": "085123123670",
+							"deskripsi": "Layanan akademik dan perkuliahan"
+						},
+						{
+							"nama": "Kemahasiswaan",
+							"email": "kemahasiswaan@iaipersisgarut.ac.id",
+							"telepon": "085123123670",
+							"deskripsi": "Kegiatan mahasiswa dan organisasi"
+						}
+					],
+					"catatan_internal": "- Jam operasional disalin dari situs lama; belum dikonfirmasi bagian umum.\n- Unit Akademik & Kemahasiswaan memakai nomor telepon yang sama dengan Rektorat (085123123670); email akademik@ dan kemahasiswaan@ belum diverifikasi aktif.\n- Situs lama tidak punya formulir kontak; tidak ada yang dihapus."
+				}
+			}
+		],
+		"pmb": [
+			{
+				"id": "pmb-utama",
+				"slug": "utama",
+				"status": "published",
+				"data": {
+					"judul": "Penerimaan Mahasiswa Baru 2026/2027",
+					"tahun_akademik": "2026/2027",
+					"gelombang_aktif": "5",
+					"tanggal_tutup": "2026-08-31T23:59:59+07:00",
+					"tanggal_tutup_beasiswa": "2026-07-31T23:59:59+07:00",
+					"intro_judul": "Menjadi Kampus Unggul Pengembangan Turats Islam pada Tahun 2028",
+					"intro_deskripsi": "IAI Persis Garut membuka Penerimaan Mahasiswa Baru Tahun Akademik 2026/2027 untuk jenjang Sarjana (S1) dan Magister (S2). Biaya kuliah bisa dicicil secara ringan, fleksibel, dan terjangkau agar setiap calon mahasiswa siap memulai perjalanan akademiknya bersama IAI Persis Garut.",
+					"jumlah_prodi": "11",
+					"label_jumlah_prodi": "Program Studi S1 & S2",
+					"biaya_minimum_s1": "2,9 Jt",
+					"biaya_minimum_s2": "4 Jt",
+					"jadwal": [
+						{
+							"jalur": "Beasiswa",
+							"periode": "3 Juli – 31 Juli 2026"
+						},
+						{
+							"jalur": "Reguler",
+							"periode": "3 Juli – 31 Agustus 2026"
+						}
+					],
+					"catatan_jadwal": "Tes dapat dilakukan kapan saja setelah melakukan pembayaran biaya formulir selama periode pendaftaran. Jadwal dapat berubah mengikuti kebijakan kampus, pantau informasi terbaru melalui portal PMB dan media sosial IAI Persis Garut.",
+					"whatsapp_admin": "6282129526424",
+					"pesan_whatsapp_admin": "Halo, saya ingin bertanya tentang pendaftaran IAI Persis Garut",
+					"keunggulan": [
+						{
+							"ikon": "fa-moon-o",
+							"judul": "Kampus Islami",
+							"deskripsi": "Nuansa religius yang mendukung pengembangan karakter Islami."
+						},
+						{
+							"ikon": "fa-certificate",
+							"judul": "Terakreditasi BAN-PT",
+							"deskripsi": "Terakreditasi oleh Badan Akreditasi Nasional Perguruan Tinggi."
+						},
+						{
+							"ikon": "fa-university",
+							"judul": "Kemenag Berdampak",
+							"deskripsi": "Bagian dari transformasi pendidikan tinggi Islam oleh Kementerian Agama."
+						},
+						{
+							"ikon": "fa-desktop",
+							"judul": "Blended Learning",
+							"deskripsi": "Perpaduan pembelajaran tatap muka dan daring yang fleksibel."
+						},
+						{
+							"ikon": "fa-user-circle-o",
+							"judul": "Dosen Profesional",
+							"deskripsi": "Tenaga pendidik berkualitas dan berpengalaman di bidangnya."
+						},
+						{
+							"ikon": "fa-flask",
+							"judul": "Penelitian Aktif",
+							"deskripsi": "8 Jurnal ilmiah terindex SINTA dan Google Scholar untuk mendukung riset."
+						}
+					],
+					"program_studi": [
+						{
+							"fakultas": "Fakultas Tarbiyah dan Keguruan",
+							"ikon": "fa-graduation-cap",
+							"prodi": "Pendidikan Agama Islam (S1)\nPendidikan Guru Madrasah Ibtidaiyah (S1)\nPendidikan Bahasa Arab (S1)\nBimbingan dan Konseling Pendidikan Islam (S1)"
+						},
+						{
+							"fakultas": "Fakultas Ekonomi dan Bisnis Islam",
+							"ikon": "fa-line-chart",
+							"prodi": "Ekonomi Syariah (S1)\nManajemen Keuangan Syariah (S1)"
+						},
+						{
+							"fakultas": "Fakultas Ushuluddin",
+							"ikon": "fa-book",
+							"prodi": "Ilmu Hadits (S1)\nIlmu Al-Qur’an dan Tafsir (S1)\nSejarah Peradaban Islam (S1)"
+						},
+						{
+							"fakultas": "Program Magister",
+							"ikon": "fa-graduation-cap",
+							"prodi": "Pendidikan Agama Islam (S2)\nIlmu Hadits (S2)"
+						}
+					],
+					"ukm": [
+						{
+							"nama": "Aksara",
+							"bidang": "Kepenulisan"
+						},
+						{
+							"nama": "Trekata",
+							"bidang": "Fotografi, Videografi, Desain Grafis"
+						},
+						{
+							"nama": "Imaraga",
+							"bidang": "Olahraga"
+						},
+						{
+							"nama": "Shurulkhan",
+							"bidang": "Beladiri"
+						},
+						{
+							"nama": "Himpara",
+							"bidang": "Pecinta Alam"
+						},
+						{
+							"nama": "Protokoler",
+							"bidang": "Keprotokolan"
+						}
+					],
+					"catatan_biaya": "*dibayar sekali, **dibayar tiap semester. Biaya dapat dicicil/dibayarkan secara bertahap sesuai syarat dan ketentuan yang berlaku.",
+					"biaya_s1": [
+						{
+							"komponen": "Pendaftaran*",
+							"nominal": "Rp 350.000"
+						},
+						{
+							"komponen": "Biaya Semester Reguler**",
+							"nominal": "Rp 2.500.000"
+						},
+						{
+							"komponen": "Dana Pengembangan Kampus*",
+							"nominal": "Rp 2.500.000"
+						},
+						{
+							"komponen": "Perlengkapan Mahasiswa*",
+							"nominal": "Rp 1.400.000"
+						},
+						{
+							"komponen": "Pembinaan THQ* (PAI, PGMI, BKPI, PBA, EKOSY, MKS)",
+							"nominal": "Rp 300.000"
+						},
+						{
+							"komponen": "Pembinaan THQ* (ILHA, IAT)",
+							"nominal": "Rp 500.000"
+						}
+					],
+					"biaya_s2": [
+						{
+							"komponen": "Pendaftaran*",
+							"nominal": "Rp 500.000"
+						},
+						{
+							"komponen": "Biaya Semester Reguler**",
+							"nominal": "Rp 4.500.000"
+						},
+						{
+							"komponen": "Dana Pengembangan Kampus*",
+							"nominal": "Rp 3.000.000"
+						},
+						{
+							"komponen": "Perlengkapan Mahasiswa*",
+							"nominal": "Rp 1.700.000"
+						},
+						{
+							"komponen": "Pembinaan THQ*",
+							"nominal": "Rp 200.000"
+						}
+					],
+					"langkah_judul": "Tiga Langkah Praktis Menjadi Mahasiswa IAI Persis Garut",
+					"langkah_deskripsi": "Proses pendaftaran dirancang sederhana sehingga calon mahasiswa dapat fokus menyiapkan dokumen penting dan mengikuti seleksi dengan tenang.",
+					"alur_pendaftaran": [
+						{
+							"judul": "Isi Formulir Online",
+							"deskripsi": "Kunjungi portal PMB dan lengkapi formulir data diri serta pilihan program studi."
+						},
+						{
+							"judul": "Unggah Dokumen dan Pembayaran",
+							"deskripsi": "Upload dokumen persyaratan dan lakukan pembayaran biaya pendaftaran sesuai petunjuk."
+						},
+						{
+							"judul": "Ikuti Seleksi dan Pengumuman",
+							"deskripsi": "Ikuti proses seleksi, kemudian pantau pengumuman hasil dan lakukan daftar ulang."
+						}
+					],
+					"persyaratan": "Fotokopi Ijazah/Surat Keterangan Lulus\nFotokopi KTP\nPas foto berwarna\nMengisi formulir pendaftaran online\nDokumen lain sesuai ketentuan",
+					"poster": [
+						{
+							"gambar": {
+								"$asset": "/images/pmb/poster-pmb-1.jpeg",
+								"alt": "Poster PMB 1 - Informasi Umum PMB TA 2026/2027"
+							},
+							"keterangan": "Poster PMB 1 - Informasi Umum PMB TA 2026/2027"
+						},
+						{
+							"gambar": {
+								"$asset": "/images/pmb/poster-pmb-2.jpeg",
+								"alt": "Poster PMB 2 - Keunggulan dan Program Studi"
+							},
+							"keterangan": "Poster PMB 2 - Keunggulan dan Program Studi"
+						},
+						{
+							"gambar": {
+								"$asset": "/images/pmb/poster-pmb-3.jpeg",
+								"alt": "Poster PMB 3 - Biaya Kuliah dan Jadwal Pendaftaran"
+							},
+							"keterangan": "Poster PMB 3 - Biaya Kuliah dan Jadwal Pendaftaran"
+						}
+					],
+					"poster_lengkap": {
+						"$asset": "/images/pmb/poster-pmb-full.jpeg",
+						"alt": "Poster lengkap PMB TA 2026/2027"
+					},
+					"kanal_bantuan": [
+						{
+							"ikon": "fa-whatsapp",
+							"label": "Chat Admin PMB",
+							"url": "https://wa.me/6282129526424?text=Halo,%20saya%20ingin%20bertanya%20tentang%20pendaftaran%20IAI%20Persis%20Garut",
+							"keterangan": "+62 821-2952-6424"
+						},
+						{
+							"ikon": "fa-globe",
+							"label": "Website PMB",
+							"url": "https://iaipersisgarut.ac.id/pmb",
+							"keterangan": "iaipersisgarut.ac.id/pmb"
+						},
+						{
+							"ikon": "fa-instagram",
+							"label": "Instagram",
+							"url": "https://instagram.com/pmb.iaipersis",
+							"keterangan": "@pmb.iaipersis"
+						}
+					],
+					"beranda_judul_pmb": "Pendaftaran Mahasiswa Baru 2026/2027",
+					"beranda_teks_pmb": "**Kuota Terbatas!** Daftar sekarang dan raih kesempatan menjadi bagian dari kampus Islam terbaik di Garut.",
+					"beranda_judul_beasiswa": "Program Beasiswa 2026",
+					"beranda_teks_beasiswa": "Dapatkan bantuan biaya kuliah hingga **100%**. Beasiswa prestasi, hafidz Quran, dan kurang mampu tersedia untuk mahasiswa berprestasi.",
+					"beranda_sorotan_beasiswa": [
+						{
+							"ikon": "fa-users",
+							"teks": "**20+** Penerima Beasiswa"
+						},
+						{
+							"ikon": "fa-trophy",
+							"teks": "**Full Scholarship** Tersedia"
+						}
+					],
+					"catatan_internal": "Data PMB TA 2026/2027 gelombang 5 disalin dari situs lama (sinkron dengan poster). Perlu dicek tiap gelombang:\n- Gelombang 5 sudah ditutup (beasiswa 31 Juli 2026, reguler 31 Agustus 2026) — hitung mundur beranda menunjukkan 0 sampai tanggal diperbarui.\n- Judul intro menyebut target \"Kampus Unggul ... pada Tahun 2028\", sedangkan visi institusi menyebut 2035/2050 — konfirmasi ke pimpinan.\n- Kanal \"Website PMB\" mengarah ke iaipersisgarut.ac.id/pmb (halaman ini sendiri). Tombol \"Daftar Online Sekarang\" kini memakai Link pendaftaran PMB online dari Info Kampus (di situs lama tombol ini juga mengarah ke halaman ini sendiri).\n- Angka \"20+ Penerima Beasiswa\" dan klaim \"kampus Islam terbaik di Garut\" bersifat promosi, belum ada sumber resmi."
+				}
+			}
+		]
+	}
+}

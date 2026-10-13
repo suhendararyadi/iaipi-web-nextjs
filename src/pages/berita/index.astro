@@ -1,0 +1,29 @@
+---
+// Daftar semua berita (paginasi cursor: ?cursor=...).
+import Base from "@/layouts/Base.astro";
+import PageBanner from "@/components/layout/PageBanner.astro";
+import DaftarBerita from "@/components/beranda/DaftarBerita.astro";
+import { useCacheHint } from "@/lib/cms";
+import { getDaftarBerita, getKategoriBerita } from "@/lib/berita";
+
+const cursor = Astro.url.searchParams.get("cursor") ?? undefined;
+const [{ entries, nextCursor, cacheHint }, kategoriResult] = await Promise.all([getDaftarBerita({ cursor }), getKategoriBerita()]);
+useCacheHint(Astro, cacheHint, kategoriResult.cacheHint);
+---
+
+<Base title="Berita" description="Berita, agenda, dan pengumuman terbaru Institut Agama Islam PERSIS Garut.">
+	<link slot="head" rel="alternate" type="application/rss+xml" title="Berita IAI PERSIS Garut" href="/rss.xml" />
+	<PageBanner
+		title="IAIP Hari Ini"
+		image="/images/slider/slider-iaipi-2.jpg"
+		breadcrumbs={[{ text: "Beranda", url: "/" }, { text: "Berita" }]}
+		badge="Berita & Agenda"
+		summary="Kabar terbaru dari kampus: kegiatan akademik, prestasi, dan pengabdian sivitas IAI PERSIS Garut."
+	/>
+
+	<section class="section">
+		<div class="wadah">
+			<DaftarBerita entries={entries} kategori={kategoriResult.kategori} nextCursor={nextCursor} cursor={cursor} />
+		</div>
+	</section>
+</Base>

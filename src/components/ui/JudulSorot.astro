@@ -1,0 +1,15 @@
+---
+// Judul dengan kata sorotan: teks "*kata*" dari CMS dirender sebagai <span class="sorot">.
+import { segmenSorot } from "@/lib/cms";
+
+interface Props {
+	text: string | null | undefined;
+	as?: "h1" | "h2" | "h3";
+	class?: string;
+	id?: string;
+}
+
+const { text, as: Tag = "h2", class: className = "judul-besar", id } = Astro.props;
+---
+
+<Tag class={className} id={id}>{segmenSorot(text).map((s) => (s.sorot ? <span class="sorot">{s.teks}</span> : s.teks))}</Tag>

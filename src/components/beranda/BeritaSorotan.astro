@@ -1,0 +1,184 @@
+---
+// "IAIP Hari Ini": kartu berita utama + dua kartu kecil (kartu tambahan menyusul di bawah),
+// dengan meta tanggal & waktu baca. Sumber: koleksi `berita`, teks dari beranda.berita_*.
+import KepalaSection from "@/components/ui/KepalaSection.astro";
+import { mediaAlt, mediaSrc } from "@/lib/cms";
+import { tanggalBerita, waktuBaca, type BeritaEntry } from "@/lib/berita";
+import { tanggalAngka, tanggalIso } from "@/lib/beranda";
+
+interface Props {
+	judul?: string;
+	teks?: string;
+	entries: BeritaEntry[];
+}
+
+const { judul, teks, entries } = Astro.props;
+const [utama, ...lain] = entries;
+const samping = lain.slice(0, 2);
+const bawah = lain.slice(2);
+// Alt yang sama persis dengan judul dikosongkan agar tidak dibacakan dua kali di dalam tautan.
+const altFoto = (b: BeritaEntry) => {
+	const alt = mediaAlt(b.data.featured_image, "");
+	return alt.trim() === b.data.title.trim() ? "" : alt;
+};
+---
+
+<section id="berita" class="berita" aria-labelledby="berita-judul">
+	<div class="wadah">
+		<KepalaSection judul={judul || "Berita Terbaru"} teks={teks} id="berita-judul" />
+		{
+			utama ? (
+				<>
+					<div class:list={["grid", { tunggal: samping.length === 0 }]}>
+						{[utama, ...samping].map((b, i) => {
+							const tanggal = tanggalBerita(b);
+							const src = mediaSrc(b.data.featured_image);
+							return (
+								<a href={`/berita/${b.id}`} class:list={["kartu-foto", "bk", { utama: i === 0, kecil: i > 0 }]}>
+									{src && <img src={src} alt={altFoto(b)} loading="lazy" decoding="async" />}
+									<div class="isi">
+										<h3 class="kartu-foto-judul judul-kartu">{b.data.title}</h3>
+										<p class="meta">
+											{tanggal && <time datetime={tanggalIso(tanggal)}>{tanggalAngka(tanggal)}</time>}
+											<span>{waktuBaca(b.data.content)} menit baca</span>
+										</p>
+									</div>
+								</a>
+							);
+						})}
+					</div>
+					{bawah.length > 0 && (
+						<div class="grid-bawah">
+							{bawah.map((b) => {
+								const tanggal = tanggalBerita(b);
+								const src = mediaSrc(b.data.featured_image);
+								return (
+									<a href={`/berita/${b.id}`} class="kartu-foto bk kecil">
+										{src && <img src={src} alt={altFoto(b)} loading="lazy" decoding="async" />}
+										<div class="isi">
+											<h3 class="kartu-foto-judul judul-kartu">{b.data.title}</h3>
+											<p class="meta">
+												{tanggal && <time datetime={tanggalIso(tanggal)}>{tanggalAngka(tanggal)}</time>}
+												<span>{waktuBaca(b.data.content)} menit baca</span>
+											</p>
+										</div>
+									</a>
+								);
+							})}
+						</div>
+					)}
+				</>
+			) : (
+				<p class="kosong">Belum ada berita.</p>
+			)
+		}
+		<div class="aksi">
+			<a href="/berita" class="btn btn-kuning">Semua Berita</a>
+		</div>
+	</div>
+</section>
+
+<style>
+	.berita {
+		padding: 60px 0 90px;
+	}
+	.berita :global(.kepala-section) {
+		margin-bottom: 72px;
+	}
+	.berita :global(.pemisah) {
+		margin-bottom: 14px;
+	}
+	.grid {
+		display: grid;
+		grid-template-columns: minmax(0, 763fr) minmax(0, 366fr);
+		grid-auto-rows: 255px;
+		gap: 28px 30px;
+	}
+	.grid.tunggal {
+		grid-template-columns: 1fr;
+		grid-auto-rows: 480px;
+	}
+	.bk {
+		min-height: 0;
+	}
+	.bk.utama {
+		grid-row: span 2;
+	}
+	.grid.tunggal .bk.utama {
+		grid-row: auto;
+	}
+	.bk::after {
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 24%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.85) 68%, #000 85%);
+	}
+	.bk.utama::after {
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 42%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.85) 78%, #000 92%);
+	}
+	.isi {
+		padding: 0 20px 22px;
+	}
+	.utama .isi {
+		padding: 0 40px 33px 20px;
+	}
+	.judul-kartu {
+		font-size: 20px;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+	.utama .judul-kartu {
+		font-size: clamp(22px, 2.23vw, 32px);
+	}
+	.meta {
+		margin-top: 12px;
+		gap: 4px 20px;
+		flex-wrap: wrap;
+		line-height: 1.3;
+		letter-spacing: 0.4px;
+	}
+	.utama .meta {
+		margin-top: 14px;
+	}
+	.grid-bawah {
+		margin-top: 28px;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+		grid-auto-rows: 255px;
+		gap: 28px 30px;
+	}
+	.aksi {
+		margin-top: 84px;
+		display: flex;
+		justify-content: center;
+	}
+	.aksi .btn {
+		min-height: 50px;
+		min-width: 144px;
+		padding: 0 24px;
+	}
+	@media (max-width: 800px) {
+		.grid {
+			grid-template-columns: 1fr;
+			grid-auto-rows: 255px;
+		}
+		.bk.utama {
+			grid-row: auto;
+		}
+	}
+	@media (max-width: 600px) {
+		.berita {
+			padding: 40px 0 60px;
+		}
+		.berita :global(.kepala-section) {
+			margin-bottom: 32px;
+		}
+		.grid,
+		.grid-bawah {
+			gap: 20px;
+		}
+		.aksi {
+			margin-top: 40px;
+		}
+	}
+</style>

@@ -7,6 +7,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.0.0] - 2026-10-13
+
+### 🚀 Migrasi ke Astro + EmDash CMS di Cloudflare, desain baru bergaya unpad.ac.id
+
+Situs ditulis ulang dari Next.js ke **Astro 7 + EmDash CMS** dan kini berjalan di **Cloudflare
+Workers** (D1, R2, KV, Images). Semua konten dapat diedit staf lewat `/_emdash/admin`.
+
+### ✨ Added
+
+- **CMS EmDash** dengan 14 koleksi: Info Kampus, Beranda, Halaman, Berita (+ kategori Berita/Agenda/
+  Pengumuman), Slider, Jurnal, Pimpinan, Fakultas, Program Studi, Profil Institusi, Layanan,
+  Lembaga, Info Kontak, PMB; menu header & footer dikelola dari admin.
+- **Seluruh konten situs lama dimigrasikan** ke seed (`seed/parts/*.json`): 18 pimpinan, 4 fakultas,
+  11 prodi lengkap dengan kurikulum per semester, profil, layanan, lembaga, PMB, dan 20 berita
+  terbaru dari Hashnode (+ skrip `scripts/import-berita-hashnode.mjs` untuk berita lama lainnya).
+- **Desain baru** mengikuti tata letak unpad.ac.id dengan warna IAIP (hijau `#006738`, kuning
+  `#FFC600`): slider, tab, carousel, menu mobile — tanpa jQuery.
+- Halaman berita (`/berita`, kategori, artikel), RSS (`/rss.xml`), sitemap lengkap, alias `/prodi/<slug>`.
+- Resize gambar otomatis (WebP) lewat Cloudflare Images; panduan deploy `docs/DEPLOY-CLOUDFLARE.md`.
+
+### 🔄 Changed
+
+- Berita kini ditulis langsung di CMS (sebelumnya RSS Hashnode).
+- Cache edge Cloudflare dibuat opsional (`EDGE_CACHE=1`) karena kuota request paket Workers Free.
+
+### 🗑️ Removed
+
+- Next.js, tema Edubin (CSS/JS/jQuery/FontAwesome), komponen yang tidak terpakai, dan testimoni
+  contoh yang tidak terverifikasi.
+
+### ⚠️ Perlu ditindaklanjuti kampus
+
+- Data yang masih generik/belum resmi ditandai di field `catatan_internal` (kurikulum 7 prodi,
+  akreditasi PBA/SPI, nomor SK prodi, statistik mahasiswa/dosen).
+- Isi jadwal gelombang PMB berikutnya, poster PMB terbaru, URL Google Maps, agenda & pengumuman.
+
+---
+
 ## [3.1.0] - 2026-07-16
 
 ### 🔒 Keamanan, SEO & Perbaikan Teknis

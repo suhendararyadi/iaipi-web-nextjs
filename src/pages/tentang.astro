@@ -1,0 +1,661 @@
+---
+// Halaman Tentang. Data: koleksi profil_institusi (entri "utama").
+import Base from "@/layouts/Base.astro";
+import PageBanner from "@/components/layout/PageBanner.astro";
+import KepalaSection from "@/components/ui/KepalaSection.astro";
+import JudulSorot from "@/components/ui/JudulSorot.astro";
+import PitaStatistik from "@/components/profil/PitaStatistik.astro";
+import KartuIkon from "@/components/profil/KartuIkon.astro";
+import SectionHijau from "@/components/profil/SectionHijau.astro";
+import TombolPil from "@/components/profil/TombolPil.astro";
+import Ikon from "@/components/profil/Ikon.astro";
+import { mediaAlt, mediaSrc, paragraphs, rows, useCacheHint } from "@/lib/cms";
+import { getProfil, tebal, type ItemIkon, type Sertifikat, type Statistik } from "@/lib/profil";
+
+const { profil: p, cacheHint } = await getProfil();
+useCacheHint(Astro, cacheHint);
+
+const judul = "Tentang IAI Persis Garut";
+const paragrafTentang = paragraphs(p?.tentang);
+const poin = rows<ItemIkon>(p?.poin_utama).filter((x) => x.judul);
+const keunggulan = rows<ItemIkon>(p?.keunggulan).filter((x) => x.judul);
+const tabVisi = [
+	{ kunci: "misi", label: "Misi", items: rows<ItemIkon>(p?.misi).filter((x) => x.teks) },
+	{ kunci: "tujuan", label: "Tujuan", items: rows<ItemIkon>(p?.tujuan).filter((x) => x.teks) },
+	{ kunci: "nilai", label: "Nilai-Nilai", items: rows<ItemIkon>(p?.nilai).filter((x) => x.teks) },
+].filter((t) => t.items.length > 0);
+const statistik = rows<Statistik>(p?.statistik)
+	.filter((s) => s.label && s.angka !== undefined && s.angka !== null)
+	.map((s) => ({ label: s.label, nilai: `${s.angka}${s.akhiran ?? ""}` }));
+const sertifikat = rows<Sertifikat>(p?.akreditasi_sertifikat).filter((s) => s.program || s.judul);
+const statAkreditasi = rows<{ ikon?: string; angka: string; label: string }>(p?.akreditasi_statistik).filter((s) => s.angka && s.label);
+const lencana = [p?.lencana_judul, p?.lencana_subjudul].filter(Boolean).join(" ");
+
+const jelajahi = [
+	{ judul: "Fakultas & Program Studi", href: "/fakultas", gambar: "/images/slider/slider-iaipi-2.jpg" },
+	{ judul: "Lembaga & Departemen", href: "/lembaga-departemen", gambar: "/images/page-banner-7.jpg" },
+	{ judul: "Layanan & Sistem Informasi", href: "/layanan", gambar: "/images/prodi/iat.jpg" },
+];
+---
+
+<Base title={judul} description={p?.paragraf_pembuka}>
+	<PageBanner
+		title={judul}
+		image="/images/slider/slider-iaipi-1.jpg"
+		imageAlt="Gedung kampus Institut Agama Islam PERSIS Garut di Tarogong Kidul"
+		breadcrumbs={[{ text: "Beranda", url: "/" }, { text: "Tentang" }]}
+		badge={lencana || undefined}
+		summary={p?.paragraf_pembuka}
+	/>
+
+	{
+		!p ? (
+			<section class="section">
+				<div class="wadah">
+					<p class="kosong">Profil institusi belum diisi.</p>
+				</div>
+			</section>
+		) : (
+			<>
+				<section class="section mengenal" aria-labelledby="mengenal-judul">
+					<div class="wadah">
+						<KepalaSection judul="Mengenal *IAI PERSIS Garut*" teks={paragrafTentang[0]} id="mengenal-judul" />
+						<div class="mengenal-grid">
+							{p.gambar_tentang && (
+								<figure class="foto-tentang">
+									<img src={mediaSrc(p.gambar_tentang)} alt={mediaAlt(p.gambar_tentang, p.nama)} loading="lazy" width="640" height="494" />
+									{(p.lencana_judul || p.lencana_subjudul) && (
+										<figcaption class="stiker">
+											{p.lencana_judul && <span class="stiker-atas">{p.lencana_judul}</span>}
+											{p.lencana_subjudul && <span class="stiker-bawah">{p.lencana_subjudul}</span>}
+										</figcaption>
+									)}
+								</figure>
+							)}
+							<div class="poin-wrap">
+								{paragrafTentang.slice(1).map((para) => (
+									<p class="paragraf">{para}</p>
+								))}
+								{poin.length > 0 && (
+									<ul class="poin">
+										{poin.map((x) => (
+											<li>
+												<span class="ikon-poin">
+													<Ikon nama={x.ikon} ukuran={26} />
+												</span>
+												<span>
+													<h3>{x.judul}</h3>
+													{x.deskripsi && <p>{x.deskripsi}</p>}
+												</span>
+											</li>
+										))}
+									</ul>
+								)}
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<PitaStatistik items={statistik} label="IAI PERSIS Garut dalam angka" min={240} />
+
+				{keunggulan.length > 0 && (
+					<section class="section" aria-labelledby="keunggulan-judul">
+						<div class="wadah">
+							<KepalaSection
+								judul="Mengapa Memilih *IAIP*?"
+								teks="Keunggulan yang menjadikan IAI PERSIS Garut pilihan untuk menuntut ilmu dan mengembangkan diri."
+								id="keunggulan-judul"
+							/>
+							<ul class="grid-auto daftar-kartu" style="--min: 300px">
+								{keunggulan.map((k) => (
+									<li>
+										<KartuIkon judul={k.judul ?? ""} teks={k.deskripsi} ikon={k.ikon} />
+									</li>
+								))}
+							</ul>
+						</div>
+					</section>
+				)}
+
+				<SectionHijau tua labelledby="visi-judul" class="visi-misi">
+					<JudulSorot text="Visi, Misi, dan *Tujuan*" id="visi-judul" />
+					<hr class="pemisah garis-terang" />
+					{p.visi && (
+						<figure class="kartu-visi">
+							<span class="label-visi">Visi</span>
+							<blockquote>“{p.visi}”</blockquote>
+							{p.moto && (
+								<figcaption>
+									<span class="label-moto">Moto</span> {p.moto}
+								</figcaption>
+							)}
+						</figure>
+					)}
+					{tabVisi.length > 0 && (
+						<div data-tabs class="tab-visi">
+							<div class="tab-grup" role="tablist" aria-label="Misi, tujuan, dan nilai">
+								{tabVisi.map((t, i) => (
+									<button
+										type="button"
+										class="tab"
+										role="tab"
+										id={`tab-${t.kunci}`}
+										aria-controls={`panel-${t.kunci}`}
+										aria-selected={i === 0 ? "true" : "false"}
+										tabindex={i === 0 ? 0 : -1}
+									>
+										{t.label}
+									</button>
+								))}
+							</div>
+							{tabVisi.map((t, i) => (
+								<div role="tabpanel" id={`panel-${t.kunci}`} aria-labelledby={`tab-${t.kunci}`} hidden={i !== 0} tabindex="0">
+									<ol class:list={["daftar-visi", { ringkas: t.kunci === "nilai" }]}>
+										{t.items.map((x, n) => (
+											<li>
+												<span class="nomor-visi" aria-hidden="true">
+													{String(n + 1).padStart(2, "0")}
+												</span>
+												<span class="ikon-visi">
+													<Ikon nama={x.ikon} ukuran={22} />
+												</span>
+												<p>{x.teks}</p>
+											</li>
+										))}
+									</ol>
+								</div>
+							))}
+						</div>
+					)}
+				</SectionHijau>
+
+				{(p.akreditasi_peringkat || sertifikat.length > 0) && (
+					<section class="section akreditasi" aria-labelledby="akreditasi-judul">
+						<div class="wadah">
+							<KepalaSection judul="Akreditasi *BAN-PT*" id="akreditasi-judul">
+								{p.akreditasi_keterangan && <p class="lead" set:html={tebal(p.akreditasi_keterangan)} />}
+							</KepalaSection>
+							<div class="akreditasi-grid">
+								<div class="panel-peringkat">
+									<span class="cincin" aria-hidden="true" />
+									<div class="peringkat-utama">
+										<span class="ikon-peringkat">
+											<Ikon nama="award" ukuran={34} />
+										</span>
+										<div>
+											<p class="label-peringkat">Terakreditasi</p>
+											{p.akreditasi_peringkat && <p class="nilai-peringkat">{p.akreditasi_peringkat}</p>}
+											<p class="ket-peringkat">Badan Akreditasi Nasional Perguruan Tinggi</p>
+										</div>
+									</div>
+									{statAkreditasi.length > 0 && (
+										<ul class="stat-akreditasi">
+											{statAkreditasi.map((s) => (
+												<li>
+													<span class="angka-akr">{s.angka}</span>
+													<span>{s.label}</span>
+												</li>
+											))}
+										</ul>
+									)}
+								</div>
+								{sertifikat.length > 0 && (
+									<ul class="grid-auto daftar-sertifikat" style="--min: 240px">
+										{sertifikat.map((s) => (
+											<li class="kartu sertifikat">
+												{s.gambar && (
+													<span class="bingkai-sertifikat">
+														<img src={mediaSrc(s.gambar)} alt={mediaAlt(s.gambar, `Sertifikat akreditasi ${s.program}`)} loading="lazy" width="242" height="171" />
+													</span>
+												)}
+												<div class="kartu-isi">
+													<span class="label-sert">{s.judul}</span>
+													<h3>{s.program}</h3>
+													<p class="meta-sert">
+														{s.peringkat && (
+															<span class="pil-peringkat">
+																{s.peringkat}
+																{s.label_peringkat && ` · ${s.label_peringkat}`}
+															</span>
+														)}
+														{s.masa_berlaku && <span>{s.masa_berlaku}</span>}
+													</p>
+													{s.nomor_sk && <p class="sk">SK: {s.nomor_sk}</p>}
+													{s.tautan && (
+														<div class="aksi-sert">
+															<TombolPil href={s.tautan} ikon="external" ariaLabel={`Lihat sertifikat ${s.program}`}>
+																Lihat Sertifikat
+															</TombolPil>
+														</div>
+													)}
+												</div>
+											</li>
+										))}
+									</ul>
+								)}
+							</div>
+							{p.akreditasi_informasi && (
+								<p class="info-akreditasi">
+									{p.akreditasi_informasi}
+									{p.akreditasi_email && (
+										<>
+											{" "}
+											Untuk informasi lebih lanjut, hubungi <a href={`mailto:${p.akreditasi_email}`}>{p.akreditasi_email}</a>.
+										</>
+									)}
+								</p>
+							)}
+						</div>
+					</section>
+				)}
+
+				<section class="section bg-abu" aria-labelledby="jelajahi-judul">
+					<div class="wadah">
+						<KepalaSection judul="Jelajahi *IAIP*" teks="Kenali lebih dekat fakultas, lembaga, dan layanan yang mendukung kegiatan akademik di kampus." id="jelajahi-judul" />
+						<div class="grid-auto" style="--min: 280px">
+							{jelajahi.map((j) => (
+								<a href={j.href} class="kartu-foto">
+									<img src={j.gambar} alt="" loading="lazy" />
+									<span class="kartu-foto-isi">
+										<span class="kartu-foto-judul">{j.judul}</span>
+										<span class="pil-lihat">
+											Lihat semua <Ikon nama="chevron-right" ukuran={11} tebal={3} />
+										</span>
+									</span>
+								</a>
+							))}
+						</div>
+					</div>
+				</section>
+			</>
+		)
+	}
+</Base>
+
+<style>
+	/* ---- mengenal */
+	.mengenal-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+		gap: 40px 56px;
+		align-items: center;
+	}
+	.foto-tentang {
+		position: relative;
+		margin: 0;
+	}
+	.foto-tentang img {
+		width: 100%;
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+		border-radius: var(--radius-l);
+		box-shadow: var(--bayangan);
+	}
+	.stiker {
+		position: absolute;
+		right: 22px;
+		bottom: -18px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 14px 18px;
+		border-radius: var(--radius);
+		background: var(--putih);
+		box-shadow: 0 8px 20px rgba(3, 51, 29, 0.14);
+		transform: rotate(-4deg);
+		line-height: 1;
+		text-transform: uppercase;
+		font-style: italic;
+	}
+	.stiker-atas {
+		padding: 4px 9px;
+		border-radius: 4px;
+		background: var(--kuning);
+		transform: skewX(-8deg);
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 12px;
+		letter-spacing: 1.2px;
+		color: var(--judul);
+	}
+	.stiker-bawah {
+		margin-top: 6px;
+		font-weight: 900;
+		font-size: 20px;
+		color: var(--hijau);
+	}
+	.paragraf {
+		font-size: 17px;
+		line-height: 1.7;
+		margin-bottom: 18px;
+	}
+	.poin {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.poin li {
+		display: flex;
+		gap: 18px;
+		align-items: flex-start;
+		padding: 22px 0;
+	}
+	.poin li + li {
+		border-top: 1px solid var(--garis);
+	}
+	.ikon-poin {
+		flex: none;
+		width: 56px;
+		height: 56px;
+		border-radius: 50%;
+		background: var(--hijau);
+		color: var(--putih);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.poin h3 {
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 1.3;
+	}
+	.poin p {
+		margin-top: 6px;
+		font-size: 16px;
+		line-height: 1.6;
+	}
+
+	.daftar-kartu {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.daftar-kartu > li {
+		display: flex;
+	}
+	.daftar-kartu > li > :global(.kartu) {
+		flex: 1;
+	}
+
+	/* ---- visi misi */
+	.garis-terang {
+		border-top-color: rgba(255, 255, 255, 0.22);
+	}
+	.kartu-visi {
+		margin: 8px 0 44px;
+		padding: clamp(26px, 4vw, 48px);
+		border-radius: var(--radius-xl);
+		background: rgba(0, 0, 0, 0.28);
+	}
+	.label-visi,
+	.label-moto {
+		display: inline-block;
+		padding: 5px 14px;
+		border-radius: 999px;
+		background: var(--kuning);
+		color: var(--judul);
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 13px;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		font-style: normal;
+	}
+	.kartu-visi blockquote {
+		margin: 18px 0 0;
+		font-weight: 800;
+		font-style: italic;
+		font-size: clamp(22px, 2.6vw, 32px);
+		line-height: 1.35;
+		color: var(--putih);
+	}
+	.kartu-visi figcaption {
+		margin-top: 24px;
+		padding-top: 20px;
+		border-top: 1px solid rgba(255, 255, 255, 0.22);
+		font-size: 17px;
+		color: var(--hijau-muda);
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 10px 14px;
+	}
+	.label-moto {
+		background: var(--krem);
+	}
+	.daftar-visi {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+		gap: 20px;
+	}
+	.daftar-visi.ringkas {
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+	}
+	.daftar-visi li {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+		padding: 26px 24px 28px;
+		border-radius: var(--radius-l);
+		background: var(--putih);
+		color: var(--teks);
+	}
+	.nomor-visi {
+		position: absolute;
+		right: 22px;
+		top: 18px;
+		font-weight: 900;
+		font-size: 34px;
+		line-height: 1;
+		color: var(--hijau-muda);
+	}
+	.ikon-visi {
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		background: var(--kuning);
+		color: var(--judul);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.daftar-visi p {
+		font-size: 16px;
+		line-height: 1.65;
+	}
+	.ringkas p {
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 18px;
+		color: var(--judul);
+	}
+
+	/* ---- akreditasi */
+	.akreditasi-grid {
+		display: grid;
+		gap: 30px;
+	}
+	.panel-peringkat {
+		position: relative;
+		overflow: hidden;
+		padding: 30px clamp(24px, 4vw, 44px);
+		border-radius: var(--radius-xl);
+		background: var(--hijau);
+		color: var(--putih);
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 24px 48px;
+	}
+	.panel-peringkat > :not(.cincin) {
+		position: relative;
+	}
+	.cincin {
+		position: absolute;
+		right: -90px;
+		bottom: -110px;
+		width: 260px;
+		height: 260px;
+		border-radius: 50%;
+		border: 40px solid rgba(255, 255, 255, 0.07);
+	}
+	.peringkat-utama {
+		display: flex;
+		align-items: center;
+		gap: 22px;
+	}
+	.ikon-peringkat {
+		flex: none;
+		width: 72px;
+		height: 72px;
+		border-radius: 50%;
+		background: var(--kuning);
+		color: var(--judul);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.label-peringkat {
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 13px;
+		letter-spacing: 1.4px;
+		text-transform: uppercase;
+		color: var(--hijau-muda);
+	}
+	.nilai-peringkat {
+		margin-top: 4px;
+		font-weight: 900;
+		font-size: clamp(34px, 4vw, 44px);
+		line-height: 1.1;
+		color: var(--kuning);
+	}
+	.ket-peringkat {
+		margin-top: 4px;
+		font-size: 15px;
+		color: var(--hijau-muda);
+	}
+	.stat-akreditasi {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 16px 40px;
+	}
+	.stat-akreditasi li {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		font-size: 16px;
+		max-width: 220px;
+	}
+	.angka-akr {
+		font-weight: 900;
+		font-size: 44px;
+		line-height: 1;
+		color: var(--kuning);
+	}
+	.daftar-sertifikat {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 24px;
+	}
+	.sertifikat {
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+	}
+	.bingkai-sertifikat {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 170px;
+		padding: 14px;
+		background: var(--abu);
+	}
+	.bingkai-sertifikat img {
+		max-height: 100%;
+		width: auto;
+		object-fit: contain;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+	}
+	.sertifikat .kartu-isi {
+		gap: 8px;
+	}
+	.label-sert {
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 12px;
+		letter-spacing: 1.2px;
+		text-transform: uppercase;
+		color: var(--hijau);
+	}
+	.meta-sert {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px 12px;
+		font-size: 14px;
+		color: var(--redup);
+	}
+	.pil-peringkat {
+		padding: 3px 11px;
+		border-radius: 999px;
+		border: 1px solid var(--kuning);
+		background: var(--krem);
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 13px;
+		color: var(--judul);
+	}
+	.sk {
+		font-size: 13px;
+		color: var(--redup);
+		overflow-wrap: anywhere;
+	}
+	.aksi-sert {
+		margin-top: auto;
+		padding-top: 12px;
+	}
+	.info-akreditasi {
+		margin-top: 36px;
+		padding: 22px 26px;
+		border-left: 4px solid var(--kuning);
+		border-radius: 0 var(--radius) var(--radius) 0;
+		background: var(--abu);
+		font-size: 16px;
+		line-height: 1.6;
+	}
+
+	/* ---- jelajahi */
+	.pil-lihat {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		min-height: 44px;
+		padding: 0 20px;
+		border-radius: 999px;
+		background: var(--kuning);
+		color: var(--judul);
+		font-family: var(--font-ui);
+		font-size: 14px;
+	}
+	.kartu-foto:hover .pil-lihat {
+		background: var(--kuning-hover);
+	}
+
+	@media (max-width: 900px) {
+		.mengenal-grid {
+			grid-template-columns: minmax(0, 1fr);
+		}
+		.stiker {
+			right: 12px;
+		}
+	}
+</style>

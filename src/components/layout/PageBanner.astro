@@ -1,0 +1,39 @@
+---
+// Banner halaman dalam: foto full-bleed + gradasi gelap, remah roti, pil, judul besar.
+interface Crumb {
+	text: string;
+	url?: string | null;
+}
+
+interface Props {
+	title: string;
+	image?: string;
+	imageAlt?: string;
+	breadcrumbs?: Crumb[];
+	badge?: string;
+	summary?: string | null;
+}
+
+const { title, image = "/images/slider/slider-iaipi-1.jpg", imageAlt = "", breadcrumbs = [], badge, summary } = Astro.props;
+---
+
+<section class="banner">
+	<img src={image} alt={imageAlt} fetchpriority="high" />
+	<div class="wadah">
+		{
+			breadcrumbs.length > 0 && (
+				<nav aria-label="Remah roti">
+					<ol class="remah">
+						{breadcrumbs.map((item) => (
+							<li aria-current={item.url ? undefined : "page"}>{item.url ? <a href={item.url}>{item.text}</a> : item.text}</li>
+						))}
+					</ol>
+				</nav>
+			)
+		}
+		{badge && <span class="lencana">{badge}</span>}
+		<h1>{title}</h1>
+		{summary && <p class="ringkasan">{summary}</p>}
+		<slot />
+	</div>
+</section>

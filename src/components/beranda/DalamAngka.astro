@@ -1,0 +1,157 @@
+---
+// "IAIP dalam Angka": foto latar full-bleed + panel kaca berisi angka beserta ikon
+// (beranda.angka_* ; ikon dipilih dari field select `ikon`).
+import JudulSorot from "@/components/ui/JudulSorot.astro";
+import { mediaAlt, mediaSrc, type MediaField } from "@/lib/cms";
+import type { AngkaIkon, IkonAngka } from "@/lib/beranda";
+
+interface Props {
+	judul?: string;
+	teks?: string;
+	latar?: MediaField;
+	angka: AngkaIkon[];
+}
+
+const { judul, teks, latar } = Astro.props;
+const angka = Astro.props.angka.filter((a) => a.nilai || a.label);
+const latarSrc = mediaSrc(latar);
+
+// Path SVG (viewBox 24×24, isi putih) per pilihan ikon.
+const IKON: Record<IkonAngka, string[]> = {
+	toga: ["M12 3L1 8.5 12 14l11-5.5z", "M5.5 11.4v4.3c0 2 2.9 3.8 6.5 3.8s6.5-1.8 6.5-3.8v-4.3L12 14.7z", "M21.2 9.4h1.3v6.2h-1.3z", "M20.55 16.4a1.3 1.3 0 1 0 2.6 0 1.3 1.3 0 1 0-2.6 0"],
+	buku: ["M5 3h12.5A1.5 1.5 0 0 1 19 4.5V17H6.5a1.5 1.5 0 0 0 0 3H19v1.5H6.5A3.5 3.5 0 0 1 3 18V5a2 2 0 0 1 2-2z", "M8 6.5h8v1.6H8z"],
+	gedung: ["M12 1.8L2 6.8v1.9h20V6.8z", "M4 10.2h2.6v7.6H4zM8.5 10.2h2.6v7.6H8.5zM12.9 10.2h2.6v7.6h-2.6zM17.4 10.2H20v7.6h-2.6z", "M2 19.3h20v2.9H2z"],
+	jurnal: ["M1.5 5.2C4.6 3.8 8.2 4 11.2 5.9v14.6c-3-1.8-6.6-2-9.7-.8z", "M22.5 5.2c-3.1-1.4-6.7-1.2-9.7.7v14.6c3-1.8 6.6-2 9.7-.8z"],
+	mahasiswa: [
+		"M4.8 7.2a3.7 3.7 0 1 0 7.4 0 3.7 3.7 0 1 0-7.4 0",
+		"M1 20.5c0-4.1 3.2-7.1 7.5-7.1s7.5 3 7.5 7.1z",
+		"M14.4 8.4a2.9 2.9 0 1 0 5.8 0 2.9 2.9 0 1 0-5.8 0",
+		"M17.6 13.1c3.1.1 5.4 2.6 5.4 5.9v1.5h-5.4c-.1-2.7-1.1-5.1-2.8-6.8.9-.4 1.8-.6 2.8-.6z",
+	],
+	dosen: [
+		"M9.6 3h12.6v9.5H9.6zM11.4 4.8v5.9h9V4.8z",
+		"M2.7 8.6a2.9 2.9 0 1 0 5.8 0 2.9 2.9 0 1 0-5.8 0",
+		"M1.2 21.5v-5.2c0-2.1 1.7-3.8 3.8-3.8h2.6l4.9-3.3 1.2 1.6-4.4 4.3v6.4z",
+	],
+	staf: ["M8.5 3.5h7A1.5 1.5 0 0 1 17 5v2h3.5A1.5 1.5 0 0 1 22 8.5v4H2v-4A1.5 1.5 0 0 1 3.5 7H7V5a1.5 1.5 0 0 1 1.5-1.5zm.3 1.8V7h6.4V5.3z", "M2 14.2h8.2v1.6h3.6v-1.6H22V19a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 19z"],
+	bintang: ["M12 1.8l3.1 6.4 7 1-5.1 4.9 1.2 7L12 17.8l-6.2 3.3 1.2-7L1.9 9.2l7-1z"],
+};
+---
+
+{
+	angka.length > 0 && (
+		<section id="angka" class="angka" aria-labelledby="angka-judul">
+			<div class="wadah kepala">
+				<JudulSorot text={judul || "Dalam Angka"} id="angka-judul" />
+				{teks && <p class="lead">{teks}</p>}
+			</div>
+			<div class="panggung">
+				{latarSrc && <img class="latar" src={latarSrc} alt={mediaAlt(latar, "")} loading="lazy" decoding="async" />}
+				<div class="wadah">
+					<ul class="panel" role="list">
+						{angka.map((a) => (
+							<li>
+								<svg aria-hidden="true" viewBox="0 0 24 24" width="56" height="56" fill="currentColor" fill-rule="evenodd">
+									{(IKON[a.ikon as IkonAngka] ?? IKON.bintang).map((d) => (
+										<path d={d} />
+									))}
+								</svg>
+								<span class="nilai">{a.nilai}</span>
+								<span class="label">{a.label}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+			</div>
+		</section>
+	)
+}
+
+<style>
+	.kepala {
+		padding-block: 120px 78px;
+	}
+	.kepala .lead {
+		margin-top: 18px;
+	}
+	.panggung {
+		position: relative;
+		overflow: hidden;
+		background: #0e1a13;
+		padding: 120px 0;
+		isolation: isolate;
+	}
+	.panggung::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background: rgba(0, 0, 0, 0.35);
+	}
+	.latar {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: -2;
+	}
+	.panel {
+		list-style: none;
+		margin: 0;
+		padding: clamp(28px, 4.2vw, 60px) clamp(12px, 2.8vw, 40px) clamp(32px, 5vw, 72px);
+		border-radius: var(--radius-xl);
+		background: rgba(0, 0, 0, 0.38);
+		backdrop-filter: blur(6px);
+		-webkit-backdrop-filter: blur(6px);
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		column-gap: clamp(24px, 7.5vw, 104px);
+		row-gap: clamp(32px, 5vw, 72px);
+		text-align: center;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+	}
+	.panel li {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		color: var(--putih);
+	}
+	.nilai {
+		margin-top: 20px;
+		font-weight: 900;
+		font-size: 40px;
+		line-height: 1.2;
+		color: var(--kuning);
+	}
+	.label {
+		margin-top: 2px;
+		font-family: var(--font-ui);
+		font-size: 19px;
+		line-height: 1.4;
+	}
+	@media (max-width: 760px) {
+		.panel {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+	@media (max-width: 600px) {
+		.kepala {
+			padding-block: 56px 36px;
+		}
+		.panggung {
+			padding: 48px 0;
+		}
+		.panel svg {
+			width: 44px;
+			height: 44px;
+		}
+		.nilai {
+			margin-top: 12px;
+			font-size: 32px;
+		}
+		.label {
+			font-size: 16px;
+		}
+	}
+</style>

@@ -1,0 +1,222 @@
+---
+// "Jurnal Ilmiah IAIP": kepala section + section hijau berlingkaran dekoratif dengan carousel
+// kartu jurnal (koleksi `jurnal`; interaksi data-carousel di src/scripts/ui.ts).
+import JudulSorot from "@/components/ui/JudulSorot.astro";
+import { linkAttrs, mediaAlt, mediaSrc } from "@/lib/cms";
+import type { Entri, Jurnal } from "@/lib/beranda";
+
+interface Props {
+	judul?: string;
+	teks?: string;
+	entries: Entri<Jurnal>[];
+}
+
+const { judul, teks, entries } = Astro.props;
+const banyak = entries.length > 1;
+---
+
+{
+	entries.length > 0 && (
+		<section id="jurnal" class="jurnal" aria-labelledby="jurnal-judul">
+			<div class="wadah kepala">
+				<JudulSorot text={judul || "Jurnal Ilmiah"} id="jurnal-judul" />
+				{teks && <p class="lead">{teks}</p>}
+			</div>
+			<div class="panggung">
+				<span class="bulat b1" aria-hidden="true" />
+				<span class="bulat b2" aria-hidden="true" />
+				<span class="bulat b3" aria-hidden="true" />
+				<span class="bulat b4" aria-hidden="true" />
+				<div class="wadah">
+					<div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Daftar jurnal ilmiah">
+						<ul class="carousel-jalur jalur" role="list">
+							{entries.map((j) => {
+								const sampul = mediaSrc(j.data.sampul, "", 500);
+								return (
+									<li class="kj">
+										<div class="sampul">{sampul && <img src={sampul} alt={mediaAlt(j.data.sampul, `Sampul jurnal ${j.data.nama}`)} loading="lazy" decoding="async" />}</div>
+										<h3>{j.data.nama}</h3>
+										{j.data.bidang && <p>{j.data.bidang}</p>}
+										{j.data.url && (
+											<a href={j.data.url} class="kunjungi" aria-label={`Kunjungi jurnal ${j.data.nama}`} {...linkAttrs(j.data.url)}>
+												<svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+													<path d="M7 17L17 7M9 7h8v8" />
+												</svg>
+											</a>
+										)}
+									</li>
+								);
+							})}
+						</ul>
+						{banyak && (
+							<>
+								<button type="button" class="panah-bulat carousel-prev panah" aria-label="Jurnal sebelumnya" data-prev>
+									<svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M15 5l-7 7 7 7" />
+									</svg>
+								</button>
+								<button type="button" class="panah-bulat carousel-next panah" aria-label="Jurnal berikutnya" data-next>
+									<svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M9 5l7 7-7 7" />
+									</svg>
+								</button>
+							</>
+						)}
+					</div>
+				</div>
+			</div>
+		</section>
+	)
+}
+
+<style>
+	.kepala {
+		padding-block: 120px 76px;
+	}
+	.kepala .lead {
+		margin-top: 18px;
+	}
+	.panggung {
+		position: relative;
+		overflow: hidden;
+		background: var(--hijau);
+		padding: 131px 0;
+	}
+	.bulat {
+		position: absolute;
+		border-radius: 50%;
+		pointer-events: none;
+	}
+	.b1 {
+		left: calc(50% + 208px);
+		top: -264px;
+		width: 644px;
+		height: 644px;
+		border: 70px solid rgba(255, 255, 255, 0.07);
+	}
+	.b2 {
+		left: calc(50% + 330px);
+		top: -142px;
+		width: 400px;
+		height: 400px;
+		background: rgba(255, 255, 255, 0.07);
+	}
+	.b3 {
+		left: calc(50% - 749px);
+		bottom: -261px;
+		width: 542px;
+		height: 542px;
+		border: 48px solid rgba(255, 255, 255, 0.07);
+	}
+	.b4 {
+		left: calc(50% - 655px);
+		bottom: -167px;
+		width: 354px;
+		height: 354px;
+		background: rgba(255, 255, 255, 0.07);
+	}
+	.carousel {
+		position: relative;
+	}
+	.jalur {
+		list-style: none;
+		margin: 0;
+		padding: 6px 0 12px;
+		gap: 31px;
+		--kolom: calc((100% - 62px) / 3);
+	}
+	.kj {
+		position: relative;
+		min-height: 463px;
+		padding: 24px 24px 70px;
+		border-radius: var(--radius-xl);
+		background: var(--putih);
+		box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+		text-align: center;
+	}
+	.sampul {
+		height: 170px;
+		padding: 12px;
+		border-radius: var(--radius);
+		background: #f3f6f4;
+	}
+	.sampul img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
+	.kj h3 {
+		margin-top: 24px;
+		font-weight: 800;
+		font-size: 20px;
+		line-height: 1.25;
+		color: var(--judul);
+	}
+	.kj p {
+		margin-top: 8px;
+		font-size: 16px;
+		line-height: 1.5;
+		letter-spacing: 0.3px;
+		color: var(--teks);
+	}
+	.kunjungi {
+		position: absolute;
+		right: 12px;
+		bottom: 10px;
+		width: 44px;
+		height: 44px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--judul);
+		isolation: isolate;
+	}
+	.kunjungi::before {
+		content: "";
+		position: absolute;
+		inset: 2px;
+		z-index: -1;
+		border-radius: 50%;
+		background: var(--kuning);
+		transition: background-color 0.15s ease;
+	}
+	.kunjungi:hover::before {
+		background: var(--kuning-hover);
+	}
+	.kunjungi:hover {
+		color: var(--judul);
+	}
+	.panah {
+		top: 196px;
+		transform: none;
+		background: rgba(255, 255, 255, 0.78);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+	}
+	.panah:hover {
+		background: var(--putih);
+	}
+	@media (max-width: 900px) {
+		.jalur {
+			--kolom: calc((100% - 31px) / 2);
+		}
+	}
+	@media (max-width: 600px) {
+		.kepala {
+			padding-block: 56px 36px;
+		}
+		.panggung {
+			padding: 56px 0;
+		}
+		.jalur {
+			--kolom: 85%;
+			gap: 20px;
+		}
+		.kj {
+			min-height: 400px;
+		}
+		.panah {
+			top: 160px;
+		}
+	}
+</style>

@@ -1,0 +1,84 @@
+---
+// Kartu bergambar gaya "Lokasi Kampus" Unpad: foto 170px, judul, isi (slot), tombol pil
+// "Selengkapnya" di dasar kartu. Dipakai untuk kartu fakultas dan program studi.
+interface Props {
+	judul: string;
+	href: string;
+	gambar?: string;
+	alt?: string;
+	/** Label aksesibel tombol, mis. "Selengkapnya tentang Fakultas Tarbiyah". */
+	labelTautan?: string;
+	tag?: "h2" | "h3";
+}
+
+const { judul, href, gambar, alt = "", labelTautan, tag: Tag = "h3" } = Astro.props;
+---
+
+<article class="kartu kartu-gambar-isi">
+	{gambar ? <img class="kartu-gambar" src={gambar} alt={alt} width="369" height="208" loading="lazy" /> : <div class="kartu-gambar kosong-gambar" aria-hidden="true" />}
+	<div class="isi">
+		<slot name="atas" />
+		<Tag class="judul">{judul}</Tag>
+		<slot />
+		<div class="aksi">
+			<a class="tautan-pil" href={href} aria-label={labelTautan || `Selengkapnya tentang ${judul}`}>
+				<span class="btn btn-kuning btn-kecil">
+					Selengkapnya
+					<svg aria-hidden="true" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+				</span>
+			</a>
+		</div>
+	</div>
+</article>
+
+<style>
+	.kartu-gambar-isi {
+		min-width: 0;
+		min-height: var(--tinggi-kartu, clamp(440px, 42.3vw, 511px));
+		border-radius: var(--radius-l);
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+	}
+	.kosong-gambar {
+		background: linear-gradient(135deg, var(--hijau) 0%, var(--hijau-tua) 100%);
+	}
+	.isi {
+		flex: 1 1 auto;
+		display: flex;
+		flex-direction: column;
+		padding: 20px 20px 21px;
+	}
+	.judul {
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 18px;
+		line-height: 1.3;
+		color: var(--judul);
+	}
+	.isi :global(p) {
+		margin-top: 12px;
+		font-size: 15px;
+		line-height: 24px;
+		letter-spacing: 0.3px;
+	}
+	.aksi {
+		margin-top: auto;
+		padding-top: 23px;
+	}
+	.tautan-pil {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+		padding: 5px 0;
+		color: var(--judul);
+	}
+	.tautan-pil:hover {
+		text-decoration: none;
+	}
+	.tautan-pil:hover .btn {
+		background: var(--kuning-hover);
+	}
+	.tautan-pil .btn {
+		gap: 8px;
+		padding: 0 18px 0 16px;
+	}
+</style>

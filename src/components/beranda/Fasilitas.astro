@@ -1,0 +1,171 @@
+---
+// Tab fasilitas + bento foto (beranda.fasilitas_tab_1/2 dan repeater fasilitas, field tab "1"/"2").
+// Pola bento per dua foto: baris ganjil kecil+besar, baris genap besar+kecil.
+// Interaksi tab: src/scripts/ui.ts (data-tabs, role=tab/tabpanel).
+import { mediaAlt, mediaSrc } from "@/lib/cms";
+import { pecahBaris, type FotoFasilitas } from "@/lib/beranda";
+
+interface Props {
+	tab1?: string;
+	tab2?: string;
+	items: FotoFasilitas[];
+}
+
+const { tab1, tab2 } = Astro.props;
+const foto = Astro.props.items.filter((f) => f.judul && mediaSrc(f.gambar));
+const tabs = [
+	{ no: "1", nama: tab1 || "Fasilitas", items: foto.filter((f) => (f.tab ?? "1") === "1") },
+	{ no: "2", nama: tab2 || "Lainnya", items: foto.filter((f) => f.tab === "2") },
+].filter((t) => t.items.length > 0);
+const pakaiTab = tabs.length > 1;
+---
+
+{
+	tabs.length > 0 && (
+		<section id="fasilitas" class="fasilitas" aria-labelledby="fasilitas-judul">
+			<div class="wadah" data-tabs>
+				<h2 id="fasilitas-judul" class="sr-only">
+					{tabs.map((t) => t.nama).join(" dan ")}
+				</h2>
+				{pakaiTab && (
+					<div class="tab-grup" role="tablist" aria-labelledby="fasilitas-judul">
+						{tabs.map((t, i) => (
+							<button
+								type="button"
+								class="tab"
+								role="tab"
+								id={`fasilitas-tab-${t.no}`}
+								aria-controls={`fasilitas-panel-${t.no}`}
+								aria-selected={i === 0 ? "true" : "false"}
+								tabindex={i === 0 ? 0 : -1}
+							>
+								{t.nama}
+							</button>
+						))}
+					</div>
+				)}
+				{tabs.map((t, i) => (
+					<div
+						class="panel"
+						id={`fasilitas-panel-${t.no}`}
+						role={pakaiTab ? "tabpanel" : undefined}
+						aria-labelledby={pakaiTab ? `fasilitas-tab-${t.no}` : undefined}
+						tabindex={pakaiTab ? 0 : undefined}
+						hidden={i > 0}
+					>
+						{pecahBaris(t.items, (sisa) => (sisa >= 2 ? 2 : 1)).map((baris, b) => (
+							<div class="baris">
+								{baris.map((f, j) => {
+									const besar = baris.length === 1 || (b % 2 === 0 ? j === 1 : j === 0);
+									return (
+										<figure class:list={["sel", { besar }]}>
+											<img src={mediaSrc(f.gambar)} alt={mediaAlt(f.gambar, f.judul)} loading="lazy" decoding="async" />
+											<figcaption>{f.judul}</figcaption>
+										</figure>
+									);
+								})}
+							</div>
+						))}
+					</div>
+				))}
+			</div>
+		</section>
+	)
+}
+
+<style>
+	.fasilitas {
+		padding: 60px 0 54px;
+	}
+	.tab-grup {
+		margin-bottom: 60px;
+	}
+	.tab {
+		font-family: var(--font-ui);
+		font-weight: 700;
+		line-height: 1;
+		transition: background-color 0.15s ease;
+	}
+	.tab[aria-selected="true"] {
+		font-weight: 900;
+	}
+	.tab:hover {
+		background: var(--kuning);
+	}
+	.panel {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+	}
+	.panel[hidden] {
+		display: none;
+	}
+	.baris {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 30px;
+	}
+	.sel {
+		position: relative;
+		flex: 366 1 0px;
+		min-width: 260px;
+		height: clamp(240px, 27.3vw, 330px);
+		margin: 0;
+		border-radius: var(--radius-xl);
+		overflow: hidden;
+		background: #0e1a13;
+		isolation: isolate;
+	}
+	.sel.besar {
+		flex: 764 1 0px;
+		min-width: 300px;
+	}
+	.sel img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: -2;
+	}
+	.sel::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 56%, rgba(0, 0, 0, 0.5) 72%, rgba(0, 0, 0, 0.82) 83%, rgba(0, 0, 0, 0.96) 93%, #000 100%);
+	}
+	figcaption {
+		position: absolute;
+		left: 20px;
+		right: 20px;
+		bottom: 30px;
+		font-weight: 800;
+		font-size: 22px;
+		line-height: 1.2;
+		color: var(--putih);
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+	}
+	@media (max-width: 600px) {
+		.fasilitas {
+			padding: 40px 0;
+		}
+		.tab-grup {
+			gap: 8px;
+			margin-bottom: 32px;
+		}
+		.tab {
+			padding: 0 14px;
+			font-size: 14px;
+		}
+		.panel,
+		.baris {
+			gap: 20px;
+		}
+		.sel,
+		.sel.besar {
+			min-width: 100%;
+			height: 240px;
+		}
+	}
+</style>

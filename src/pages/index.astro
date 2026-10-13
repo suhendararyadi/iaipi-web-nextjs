@@ -1,0 +1,87 @@
+---
+// Beranda: section mengikuti tata letak unpad.ac.id dengan warna & konten IAI PERSIS Garut.
+// Teks/gambar section dari koleksi `beranda` (entri "utama"); daftar dari koleksinya masing-masing.
+import Base from "@/layouts/Base.astro";
+import HeroSlider from "@/components/beranda/HeroSlider.astro";
+import TautanCepat from "@/components/beranda/TautanCepat.astro";
+import Pernyataan from "@/components/beranda/Pernyataan.astro";
+import PitaStatistik from "@/components/beranda/PitaStatistik.astro";
+import Studi from "@/components/beranda/Studi.astro";
+import BeritaSorotan from "@/components/beranda/BeritaSorotan.astro";
+import KehidupanMahasiswa from "@/components/beranda/KehidupanMahasiswa.astro";
+import FakultasBeranda from "@/components/beranda/FakultasBeranda.astro";
+import Fasilitas from "@/components/beranda/Fasilitas.astro";
+import NilaiKampus from "@/components/beranda/NilaiKampus.astro";
+import Sambutan from "@/components/beranda/Sambutan.astro";
+import DalamAngka from "@/components/beranda/DalamAngka.astro";
+import JurnalCarousel from "@/components/beranda/JurnalCarousel.astro";
+import InfoKampus from "@/components/beranda/InfoKampus.astro";
+import { getInfoKampus, mediaSrc, useCacheHint } from "@/lib/cms";
+import { getBeranda, getJurnal, getSlider } from "@/lib/beranda";
+import { getBeritaTerbaru, getDaftarBerita, kategoriBerita } from "@/lib/berita";
+import { getFakultasList, getProdiList } from "@/lib/akademik";
+import { getPimpinan } from "@/lib/pimpinan";
+import { getLayanan } from "@/lib/profil";
+
+const { beranda, cacheHint: berandaHint } = await getBeranda();
+
+const [infoRes, sliderRes, beritaRes, agendaRes, pengumumanRes, fakultasRes, prodiRes, pimpinanRes, jurnalRes, layananRes] = await Promise.all([
+	getInfoKampus(),
+	getSlider(),
+	// Ambil lebih banyak agar tetap cukup setelah agenda/pengumuman disisihkan.
+	getBeritaTerbaru(beranda.berita_jumlah + 8),
+	getDaftarBerita({ kategori: "agenda", limit: 4 }),
+	getDaftarBerita({ kategori: "pengumuman", limit: 5 }),
+	getFakultasList(),
+	getProdiList(),
+	getPimpinan(),
+	getJurnal(),
+	getLayanan(),
+]);
+
+useCacheHint(
+	Astro,
+	berandaHint,
+	infoRes.cacheHint,
+	sliderRes.cacheHint,
+	beritaRes.cacheHint,
+	agendaRes.cacheHint,
+	pengumumanRes.cacheHint,
+	fakultasRes.cacheHint,
+	prodiRes.cacheHint,
+	pimpinanRes.cacheHint,
+	jurnalRes.cacheHint,
+	layananRes.cacheHint,
+);
+
+const info = infoRes.info;
+const logo = mediaSrc(info.logo, "/images/logo.jpeg", 240);
+const kampus = info.nama_singkat || "IAI PERSIS Garut";
+
+// "IAIP Hari Ini" menampilkan berita biasa; agenda & pengumuman punya kolom sendiri di bawah.
+const KHUSUS = new Set(["agenda", "pengumuman"]);
+const berita = beritaRes.entries
+	.filter((b) => {
+		const kat = kategoriBerita(b);
+		return kat.length === 0 || kat.some((k) => !KHUSUS.has(k.slug));
+	})
+	.slice(0, beranda.berita_jumlah);
+---
+
+<Base>
+	<h1 class="sr-only">{info.nama}</h1>
+	<HeroSlider slides={sliderRes.entries} logo={logo} />
+	<TautanCepat items={beranda.tautan_cepat} />
+	<Pernyataan judul={beranda.pernyataan_judul} teks={beranda.pernyataan_teks} lencana={beranda.pernyataan_lencana} logo={logo} />
+	<PitaStatistik items={beranda.statistik} />
+	<Studi judul={beranda.studi_judul} teks={beranda.studi_teks} kartu={beranda.studi_kartu} />
+	<BeritaSorotan judul={beranda.berita_judul} teks={beranda.berita_teks} entries={berita} />
+	<KehidupanMahasiswa judul={beranda.kehidupan_judul} teks={beranda.kehidupan_teks} gambar={beranda.kehidupan_gambar} angka={beranda.kehidupan_angka} />
+	<FakultasBeranda judul={beranda.fakultas_judul} teks={beranda.fakultas_teks} fakultas={fakultasRes.entries} prodi={prodiRes.entries} />
+	<Fasilitas tab1={beranda.fasilitas_tab_1} tab2={beranda.fasilitas_tab_2} items={beranda.fasilitas} />
+	<NilaiKampus judul={beranda.nilai_judul} teks={beranda.nilai_teks} tab1={beranda.nilai_tab_1} tab2={beranda.nilai_tab_2} items={beranda.nilai_kartu} />
+	<Sambutan judul={beranda.sambutan_judul} latar={beranda.sambutan_latar} pimpinan={pimpinanRes.entries} kampus={kampus} />
+	<DalamAngka judul={beranda.angka_judul} teks={beranda.angka_teks} latar={beranda.angka_latar} angka={beranda.angka} />
+	<JurnalCarousel judul={beranda.jurnal_judul} teks={beranda.jurnal_teks} entries={jurnalRes.entries} />
+	<InfoKampus agenda={agendaRes.entries} pengumuman={pengumumanRes.entries} layanan={layananRes.entries} kampus={kampus} />
+</Base>

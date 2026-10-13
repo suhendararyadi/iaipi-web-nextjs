@@ -1,0 +1,109 @@
+---
+// Kartu statistik putih di atas pita hijau (pola "IAI PERSIS Garut dalam sorotan" di beranda).
+// Item tanpa nilai tidak ditampilkan; bila semua kosong, section tidak dirender.
+export interface ItemStatistik {
+	label: string;
+	nilai: string | number | null | undefined;
+	catatan?: string | null;
+	edit?: Record<string, string>;
+}
+
+interface Props {
+	items: ItemStatistik[];
+	label: string;
+	/** Lebar minimum kartu (px) sebelum turun baris. */
+	min?: number;
+}
+
+const { items, label, min = 280 } = Astro.props;
+const isi = items.filter((i) => i.nilai !== null && i.nilai !== undefined && String(i.nilai).trim() !== "");
+---
+
+{
+	isi.length > 0 && (
+		<section class="pita-statistik" aria-label={label}>
+			<div class="wadah">
+				<dl class:list={["grid-auto statistik-grid", { genap: isi.length % 2 === 0 }]} style={`--min: ${min}px`}>
+					{isi.map((s) => (
+						<div class="kartu-statistik">
+							<dt class="label">{s.label}</dt>
+							<dd class="nilai" {...s.edit}>
+								{s.nilai}
+							</dd>
+							{s.catatan && <dd class="catatan">{s.catatan}</dd>}
+						</div>
+					))}
+				</dl>
+			</div>
+		</section>
+	)
+}
+
+<style>
+	.statistik-grid {
+		margin: 0;
+		gap: 32px;
+	}
+	.kartu-statistik {
+		min-height: 318px;
+		padding: 24px 40px 40px;
+		gap: 0;
+		box-shadow: 0 6px 18px rgba(3, 51, 29, 0.05);
+	}
+	dd {
+		margin: 0;
+	}
+	.kartu-statistik .nilai {
+		margin-top: 17px;
+		font-family: var(--font-isi);
+		line-height: 1.2;
+		overflow-wrap: anywhere;
+	}
+	.kartu-statistik .catatan {
+		margin-top: 12px;
+		font-family: var(--font-ui);
+		font-size: 14px;
+		line-height: 1.45;
+	}
+	@media (max-width: 600px) {
+		.pita-statistik {
+			padding-block: 48px 56px;
+		}
+		/* Kartu bertumpuk: pita hijau memanjang di belakang tumpukan, bukan hanya di tengah. */
+		.pita-statistik::before {
+			top: 110px;
+			bottom: 110px;
+			height: auto;
+			transform: none;
+		}
+		.statistik-grid {
+			gap: 16px;
+		}
+		.kartu-statistik {
+			min-height: 150px;
+			padding: 22px 20px;
+			border-radius: var(--radius-l);
+		}
+		.kartu-statistik .nilai {
+			margin-top: 10px;
+			font-size: 36px;
+		}
+		.kartu-statistik .catatan {
+			margin-top: 8px;
+		}
+		/* Empat kartu: dua kolom agar tidak terlalu panjang. */
+		.statistik-grid.genap {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+		.genap .kartu-statistik {
+			min-height: 140px;
+			padding: 18px 12px;
+		}
+		.genap .kartu-statistik .label {
+			font-size: 15px;
+		}
+		.genap .kartu-statistik .nilai {
+			font-size: 30px;
+		}
+	}
+</style>

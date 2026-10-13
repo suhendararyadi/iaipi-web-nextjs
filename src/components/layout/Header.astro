@@ -1,0 +1,331 @@
+---
+// Bilah atas hijau + header putih (padanan header unpad.ac.id). Menu dari CMS:
+// "tautan_atas" (bilah atas) dan "utama" (navigasi, satu tingkat submenu).
+import { linkAttrs, type InfoKampus } from "@/lib/cms";
+
+interface MenuItem {
+	id: string;
+	label: string;
+	url: string;
+	target?: string;
+	children?: MenuItem[];
+}
+
+interface Props {
+	info: InfoKampus;
+	logo: string;
+	menu?: { items: MenuItem[] } | null;
+	tautanAtas?: { items: MenuItem[] } | null;
+}
+
+const { info, logo, menu, tautanAtas } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const attrs = (item: MenuItem) => (item.target === "_blank" ? { target: "_blank", rel: "noopener noreferrer" } : linkAttrs(item.url));
+const aktif = (item: MenuItem) =>
+	[item, ...(item.children ?? [])].some((i) => i.url && i.url !== "/" && !i.url.startsWith("http") && (path === i.url || path.startsWith(i.url + "/")));
+const namaPendek = info.nama_singkat || "IAI PERSIS Garut";
+---
+
+<div class="bilah-atas">
+	<div class="wadah bilah-atas-isi">
+		{
+			(tautanAtas?.items ?? []).map((item) => (
+				<a href={item.url} {...attrs(item)}>
+					{item.label}
+				</a>
+			))
+		}
+		<a href="/pmb" class="pil-beasiswa">Beasiswa</a>
+		<a href="/berita" class="tombol-cari" aria-label="Cari berita">
+			<svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L20 20"></path></svg>
+		</a>
+	</div>
+</div>
+
+<header class="header">
+	<div class="wadah header-isi">
+		<a href="/" class="merek" aria-label={`${info.nama} — beranda`}>
+			<img src={logo} alt="" width="42" height="58" />
+			<span class="merek-teks">
+				<span class="merek-nama">IAI<span class="sorot"> PERSIS</span></span>
+				<span class="merek-kota">Garut</span>
+			</span>
+		</a>
+		<span class="pemisah-vertikal" aria-hidden="true"></span>
+		<button class="tombol-menu" type="button" aria-expanded="false" aria-controls="menu-utama" data-menu-toggle>
+			<svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+			<span class="sr-only">Menu</span>
+		</button>
+		<nav id="menu-utama" class="nav" aria-label="Menu utama" data-open="false">
+			<ul class="nav-daftar">
+				{
+					(menu?.items ?? []).map((item) =>
+						item.children && item.children.length > 0 ? (
+							<li class="nav-item">
+								<button type="button" class:list={["nav-tautan", { aktif: aktif(item) }]} aria-expanded="false" data-submenu-toggle>
+									{item.label}
+									<svg aria-hidden="true" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
+								</button>
+								<ul class="submenu">
+									{item.children.map((child) => (
+										<li>
+											<a href={child.url} {...attrs(child)}>
+												{child.label}
+											</a>
+										</li>
+									))}
+								</ul>
+							</li>
+						) : (
+							<li class="nav-item">
+								<a href={item.url} class:list={["nav-tautan", { aktif: aktif(item) }]} {...attrs(item)}>
+									{item.label}
+								</a>
+							</li>
+						),
+					)
+				}
+			</ul>
+			<a href="/pmb" class="btn btn-kuning tombol-daftar">Daftar</a>
+		</nav>
+	</div>
+	<span class="sr-only">{namaPendek}</span>
+</header>
+
+<style>
+	.bilah-atas {
+		background: var(--hijau);
+		color: var(--putih);
+		font-size: 13px;
+		letter-spacing: 0.5px;
+	}
+	.bilah-atas-isi {
+		min-height: 40px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px 28px;
+		align-items: center;
+		justify-content: flex-end;
+		padding-block: 6px;
+	}
+	.bilah-atas a {
+		color: var(--putih);
+	}
+	.pil-beasiswa {
+		background: var(--krem);
+		color: var(--judul) !important;
+		border-radius: 999px;
+		padding: 5px 14px;
+		font-weight: 500;
+	}
+	.tombol-cari {
+		width: 26px;
+		height: 26px;
+		border-radius: 50%;
+		background: var(--putih);
+		color: var(--hijau) !important;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.header {
+		background: var(--putih);
+		box-shadow: 0 1px 0 #eef0ee;
+		position: sticky;
+		top: 0;
+		z-index: 50;
+	}
+	.header-isi {
+		display: flex;
+		align-items: center;
+		gap: 14px 24px;
+		padding-block: 14px;
+	}
+	.merek {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		color: var(--judul);
+		flex: none;
+	}
+	.merek:hover {
+		text-decoration: none;
+	}
+	.merek img {
+		width: 42px;
+		height: 58px;
+		object-fit: contain;
+	}
+	.merek-teks {
+		display: flex;
+		flex-direction: column;
+		line-height: 1.05;
+	}
+	.merek-nama {
+		font-weight: 900;
+		font-size: 30px;
+		letter-spacing: -0.5px;
+		color: var(--judul);
+	}
+	.merek-kota {
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 12.5px;
+		letter-spacing: 2.6px;
+		color: var(--redup);
+		text-transform: uppercase;
+	}
+	.pemisah-vertikal {
+		width: 1px;
+		height: 46px;
+		background: var(--garis);
+		flex: none;
+	}
+	.nav {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 24px;
+	}
+	.nav-daftar {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px 30px;
+		align-items: center;
+	}
+	.nav-item {
+		position: relative;
+	}
+	.nav-tautan {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		min-height: 44px;
+		padding: 0;
+		border: 0;
+		background: none;
+		cursor: pointer;
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 17px;
+		color: var(--judul);
+	}
+	.nav-tautan svg {
+		color: #9aa59f;
+		transition: transform 0.15s ease;
+	}
+	.nav-tautan.aktif,
+	.nav-tautan:hover {
+		color: var(--hijau);
+		text-decoration: none;
+	}
+	.nav-tautan[aria-expanded="true"] svg {
+		transform: rotate(180deg);
+	}
+	.submenu {
+		list-style: none;
+		margin: 0;
+		padding: 10px;
+		position: absolute;
+		top: 100%;
+		left: -14px;
+		min-width: 260px;
+		background: var(--putih);
+		border-radius: var(--radius);
+		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+		display: none;
+		z-index: 60;
+	}
+	.nav-item:hover .submenu,
+	.nav-item:focus-within .submenu,
+	.nav-tautan[aria-expanded="true"] + .submenu {
+		display: block;
+	}
+	.submenu a {
+		display: block;
+		padding: 10px 12px;
+		border-radius: var(--radius-s);
+		color: var(--judul);
+		font-family: var(--font-ui);
+		font-size: 15px;
+	}
+	.submenu a:hover {
+		background: var(--abu);
+		color: var(--hijau);
+		text-decoration: none;
+	}
+	.tombol-daftar {
+		padding-inline: 30px;
+		font-weight: 900;
+		font-size: 17px;
+	}
+	.tombol-menu {
+		display: none;
+		margin-left: auto;
+		width: 44px;
+		height: 44px;
+		border-radius: var(--radius-s);
+		border: 1px solid var(--garis);
+		background: var(--putih);
+		color: var(--judul);
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+	}
+
+	@media (max-width: 1080px) {
+		.pemisah-vertikal {
+			display: none;
+		}
+		.tombol-menu {
+			display: inline-flex;
+		}
+		.header-isi {
+			flex-wrap: wrap;
+		}
+		.nav {
+			display: none;
+			flex-basis: 100%;
+			flex-direction: column;
+			align-items: stretch;
+			padding-bottom: 8px;
+		}
+		.nav[data-open="true"] {
+			display: flex;
+		}
+		.nav-daftar {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0;
+		}
+		.nav-item {
+			border-bottom: 1px solid var(--garis);
+		}
+		.nav-tautan {
+			width: 100%;
+			justify-content: space-between;
+		}
+		.submenu {
+			position: static;
+			box-shadow: none;
+			padding: 0 0 10px 10px;
+			min-width: 0;
+		}
+		.nav-item:hover .submenu {
+			display: none;
+		}
+		.nav-tautan[aria-expanded="true"] + .submenu {
+			display: block;
+		}
+	}
+	@media (max-width: 560px) {
+		.bilah-atas-isi {
+			justify-content: center;
+			gap: 4px 16px;
+		}
+	}
+</style>

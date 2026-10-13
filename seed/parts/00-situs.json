@@ -1,0 +1,499 @@
+{
+	"meta": {
+		"name": "Institut Agama Islam PERSIS Garut",
+		"description": "Website resmi IAI PERSIS Garut (migrasi dari Next.js ke EmDash)",
+		"author": "Direktorat IT IAIPI"
+	},
+	"settings": {
+		"title": "Institut Agama Islam PERSIS Garut",
+		"tagline": "Kampus Saintek Dakwah Turats Islam",
+		"timezone": "Asia/Jakarta",
+		"dateFormat": "d MMMM yyyy",
+		"social": {
+			"facebook": "https://facebook.com/iaipigarut",
+			"instagram": "https://instagram.com/iaipi_garut",
+			"youtube": "https://youtube.com/@iaipigarut"
+		}
+	},
+	"collections": [
+		{
+			"slug": "info_kampus",
+			"label": "Info Kampus",
+			"labelSingular": "Info Kampus",
+			"description": "Data kontak & identitas yang tampil di header, footer, tombol WhatsApp, dan data terstruktur Google. Cukup satu entri (slug: utama).",
+			"group": "Pengaturan",
+			"sortOrder": 90,
+			"supports": [
+				"revisions"
+			],
+			"routable": false,
+			"titleField": "nama",
+			"fields": [
+				{
+					"slug": "nama",
+					"label": "Nama institusi",
+					"type": "string",
+					"required": true
+				},
+				{
+					"slug": "nama_singkat",
+					"label": "Nama singkat",
+					"type": "string"
+				},
+				{
+					"slug": "deskripsi",
+					"label": "Deskripsi singkat (footer & SEO)",
+					"type": "text"
+				},
+				{
+					"slug": "logo",
+					"label": "Logo",
+					"type": "image"
+				},
+				{
+					"slug": "alamat",
+					"label": "Alamat lengkap",
+					"type": "text"
+				},
+				{
+					"slug": "kota",
+					"label": "Kota/Kabupaten",
+					"type": "string"
+				},
+				{
+					"slug": "provinsi",
+					"label": "Provinsi",
+					"type": "string"
+				},
+				{
+					"slug": "kode_pos",
+					"label": "Kode pos",
+					"type": "string"
+				},
+				{
+					"slug": "telepon",
+					"label": "Telepon (format tampil, mis. +62 851 2312 3670)",
+					"type": "string"
+				},
+				{
+					"slug": "whatsapp",
+					"label": "Nomor WhatsApp (format internasional tanpa +, mis. 6285123123670)",
+					"type": "string"
+				},
+				{
+					"slug": "pesan_whatsapp",
+					"label": "Pesan awal WhatsApp",
+					"type": "string"
+				},
+				{
+					"slug": "email",
+					"label": "Email utama",
+					"type": "string"
+				},
+				{
+					"slug": "email_pmb",
+					"label": "Email PMB",
+					"type": "string"
+				},
+				{
+					"slug": "facebook",
+					"label": "Facebook",
+					"type": "url"
+				},
+				{
+					"slug": "instagram",
+					"label": "Instagram",
+					"type": "url"
+				},
+				{
+					"slug": "youtube",
+					"label": "YouTube",
+					"type": "url"
+				},
+				{
+					"slug": "link_pendaftaran",
+					"label": "Link pendaftaran PMB online",
+					"type": "url"
+				},
+				{
+					"slug": "link_siakad",
+					"label": "Link SIAKAD",
+					"type": "url"
+				},
+				{
+					"slug": "peta_embed",
+					"label": "URL embed Google Maps",
+					"type": "url"
+				},
+				{
+					"slug": "teks_hak_cipta",
+					"label": "Teks hak cipta footer",
+					"type": "string"
+				},
+				{
+					"slug": "teks_pengembang",
+					"label": "Teks pengembang footer",
+					"type": "string"
+				},
+				{
+					"slug": "google_analytics_id",
+					"label": "Google Analytics 4 Measurement ID (kosongkan untuk menonaktifkan)",
+					"type": "string"
+				}
+			]
+		},
+		{
+			"slug": "halaman",
+			"label": "Halaman",
+			"labelSingular": "Halaman",
+			"description": "Halaman teks bebas (mis. Beasiswa, Kehidupan Kampus). Alamat: /halaman/<slug>.",
+			"group": "Konten",
+			"sortOrder": 15,
+			"supports": [
+				"drafts",
+				"revisions",
+				"search",
+				"seo"
+			],
+			"urlPattern": "/halaman/{slug}",
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Judul",
+					"type": "string",
+					"required": true,
+					"searchable": true
+				},
+				{
+					"slug": "ringkasan",
+					"label": "Ringkasan",
+					"type": "text"
+				},
+				{
+					"slug": "gambar_banner",
+					"label": "Gambar banner",
+					"type": "image"
+				},
+				{
+					"slug": "content",
+					"label": "Isi",
+					"type": "portableText",
+					"searchable": true
+				}
+			]
+		}
+	],
+	"menus": [
+		{
+			"name": "tautan_atas",
+			"label": "Bilah atas (tautan cepat)",
+			"items": [
+				{
+					"type": "custom",
+					"label": "SIAKAD",
+					"url": "https://siakad.iaipersisgarut.ac.id",
+					"target": "_blank"
+				},
+				{
+					"type": "custom",
+					"label": "Perpustakaan",
+					"url": "https://library.iaipersisgarut.ac.id",
+					"target": "_blank"
+				},
+				{
+					"type": "custom",
+					"label": "Repository",
+					"url": "https://repository.iaipersisgarut.ac.id",
+					"target": "_blank"
+				},
+				{
+					"type": "custom",
+					"label": "Jurnal",
+					"url": "https://jurnal.iaipigarut.ac.id",
+					"target": "_blank"
+				},
+				{
+					"type": "custom",
+					"label": "LPPM",
+					"url": "https://lppm.iaipersisgarut.ac.id",
+					"target": "_blank"
+				},
+				{
+					"type": "custom",
+					"label": "LPM",
+					"url": "https://lpm.iaipersisgarut.ac.id",
+					"target": "_blank"
+				}
+			]
+		},
+		{
+			"name": "utama",
+			"label": "Menu Utama",
+			"items": [
+				{
+					"type": "custom",
+					"label": "Tentang IAIP",
+					"url": "/tentang",
+					"children": [
+						{
+							"type": "custom",
+							"label": "Profil Institut",
+							"url": "/tentang"
+						},
+						{
+							"type": "custom",
+							"label": "Pimpinan",
+							"url": "/pimpinan"
+						},
+						{
+							"type": "custom",
+							"label": "Lembaga dan Departemen",
+							"url": "/lembaga-departemen"
+						},
+						{
+							"type": "custom",
+							"label": "Kontak",
+							"url": "/kontak"
+						}
+					]
+				},
+				{
+					"type": "custom",
+					"label": "Akademik",
+					"url": "/fakultas",
+					"children": [
+						{
+							"type": "custom",
+							"label": "Fakultas",
+							"url": "/fakultas"
+						},
+						{
+							"type": "custom",
+							"label": "Fakultas Tarbiyah dan Keguruan",
+							"url": "/fakultas/tarbiyah"
+						},
+						{
+							"type": "custom",
+							"label": "Fakultas Ushuluddin",
+							"url": "/fakultas/ushuluddin"
+						},
+						{
+							"type": "custom",
+							"label": "Fakultas Ekonomi dan Bisnis Islam",
+							"url": "/fakultas/ekonomi"
+						},
+						{
+							"type": "custom",
+							"label": "Program Magister",
+							"url": "/magister"
+						}
+					]
+				},
+				{
+					"type": "custom",
+					"label": "Penelitian",
+					"url": "https://jurnal.iaipigarut.ac.id",
+					"target": "_blank",
+					"children": [
+						{
+							"type": "custom",
+							"label": "Jurnal Ilmiah",
+							"url": "https://jurnal.iaipigarut.ac.id",
+							"target": "_blank"
+						},
+						{
+							"type": "custom",
+							"label": "LPPM",
+							"url": "https://lppm.iaipersisgarut.ac.id",
+							"target": "_blank"
+						},
+						{
+							"type": "custom",
+							"label": "Repository",
+							"url": "https://repository.iaipersisgarut.ac.id",
+							"target": "_blank"
+						}
+					]
+				},
+				{
+					"type": "custom",
+					"label": "Mahasiswa",
+					"url": "/layanan",
+					"children": [
+						{
+							"type": "custom",
+							"label": "Layanan & Sistem Informasi",
+							"url": "/layanan"
+						},
+						{
+							"type": "custom",
+							"label": "SIAKAD",
+							"url": "https://siakad.iaipersisgarut.ac.id",
+							"target": "_blank"
+						},
+						{
+							"type": "custom",
+							"label": "Penerimaan Mahasiswa Baru",
+							"url": "/pmb"
+						}
+					]
+				},
+				{
+					"type": "custom",
+					"label": "Berita",
+					"url": "/berita",
+					"children": [
+						{
+							"type": "custom",
+							"label": "Berita",
+							"url": "/berita/kategori/berita"
+						},
+						{
+							"type": "custom",
+							"label": "Agenda",
+							"url": "/berita/kategori/agenda"
+						},
+						{
+							"type": "custom",
+							"label": "Pengumuman",
+							"url": "/berita/kategori/pengumuman"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "footer_sumber",
+			"label": "Footer: Sumber",
+			"items": [
+				{
+					"type": "custom",
+					"label": "Repository",
+					"url": "https://repository.iaipersisgarut.ac.id",
+					"target": "_blank"
+				},
+				{
+					"type": "custom",
+					"label": "Perpustakaan",
+					"url": "https://library.iaipersisgarut.ac.id",
+					"target": "_blank"
+				},
+				{
+					"type": "custom",
+					"label": "Jurnal Ilmiah",
+					"url": "https://jurnal.iaipigarut.ac.id",
+					"target": "_blank"
+				},
+				{
+					"type": "custom",
+					"label": "Berita & Agenda",
+					"url": "/berita"
+				},
+				{
+					"type": "custom",
+					"label": "RSS Berita",
+					"url": "/rss.xml"
+				}
+			]
+		},
+		{
+			"name": "footer_layanan",
+			"label": "Footer: Layanan",
+			"items": [
+				{
+					"type": "custom",
+					"label": "SIAKAD",
+					"url": "https://siakad.iaipersisgarut.ac.id",
+					"target": "_blank"
+				},
+				{
+					"type": "custom",
+					"label": "Penerimaan Mahasiswa Baru",
+					"url": "/pmb"
+				},
+				{
+					"type": "custom",
+					"label": "LPPM",
+					"url": "https://lppm.iaipersisgarut.ac.id",
+					"target": "_blank"
+				},
+				{
+					"type": "custom",
+					"label": "LPM",
+					"url": "https://lpm.iaipersisgarut.ac.id",
+					"target": "_blank"
+				},
+				{
+					"type": "custom",
+					"label": "Layanan & Sistem Informasi",
+					"url": "/layanan"
+				}
+			]
+		},
+		{
+			"name": "footer_profil",
+			"label": "Footer: Profil",
+			"items": [
+				{
+					"type": "custom",
+					"label": "Tentang IAIP",
+					"url": "/tentang"
+				},
+				{
+					"type": "custom",
+					"label": "Pimpinan",
+					"url": "/pimpinan"
+				},
+				{
+					"type": "custom",
+					"label": "Lembaga & Departemen",
+					"url": "/lembaga-departemen"
+				},
+				{
+					"type": "custom",
+					"label": "Fakultas & Magister",
+					"url": "/fakultas"
+				},
+				{
+					"type": "custom",
+					"label": "Kontak",
+					"url": "/kontak"
+				}
+			]
+		}
+	],
+	"content": {
+		"info_kampus": [
+			{
+				"id": "info-utama",
+				"slug": "utama",
+				"status": "published",
+				"data": {
+					"nama": "Institut Agama Islam PERSIS Garut",
+					"nama_singkat": "IAIPI Garut",
+					"deskripsi": "Institut Agama Islam PERSIS Garut adalah perguruan tinggi yang menyelenggarakan pendidikan akademik, profesional dalam kelompok disiplin agama, ilmu pengetahuan, teknologi dan kesenian.",
+					"logo": {
+						"$asset": "/images/logo.jpeg",
+						"alt": "Logo Institut Agama Islam PERSIS Garut"
+					},
+					"alamat": "Jl. Aruji Kartawinata No. 2, Tarogong Kidul, Kabupaten Garut, Jawa Barat 44151",
+					"kota": "Garut",
+					"provinsi": "Jawa Barat",
+					"kode_pos": "44151",
+					"telepon": "+62 851 2312 3670",
+					"whatsapp": "6285123123670",
+					"pesan_whatsapp": "Halo, saya ingin bertanya tentang IAIPI Garut",
+					"email": "rektorat@iaipersisgarut.ac.id",
+					"email_pmb": "pmb@iaipersisgarut.ac.id",
+					"facebook": "https://facebook.com/iaipigarut",
+					"instagram": "https://instagram.com/iaipi_garut",
+					"youtube": "https://youtube.com/@iaipigarut",
+					"link_pendaftaran": "https://staipersisgarut.pmbonline.siakad.tech/",
+					"link_siakad": "https://siakad.iaipersisgarut.ac.id",
+					"teks_hak_cipta": "© {tahun} Institut Agama Islam PERSIS Garut. All rights reserved.",
+					"teks_pengembang": "Dikembangkan Oleh Direktorat IT IAIPI"
+				}
+			}
+		]
+	}
+}

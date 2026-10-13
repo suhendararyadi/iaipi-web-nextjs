@@ -1,0 +1,165 @@
+---
+// Isi halaman satu fakultas (S1) atau Program Pascasarjana (/magister) setelah banner:
+// statistik di atas pita hijau → tentang + visi/misi → kartu program studi → ajakan hijau tua.
+import KepalaSection from "@/components/ui/KepalaSection.astro";
+import PitaStatistik from "@/components/akademik/PitaStatistik.astro";
+import ProdiKartu from "@/components/akademik/ProdiKartu.astro";
+import AjakanHijau from "@/components/akademik/AjakanHijau.astro";
+import { lines, paragraphs } from "@/lib/cms";
+import { type FakultasEntry, type ProdiEntry } from "@/lib/akademik";
+
+interface Props {
+	fakultas: FakultasEntry;
+	prodi: ProdiEntry[];
+}
+
+const { fakultas, prodi } = Astro.props;
+const f = fakultas.data;
+const edit = fakultas.edit ?? {};
+const misi = lines(f.misi);
+const deskripsi = paragraphs(f.deskripsi);
+const s2 = f.jenjang === "S2";
+const singkat = (f.nama_singkat || f.nama).replace(/\*/g, "");
+const judulTentang = f.judul_ringkasan || (s2 ? f.nama : `Tentang *${singkat}*`);
+---
+
+<PitaStatistik
+	label={`${f.nama} dalam angka`}
+	items={[
+		{ label: s2 ? "Program Magister" : "Program Studi", nilai: prodi.length },
+		{ label: "Mahasiswa", nilai: f.jumlah_mahasiswa, edit: edit.jumlah_mahasiswa },
+		{ label: "Dosen", nilai: f.jumlah_dosen, edit: edit.jumlah_dosen },
+	]}
+/>
+
+<section class="section tentang" aria-labelledby="tentang-judul">
+	<div class="wadah">
+		<KepalaSection judul={judulTentang} id="tentang-judul">
+			<div class="tentang-isi" {...edit.deskripsi}>
+				{deskripsi.map((para) => <p class="lead">{para}</p>)}
+			</div>
+		</KepalaSection>
+
+		{
+			(f.visi || misi.length > 0) && (
+				<div class="visi-misi">
+					{f.visi && (
+						<div class="kotak-abu">
+							<h3 class="label-kotak">Visi</h3>
+							<p class="visi" {...edit.visi}>
+								{f.visi}
+							</p>
+						</div>
+					)}
+					{misi.length > 0 && (
+						<div class="kotak-abu">
+							<h3 class="label-kotak">Misi</h3>
+							<ol class="daftar-angka" {...edit.misi}>
+								{misi.map((m, i) => (
+									<li>
+										<span aria-hidden="true">{i + 1}</span>
+										<span>{m}</span>
+									</li>
+								))}
+							</ol>
+						</div>
+					)}
+				</div>
+			)
+		}
+	</div>
+</section>
+
+<section id="program-studi" class="section bg-abu" aria-labelledby="prodi-judul">
+	<div class="wadah">
+		<KepalaSection
+			judul={s2 ? "Pilih Program Magister Anda" : "Pilih Program Studi Anda"}
+			ukuran="sedang"
+			id="prodi-judul"
+			teks={prodi.length > 0 ? `${prodi.length} ${s2 ? "program magister" : "program studi"} di ${f.nama} IAI PERSIS Garut.` : null}
+		/>
+		{
+			prodi.length > 0 ? (
+				<div class="grid-auto" style="--min: 260px">
+					{prodi.map((p) => (
+						<ProdiKartu prodi={p} />
+					))}
+				</div>
+			) : (
+				<p class="kosong">Belum ada program studi.</p>
+			)
+		}
+	</div>
+</section>
+
+<AjakanHijau
+	judul={f.cta_judul || (s2 ? "Siap melanjutkan studi ke jenjang magister?" : `Siap bergabung dengan ${f.nama}?`)}
+	teks={f.cta_teks}
+	editJudul={edit.cta_judul}
+	editTeks={edit.cta_teks}
+	tombol={[
+		{ teks: "Daftar Sekarang", href: "/pmb" },
+		{ teks: "Hubungi Kami", href: "/kontak", gaya: "garis-putih" },
+	]}
+/>
+
+<style>
+	.tentang-isi {
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+	}
+	.visi-misi {
+		margin-top: 48px;
+		display: grid;
+		gap: 20px;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+		align-items: start;
+	}
+	.kotak-abu {
+		background: var(--abu);
+		border-radius: var(--radius-l);
+		padding: 28px 28px 30px;
+	}
+	.label-kotak {
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 14px;
+		line-height: 1.2;
+		letter-spacing: 1.5px;
+		text-transform: uppercase;
+		color: var(--hijau);
+	}
+	.visi {
+		margin-top: 12px;
+		font-size: 17px;
+		line-height: 1.6;
+		color: var(--judul);
+	}
+	.daftar-angka {
+		list-style: none;
+		margin: 14px 0 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		font-size: 16px;
+		line-height: 1.55;
+	}
+	.daftar-angka li {
+		display: flex;
+		gap: 12px;
+	}
+	.daftar-angka li > span:first-child {
+		flex: none;
+		width: 18px;
+		font-family: var(--font-ui);
+		font-weight: 900;
+		color: var(--hijau);
+	}
+	@media (max-width: 600px) {
+		.kotak-abu {
+			padding: 24px 20px;
+		}
+	}
+</style>

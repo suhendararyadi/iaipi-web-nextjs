@@ -1,0 +1,21 @@
+---
+// Pola kepala section Unpad: judul → garis tipis → paragraf.
+import JudulSorot from "./JudulSorot.astro";
+
+interface Props {
+	judul: string | null | undefined;
+	teks?: string | null;
+	ukuran?: "besar" | "sedang";
+	tengah?: boolean;
+	id?: string;
+}
+
+const { judul, teks, ukuran = "besar", tengah = false, id } = Astro.props;
+---
+
+<div class:list={["kepala-section", { tengah }]}>
+	<JudulSorot text={judul} class={ukuran === "besar" ? "judul-besar" : "judul-sedang"} id={id} />
+	<hr class="pemisah" />
+	{teks && <p class="lead">{teks}</p>}
+	<slot />
+</div>

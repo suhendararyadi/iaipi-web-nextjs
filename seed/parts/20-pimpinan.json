@@ -1,0 +1,450 @@
+{
+	"collections": [
+		{
+			"slug": "pimpinan",
+			"label": "Pimpinan",
+			"labelSingular": "Pimpinan",
+			"description": "Rektor, wakil rektor, dekan, dan ketua program studi. Slug entri menjadi alamat halaman: /pimpinan/<slug>.",
+			"group": "Profil Institusi",
+			"sortOrder": 20,
+			"supports": [
+				"drafts",
+				"revisions",
+				"search"
+			],
+			"urlPattern": "/pimpinan/{slug}",
+			"titleField": "nama",
+			"admin": {
+				"listColumns": [
+					"jabatan",
+					"kelompok",
+					"urutan"
+				]
+			},
+			"fields": [
+				{
+					"slug": "nama",
+					"label": "Nama lengkap & gelar",
+					"type": "string",
+					"required": true,
+					"searchable": true
+				},
+				{
+					"slug": "jabatan",
+					"label": "Jabatan",
+					"type": "string",
+					"required": true,
+					"searchable": true
+				},
+				{
+					"slug": "jabatan_singkat",
+					"label": "Jabatan singkat (untuk kartu; kosongkan = pakai Jabatan)",
+					"type": "string"
+				},
+				{
+					"slug": "kelompok",
+					"label": "Kelompok",
+					"type": "select",
+					"required": true,
+					"defaultValue": "kaprodi",
+					"validation": {
+						"options": [
+							"rektor",
+							"wakil_rektor",
+							"dekan",
+							"kaprodi"
+						]
+					},
+					"indexed": true
+				},
+				{
+					"slug": "urutan",
+					"label": "Urutan tampil (kecil = lebih dulu)",
+					"type": "integer",
+					"defaultValue": 100,
+					"indexed": true
+				},
+				{
+					"slug": "foto",
+					"label": "Foto",
+					"type": "image"
+				},
+				{
+					"slug": "foto_avatar",
+					"label": "Foto avatar persegi (opsional, untuk kartu kecil di beranda)",
+					"type": "image"
+				},
+				{
+					"slug": "tentang",
+					"label": "Tentang",
+					"type": "text",
+					"searchable": true
+				},
+				{
+					"slug": "pendidikan",
+					"label": "Riwayat pendidikan (satu baris per jenjang)",
+					"type": "text"
+				},
+				{
+					"slug": "sinta_id",
+					"label": "SINTA ID",
+					"type": "string"
+				},
+				{
+					"slug": "google_scholar",
+					"label": "URL Google Scholar",
+					"type": "url"
+				},
+				{
+					"slug": "kutipan",
+					"label": "Kata sambutan singkat (dipakai untuk Rektor di beranda)",
+					"type": "text"
+				},
+				{
+					"slug": "foto_sambutan",
+					"label": "Foto sambutan (latar transparan, untuk Rektor di beranda)",
+					"type": "image"
+				}
+			]
+		}
+	],
+	"content": {
+		"pimpinan": [
+			{
+				"id": "pimpinan-rektor",
+				"slug": "rektor",
+				"status": "published",
+				"data": {
+					"nama": "Dr. Tiar Anwar Bachtiar, M.Hum.",
+					"jabatan": "Rektor",
+					"kelompok": "rektor",
+					"urutan": 10,
+					"foto": {
+						"$asset": "/images/dosen/d-1.jpg",
+						"alt": "Dr. Tiar Anwar Bachtiar, M.Hum."
+					},
+					"tentang": "Dr. H. Tiar Anwar Bachtiar, S.S, M.Hum (lahir 20 Juni 1979) adalah sejarawan Islam, akademisi, dan penulis Indonesia. Ia menjabat sebagai Ketua Sekolah Tinggi Agama Islam PERSIS Garut periode 2024–2028.",
+					"pendidikan": "S1 Universitas Padjadjaran\nS2 Universitas Indonesia\nS3 Universitas Indonesia",
+					"sinta_id": "6919579",
+					"google_scholar": "https://scholar.google.co.id/citations?hl=id&user=IAAIX9AAAAAJ",
+					"kutipan": "Selamat datang di website resmi kampus kami, Institut Agama Islam Persis Garut",
+					"foto_sambutan": {
+						"$asset": "/images/teachers/teacher-2/rektor.png",
+						"alt": "Dr. Tiar Anwar Bachtiar, M.Hum."
+					}
+				}
+			},
+			{
+				"id": "pimpinan-warek1",
+				"slug": "warek1",
+				"status": "published",
+				"data": {
+					"nama": "Dr. Daris Tamin, M.Pd.",
+					"jabatan": "Wakil Rektor I Bidang Akademik, Riset, Pengabdian, dan Pengembangan SDM",
+					"kelompok": "wakil_rektor",
+					"urutan": 20,
+					"foto": {
+						"$asset": "/images/dosen/d-2.jpg",
+						"alt": "Dr. Daris Tamin, M.Pd."
+					},
+					"foto_avatar": {
+						"$asset": "/images/dosen/avatar/d-2-avatar.jpg",
+						"alt": "Dr. Daris Tamin, M.Pd."
+					},
+					"tentang": "Daris Tamin dilahirkan di Garut pada Jumat, 6 Jumadil Akhirah 1396 H bertepatan dengan 4 Juni 1976. Saat ini tercatat sebagai dosen tetap pada Prodi Bimbingan dan Konseling Pendidikan Islam (BKPI) STAI Persis Garut.",
+					"pendidikan": "S1 Universitas Islam Nusantara\nS2 Universitas Pendidikan Indonesia\nS3 Universitas Pendidikan Indonesia",
+					"sinta_id": "6696019",
+					"google_scholar": "https://scholar.google.co.id/citations?hl=id&user=WUwb9dAAAAAJ",
+					"jabatan_singkat": "Wakil Rektor I"
+				}
+			},
+			{
+				"id": "pimpinan-warek2",
+				"slug": "warek2",
+				"status": "published",
+				"data": {
+					"nama": "Dr. Nurul Irfan, M.Ag.",
+					"jabatan": "Wakil Rektor II Bidang Keuangan, Perencanaan, Sarana, dan Pengembangan Ekonomi",
+					"kelompok": "wakil_rektor",
+					"urutan": 30,
+					"foto": {
+						"$asset": "/images/dosen/d-3.jpg",
+						"alt": "Dr. Nurul Irfan, M.Ag."
+					},
+					"foto_avatar": {
+						"$asset": "/images/dosen/avatar/d-3-avatar.jpg",
+						"alt": "Dr. Nurul Irfan, M.Ag."
+					},
+					"pendidikan": "S1 STAI Siliwangi Garut\nS2 Universitas Islam Negeri Sunan Gunung Djati\nS3 Universitas Islam Negeri Sunan Gunung Djati",
+					"sinta_id": "6695999",
+					"jabatan_singkat": "Wakil Rektor II"
+				}
+			},
+			{
+				"id": "pimpinan-warek3",
+				"slug": "warek3",
+				"status": "published",
+				"data": {
+					"nama": "Dr. Heri Mohamad Tohari, M.Pd.",
+					"jabatan": "Wakil Rektor III Bidang Kemahasiswaan, Kerjasama dan Alumni",
+					"kelompok": "wakil_rektor",
+					"urutan": 40,
+					"foto": {
+						"$asset": "/images/dosen/d-5.jpg",
+						"alt": "Dr. Heri Mohamad Tohari, M.Pd."
+					},
+					"foto_avatar": {
+						"$asset": "/images/dosen/avatar/d-5-avatar.jpg",
+						"alt": "Dr. Heri Mohamad Tohari, M.Pd."
+					},
+					"tentang": "Aktif sebagai pekerja sosial dan bertindak sebagai penggagas Desa Caang dan menakhkodai The Creative Institute.\n\nPernah ikut terlibat dalam pemberdayaan “Living Value Education” dan “Pesantren Ramah Anak”, sebuah program kerjasama UNICEF, Terre des Hommes, dan LSAF. Pernah juga menjadi Staf Ahli di DPR RI. Kini aktif terlibat sebagai Fasilitator Program Sekolah Penggerak Kemendikbud RI.\n\nBerprofesi sebagai dosen muda, peneliti, dan penulis di berbagai media massa, jurnal nasional dan internasional. Kerap kali langganan diundang menulis dan mengisi forum internasional yang berkaitan community development, seperti: IIGCE, IIGW, dll.",
+					"pendidikan": "S1 Universitas Gadjah Mada\nS2 Universitas Pendidikan Indonesia\nS3 Universitas Padjadjaran",
+					"sinta_id": "6724739",
+					"google_scholar": "https://scholar.google.co.id/citations?user=f__HAIUAAAAJ&hl=id",
+					"jabatan_singkat": "Wakil Rektor III"
+				}
+			},
+			{
+				"id": "pimpinan-dekan1",
+				"slug": "dekan1",
+				"status": "published",
+				"data": {
+					"nama": "Dr. Gun Gun Abdul Basit, M.Ag.",
+					"jabatan": "Dekan Fakultas Ushuluddin",
+					"kelompok": "dekan",
+					"urutan": 50,
+					"foto": {
+						"$asset": "/images/dosen/d-6.jpg",
+						"alt": "Dr. Gun Gun Abdul Basit, M.Ag."
+					},
+					"pendidikan": "S1 Universitas Islam Negeri Sunan Kalijaga\nS2 Universitas Islam Negeri Sunan Gunung Djati\nS3 Universitas Islam Negeri Sunan Gunung Djati",
+					"sinta_id": "6724946",
+					"google_scholar": "https://scholar.google.co.id/citations?user=-Ewsc6gAAAAJ&hl=id"
+				}
+			},
+			{
+				"id": "pimpinan-dekan2",
+				"slug": "dekan2",
+				"status": "published",
+				"data": {
+					"nama": "Riyan Nuryadin, S.HI., M.Pd.I.",
+					"jabatan": "Dekan Fakultas Tarbiyah",
+					"kelompok": "dekan",
+					"urutan": 60,
+					"foto": {
+						"$asset": "/images/dosen/d-13.jpeg",
+						"alt": "Riyan Nuryadin, S.HI., M.Pd.I."
+					},
+					"pendidikan": "S1 Universitas Islam Negeri Sunan Gunung Djati\nS2 Universitas Ibn Khaldun Bogor",
+					"sinta_id": "6725044",
+					"google_scholar": "https://scholar.google.co.id/citations?hl=id&user=U2d-tmcAAAAJ"
+				}
+			},
+			{
+				"id": "pimpinan-dekan3",
+				"slug": "dekan3",
+				"status": "published",
+				"data": {
+					"nama": "Aip Zaenal Mutaqin, S.E., M.E.",
+					"jabatan": "Dekan Fakultas Ekonomi dan Bisnis Islam",
+					"kelompok": "dekan",
+					"urutan": 70,
+					"foto": {
+						"$asset": "/images/dosen/d-14.jpeg",
+						"alt": "Aip Zaenal Mutaqin, S.E., M.E."
+					},
+					"pendidikan": "S1 Sekolah Tinggi Ilmu Ekonomi STEMBI\nS2 Universitas Islam Negeri Sunan Gunung Djati",
+					"sinta_id": "6844793",
+					"google_scholar": "https://scholar.google.co.id/citations?hl=id&user=hJnmYR4AAAAJ"
+				}
+			},
+			{
+				"id": "pimpinan-kaprodi-mpai",
+				"slug": "kaprodi-mpai",
+				"status": "published",
+				"data": {
+					"nama": "Dr. Yusup Tajri, M.Pd.",
+					"jabatan": "Ketua Prodi Magister Pendidikan Agama Islam (MPAI)",
+					"kelompok": "kaprodi",
+					"urutan": 80,
+					"foto": {
+						"$asset": "/images/dosen/d-7.jpg",
+						"alt": "Dr. Yusup Tajri, M.Pd."
+					},
+					"pendidikan": "S1 STAI Persis Bandung\nS2 Universitas Pendidikan Indonesia\nS3 Universitas Pendidikan Indonesia",
+					"sinta_id": "6753948",
+					"google_scholar": "https://scholar.google.co.id/citations?hl=id&user=SfMuMN8AAAAJ"
+				}
+			},
+			{
+				"id": "pimpinan-kaprodi-mih",
+				"slug": "kaprodi-mih",
+				"status": "published",
+				"data": {
+					"nama": "Dr. Azis Asmana, Lc., M.Ag.",
+					"jabatan": "Ketua Prodi Magister Ilmu Hadis (MIH)",
+					"kelompok": "kaprodi",
+					"urutan": 90,
+					"foto": {
+						"$asset": "/images/dosen/d-9.jpg",
+						"alt": "Dr. Azis Asmana, Lc., M.Ag."
+					},
+					"pendidikan": "S1 Islamic University of Madinah Munawwarah\nS2 Universitas Islam Negeri Sunan Gunung Djati"
+				}
+			},
+			{
+				"id": "pimpinan-kaprodi-ilha",
+				"slug": "kaprodi-ilha",
+				"status": "published",
+				"data": {
+					"nama": "Kinkin Syamsudin, M.Ag.",
+					"jabatan": "Ketua Prodi Ilmu Hadis (ILHA)",
+					"kelompok": "kaprodi",
+					"urutan": 100,
+					"foto": {
+						"$asset": "/images/dosen/d-20.jpeg",
+						"alt": "Kinkin Syamsudin, M.Ag."
+					},
+					"tentang": "Ketua Program Studi Ilmu Hadis (ILHA) Fakultas Ushuluddin Institut Agama Islam Persis Garut."
+				}
+			},
+			{
+				"id": "pimpinan-kaprodi-iat",
+				"slug": "kaprodi-iat",
+				"status": "published",
+				"data": {
+					"nama": "Yan Yan Nurdin, S.Ud., M.Ag.",
+					"jabatan": "Ketua Prodi Ilmu Alquran dan Tafsir (IAT)",
+					"kelompok": "kaprodi",
+					"urutan": 110,
+					"foto": {
+						"$asset": "/images/dosen/d-16.jpeg",
+						"alt": "Yan Yan Nurdin, S.Ud., M.Ag."
+					},
+					"pendidikan": "S1 STAI Persis Garut\nS2 Universitas Islam Negeri Sunan Gunung Djati"
+				}
+			},
+			{
+				"id": "pimpinan-kaprodi-spi",
+				"slug": "kaprodi-spi",
+				"status": "published",
+				"data": {
+					"nama": "Imam Sofyan Abas",
+					"jabatan": "Ketua Prodi Sejarah Peradaban Islam (SPI)",
+					"kelompok": "kaprodi",
+					"urutan": 120,
+					"foto": {
+						"$asset": "/images/dosen/d-19.jpeg",
+						"alt": "Imam Sofyan Abas"
+					},
+					"tentang": "Ketua Program Studi Sejarah Peradaban Islam (SPI) Fakultas Ushuluddin Institut Agama Islam Persis Garut."
+				}
+			},
+			{
+				"id": "pimpinan-kaprodi-mks",
+				"slug": "kaprodi-mks",
+				"status": "published",
+				"data": {
+					"nama": "Mumad Nurjaman, S.Sy., M.H.",
+					"jabatan": "Ketua Prodi Manajemen Keuangan Syariah (MKS)",
+					"kelompok": "kaprodi",
+					"urutan": 130,
+					"foto": {
+						"$asset": "/images/dosen/d-17.jpeg",
+						"alt": "Mumad Nurjaman, S.Sy., M.H."
+					},
+					"pendidikan": "S1 STAI Al-Musaddadiyah Garut\nS2 Universitas Islam Negeri Sunan Gunung Djati",
+					"google_scholar": "https://scholar.google.co.id/citations?hl=id&user=OClJpZUAAAAJ"
+				}
+			},
+			{
+				"id": "pimpinan-kaprodi-pai",
+				"slug": "kaprodi-pai",
+				"status": "published",
+				"data": {
+					"nama": "Leni Layinah, S.Pd.I., M.Pd.",
+					"jabatan": "Ketua Prodi Pendidikan Agama Islam (PAI)",
+					"kelompok": "kaprodi",
+					"urutan": 140,
+					"foto": {
+						"$asset": "/images/dosen/d-15.jpeg",
+						"alt": "Leni Layinah, S.Pd.I., M.Pd."
+					},
+					"pendidikan": "S1 STAI Persis Garut\nS2 Universitas Pendidikan Indonesia",
+					"sinta_id": "6924661",
+					"google_scholar": "https://scholar.google.co.id/citations?hl=id&user=iBPvG3kAAAAJ"
+				}
+			},
+			{
+				"id": "pimpinan-kaprodi-pgmi",
+				"slug": "kaprodi-pgmi",
+				"status": "published",
+				"data": {
+					"nama": "Nuraeni Sugih Pramukti, M.Pd.",
+					"jabatan": "Ketua Prodi Pendidikan Guru Madrasah Ibtidaiyah (PGMI)",
+					"kelompok": "kaprodi",
+					"urutan": 150,
+					"foto": {
+						"$asset": "/images/dosen/d-12.jpg",
+						"alt": "Nuraeni Sugih Pramukti, M.Pd."
+					},
+					"pendidikan": "S1 Universitas Pendidikan Indonesia\nS2 Universitas Pendidikan Indonesia",
+					"sinta_id": "6842883",
+					"google_scholar": "https://scholar.google.co.id/citations?hl=id&user=4WFcuk0AAAAJ"
+				}
+			},
+			{
+				"id": "pimpinan-kaprodi-bkpi",
+				"slug": "kaprodi-bkpi",
+				"status": "published",
+				"data": {
+					"nama": "Yanti Sam Amir, S.Pd., M.Pd.",
+					"jabatan": "Ketua Prodi Bimbingan Konseling Pendidikan Islam (BKPI)",
+					"kelompok": "kaprodi",
+					"urutan": 160,
+					"foto": {
+						"$asset": "/images/dosen/d-11.jpg",
+						"alt": "Yanti Sam Amir, S.Pd., M.Pd."
+					},
+					"pendidikan": "S1 Universitas Pendidikan Indonesia\nS2 Universitas Pendidikan Indonesia",
+					"sinta_id": "6864830",
+					"google_scholar": "https://scholar.google.co.id/citations?hl=id&user=Nebj5DwAAAAJ"
+				}
+			},
+			{
+				"id": "pimpinan-kaprodi-pba",
+				"slug": "kaprodi-pba",
+				"status": "published",
+				"data": {
+					"nama": "Hasan Ansori",
+					"jabatan": "Ketua Prodi Pendidikan Bahasa Arab (PBA)",
+					"kelompok": "kaprodi",
+					"urutan": 170,
+					"foto": {
+						"$asset": "/images/dosen/d-18.jpeg",
+						"alt": "Hasan Ansori"
+					},
+					"tentang": "Ketua Program Studi Pendidikan Bahasa Arab (PBA) Fakultas Tarbiyah dan Keguruan Institut Agama Islam Persis Garut."
+				}
+			},
+			{
+				"id": "pimpinan-kaprodi-ekosy",
+				"slug": "kaprodi-ekosy",
+				"status": "published",
+				"data": {
+					"nama": "Nurfaedah, S.E.I, M.E.",
+					"jabatan": "Ketua Prodi Ekonomi Syariah (EKOSY)",
+					"kelompok": "kaprodi",
+					"urutan": 180,
+					"foto": {
+						"$asset": "/images/dosen/d-10.jpg",
+						"alt": "Nurfaedah, S.E.I, M.E."
+					},
+					"pendidikan": "S1 Universitas Muhammadiyah Yogyakarta\nS2 Universitas Islam Negeri Sunan Gunung Djati",
+					"sinta_id": "6810258",
+					"google_scholar": "https://scholar.google.co.id/citations?hl=id&user=Lp-6sWkAAAAJ"
+				}
+			}
+		]
+	}
+}

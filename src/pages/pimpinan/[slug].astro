@@ -1,0 +1,394 @@
+---
+// Profil satu pimpinan: banner, kartu foto (hijau tua, nama kuning), tentang, pendidikan,
+// ID penelitian (SINTA, Google Scholar), lalu kartu pimpinan lainnya.
+import { decodeSlug, getEmDashEntry } from "emdash";
+import Base from "@/layouts/Base.astro";
+import PageBanner from "@/components/layout/PageBanner.astro";
+import KepalaSection from "@/components/ui/KepalaSection.astro";
+import KartuPimpinan from "@/components/pimpinan/KartuPimpinan.astro";
+import { isExternal, lines, mediaAlt, mediaSrc, paragraphs, useCacheHint } from "@/lib/cms";
+import { getPimpinan, labelKelompok, type Pimpinan } from "@/lib/pimpinan";
+
+const slug = decodeSlug(Astro.params.slug);
+if (!slug) return Astro.rewrite("/404");
+
+const [{ entry, cacheHint }, semua] = await Promise.all([getEmDashEntry("pimpinan", slug), getPimpinan()]);
+if (!entry) return Astro.rewrite("/404");
+useCacheHint(Astro, cacheHint, semua.cacheHint);
+
+const p = entry.data as unknown as Pimpinan & { id: string };
+const edit = entry.edit as Record<string, Record<string, string>>;
+const instansi = "Institut Agama Islam PERSIS Garut";
+const tentang = paragraphs(p.tentang);
+const kutipan = paragraphs(p.kutipan);
+const pendidikan = lines(p.pendidikan).map((baris) => {
+	const m = baris.match(/^(S[1-3]|D[1-4]|Lc\.?)\s+(.+)$/i);
+	return m ? { jenjang: m[1].toUpperCase(), institusi: m[2] } : { jenjang: "", institusi: baris };
+});
+const scholar = isExternal(p.google_scholar) ? p.google_scholar : undefined;
+const adaRiset = Boolean(p.sinta_id || scholar);
+const foto = mediaSrc(p.foto, "", 900) || mediaSrc(p.foto_avatar, "", 900);
+const fotoOg = foto || "/images/logo.jpeg";
+
+// Pimpinan lain: utamakan kelompok yang sama, lengkapi dengan urutan umum.
+const lain = semua.entries.filter((e) => e.id !== slug);
+const lainnya = [...lain.filter((e) => e.data.kelompok === p.kelompok), ...lain.filter((e) => e.data.kelompok !== p.kelompok)].slice(0, 4);
+---
+
+<Base
+	title={`${p.nama} – ${p.jabatan}`}
+	description={tentang[0] ?? `${p.nama}, ${p.jabatan} ${instansi}.`}
+	image={new URL(fotoOg, Astro.url).href}
+	content={{ collection: "pimpinan", id: p.id, slug }}
+>
+	<PageBanner
+		title={p.nama}
+		image="/images/slider/slider-iaipi-3.jpg"
+		breadcrumbs={[{ text: "Beranda", url: "/" }, { text: "Pimpinan", url: "/pimpinan" }, { text: p.nama }]}
+		badge={labelKelompok(p.kelompok)}
+		summary={`${p.jabatan}, ${instansi}`}
+	/>
+
+	<section class="section">
+		<div class="wadah profil">
+			<aside class="profil-kartu" aria-label="Identitas">
+				<figure {...edit.foto}>
+					{foto ? <img src={foto} alt={mediaAlt(p.foto, `Foto ${p.nama}`)} fetchpriority="high" /> : <span class="foto-kosong" aria-hidden="true" />}
+				</figure>
+				<p class="nama" {...edit.nama}>{p.nama}</p>
+				<p class="jabatan" {...edit.jabatan}>{p.jabatan}</p>
+				{
+					scholar && (
+						<a href={scholar} class="btn btn-kuning btn-kecil" target="_blank" rel="noopener noreferrer">
+							Google Scholar
+							<svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8" /></svg>
+							<span class="sr-only">(tab baru)</span>
+						</a>
+					)
+				}
+			</aside>
+
+			<div class="profil-isi">
+				{
+					kutipan.length > 0 && (
+						<blockquote class="kutipan" {...edit.kutipan}>
+							{kutipan.map((para) => (
+								<p>“{para}”</p>
+							))}
+						</blockquote>
+					)
+				}
+
+				{
+					tentang.length > 0 && (
+						<div class="blok" {...edit.tentang}>
+							<KepalaSection judul="Tentang" ukuran="sedang" />
+							<div class="prosa">
+								{tentang.map((para) => (
+									<p>{para}</p>
+								))}
+							</div>
+						</div>
+					)
+				}
+
+				{
+					pendidikan.length > 0 && (
+						<div class="blok" {...edit.pendidikan}>
+							<KepalaSection judul="Pendidikan" ukuran="sedang" />
+							<ol class="pendidikan" role="list">
+								{pendidikan.map((r) => (
+									<li>
+										<span class:list={["jenjang", { "tanpa-jenjang": !r.jenjang }]} aria-hidden={r.jenjang ? undefined : "true"}>
+											{r.jenjang || ""}
+										</span>
+										<span class="institusi">{r.institusi}</span>
+									</li>
+								))}
+							</ol>
+						</div>
+					)
+				}
+
+				{
+					adaRiset && (
+						<div class="blok">
+							<KepalaSection judul="ID Penelitian" ukuran="sedang" />
+							<ul class="riset" role="list">
+								{p.sinta_id && (
+									<li class="riset-kartu" {...edit.sinta_id}>
+										<span class="riset-label">SINTA ID</span>
+										<span class="riset-nilai">{p.sinta_id}</span>
+									</li>
+								)}
+								{scholar && (
+									<li class="riset-kartu" {...edit.google_scholar}>
+										<span class="riset-label">Google Scholar</span>
+										<a href={scholar} target="_blank" rel="noopener noreferrer" class="riset-tautan">
+											Lihat profil
+											<span class="sr-only"> Google Scholar {p.nama} (tab baru)</span>
+											<svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8" /></svg>
+										</a>
+									</li>
+								)}
+							</ul>
+						</div>
+					)
+				}
+
+				{tentang.length === 0 && pendidikan.length === 0 && !adaRiset && kutipan.length === 0 ? (
+					<p class="kosong">Profil lengkap belum tersedia.</p>
+				) : (
+					(pendidikan.length === 0 || !adaRiset) && (
+						<p class="catatan">
+							{pendidikan.length === 0 && !adaRiset
+								? "Riwayat pendidikan dan ID penelitian belum dicantumkan."
+								: pendidikan.length === 0
+									? "Riwayat pendidikan belum dicantumkan."
+									: "ID penelitian belum dicantumkan."}
+						</p>
+					)
+				)}
+			</div>
+		</div>
+	</section>
+
+	{
+		lainnya.length > 0 && (
+			<section class="section bg-abu" aria-labelledby="judul-lainnya">
+				<div class="wadah">
+					<KepalaSection judul="Pimpinan *Lainnya*" ukuran="sedang" id="judul-lainnya" />
+					<ul class="grid-lainnya" role="list">
+						{lainnya.map((e) => (
+							<li>
+								<KartuPimpinan entry={e} />
+							</li>
+						))}
+					</ul>
+					<div class="tengah">
+						<a href="/pimpinan" class="btn btn-kuning">
+							Semua Pimpinan
+						</a>
+					</div>
+				</div>
+			</section>
+		)
+	}
+</Base>
+
+<style>
+	.profil {
+		display: grid;
+		grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+		gap: 56px;
+		align-items: start;
+	}
+	.profil-kartu {
+		position: sticky;
+		top: 24px;
+		padding: 24px 24px 28px;
+		border-radius: var(--radius-xl);
+		background: var(--hijau-tua);
+		color: var(--putih);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 8px;
+	}
+	.profil-kartu figure {
+		margin: 0 0 12px;
+		width: 100%;
+	}
+	.profil-kartu img,
+	.foto-kosong {
+		display: block;
+		width: 100%;
+		aspect-ratio: 540 / 616;
+		object-fit: cover;
+		object-position: center top;
+		border-radius: var(--radius);
+		background: #0e2a1b;
+	}
+	.nama {
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 20px;
+		line-height: 1.3;
+		color: var(--kuning);
+	}
+	.jabatan {
+		font-family: var(--font-ui);
+		font-size: 15px;
+		line-height: 1.45;
+		color: var(--hijau-muda);
+	}
+	.profil-kartu .btn {
+		margin-top: 12px;
+	}
+
+	.profil-isi {
+		display: flex;
+		flex-direction: column;
+		gap: 48px;
+		min-width: 0;
+	}
+	.blok :global(.kepala-section) {
+		margin-bottom: 20px;
+	}
+	.blok .prosa {
+		max-width: none;
+	}
+	.kutipan {
+		margin: 0;
+		padding: 24px 28px;
+		border-left: 4px solid var(--kuning);
+		border-radius: 0 var(--radius) var(--radius) 0;
+		background: var(--krem);
+		font-family: var(--font-isi);
+		font-weight: 700;
+		font-style: italic;
+		font-size: clamp(19px, 2vw, 24px);
+		line-height: 1.4;
+		color: var(--judul);
+	}
+	.kutipan p + p {
+		margin-top: 0.6em;
+	}
+
+	.pendidikan {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+	}
+	.pendidikan li {
+		display: flex;
+		align-items: center;
+		gap: 18px;
+		padding: 14px 0;
+		border-top: 1px solid var(--garis);
+		font-size: 17px;
+		line-height: 1.4;
+	}
+	.pendidikan li:last-child {
+		border-bottom: 1px solid var(--garis);
+	}
+	.jenjang {
+		flex: none;
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		background: var(--hijau);
+		color: var(--putih);
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 15px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.jenjang.tanpa-jenjang {
+		background: var(--hijau-muda);
+	}
+
+	.riset {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 20px;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+	}
+	.riset-kartu {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 22px 22px 24px;
+		border: 1px solid #eef0ee;
+		border-radius: var(--radius);
+		box-shadow: var(--bayangan);
+		background: var(--putih);
+	}
+	.riset-label {
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 12px;
+		letter-spacing: 0.6px;
+		text-transform: uppercase;
+		color: var(--redup);
+	}
+	.riset-nilai {
+		font-weight: 700;
+		font-size: 26px;
+		line-height: 1.2;
+		color: var(--hijau);
+		letter-spacing: 0.5px;
+	}
+	.riset-tautan {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		min-height: 32px;
+		font-weight: 700;
+		font-size: 20px;
+	}
+
+	.catatan {
+		padding: 16px 20px;
+		border-radius: var(--radius-s);
+		background: var(--abu);
+		color: var(--redup);
+		font-size: 15px;
+	}
+	.grid-lainnya {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 30px;
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+	}
+	.grid-lainnya > li {
+		display: flex;
+		flex-direction: column;
+	}
+	.tengah {
+		margin-top: 48px;
+		display: flex;
+		justify-content: center;
+	}
+
+	@media (max-width: 900px) {
+		.profil {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 40px;
+		}
+		.profil-kartu {
+			position: static;
+			max-width: 420px;
+			width: 100%;
+			margin-inline: auto;
+		}
+	}
+	@media (max-width: 600px) {
+		.catatan {
+		padding: 16px 20px;
+		border-radius: var(--radius-s);
+		background: var(--abu);
+		color: var(--redup);
+		font-size: 15px;
+	}
+	.grid-lainnya {
+			gap: 16px;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+		.kutipan {
+			padding: 18px 20px;
+		}
+		.profil-kartu {
+			max-width: 340px;
+		}
+	}
+</style>

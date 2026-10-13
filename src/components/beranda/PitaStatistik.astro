@@ -1,0 +1,78 @@
+---
+// Tiga kartu statistik putih di atas pita hijau melintang (beranda.statistik).
+import type { StatistikBeranda } from "@/lib/beranda";
+
+interface Props {
+	items: StatistikBeranda[];
+}
+
+const items = Astro.props.items.filter((s) => s.label || s.nilai);
+---
+
+{
+	items.length > 0 && (
+		<section class="pita-statistik statistik" aria-label="IAI PERSIS Garut dalam sorotan">
+			<div class="wadah">
+				<dl class="grid-auto grid">
+					{items.map((s) => (
+						<div class="kartu-statistik stat">
+							<dt class="label">{s.label}</dt>
+							<dd class="nilai">{s.nilai}</dd>
+							{s.catatan && <dd class="catatan">{s.catatan}</dd>}
+						</div>
+					))}
+				</dl>
+			</div>
+		</section>
+	)
+}
+
+<style>
+	.statistik {
+		padding-block: 71px 84px;
+	}
+	.grid {
+		margin: 0;
+		gap: 32px;
+	}
+	.stat {
+		min-height: 318px;
+		padding: 24px 40px 40px;
+		gap: 0;
+		box-shadow: 0 6px 18px rgba(3, 51, 29, 0.05);
+	}
+	.label {
+		letter-spacing: 0.3px;
+		line-height: 1.2;
+	}
+	.nilai {
+		margin: 17px 0 0;
+		font-family: var(--font-isi);
+		line-height: 1.2;
+	}
+	.catatan {
+		margin: 6px 0 0;
+		font-family: var(--font-ui);
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+	}
+	@media (max-width: 600px) {
+		.statistik {
+			padding-block: 40px 48px;
+		}
+		.grid {
+			gap: 20px;
+		}
+		.stat {
+			min-height: 200px;
+		}
+		/* pita hijau membentang di belakang tumpukan kartu */
+		.statistik::before {
+			top: 140px;
+			bottom: 140px;
+			height: auto;
+			transform: none;
+		}
+	}
+</style>
