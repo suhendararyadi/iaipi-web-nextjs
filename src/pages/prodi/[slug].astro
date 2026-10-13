@@ -1,0 +1,11 @@
+---
+// Alamat pendek /prodi/<slug> (dipakai tombol "lihat" di admin EmDash karena
+// urlPattern koleksi hanya mendukung {slug}) → alamat kanonis prodi.
+import { decodeSlug } from "emdash";
+import { getProdi, prodiUrl } from "@/lib/akademik";
+
+const slug = decodeSlug(Astro.params.slug);
+const { entry } = slug ? await getProdi(slug) : { entry: null };
+if (!entry) return Astro.rewrite("/404");
+return Astro.redirect(prodiUrl(entry), 301);
+---

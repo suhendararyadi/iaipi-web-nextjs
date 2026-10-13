@@ -37,6 +37,8 @@ export default defineConfig({
 		"/magister/[prodi]": publicPage,
 		"/berita": publicPage,
 		"/berita/[slug]": publicPage,
+		"/berita/kategori/[slug]": publicPage,
+		"/rss.xml": publicPage,
 		"/halaman/[slug]": publicPage,
 	},
 	redirects: {

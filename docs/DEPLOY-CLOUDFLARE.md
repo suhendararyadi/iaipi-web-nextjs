@@ -57,6 +57,23 @@ lalu menampilkan alamat seperti `https://iaipi-web.<akun>.workers.dev`.
 > setup langsung di domain produksi dengan mengisi `EMDASH_SITE_URL` di `wrangler.jsonc` sebelum
 > setup.
 
+## 3b. Melengkapi berita lama dari Hashnode
+
+Seed hanya memuat 20 berita terbaru dari RSS Hashnode, dan tanggal terbitnya tercatat sebagai
+waktu setup (keterbatasan seed EmDash). Setelah setup:
+
+1. Di admin buat API token (scope konten + media).
+2. Jalankan dari komputer lokal:
+
+   ```bash
+   EMDASH_TOKEN=... node scripts/import-berita-hashnode.mjs --api https://<alamat-situs> --sumber sitemap
+   ```
+
+   Skrip mengoreksi tanggal terbit 20 berita dari seed ke tanggal asli dan mengimpor sekitar 85
+   berita lama lain yang ada di sitemap Hashnode. Coba dulu dengan `--dry-run`.
+3. Bila subdomain `news.iaipersisgarut.ac.id` nanti dialihkan, redirect `/:slug` ke
+   `https://iaipersisgarut.ac.id/berita/:slug` (slug berita dipertahankan sama).
+
 ## 4. Deploy otomatis dari GitHub (disarankan)
 
 Cloudflare dashboard → **Workers & Pages** → worker `iaipi-web` → **Settings → Builds** →

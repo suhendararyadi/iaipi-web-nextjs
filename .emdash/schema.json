@@ -1,0 +1,2373 @@
+{
+  "collections": [
+    {
+      "slug": "berita",
+      "label": "Berita",
+      "labelSingular": "Berita",
+      "description": "Berita, agenda, dan pengumuman kampus (pengganti blog news.iaipersisgarut.ac.id). Alamat: /berita/<slug>. Pilih kategori di panel samping; tanggal terbit bisa dijadwalkan.",
+      "supports": [
+        "drafts",
+        "revisions",
+        "search",
+        "seo",
+        "scheduling"
+      ],
+      "hidden": false,
+      "sortOrder": 10,
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Judul",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "excerpt",
+          "label": "Ringkasan (1–2 kalimat, tampil di daftar berita & RSS)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "featured_image",
+          "label": "Gambar sampul",
+          "type": "image",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "content",
+          "label": "Isi berita",
+          "type": "portableText",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "slug": "profil_institusi",
+      "label": "Profil Institusi",
+      "labelSingular": "Profil Institusi",
+      "description": "Isi halaman /tentang: sejarah singkat, keunggulan, visi-misi-tujuan, moto & nilai, statistik, dan akreditasi. Cukup satu entri (slug: utama).",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "hidden": false,
+      "sortOrder": 10,
+      "fields": [
+        {
+          "slug": "nama",
+          "label": "Nama institusi (judul bagian Tentang Kami)",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "paragraf_pembuka",
+          "label": "Paragraf pembuka (huruf lebih besar)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "tentang",
+          "label": "Paragraf berikutnya (pisahkan paragraf dengan baris kosong)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "gambar_tentang",
+          "label": "Foto kampus",
+          "type": "image",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "lencana_judul",
+          "label": "Lencana di foto: judul",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "lencana_subjudul",
+          "label": "Lencana di foto: subjudul",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "poin_utama",
+          "label": "Poin utama di bawah paragraf",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "ikon",
+                "label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+                "type": "string"
+              },
+              {
+                "slug": "judul",
+                "label": "Judul",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "deskripsi",
+                "label": "Deskripsi",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "keunggulan",
+          "label": "Keunggulan (Mengapa Memilih IAI PERSIS Garut?)",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "ikon",
+                "label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+                "type": "string"
+              },
+              {
+                "slug": "judul",
+                "label": "Judul",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "deskripsi",
+                "label": "Deskripsi",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "visi",
+          "label": "Visi",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "misi",
+          "label": "Misi",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "ikon",
+                "label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+                "type": "string"
+              },
+              {
+                "slug": "teks",
+                "label": "Butir misi",
+                "type": "text",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "slug": "tujuan",
+          "label": "Tujuan",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "ikon",
+                "label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+                "type": "string"
+              },
+              {
+                "slug": "teks",
+                "label": "Butir tujuan",
+                "type": "text",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "slug": "moto",
+          "label": "Moto",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "nilai",
+          "label": "Nilai-nilai",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "ikon",
+                "label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+                "type": "string"
+              },
+              {
+                "slug": "teks",
+                "label": "Nilai",
+                "type": "string",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "slug": "statistik",
+          "label": "Statistik (angka berjalan)",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "angka",
+                "label": "Angka",
+                "type": "integer",
+                "required": true
+              },
+              {
+                "slug": "akhiran",
+                "label": "Akhiran (mis. +)",
+                "type": "string"
+              },
+              {
+                "slug": "label",
+                "label": "Label",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "ikon",
+                "label": "Ikon (opsional) — Ikon FontAwesome 4.7 (mis. fa-book)",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "akreditasi_peringkat",
+          "label": "Akreditasi: peringkat (mis. BAIK (B))",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "akreditasi_keterangan",
+          "label": "Akreditasi: keterangan (tulis **teks** untuk huruf tebal)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "akreditasi_sertifikat",
+          "label": "Akreditasi: daftar sertifikat",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "judul",
+                "label": "Jenis (mis. Akreditasi Program Studi)",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "program",
+                "label": "Institusi / program studi",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "peringkat",
+                "label": "Peringkat (huruf)",
+                "type": "string"
+              },
+              {
+                "slug": "label_peringkat",
+                "label": "Label peringkat (mis. BAIK)",
+                "type": "string"
+              },
+              {
+                "slug": "masa_berlaku",
+                "label": "Masa berlaku (mis. 2021-2026)",
+                "type": "string"
+              },
+              {
+                "slug": "nomor_sk",
+                "label": "Nomor SK",
+                "type": "string"
+              },
+              {
+                "slug": "gambar",
+                "label": "Gambar sertifikat",
+                "type": "image"
+              },
+              {
+                "slug": "tautan",
+                "label": "Tautan unduh/lihat sertifikat",
+                "type": "url"
+              },
+              {
+                "slug": "warna",
+                "label": "Warna ikon (kode hex)",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "akreditasi_statistik",
+          "label": "Akreditasi: angka ringkas",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "ikon",
+                "label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+                "type": "string"
+              },
+              {
+                "slug": "angka",
+                "label": "Angka",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "label",
+                "label": "Label",
+                "type": "string",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "slug": "akreditasi_informasi",
+          "label": "Akreditasi: teks Informasi Akreditasi",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "akreditasi_email",
+          "label": "Akreditasi: email untuk informasi lebih lanjut",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "catatan_internal",
+          "label": "Catatan internal (tidak tampil di situs)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "slug": "halaman",
+      "label": "Halaman",
+      "labelSingular": "Halaman",
+      "description": "Halaman teks bebas (mis. Beasiswa, Kehidupan Kampus). Alamat: /halaman/<slug>.",
+      "supports": [
+        "drafts",
+        "revisions",
+        "search",
+        "seo"
+      ],
+      "hidden": false,
+      "sortOrder": 15,
+      "fields": [
+        {
+          "slug": "title",
+          "label": "Judul",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "ringkasan",
+          "label": "Ringkasan",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "gambar_banner",
+          "label": "Gambar banner",
+          "type": "image",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "content",
+          "label": "Isi",
+          "type": "portableText",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "slug": "pimpinan",
+      "label": "Pimpinan",
+      "labelSingular": "Pimpinan",
+      "description": "Rektor, wakil rektor, dekan, dan ketua program studi. Slug entri menjadi alamat halaman: /pimpinan/<slug>.",
+      "supports": [
+        "drafts",
+        "revisions",
+        "search"
+      ],
+      "hidden": false,
+      "sortOrder": 20,
+      "fields": [
+        {
+          "slug": "nama",
+          "label": "Nama lengkap & gelar",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "jabatan",
+          "label": "Jabatan",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "jabatan_singkat",
+          "label": "Jabatan singkat (untuk kartu; kosongkan = pakai Jabatan)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "kelompok",
+          "label": "Kelompok",
+          "type": "select",
+          "required": true,
+          "unique": false,
+          "defaultValue": "kaprodi",
+          "validation": {
+            "options": [
+              "rektor",
+              "wakil_rektor",
+              "dekan",
+              "kaprodi"
+            ]
+          }
+        },
+        {
+          "slug": "urutan",
+          "label": "Urutan tampil (kecil = lebih dulu)",
+          "type": "integer",
+          "required": false,
+          "unique": false,
+          "defaultValue": 100
+        },
+        {
+          "slug": "foto",
+          "label": "Foto",
+          "type": "image",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "foto_avatar",
+          "label": "Foto avatar persegi (opsional, untuk kartu kecil di beranda)",
+          "type": "image",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "tentang",
+          "label": "Tentang",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "pendidikan",
+          "label": "Riwayat pendidikan (satu baris per jenjang)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "sinta_id",
+          "label": "SINTA ID",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "google_scholar",
+          "label": "URL Google Scholar",
+          "type": "url",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "kutipan",
+          "label": "Kata sambutan singkat (dipakai untuk Rektor di beranda)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "foto_sambutan",
+          "label": "Foto sambutan (latar transparan, untuk Rektor di beranda)",
+          "type": "image",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "slug": "beranda",
+      "label": "Pengaturan Beranda",
+      "labelSingular": "Pengaturan Beranda",
+      "description": "Judul section, video, dan tautan di halaman beranda. Cukup satu entri (slug: utama).",
+      "supports": [
+        "revisions"
+      ],
+      "hidden": false,
+      "sortOrder": 30,
+      "fields": [
+        {
+          "slug": "nama",
+          "label": "Nama entri",
+          "type": "string",
+          "required": true,
+          "unique": false,
+          "defaultValue": "Beranda"
+        },
+        {
+          "slug": "pimpinan_eyebrow",
+          "label": "Section Pimpinan: teks kecil di atas judul",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "pimpinan_judul",
+          "label": "Section Pimpinan: judul",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "berita_eyebrow",
+          "label": "Section Berita: teks kecil di atas judul",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "berita_judul",
+          "label": "Section Berita: judul",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "berita_jumlah",
+          "label": "Section Berita: jumlah berita yang ditampilkan (3–6)",
+          "type": "integer",
+          "required": false,
+          "unique": false,
+          "defaultValue": 4
+        },
+        {
+          "slug": "berita_teks_tautan",
+          "label": "Section Berita: teks tautan ke semua berita",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "video_url",
+          "label": "Section Video: URL video YouTube",
+          "type": "url",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "video_latar",
+          "label": "Section Video: gambar latar",
+          "type": "image",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "video_judul",
+          "label": "Section Video: judul daftar keunggulan",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "video_poin",
+          "label": "Section Video: daftar keunggulan",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "judul",
+                "label": "Judul",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "deskripsi",
+                "label": "Deskripsi",
+                "type": "text"
+              },
+              {
+                "slug": "ikon",
+                "label": "Ikon",
+                "type": "image"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "publikasi_eyebrow",
+          "label": "Section Publikasi: teks kecil di atas judul",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "publikasi_judul",
+          "label": "Section Publikasi: judul",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "publikasi_url",
+          "label": "Section Publikasi: tautan tombol (portal jurnal)",
+          "type": "url",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "publikasi_teks_tombol",
+          "label": "Section Publikasi: teks tombol",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "testimoni_eyebrow",
+          "label": "Section Testimoni: teks kecil di atas judul",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "testimoni_judul",
+          "label": "Section Testimoni: judul",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "testimoni_latar",
+          "label": "Section Testimoni: gambar latar",
+          "type": "image",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "slug": "fakultas",
+      "label": "Fakultas",
+      "labelSingular": "Fakultas",
+      "description": "Fakultas sarjana (S1) dan Program Pascasarjana (S2). Slug entri menjadi alamat halaman: /fakultas/<slug> untuk S1; entri jenjang S2 (slug: pascasarjana) mengisi halaman /magister.",
+      "supports": [
+        "drafts",
+        "revisions",
+        "search"
+      ],
+      "hidden": false,
+      "sortOrder": 30,
+      "fields": [
+        {
+          "slug": "nama",
+          "label": "Nama fakultas (mis. Fakultas Tarbiyah)",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "nama_singkat",
+          "label": "Nama singkat (untuk breadcrumb, mis. Tarbiyah / FEBI)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "jenjang",
+          "label": "Jenjang (S1 = tampil di /fakultas; S2 = isi halaman /magister)",
+          "type": "select",
+          "required": true,
+          "unique": false,
+          "defaultValue": "S1",
+          "validation": {
+            "options": [
+              "S1",
+              "S2"
+            ]
+          }
+        },
+        {
+          "slug": "urutan",
+          "label": "Urutan tampil (kecil = lebih dulu)",
+          "type": "integer",
+          "required": false,
+          "unique": false,
+          "defaultValue": 100
+        },
+        {
+          "slug": "judul_ringkasan",
+          "label": "Judul kotak ringkasan (kosongkan = pakai Nama)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "deskripsi_singkat",
+          "label": "Deskripsi singkat (kartu di halaman /fakultas & deskripsi SEO)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "deskripsi",
+          "label": "Deskripsi (paragraf pembuka di halaman fakultas)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "ikon",
+          "label": "Ikon (FontAwesome 4.7, mis. fa-book)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "warna",
+          "label": "Warna aksen (kode hex, mis. #006739)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "gambar",
+          "label": "Gambar kartu",
+          "type": "image",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "gambar_banner",
+          "label": "Gambar banner halaman (kosongkan = banner bawaan)",
+          "type": "image",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "jumlah_mahasiswa",
+          "label": "Jumlah mahasiswa (teks, mis. 400+)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "jumlah_dosen",
+          "label": "Jumlah dosen (teks, mis. 20+)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "visi",
+          "label": "Visi",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "misi",
+          "label": "Misi (satu butir per baris)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "cta_judul",
+          "label": "Judul ajakan di bawah halaman (mis. Siap Bergabung dengan Fakultas Tarbiyah?)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "cta_teks",
+          "label": "Teks ajakan di bawah halaman",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "catatan_internal",
+          "label": "Catatan internal (tidak tampil di situs; tandai data yang masih DRAFT/belum diverifikasi)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "slug": "layanan",
+      "label": "Layanan & Sistem Informasi",
+      "labelSingular": "Layanan",
+      "description": "Kartu sistem informasi di halaman /layanan (dengan filter kategori).",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "hidden": false,
+      "sortOrder": 30,
+      "fields": [
+        {
+          "slug": "nama",
+          "label": "Nama sistem",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "nama_singkat",
+          "label": "Nama singkat (judul kartu)",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "kategori",
+          "label": "Kategori (untuk filter)",
+          "type": "select",
+          "required": true,
+          "unique": false,
+          "defaultValue": "akademik",
+          "validation": {
+            "options": [
+              "akademik",
+              "penelitian",
+              "publikasi",
+              "mahasiswa",
+              "alumni",
+              "administrasi"
+            ]
+          }
+        },
+        {
+          "slug": "deskripsi",
+          "label": "Deskripsi",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "url",
+          "label": "Alamat sistem",
+          "type": "url",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "ikon",
+          "label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "warna",
+          "label": "Warna (kode hex, mis. #006739)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "ketersediaan",
+          "label": "Ketersediaan",
+          "type": "select",
+          "required": true,
+          "unique": false,
+          "defaultValue": "aktif",
+          "validation": {
+            "options": [
+              "aktif",
+              "segera_hadir"
+            ]
+          }
+        },
+        {
+          "slug": "urutan",
+          "label": "Urutan tampil (kecil = lebih dulu)",
+          "type": "integer",
+          "required": false,
+          "unique": false,
+          "defaultValue": 100
+        },
+        {
+          "slug": "catatan_internal",
+          "label": "Catatan internal (tidak tampil di situs)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "slug": "prodi",
+      "label": "Program Studi",
+      "labelSingular": "Program Studi",
+      "description": "Program studi S1 dan S2. Prodi S1 tampil di /fakultas/<fakultas>/<slug>, prodi S2 di /magister/<slug>. Daftar sederhana ditulis satu butir per baris; mata kuliah ditulis \"Nama Mata Kuliah | SKS\" per baris.",
+      "supports": [
+        "drafts",
+        "revisions",
+        "search"
+      ],
+      "hidden": false,
+      "sortOrder": 31,
+      "fields": [
+        {
+          "slug": "nama",
+          "label": "Nama program studi (tanpa \"Program Studi\", mis. Pendidikan Agama Islam / Magister Ilmu Hadis)",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "singkatan",
+          "label": "Singkatan (lencana, mis. PAI)",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "jenjang",
+          "label": "Jenjang",
+          "type": "select",
+          "required": true,
+          "unique": false,
+          "defaultValue": "S1",
+          "validation": {
+            "options": [
+              "S1",
+              "S2"
+            ]
+          }
+        },
+        {
+          "slug": "fakultas",
+          "label": "Fakultas (slug entri koleksi Fakultas; prodi S2 = pascasarjana)",
+          "type": "select",
+          "required": true,
+          "unique": false,
+          "validation": {
+            "options": [
+              "tarbiyah",
+              "ushuluddin",
+              "ekonomi",
+              "pascasarjana"
+            ]
+          }
+        },
+        {
+          "slug": "urutan",
+          "label": "Urutan tampil (kecil = lebih dulu)",
+          "type": "integer",
+          "required": false,
+          "unique": false,
+          "defaultValue": 100
+        },
+        {
+          "slug": "gelar",
+          "label": "Gelar lulusan (mis. S.Pd.)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "lama_studi",
+          "label": "Lama studi (jumlah semester, mis. 8)",
+          "type": "integer",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "akreditasi",
+          "label": "Akreditasi di halaman prodi (mis. Baik Sekali, B (Baik))",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "akreditasi_kartu",
+          "label": "Akreditasi singkat di lencana kartu (mis. B)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "gambar",
+          "label": "Gambar kartu",
+          "type": "image",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "gambar_banner",
+          "label": "Gambar banner halaman (kosongkan = banner bawaan)",
+          "type": "image",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "warna",
+          "label": "Warna aksen kartu (kode hex, mis. #3498db)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "deskripsi_singkat",
+          "label": "Deskripsi singkat (kartu di halaman fakultas/magister)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "sorotan",
+          "label": "Sorotan di kartu (satu per baris)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "ringkasan_karir",
+          "label": "Ringkasan prospek karir di kartu (satu per baris; kosongkan bila tidak perlu)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "ringkasan_keunggulan",
+          "label": "Ringkasan keunggulan di kartu (satu per baris; kosongkan bila tidak perlu)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "deskripsi",
+          "label": "Tentang program studi (pisahkan paragraf dengan baris kosong; **teks** = huruf tebal)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "visi",
+          "label": "Visi",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "misi",
+          "label": "Misi (satu butir per baris)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "tujuan",
+          "label": "Tujuan (baris berawalan \"- \" menjadi butir daftar)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "profil_lulusan",
+          "label": "Profil lulusan",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "ikon",
+                "label": "Ikon (FontAwesome 4.7, mis. fa-book)",
+                "type": "string"
+              },
+              {
+                "slug": "judul",
+                "label": "Judul",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "deskripsi",
+                "label": "Deskripsi",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "kompetensi",
+          "label": "Kompetensi lulusan",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "judul",
+                "label": "Judul",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "deskripsi",
+                "label": "Deskripsi",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "keunggulan",
+          "label": "Keunggulan program (tab Profil)",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "judul",
+                "label": "Judul",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "deskripsi",
+                "label": "Deskripsi",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "kurikulum_pengantar",
+          "label": "Pengantar tab Kurikulum",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "kurikulum",
+          "label": "Kurikulum per semester",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "semester",
+                "label": "Semester (mis. Semester 1)",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "total_sks",
+                "label": "Total SKS (kosongkan = dijumlah otomatis)",
+                "type": "integer"
+              },
+              {
+                "slug": "fokus",
+                "label": "Fokus semester",
+                "type": "string"
+              },
+              {
+                "slug": "mata_kuliah",
+                "label": "Mata kuliah (satu per baris: Nama Mata Kuliah | SKS)",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "fasilitas_pengantar",
+          "label": "Pengantar tab Fasilitas",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "fasilitas",
+          "label": "Fasilitas",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "ikon",
+                "label": "Ikon (FontAwesome 4.7, mis. fa-book)",
+                "type": "string"
+              },
+              {
+                "slug": "judul",
+                "label": "Judul",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "item",
+                "label": "Rincian (satu per baris)",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "karir_pengantar",
+          "label": "Pengantar tab Prospek Karir",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "karir",
+          "label": "Prospek karir per sektor",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "ikon",
+                "label": "Ikon (FontAwesome 4.7, mis. fa-book)",
+                "type": "string"
+              },
+              {
+                "slug": "judul",
+                "label": "Sektor",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "item",
+                "label": "Profesi (satu per baris)",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "catatan",
+          "label": "Kotak catatan (mis. \"Alumni kami ...\", \"Studi lanjut: ...\")",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "ikon",
+                "label": "Ikon (FontAwesome 4.7, mis. fa-book)",
+                "type": "string"
+              },
+              {
+                "slug": "judul",
+                "label": "Teks tebal di awal (opsional)",
+                "type": "string"
+              },
+              {
+                "slug": "teks",
+                "label": "Teks",
+                "type": "text",
+                "required": true
+              },
+              {
+                "slug": "letak",
+                "label": "Letak",
+                "type": "select",
+                "required": true,
+                "options": [
+                  "profil",
+                  "karir"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "slug": "website",
+          "label": "Website resmi prodi (opsional)",
+          "type": "url",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "kaprodi_slug",
+          "label": "Slug Ketua Prodi di koleksi Pimpinan (mis. kaprodi-pai → /pimpinan/kaprodi-pai)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "cta_teks",
+          "label": "Teks ajakan di bawah halaman (mis. Daftar sekarang dan jadilah ...)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "judul_seo",
+          "label": "Judul halaman/SEO (kosongkan = otomatis)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "deskripsi_seo",
+          "label": "Deskripsi SEO",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "catatan_internal",
+          "label": "Catatan internal (tidak tampil di situs; tandai data yang masih DRAFT/generik)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "slug": "slider",
+      "label": "Slider Beranda",
+      "labelSingular": "Slide",
+      "description": "Gambar besar di bagian atas beranda. Judul slide tampil sebagai tab navigasi di bawah gambar. Urutkan dengan field Urutan; nonaktifkan slide tanpa menghapusnya dengan mematikan Aktif.",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "hidden": false,
+      "sortOrder": 31,
+      "fields": [
+        {
+          "slug": "judul",
+          "label": "Judul tab (singkat, mis. Pendaftaran)",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "gambar",
+          "label": "Gambar (lanskap, min. 1920×750 px)",
+          "type": "image",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "teks_alt",
+          "label": "Teks alternatif gambar (deskripsi untuk pembaca layar & SEO)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "tautan",
+          "label": "Tautan saat slide diklik (opsional, mis. /pmb atau https://...)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "urutan",
+          "label": "Urutan tampil (kecil = lebih dulu)",
+          "type": "integer",
+          "required": false,
+          "unique": false,
+          "defaultValue": 100
+        },
+        {
+          "slug": "aktif",
+          "label": "Tampilkan di beranda",
+          "type": "boolean",
+          "required": false,
+          "unique": false,
+          "defaultValue": true
+        }
+      ]
+    },
+    {
+      "slug": "jurnal",
+      "label": "Jurnal",
+      "labelSingular": "Jurnal",
+      "description": "Jurnal ilmiah IAIPI Garut yang tampil di section Publikasi beranda.",
+      "supports": [
+        "drafts",
+        "revisions",
+        "search"
+      ],
+      "hidden": false,
+      "sortOrder": 32,
+      "fields": [
+        {
+          "slug": "nama",
+          "label": "Nama jurnal",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "bidang",
+          "label": "Bidang / subjudul (mis. Jurnal Ilmu Syariah)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "url",
+          "label": "URL jurnal (OJS)",
+          "type": "url",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "sampul",
+          "label": "Gambar sampul (potret)",
+          "type": "image",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "urutan",
+          "label": "Urutan tampil (kecil = lebih dulu)",
+          "type": "integer",
+          "required": false,
+          "unique": false,
+          "defaultValue": 100
+        }
+      ]
+    },
+    {
+      "slug": "testimoni",
+      "label": "Testimoni",
+      "labelSingular": "Testimoni",
+      "description": "Kesan alumni/mahasiswa yang tampil di beranda. Gunakan hanya testimoni asli yang sudah disetujui orangnya.",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "hidden": false,
+      "sortOrder": 33,
+      "fields": [
+        {
+          "slug": "nama",
+          "label": "Nama",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "program_studi",
+          "label": "Program studi",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "keterangan",
+          "label": "Keterangan (mis. Alumni 2023 / Mahasiswa Aktif)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "foto",
+          "label": "Foto (persegi; kosongkan = avatar inisial)",
+          "type": "image",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "isi",
+          "label": "Isi testimoni",
+          "type": "text",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "urutan",
+          "label": "Urutan tampil (kecil = lebih dulu)",
+          "type": "integer",
+          "required": false,
+          "unique": false,
+          "defaultValue": 100
+        },
+        {
+          "slug": "catatan_internal",
+          "label": "Catatan internal (tidak tampil di situs)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "slug": "lembaga",
+      "label": "Lembaga & Departemen",
+      "labelSingular": "Lembaga",
+      "description": "Kartu di halaman /lembaga-departemen dan blok \"Layanan Institusi\" di beranda (centang Tampil di beranda).",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "hidden": false,
+      "sortOrder": 40,
+      "fields": [
+        {
+          "slug": "nama",
+          "label": "Nama singkat (judul kartu)",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "nama_lengkap",
+          "label": "Nama lengkap",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "kategori",
+          "label": "Kategori",
+          "type": "select",
+          "required": true,
+          "unique": false,
+          "defaultValue": "lembaga",
+          "validation": {
+            "options": [
+              "lembaga",
+              "pusat",
+              "unit",
+              "prodi"
+            ]
+          }
+        },
+        {
+          "slug": "fakultas",
+          "label": "Fakultas (khusus program studi, tanpa kata \"Fakultas\")",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "deskripsi",
+          "label": "Deskripsi",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "url",
+          "label": "Tautan (website lembaga atau halaman prodi, mis. /fakultas/tarbiyah/pai)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "ikon",
+          "label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "ketersediaan",
+          "label": "Ketersediaan",
+          "type": "select",
+          "required": true,
+          "unique": false,
+          "defaultValue": "aktif",
+          "validation": {
+            "options": [
+              "aktif",
+              "segera_hadir"
+            ]
+          }
+        },
+        {
+          "slug": "urutan",
+          "label": "Urutan tampil (kecil = lebih dulu)",
+          "type": "integer",
+          "required": false,
+          "unique": false,
+          "defaultValue": 100
+        },
+        {
+          "slug": "tampil_di_halaman",
+          "label": "Tampil di halaman Lembaga & Departemen",
+          "type": "boolean",
+          "required": false,
+          "unique": false,
+          "defaultValue": true
+        },
+        {
+          "slug": "tampil_di_beranda",
+          "label": "Tampil di beranda (blok Layanan Institusi)",
+          "type": "boolean",
+          "required": false,
+          "unique": false,
+          "defaultValue": false
+        },
+        {
+          "slug": "urutan_beranda",
+          "label": "Urutan di beranda",
+          "type": "integer",
+          "required": false,
+          "unique": false,
+          "defaultValue": 100
+        },
+        {
+          "slug": "beranda_nama_lengkap",
+          "label": "Nama lengkap di beranda (kosongkan = pakai Nama lengkap)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "beranda_deskripsi",
+          "label": "Deskripsi singkat di beranda (kosongkan = pakai Deskripsi)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "warna",
+          "label": "Warna ikon di beranda (kode hex)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "catatan_internal",
+          "label": "Catatan internal (tidak tampil di situs)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "slug": "pmb",
+      "label": "Penerimaan Mahasiswa Baru",
+      "labelSingular": "PMB",
+      "description": "Isi halaman /pmb dan kartu PMB + beasiswa (dengan hitung mundur) di beranda. Cukup satu entri (slug: utama); perbarui tiap gelombang.",
+      "supports": [
+        "drafts",
+        "revisions"
+      ],
+      "hidden": false,
+      "sortOrder": 50,
+      "fields": [
+        {
+          "slug": "judul",
+          "label": "Judul halaman (banner)",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "tahun_akademik",
+          "label": "Tahun akademik (mis. 2026/2027)",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "gelombang_aktif",
+          "label": "Gelombang aktif (angka saja, mis. 5)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "tanggal_tutup",
+          "label": "Pendaftaran reguler ditutup (dipakai hitung mundur beranda)",
+          "type": "datetime",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "tanggal_tutup_beasiswa",
+          "label": "Pendaftaran beasiswa ditutup",
+          "type": "datetime",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "intro_judul",
+          "label": "Intro: judul",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "intro_deskripsi",
+          "label": "Intro: paragraf",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "jumlah_prodi",
+          "label": "Intro: angka jumlah program studi",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "label_jumlah_prodi",
+          "label": "Intro: label jumlah program studi",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "biaya_minimum_s1",
+          "label": "Biaya minimum langsung kuliah S1 (mis. 2,9 Jt)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "biaya_minimum_s2",
+          "label": "Biaya minimum langsung kuliah S2 (mis. 4 Jt)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "jadwal",
+          "label": "Jadwal pendaftaran gelombang aktif",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "jalur",
+                "label": "Jalur",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "periode",
+                "label": "Periode",
+                "type": "string",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "slug": "catatan_jadwal",
+          "label": "Catatan di bawah jadwal",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "whatsapp_admin",
+          "label": "Nomor WhatsApp admin PMB (format internasional tanpa +)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "pesan_whatsapp_admin",
+          "label": "Pesan awal WhatsApp admin PMB",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "keunggulan",
+          "label": "Keunggulan PMB",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "ikon",
+                "label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+                "type": "string"
+              },
+              {
+                "slug": "judul",
+                "label": "Judul",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "deskripsi",
+                "label": "Deskripsi",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "program_studi",
+          "label": "Pilihan program studi per fakultas",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "fakultas",
+                "label": "Fakultas / program",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "ikon",
+                "label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+                "type": "string"
+              },
+              {
+                "slug": "prodi",
+                "label": "Daftar program studi (satu baris per prodi)",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "ukm",
+          "label": "Unit Kegiatan Mahasiswa",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "nama",
+                "label": "Nama UKM",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "bidang",
+                "label": "Bidang",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "catatan_biaya",
+          "label": "Catatan biaya (di bawah judul Biaya Kuliah)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "biaya_s1",
+          "label": "Rincian biaya S1",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "komponen",
+                "label": "Komponen",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "nominal",
+                "label": "Nominal",
+                "type": "string",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "slug": "biaya_s2",
+          "label": "Rincian biaya S2",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "komponen",
+                "label": "Komponen",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "nominal",
+                "label": "Nominal",
+                "type": "string",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "slug": "langkah_judul",
+          "label": "Langkah pendaftaran: judul",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "langkah_deskripsi",
+          "label": "Langkah pendaftaran: paragraf",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "alur_pendaftaran",
+          "label": "Langkah pendaftaran",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "judul",
+                "label": "Judul",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "deskripsi",
+                "label": "Deskripsi",
+                "type": "text"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "persyaratan",
+          "label": "Persyaratan umum (satu baris per syarat)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "poster",
+          "label": "Poster PMB",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "gambar",
+                "label": "Gambar poster",
+                "type": "image",
+                "required": true
+              },
+              {
+                "slug": "keterangan",
+                "label": "Keterangan",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "poster_lengkap",
+          "label": "Poster lengkap (untuk tautan unduh)",
+          "type": "image",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "kanal_bantuan",
+          "label": "Kanal bantuan PMB",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "ikon",
+                "label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+                "type": "string"
+              },
+              {
+                "slug": "label",
+                "label": "Label",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "url",
+                "label": "Tautan",
+                "type": "url",
+                "required": true
+              },
+              {
+                "slug": "keterangan",
+                "label": "Keterangan",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "beranda_judul_pmb",
+          "label": "Beranda: judul kartu PMB",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "beranda_teks_pmb",
+          "label": "Beranda: teks kartu PMB (tulis **teks** untuk huruf tebal)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "beranda_judul_beasiswa",
+          "label": "Beranda: judul kartu beasiswa",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "beranda_teks_beasiswa",
+          "label": "Beranda: teks kartu beasiswa (tulis **teks** untuk huruf tebal)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "beranda_sorotan_beasiswa",
+          "label": "Beranda: sorotan beasiswa (mis. kuota/penerima)",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "ikon",
+                "label": "Ikon FontAwesome 4.7 (mis. fa-book)",
+                "type": "string"
+              },
+              {
+                "slug": "teks",
+                "label": "Teks (tulis **teks** untuk huruf tebal)",
+                "type": "string",
+                "required": true
+              }
+            ]
+          }
+        },
+        {
+          "slug": "catatan_internal",
+          "label": "Catatan internal (tidak tampil di situs)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "slug": "info_kampus",
+      "label": "Info Kampus",
+      "labelSingular": "Info Kampus",
+      "description": "Data kontak & identitas yang tampil di header, footer, tombol WhatsApp, dan data terstruktur Google. Cukup satu entri (slug: utama).",
+      "supports": [
+        "revisions"
+      ],
+      "hidden": false,
+      "sortOrder": 90,
+      "fields": [
+        {
+          "slug": "nama",
+          "label": "Nama institusi",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "nama_singkat",
+          "label": "Nama singkat",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "deskripsi",
+          "label": "Deskripsi singkat (footer & SEO)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "logo",
+          "label": "Logo",
+          "type": "image",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "alamat",
+          "label": "Alamat lengkap",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "kota",
+          "label": "Kota/Kabupaten",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "provinsi",
+          "label": "Provinsi",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "kode_pos",
+          "label": "Kode pos",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "telepon",
+          "label": "Telepon (format tampil, mis. +62 851 2312 3670)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "whatsapp",
+          "label": "Nomor WhatsApp (format internasional tanpa +, mis. 6285123123670)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "pesan_whatsapp",
+          "label": "Pesan awal WhatsApp",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "email",
+          "label": "Email utama",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "email_pmb",
+          "label": "Email PMB",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "facebook",
+          "label": "Facebook",
+          "type": "url",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "instagram",
+          "label": "Instagram",
+          "type": "url",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "youtube",
+          "label": "YouTube",
+          "type": "url",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "link_pendaftaran",
+          "label": "Link pendaftaran PMB online",
+          "type": "url",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "link_siakad",
+          "label": "Link SIAKAD",
+          "type": "url",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "peta_embed",
+          "label": "URL embed Google Maps",
+          "type": "url",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "teks_hak_cipta",
+          "label": "Teks hak cipta footer",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "teks_pengembang",
+          "label": "Teks pengembang footer",
+          "type": "string",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "google_analytics_id",
+          "label": "Google Analytics 4 Measurement ID (kosongkan untuk menonaktifkan)",
+          "type": "string",
+          "required": false,
+          "unique": false
+        }
+      ]
+    },
+    {
+      "slug": "info_kontak",
+      "label": "Info Kontak",
+      "labelSingular": "Info Kontak",
+      "description": "Pelengkap halaman /kontak: jam operasional dan kontak per unit. Alamat, telepon, email utama, peta, dan media sosial diambil dari Info Kampus. Cukup satu entri (slug: utama).",
+      "supports": [
+        "revisions"
+      ],
+      "hidden": false,
+      "sortOrder": 91,
+      "fields": [
+        {
+          "slug": "judul",
+          "label": "Judul entri",
+          "type": "string",
+          "required": true,
+          "unique": false
+        },
+        {
+          "slug": "jam_operasional",
+          "label": "Jam operasional (satu baris per baris tampil)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        },
+        {
+          "slug": "unit",
+          "label": "Kontak unit layanan",
+          "type": "repeater",
+          "required": false,
+          "unique": false,
+          "validation": {
+            "subFields": [
+              {
+                "slug": "nama",
+                "label": "Nama unit",
+                "type": "string",
+                "required": true
+              },
+              {
+                "slug": "deskripsi",
+                "label": "Deskripsi",
+                "type": "string"
+              },
+              {
+                "slug": "email",
+                "label": "Email",
+                "type": "string"
+              },
+              {
+                "slug": "telepon",
+                "label": "Telepon (mis. 085123123670)",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        {
+          "slug": "catatan_internal",
+          "label": "Catatan internal (tidak tampil di situs)",
+          "type": "text",
+          "required": false,
+          "unique": false
+        }
+      ]
+    }
+  ],
+  "version": "8cce15c68f398704"
+}
