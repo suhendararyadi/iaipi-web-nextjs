@@ -27,8 +27,10 @@
 	// Aktifkan baris ini + sandboxRunner di astro.config.mjs bila sudah upgrade:
 	// "worker_loaders": [{ "binding": "LOADER" }],
 	// Cron untuk publikasi terjadwal, backup, dan pemeliharaan EmDash.
+	// Tiap jam (bukan tiap menit) agar tidak melewati batas CPU paket gratis Workers.
+	// Harus sama dengan generalCron di src/worker.ts. Artikel terjadwal terbit paling lambat 1 jam.
 	"triggers": {
-		"crons": ["* * * * *"]
+		"crons": ["0 * * * *"]
 	},
 	// Aktifkan setelah DNS iaipersisgarut.ac.id dipindah ke Cloudflare:
 	// "routes": [
